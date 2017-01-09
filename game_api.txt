@@ -1,0 +1,836 @@
+Minetest Game API
+=================
+GitHub Repo: https://github.com/minetest/minetest_game
+
+Introduction
+------------
+
+The Minetest Game subgame offers multiple new possibilities in addition to the Minetest engine's built-in API,
+allowing you to add new plants to farming mod, buckets for new liquids, new stairs and custom panes.
+For information on the Minetest API, visit https://github.com/minetest/minetest/blob/master/doc/lua_api.txt
+Please note:
+
+ * [XYZ] refers to a section the Minetest API
+ * [#ABC] refers to a section in this document
+ * [pos] refers to a position table `{x = -5, y = 0, z = 200}`
+
+Bucket API
+----------
+
+The bucket API allows registering new types of buckets for non-default liquids.
+
+	bucket.register_liquid(
+		"default:lava_source",   -- name of the source node
+		"default:lava_flowing",  -- name of the flowing node
+		"bucket:bucket_lava",    -- name of the new bucket item (or nil if liquid is not takeable)
+		"bucket_lava.png",       -- texture of the new bucket item (ignored if itemname == nil)
+		"Lava Bucket",           -- text description of the bucket item
+		{lava_bucket = 1},       -- groups of the bucket item, OPTIONAL
+		false                    -- force-renew, OPTIONAL. Force the liquid source to renew if it has
+		                         -- a source neighbour, even if defined as 'liquid_renewable = false'.
+		                         -- Needed to avoid creating holes in sloping rivers.
+	)
+
+The filled bucket item is returned to the player that uses an empty bucket pointing to the given liquid source.
+When punching with an empty bucket pointing to an entity or a non-liquid node, the on_punch of the entity or node will be triggered.
+
+Beds API
+--------
+
+	beds.register_bed(
+		"beds:bed",    -- Bed name
+		def            -- See [#Bed definition]
+	)
+
+ * `beds.read_spawns() `   Returns a table containing players respawn positions
+ * `beds.kick_players()`  Forces all players to leave bed
+ * `beds.skip_night()`   Sets world time to morning and saves respawn position of all players currently sleeping
+
+### Bed definition
+
+	{
+		description = "Simple Bed",
+		inventory_image = "beds_bed.png",
+		wield_image = "beds_bed.png",
+		tiles = {
+			bottom = {'Tile definition'}, -- the tiles of the bottom part of the bed.
+			top = {Tile definition} -- the tiles of the bottom part of the bed.
+		},
+		nodebox = {
+			bottom = 'regular nodebox',     -- bottom part of bed (see [Node boxes])
+			top = 'regular nodebox',        -- top part of bed (see [Node boxes])
+		},
+		selectionbox = 'regular nodebox',  -- for both nodeboxes (see [Node boxes])
+		recipe = {                                         -- Craft recipe
+			{"group:wool", "group:wool", "group:wool"},
+			{"group:wood", "group:wood", "group:wood"}
+		}
+	}
+
+Creative API
+------------
+
+Use `creative.register_tab(name, title, items)` to add a tab with filtered items.
+For example,
+
+	creative.register_tab("tools", "Tools", minetest.registered_tools)
+
+is used to show all tools. Name is used in the sfinv page name, title is the
+human readable title.
+
+The contents of `creative.formspec_add` is appended to every creative inventory
+page. Mods can use it to add additional formspec elements onto the default
+creative inventory formspec to be drawn after each update.
+
+Doors API
+---------
+
+The doors mod allows modders to register custom doors and trapdoors.
+
+`doors.register_door(name, def)`
+
+ * Registers new door
+ * `name` Name for door
+ * `def`  See [#Door definition]
+
+`doors.register_trapdoor(name, def)`
+
+ * Registers new trapdoor
+ * `name` Name for trapdoor
+ * `def`  See [#Trapdoor definition]
+
+`doors.register_fencegate(name, def)`
+
+ * Registers new fence gate
+ * `name` Name for fence gate
+ * `def`  See [#Fence gate definition]
+
+`doors.get(pos)`
+
+ * `pos` A position as a table, e.g `{x = 1, y = 1, z = 1}`
+ * Returns an ObjectRef to a door, or nil if the position does not contain a door
+
+    ### Methods
+
+        :open(player)   -- Open the door object, returns if door was opened
+        :close(player)  -- Close the door object, returns if door was closed
+        :toggle(player) -- Toggle the door state, returns if state was toggled
+        :state()        -- returns the door state, true = open, false = closed
+
+    the "player" parameter can be omitted in all methods. If passed then
+    the usual permission checks will be performed to make sure the player
+    has the permissions needed to open this door. If omitted then no
+    permission checks are performed.
+
+### Door definition
+
+	description = "Door description",
+	inventory_image = "mod_door_inv.png",
+	groups = {choppy = 2},
+	tiles = {"mod_door.png"}, -- UV map.
+	recipe = craftrecipe,
+	sounds = default.node_sound_wood_defaults(), -- optional
+	sound_open = sound play for open door, -- optional
+	sound_close = sound play for close door, -- optional
+	protected = false, -- If true, only placer can open the door (locked for others)
+
+### Trapdoor definition
+
+	description = "Trapdoor description",
+	inventory_image = "mod_trapdoor_inv.png",
+	groups = {choppy = 2},
+	tile_front = "doors_trapdoor.png", -- the texture for the front and back of the trapdoor
+	tile_side = "doors_trapdoor_side.png", -- the tiles of the four side parts of the trapdoor
+	sounds = default.node_sound_wood_defaults(), -- optional
+	sound_open = sound play for open door, -- optional
+	sound_close = sound play for close door, -- optional
+	protected = false, -- If true, only placer can open the door (locked for others)
+
+### Fence gate definition
+
+	description = "Wooden Fence Gate",
+	texture = "default_wood.png",
+	material = "default:wood",
+	groups = {choppy = 2, oddly_breakable_by_hand = 2, flammable = 2},
+	sounds = default.node_sound_wood_defaults(), -- optional
+
+Fence API
+---------
+
+Allows creation of new fences with "fencelike" drawtype.
+
+`default.register_fence(name, item definition)`
+
+ Registers a new fence. Custom fields texture and material are required, as
+ are name and description. The rest is optional. You can pass most normal
+ nodedef fields here except drawtype. The fence group will always be added
+ for this node.
+
+### fence definition
+
+	name = "default:fence_wood",
+	description = "Wooden Fence",
+	texture = "default_wood.png",
+	material = "default:wood",
+	groups = {choppy = 2, oddly_breakable_by_hand = 2, flammable = 2},
+	sounds = default.node_sound_wood_defaults(),
+
+Walls API
+---------
+
+The walls API allows easy addition of stone auto-connecting wall nodes.
+
+walls.register(name, desc, texture, mat, sounds)
+^ name = "walls:stone_wall". Node name.
+^ desc = "A Stone wall"
+^ texture = "default_stone.png"
+^ mat = "default:stone". Used to auto-generate crafting recipe.
+^ sounds = sounds: see [#Default sounds]
+
+Farming API
+-----------
+
+The farming API allows you to easily register plants and hoes.
+
+`farming.register_hoe(name, hoe definition)`
+ * Register a new hoe, see [#hoe definition]
+
+`farming.register_plant(name, Plant definition)`
+ * Register a new growing plant, see [#Plant definition]
+
+`farming.registered_plants[name] = definition`
+ * Table of registered plants, indexed by plant name
+
+### Hoe Definition
+
+
+	{
+		description = "",                      -- Description for tooltip
+		inventory_image = "unknown_item.png",  -- Image to be used as wield- and inventory image
+		max_uses = 30,                         -- Uses until destroyed
+		material = "",                         -- Material for recipes
+		recipe = {                             -- Craft recipe, if material isn't used
+			{"air", "air", "air"},
+			{"", "group:stick"},
+			{"", "group:stick"},
+		}
+	}
+
+### Plant definition
+
+	{
+		description = "",                      -- Description of seed item
+		inventory_image = "unknown_item.png",  -- Image to be used as seed's wield- and inventory image
+		steps = 8,                             -- How many steps the plant has to grow, until it can be harvested
+		-- ^ Always provide a plant texture for each step, format: modname_plantname_i.png (i = stepnumber)
+		minlight = 13,                         -- Minimum light to grow
+		maxlight = default.LIGHT_MAX           -- Maximum light to grow
+	}
+
+Fire API
+--------
+
+New node def property:
+
+`on_burn(pos)`
+
+ * Called when fire attempts to remove a burning node.
+ * `pos` Position of the burning node.
+
+ `on_ignite(pos, igniter)`
+
+  * Called when Flint and steel (or a mod defined ignitor) is used on a node.
+    Defining it may prevent the default action (spawning flames) from triggering.
+  * `pos` Position of the ignited node.
+  * `igniter` Player that used the tool, when available.
+
+
+Give Initial Stuff API
+----------------------
+
+`give_initial_stuff.give(player)`
+
+^ Give initial stuff to "player"
+
+`give_initial_stuff.add(stack)`
+
+^ Add item to the initial stuff
+^ Stack can be an ItemStack or a item name eg: "default:dirt 99"
+^ Can be called after the game has loaded
+
+`give_initial_stuff.clear()`
+
+^ Removes all items from the initial stuff
+^ Can be called after the game has loaded
+
+`give_initial_stuff.get_list()`
+
+^ returns list of item stacks
+
+`give_initial_stuff.set_list(list)`
+
+^ List of initial items with numeric indices.
+
+`give_initial_stuff.add_from_csv(str)`
+
+^ str is a comma separated list of initial stuff
+^ Adds items to the list of items to be given
+
+Nyancat API
+-----------
+
+`nyancat.place(pos, facedir, length)`
+
+^ Place a cat at `pos` facing `facedir` with tail length `length`
+  Only accepts facedir 0-3, if facedir > 3 then it will be interpreted as facedir = 0
+
+`nyancat.generate(minp, maxp, seed)`
+
+^ Called by `minetest.register_on_generated`. To disable nyancat generation,
+  you can redefine nyancat.generate() to be an empty function
+
+TNT API
+----------
+
+`tnt.register_tnt(definition)`
+
+^ Register a new type of tnt.
+
+ * `name` The name of the node. If no prefix is given `tnt` is used.
+ * `description` A description for your TNT.
+ * `radius` The radius within which the TNT can destroy nodes. The default is 3.
+ * `damage_radius` The radius within which the TNT can damage players and mobs. By default it is twice the `radius`.
+ * `disable_drops` Disable drops. By default it is set to false.
+ * `ignore_protection` Don't check `minetest.is_protected` before removing a node.
+ * `ignore_on_blast` Don't call `on_blast` even if a node has one.
+ * `tiles` Textures for node
+  * `side`  Side tiles. By default the name of the tnt with a suffix of `_side.png`.
+  * `top`  Top tile. By default the name of the tnt with a suffix of `_top.png`.
+  * `bottom` Bottom tile. By default the name of the tnt with a suffix of `_bottom.png`.
+  * `burning` Top tile when lit. By default the name of the tnt with a suffix of `_top_burning_animated.png".
+
+`tnt.boom(position, definition)`
+
+^ Create an explosion.
+
+* `position` The center of explosion.
+* `definition` The TNT definion as passed to `tnt.register`
+
+`tnt.burn(position, [nodename])`
+
+^ Ignite TNT at position, nodename isn't required unless already known.
+
+
+To make dropping items from node inventories easier, you can use the
+following helper function from 'default':
+
+default.get_inventory_drops(pos, inventory, drops)
+
+^ Return drops from node inventory "inventory" in drops.
+
+* `pos` - the node position
+* `inventory` - the name of the inventory (string)
+* `drops` - an initialized list
+
+The function returns no values. The drops are returned in the `drops`
+parameter, and drops is not reinitialized so you can call it several
+times in a row to add more inventory items to it.
+
+
+`on_blast` callbacks:
+
+Both nodedefs and entitydefs can provide an `on_blast()` callback
+
+`nodedef.on_blast(pos, intensity)`
+^ Allow drop and node removal overriding
+* `pos` - node position
+* `intensity` - TNT explosion measure. larger or equal to 1.0
+^ Should return a list of drops (e.g. {"default:stone"})
+^ Should perform node removal itself. If callback exists in the nodedef
+^ then the TNT code will not destroy this node.
+
+`entitydef.on_blast(luaobj, damage)`
+^ Allow TNT effects on entities to be overridden
+* `luaobj` - LuaEntityRef of the entity
+* `damage` - suggested HP damage value
+^ Should return a list of (bool do_damage, bool do_knockback, table drops)
+* `do_damage` - if true then TNT mod wil damage the entity
+* `do_knockback` - if true then TNT mod will knock the entity away
+* `drops` - a list of drops, e.g. {"wool:red"}
+
+
+Screwdriver API
+---------------
+
+The screwdriver API allows you to control a node's behaviour when a screwdriver is used on it.
+To use it, add the `on_screwdriver` function to the node definition.
+
+`on_rotate(pos, node, user, mode, new_param2)`
+
+ * `pos` Position of the node that the screwdriver is being used on
+ * `node` that node
+ * `user` The player who used the screwdriver
+ * `mode` screwdriver.ROTATE_FACE or screwdriver.ROTATE_AXIS
+ * `new_param2` the new value of param2 that would have been set if on_rotate wasn't there
+ * return value: false to disallow rotation, nil to keep default behaviour, true to allow
+ 	it but to indicate that changed have already been made (so the screwdriver will wear out)
+ * use `on_rotate = false` to always disallow rotation
+ * use `on_rotate = screwdriver.rotate_simple` to allow only face rotation
+
+
+Sethome API
+-----------
+
+The sethome API adds three global functions to allow mods to read a players home position,
+set a players home position and teleport a player to home position.
+
+`sethome.get(name)`
+
+ * `name` Player who's home position you wish to get
+ * return value: false if no player home coords exist, position table if true
+
+`sethome.set(name, pos)`
+
+ * `name` Player who's home position you wish to set
+ * `pos` Position table containing coords of home position
+ * return value: false if unable to set and save new home position, otherwise true
+
+`sethome.go(name)`
+
+ * `name` Player you wish to teleport to their home position
+ * return value: false if player cannot be sent home, otherwise true
+
+
+Sfinv API
+---------
+
+### sfinv Methods
+
+* sfinv.set_player_inventory_formspec(player, context) - builds page formspec
+            and calls set_inventory_formspec().
+            If context is nil, it is either found or created.
+* sfinv.get_formspec(player, context) - builds current page's formspec
+* sfinv.get_nav_fs(player, context, nav, current_idx) - see above
+* sfinv.get_homepage_name(player) - get the page name of the first page to show to a player
+* sfinv.make_formspec(player, context, content, show_inv, size) - adds a theme to a formspec
+    * show_inv, defaults to false. Whether to show the player's main inventory
+    * size, defaults to `size[8,8.6]` if not specified
+* sfinv.register_page(name, def) - register a page, see section below
+* sfinv.override_page(name, def) - overrides fields of an page registered with register_page.
+    * Note: Page must already be defined, (opt)depend on the mod defining it.
+
+### sfinv Members
+
+* pages - table of pages[pagename] = def
+* pages_unordered - array table of pages in order of addition (used to build navigation tabs).
+* contexts - contexts[playername] = player_context
+* enabled - set to false to disable. Good for inventory rehaul mods like unified inventory
+
+### Context
+
+A table with these keys:
+
+* page - current page name
+* nav - a list of page names
+* nav_titles - a list of page titles
+* nav_idx - current nav index (in nav and nav_titles)
+* any thing you want to store
+    * sfinv will clear the stored data on log out / log in
+
+### sfinv.register_page
+
+sfinv.register_page(name, def)
+
+def is a table containing:
+
+* `title` - human readable page name (required)
+* `get(self, player, context)` - returns a formspec string. See formspec variables. (required)
+* `is_in_nav(self, player, context)` - return true to show in the navigation (the tab header, by default)
+* `on_player_receive_fields(self, player, context, fields)` - on formspec submit.
+* `on_enter(self, player, context)` - called when the player changes pages, usually using the tabs.
+* `on_leave(self, player, context)` - when leaving this page to go to another, called before other's on_enter
+
+### get formspec
+
+Use sfinv.make_formspec to apply a layout:
+
+	return sfinv.make_formspec(player, context, [[
+		list[current_player;craft;1.75,0.5;3,3;]
+		list[current_player;craftpreview;5.75,1.5;1,1;]
+		image[4.75,1.5;1,1;gui_furnace_arrow_bg.png^[transformR270]
+		listring[current_player;main]
+		listring[current_player;craft]
+		image[0,4.25;1,1;gui_hb_bg.png]
+		image[1,4.25;1,1;gui_hb_bg.png]
+		image[2,4.25;1,1;gui_hb_bg.png]
+		image[3,4.25;1,1;gui_hb_bg.png]
+		image[4,4.25;1,1;gui_hb_bg.png]
+		image[5,4.25;1,1;gui_hb_bg.png]
+		image[6,4.25;1,1;gui_hb_bg.png]
+		image[7,4.25;1,1;gui_hb_bg.png]
+	]], true)
+
+See above (methods section) for more options.
+
+### Customising themes
+
+Simply override this function to change the navigation:
+
+	function sfinv.get_nav_fs(player, context, nav, current_idx)
+		return "navformspec"
+	end
+
+And override this function to change the layout:
+
+	function sfinv.make_formspec(player, context, content, show_inv, size)
+		local tmp = {
+			size or "size[8,8.6]",
+			theme_main,
+			sfinv.get_nav_fs(player, context, context.nav_titles, context.nav_idx),
+			content
+		}
+		if show_inv then
+			tmp[4] = theme_inv
+		end
+		return table.concat(tmp, "")
+	end
+
+Stairs API
+----------
+
+The stairs API lets you register stairs and slabs and ensures that they are registered the same way as those
+delivered with Minetest Game, to keep them compatible with other mods.
+
+`stairs.register_stair(subname, recipeitem, groups, images, description, sounds)`
+
+ * Registers a stair.
+ * `subname`: Basically the material name (e.g. cobble) used for the stair name. Nodename pattern: "stairs:stair_subname"
+ * `recipeitem`: Item used in the craft recipe, e.g. "default:cobble", may be `nil`
+ * `groups`: see [Known damage and digging time defining groups]
+ * `images`: see [Tile definition]
+ * `description`: used for the description field in the stair's definition
+ * `sounds`: see [#Default sounds]
+
+`stairs.register_slab(subname, recipeitem, groups, images, description, sounds)`
+
+ * Registers a slabs
+ * `subname`: Basically the material name (e.g. cobble) used for the stair name. Nodename pattern: "stairs:stair_subname"
+ * `recipeitem`: Item used in the craft recipe, e.g. "default:cobble"
+ * `groups`: see [Known damage and digging time defining groups]
+ * `images`: see [Tile definition]
+ * `description`: used for the description field in the stair's definition
+ * `sounds`: see [#Default sounds]
+
+`stairs.register_stair_and_slab(subname, recipeitem, groups, images, desc_stair, desc_slab, sounds)`
+
+ * A wrapper for stairs.register_stair and stairs.register_slab
+ * Uses almost the same arguments as stairs.register_stair
+ * `desc_stair`: Description for stair node
+ * `desc_slab`: Description for slab node
+
+Xpanes API
+----------
+
+Creates panes that automatically connect to each other
+
+`xpanes.register_pane(subname, def)`
+
+ * `subname`: used for nodename. Result: "xpanes:subname" and "xpanes:subname_{2..15}"
+ * `def`: See [#Pane definition]
+
+### Pane definition
+
+	{
+		textures = {"texture for sides", (unused), "texture for top and bottom"}, -- More tiles aren't supported
+		groups = {group = rating}, -- Uses the known node groups, see [Known damage and digging time defining groups]
+		sounds = SoundSpec,        -- See [#Default sounds]
+		recipe = {{"","","","","","","","",""}}, -- Recipe field only
+	}
+
+Raillike definitions
+--------------------
+
+The following nodes use the group `connect_to_raillike` and will only connect to
+raillike nodes within this group and the same group value.
+Use `minetest.raillike_group(<Name>)` to get the group value.
+
+| Node type             | Raillike group name
+|-----------------------|---------------------
+| default:rail          | "rail"
+| tnt:gunpowder         | "gunpowder"
+| tnt:gunpowder_burning	| "gunpowder"
+
+Example:
+If you want to add a new rail type and want it to connect with default:rail,
+add `connect_to_raillike=minetest.raillike_group("rail")` into the `groups` table
+of your node.
+
+
+Default sounds
+--------------
+
+Sounds inside the default table can be used within the sounds field of node definitions.
+
+ * `default.node_sound_defaults()`
+ * `default.node_sound_stone_defaults()`
+ * `default.node_sound_dirt_defaults()`
+ * `default.node_sound_sand_defaults()`
+ * `default.node_sound_wood_defaults()`
+ * `default.node_sound_leaves_defaults()`
+ * `default.node_sound_glass_defaults()`
+ * `default.node_sound_metal_defaults()`
+
+Default constants
+-----------------
+
+`default.LIGHT_MAX`  The maximum light level (see [Node definition] light_source)
+
+Player API
+----------
+
+The player API can register player models and update the player's appearence
+
+`default.player_register_model(name, def)`
+
+ * Register a new model to be used by players.
+ * name: model filename such as "character.x", "foo.b3d", etc.
+ * def: See [#Model definition]
+
+`default.registered_player_models[name]`
+
+ * Get a model's definition
+ * see [#Model definition]
+
+`default.player_set_model(player, model_name)`
+
+ * Change a player's model
+ * `player`: PlayerRef
+ * `model_name`: model registered with player_register_model()
+
+`default.player_set_animation(player, anim_name [, speed])`
+
+ * Applies an animation to a player
+ * anim_name: name of the animation.
+ * speed: frames per second. If nil, default from the model is used
+
+`default.player_set_textures(player, textures)`
+
+ * Sets player textures
+ * `player`: PlayerRef
+ * `textures`: array of textures, If `textures` is nil, the default textures from the model def are used
+
+default.player_get_animation(player)
+
+ * Returns a table containing fields `model`, `textures` and `animation`.
+ * Any of the fields of the returned table may be nil.
+ * player: PlayerRef
+
+### Model Definition
+
+	{
+		animation_speed = 30,            -- Default animation speed, in FPS.
+		textures = {"character.png", },  -- Default array of textures.
+		visual_size = {x = 1, y = 1},    -- Used to scale the model.
+		animations = {
+			-- <anim_name> = {x = <start_frame>, y = <end_frame>},
+			foo = {x = 0, y = 19},
+			bar = {x = 20, y = 39},
+		-- ...
+		},
+	}
+
+Leafdecay
+---------
+
+To enable leaf decay for a node, add it to the `leafdecay` group.
+
+The rating of the group determines how far from a node in the group `tree`
+the node can be without decaying.
+
+If `param2` of the node is ~= 0, the node will always be preserved. Thus, if
+the player places a node of that kind, you will want to set `param2 = 1` or so.
+
+The function `default.after_place_leaves` can be set as `after_place_node of a node`
+to set param2 to 1 if the player places the node (should not be used for nodes
+that use param2 otherwise (e.g. facedir)).
+
+If the node is in the `leafdecay_drop` group then it will always be dropped as an
+item.
+
+Dyes
+----
+
+To make recipes that will work with any dye ever made by anybody, define
+them based on groups. You can select any group of groups, based on your need for
+amount of colors.
+
+### Color groups
+
+Base color groups:
+
+ * `basecolor_white`
+ * `basecolor_grey`
+ * `basecolor_black`
+ * `basecolor_red`
+ * `basecolor_yellow`
+ * `basecolor_green`
+ * `basecolor_cyan`
+ * `basecolor_blue`
+ * `basecolor_magenta`
+
+Extended color groups ( * means also base color )
+
+ * `excolor_white` *
+ * `excolor_lightgrey`
+ * `excolor_grey` *
+ * `excolor_darkgrey`
+ * `excolor_black` *
+ * `excolor_red` *
+ * `excolor_orange`
+ * `excolor_yellow` *
+ * `excolor_lime`
+ * `excolor_green` *
+ * `excolor_aqua`
+ * `excolor_cyan` *
+ * `excolor_sky_blue`
+ * `excolor_blue` *
+ * `excolor_violet`
+ * `excolor_magenta` *
+ * `excolor_red_violet`
+
+The whole unifieddyes palette as groups:
+
+ * `unicolor_<excolor>`
+
+For the following, no white/grey/black is allowed:
+
+ * `unicolor_medium_<excolor>`
+ * `unicolor_dark_<excolor>`
+ * `unicolor_light_<excolor>`
+ * `unicolor_<excolor>_s50`
+ * `unicolor_medium_<excolor>_s50`
+ * `unicolor_dark_<excolor>_s50`
+
+Example of one shapeless recipe using a color group:
+
+	minetest.register_craft({
+		type = "shapeless",
+		output = '<mod>:item_yellow',
+		recipe = {'<mod>:item_no_color', 'group:basecolor_yellow'},
+	})
+
+### Color lists
+
+ * `dye.basecolors` are an array containing the names of available base colors
+
+ * `dye.excolors` are an array containing the names of the available extended colors
+
+Trees
+-----
+
+ * `default.grow_tree(pos, is_apple_tree)`
+  * Grows a mgv6 tree or apple tree at pos
+
+ * `default.grow_jungle_tree(pos)`
+  * Grows a mgv6 jungletree at pos
+
+ * `default.grow_pine_tree(pos)`
+  * Grows a mgv6 pinetree at pos
+
+ * `default.grow_new_apple_tree(pos)`
+  * Grows a new design apple tree at pos
+
+ * `default.grow_new_jungle_tree(pos)`
+  * Grows a new design jungle tree at pos
+
+ * `default.grow_new_pine_tree(pos)`
+  * Grows a new design pine tree at pos
+
+ * `default.grow_new_acacia_tree(pos)`
+  * Grows a new design acacia tree at pos
+
+ * `default.grow_new_aspen_tree(pos)`
+  * Grows a new design aspen tree at pos
+
+ * `default.grow_new_snowy_pine_tree(pos)`
+  * Grows a new design snowy pine tree at pos
+
+Carts
+-----
+
+	carts.register_rail(
+		"mycarts:myrail", -- Rail name
+		nodedef,          -- standard nodedef
+		railparams        -- rail parameter struct (optional)
+	)
+
+	railparams = {
+		on_step(obj, dtime), -- Event handler called when
+		                     -- cart is on rail
+		acceleration, -- integer acceleration factor (negative
+		              -- values to brake)
+	}
+
+	The event handler is called after all default calculations
+	are made, so the custom on_step handler can override things
+	like speed, acceleration, player attachment. The handler will
+	likely be called many times per second, so the function needs
+	to make sure that the event is handled properly.
+
+Key API
+-------
+
+The key API allows mods to add key functionality to nodes that have
+ownership or specific permissions. Using the API will make it so
+that a node owner can use skeleton keys on their nodes to create keys
+for that node in that location, and give that key to other players,
+allowing them some sort of access that they otherwise would not have
+due to node protection.
+
+To make your new nodes work with the key API, you need to register
+two callback functions in each nodedef:
+
+
+`on_key_use(pos, player)`
+ * Is called when a player right-clicks (uses) a normal key on your
+ * node.
+ * `pos` - position of the node
+ * `player` - PlayerRef
+ * return value: none, ignored
+
+The `on_key_use` callback should validate that the player is wielding
+a key item with the right key meta secret. If needed the code should
+deny access to the node functionality.
+
+If formspecs are used, the formspec callbacks should duplicate these
+checks in the metadata callback functions.
+
+
+`on_skeleton_key_use(pos, player, newsecret)`
+
+ * Is called when a player right-clicks (uses) a skeleton key on your
+ * node.
+ * `pos` - position of the node
+ * `player` - PlayerRef
+ * `newsecret` - a secret value(string)
+ * return values:
+ * `secret` - `nil` or the secret value that unlocks the door
+ * `name` - a string description of the node ("a locked chest")
+ * `owner` - name of the node owner
+
+The `on_skeleton_key_use` function should validate that the player has
+the right permissions to make a new key for the item. The newsecret
+value is useful if the node has no secret value. The function should
+store this secret value somewhere so that in the future it may compare
+key secrets and match them to allow access. If a node already has a
+secret value, the function should return that secret value instead
+of the newsecret value. The secret value stored for the node should
+not be overwritten, as this would invalidate existing keys.
+
+Aside from the secret value, the function should retun a descriptive
+name for the node and the owner name. The return values are all
+encoded in the key that will be given to the player in replacement
+for the wielded skeleton key.
+
+if `nil` is returned, it is assumed that the wielder did not have
+permissions to create a key for this node, and no key is created.
