@@ -103,13 +103,13 @@ mobs:register_spawn("mobs_m:riverfish", {"default:river_water_source",}, 20, 10,
 mobs:register_egg("mobs_m:riverfish", "River Fish", "default_dirt.png", 1)
 
 minetest.register_craftitem("mobs_m:smallfish_raw", {
-	description = "Small Raw Fish"
+	description = "Small Raw Fish",
 	inventory_image = "mobs_smallfish_item",
 	on_use = minetest.item_eat(1)
 })
 
 minetest.register_craftitem("mobs_m:smallfish_cooked", {
-	description = "Small Cooked Fish"
+	description = "Small Cooked Fish",
 	inventory_image = "mobs_smallfish_cooked",
 	on_use = minetest.item_eat(2)
 })
