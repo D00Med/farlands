@@ -1,0 +1,9 @@
+-- Register food with given values to change eating actions
+
+hunger.register_food(name, saturation, replace_with_item, poisen, heal, sound)
+	-- name: item name, e.g. "default:apple"
+	-- saturation: amount of added saturation
+	-- replace_with_item: item name that get returned after eating (can be nil)
+	-- poisen: duration in seconds (1hp damage per second, player can't die) (can be nil)
+	-- heal: added HP when eating this food (can be nil)
+	-- sound: costum eating sound (replaces default eating sound) (can be nil)

@@ -1,0 +1,38 @@
+hud.register(name, def)
+	-- name: statbar name (health, air, hunger, armor already used by default)
+	-- def: <HUD item definition> (see below)
+
+hud.change_item(player, name, def)
+	-- player: player object
+	-- name: statbar name
+	-- def: table containing new values
+		-- currently supported: number, text and offset
+
+hud.swap_statbar(player, name1, name2) -- swaps position and offset of statbar with name1 with statbar with name2
+	-- player: player object
+	-- name1: statbar name
+	-- name2: statbar name
+
+hud.remove_item(player, name)
+
+HUD item definition
+{
+	hud_elem_type = "statbar",		-- currently only supported type (same as in lua-api.txt)
+	position = {x=<x>, y=<y>},		-- position of statbar (same as in lua-api.txt)
+	size = {x=24, y=24},			-- statbar texture size (default 24x24), needed to be scaled correctly
+	text = "hud_heart_fg.png",		-- texture name (same as in lua-api.txt)
+	number = 20,				-- number/2 = number of full textures(e.g. hearts)
+	max = 20,				-- used to prevent "overflow" of statbars
+	alignment = {x=-1,y=-1},		-- alignment on screen (same as in lua-api.txt)
+	offset = HUD_HEALTH_OFFSET,
+	background = "hud_heart_bg.png",	-- statbar background texture name
+	autohide_bg = false,			-- hide statbar background textures when number = 0
+	events = {				-- called on events "damage" and "breath_changed" of players
+		 {
+			type = "damage",
+			func = function(player)
+				-- do something here
+			end
+		 }
+	},
+}

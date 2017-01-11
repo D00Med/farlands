@@ -1,0 +1,28 @@
+1.0
+---
+- Partly rewritten (based on Better HUD hunger mechanics)
+- Added API to register food
+- Added eating sounds
+- Hungerbar image changes when poisend
+
+1.1
+---
+- Fixed healing after death
+- Fixed healing while drowning
+- Fixed crashed caused by Pipeworks mod
+- Added wrapper for minetest.item_eat(). see Readme.txt for more informations
+- Updated HUD-API usage
+- Added beans of Farming Redo
+
+1.1.1
+-----
+- Fixed unhandled exception (reported by Martin_Devil)
+- Added support for mtg mushrooms
+
+1.1.2
+-----
+- Fixed crash on invalid values given
+
+1.1.3
+-----
+- Prevent server crash caused by specific usernames (by beyondlimits)
