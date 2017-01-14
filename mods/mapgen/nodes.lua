@@ -1,4 +1,11 @@
 
+minetest.register_node("mapgen:dirt_with_junglegrass", {
+	description = "Dirt With Jungle Grass",
+	tiles = {"default_grass.png", "default_dirt.png", "default_dirt.png^default_grass_side.png"},
+	groups = {crumbly = 1, oddly_breakable_by_hand = 1},
+	sounds = default.node_sound_dirt_defaults()
+})
+
 minetest.register_node("mapgen:granite", {
 	description = "Granite",
 	tiles = {"mapgen_granite.png"},
