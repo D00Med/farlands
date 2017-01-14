@@ -60,7 +60,7 @@ minetest.register_node("mapgen:moss", {
 	node_box = {
 		type = "fixed",
 		fixed = {
-			{-0.5, -0.5, -0.5, 0.5, -0.3125, 0.5},
+			{-0.5, -0.5, -0.5, 0.5, -0.4, 0.5},
 		}
 	},
 	buildable_to = true,
