@@ -1,4 +1,36 @@
 
+minetest.register_node("mapgen:baobab_leves", {
+	description = "baobab leves",
+	drawtype = "allfaces",
+	paramtype = "light",
+	tiles = {
+		"mapgen_baobab_leves.png",
+	},
+	groups = {snappy = 1, oddly_breakable_by_hand = 1, flammable = 1, dig_immediate = 1, leaves = 1, leafdecay = 3},
+	sounds = default.node_sound_leaves_defaults()
+})
+
+minetest.register_node("mapgen:baobab_wood_Planks", {
+	description = "baobab wood Planks",
+	tiles = {
+		"mapgen_baobab_wood.png",
+	},
+	groups = {choppy = 1, flammable = 1, oddly_breakable_by_hand=1},
+	sounds = default.node_sound_wood_defaults()
+})
+
+minetest.register_node("mapgen:baobab_tree", {
+	description = "baobab tree",
+	tiles = {
+		"mapgen_baobab_tree_top.png",
+		"mapgen_baobab_tree_top.png",
+		"mapgen_baobab_tree.png",
+	},
+	groups = {choppy = 2, tree = 1, flammable = 1, oddly_breakable_by_hand=1},
+	sounds = default.node_sound_wood_defaults(),
+	on_place = minetest.rotate_node
+})
+
 minetest.register_node("mapgen:yellow_ipe_leves", {
 	description = "yellow ipe leves",
 	drawtype = "allfaces",
