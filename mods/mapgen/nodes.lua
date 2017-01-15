@@ -1,4 +1,36 @@
 
+minetest.register_node("mapgen:yellow_ipe_leves", {
+	description = "yellow ipe leves",
+	drawtype = "allfaces",
+	paramtype = "light",
+	tiles = {
+		"mapgen_yellow_ipe_leves.png",
+	},
+	groups = {snappy = 1, oddly_breakable_by_hand = 1, flammable = 1, dig_immediate = 1, leaves = 1, leafdecay = 3},
+	sounds = default.node_sound_leaves_defaults()
+})
+
+minetest.register_node("mapgen:yellow_ipe_Planks", {
+	description = "yellow ipe Planks",
+	tiles = {
+		"mapgen_yellow_ipe_wood.png",
+	},
+	groups = {choppy = 1, flammable = 1, oddly_breakable_by_hand=1},
+	sounds = default.node_sound_wood_defaults()
+})
+
+minetest.register_node("mapgen:yellow_ipe_tree", {
+	description = "yellowv ipe tree",
+	tiles = {
+		"mapgen_yellow_ipe_tree_top.png",
+		"mapgen_yellow_ipe_tree_top.png",
+		"mapgen_yellow_ipe_tree.png",
+	},
+	groups = {choppy = 2, tree = 1, flammable = 1, oddly_breakable_by_hand=1},
+	sounds = default.node_sound_wood_defaults(),
+	on_place = minetest.rotate_node
+})
+
 minetest.register_node("mapgen:coarse_dirt", {
 	description = "coarse dirt",
 	tiles = {"mapgen_coarse_dirt.png"},
