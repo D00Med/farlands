@@ -1,17 +1,59 @@
 
-minetest.register_node("mapgen:yellow_ipe_leves", {
-	description = "yellow ipe leves",
+minetest.register_node("mapgen:baobab_leaves", {
+	description = "baobab leaves",
 	drawtype = "allfaces",
 	paramtype = "light",
 	tiles = {
-		"mapgen_yellow_ipe_leves.png",
+		"mapgen_baobab_leaves.png",
 	},
 	groups = {snappy = 1, oddly_breakable_by_hand = 1, flammable = 1, dig_immediate = 1, leaves = 1, leafdecay = 3},
 	sounds = default.node_sound_leaves_defaults()
 })
 
-minetest.register_node("mapgen:yellow_ipe_Planks", {
-	description = "yellow ipe Planks",
+minetest.register_node("mapgen:baobab_wood_Planks", {
+	description = "baobab wood Planks",
+	tiles = {
+		"mapgen_baobab_wood.png",
+	},
+	groups = {choppy = 1, flammable = 1, oddly_breakable_by_hand=1},
+	sounds = default.node_sound_wood_defaults()
+})
+
+minetest.register_node("mapgen:baobab_tree", {
+	description = "baobab tree",
+	tiles = {
+		"mapgen_baobab_tree_top.png",
+		"mapgen_baobab_tree_top.png",
+		"mapgen_baobab_tree.png",
+	},
+	groups = {choppy = 2, tree = 1, flammable = 1, oddly_breakable_by_hand=1},
+	sounds = default.node_sound_wood_defaults(),
+	on_place = minetest.rotate_node
+})
+
+default.register_fence("mapgen:fence_baobab", {
+	description = "Baobab Fence",
+	texture = "mapgen_baobab_wood.png",
+	inventory_image = "default_fence_overlay.png^mapgen_baobab_wood.png^default_fence_overlay.png^[makealpha:255,126,126",
+	wield_image = "default_fence_overlay.png^mapgen_baobab_wood.png^default_fence_overlay.png^[makealpha:255,126,126",
+	material = "mapgen:baobab_wood_planks",
+	groups = {choppy = 2, oddly_breakable_by_hand = 2, flammable = 2},
+	sounds = default.node_sound_wood_defaults()
+})
+
+minetest.register_node("mapgen:yellow_ipe_leaves", {
+	description = "Yellow Ipe Leaves",
+	drawtype = "allfaces",
+	paramtype = "light",
+	tiles = {
+		"mapgen_yellow_ipe_leaves.png",
+	},
+	groups = {snappy = 1, oddly_breakable_by_hand = 1, flammable = 1, dig_immediate = 1, leaves = 1, leafdecay = 3},
+	sounds = default.node_sound_leaves_defaults()
+})
+
+minetest.register_node("mapgen:yellow_ipe_planks", {
+	description = "Yellow Ipe Planks",
 	tiles = {
 		"mapgen_yellow_ipe_wood.png",
 	},
@@ -20,7 +62,7 @@ minetest.register_node("mapgen:yellow_ipe_Planks", {
 })
 
 minetest.register_node("mapgen:yellow_ipe_tree", {
-	description = "yellowv ipe tree",
+	description = "Yellow Ipe Tree",
 	tiles = {
 		"mapgen_yellow_ipe_tree_top.png",
 		"mapgen_yellow_ipe_tree_top.png",
@@ -31,8 +73,18 @@ minetest.register_node("mapgen:yellow_ipe_tree", {
 	on_place = minetest.rotate_node
 })
 
+default.register_fence("mapgen:fence_yellow_ipe", {
+	description = "Yellow Ipe Fence",
+	texture = "mapgen_yellow_ipe_wood.png",
+	inventory_image = "default_fence_overlay.png^mapgen_yellow_ipe_wood.png^default_fence_overlay.png^[makealpha:255,126,126",
+	wield_image = "default_fence_overlay.png^mapgen_yellow_ipe_wood.png^default_fence_overlay.png^[makealpha:255,126,126",
+	material = "mapgen:yellow_ipe_planks",
+	groups = {choppy = 2, oddly_breakable_by_hand = 2, flammable = 2},
+	sounds = default.node_sound_wood_defaults()
+})
+
 minetest.register_node("mapgen:coarse_dirt", {
-	description = "coarse dirt",
+	description = "Coarse Dirt",
 	tiles = {"mapgen_coarse_dirt.png"},
 	groups = {crumbly = 1, oddly_breakable_by_hand = 1},
 	sounds = default.node_sound_dirt_defaults()
@@ -149,4 +201,24 @@ minetest.register_node("mapgen:moss", {
 	buildable_to = true,
 	groups = {snappy = 1, oddly_breakable_by_hand=1, dig_immediate=3},
 	sounds = default.node_sound_defaults()
+})
+
+minetest.register_node("mapgen:tallgrass", {
+	description = "Tall Grass",
+	drawtype = "plantlike",
+	tiles = {"moreplants_longgrass.png"},
+	paramtype = "light",
+	is_ground_content = false,
+	buildable_to = true, 
+	sunlight_propagates = true,
+	inventory_image = "moreplants_longgrass.png",
+	visual_scale = 1.4,
+	wield_scale = {x=0.5, y=0.5, z=0.5},
+	groups = {snappy=3, flammable=1, attatched_node=1, flora=1},
+	sounds = default.node_sound_leaves_defaults(),
+	selection_box = {
+		type = "fixed",
+		fixed = {-0.5, -0.5, -0.5, 0.5, 0, 0.5}
+	},
+	walkable = false,
 })
