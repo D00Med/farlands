@@ -298,7 +298,27 @@ minetest.register_node("mapgen:bananaplant", {
 	sounds = default.node_sound_leaves_defaults(),
 	selection_box = {
 		type = "fixed",
-		fixed = {-0.5, -0.5, -0.5, 0.5, 0, 0.5}
+		fixed = {-0.3, -0.5, -0.3, 0.3, 1, 0.3}
+	},
+	walkable = false,
+})
+
+minetest.register_node("mapgen:jungletree", {
+	description = "Small Jungle Tree",
+	drawtype = "plantlike",
+	tiles = {"mapgen_jungletree.png"},
+	paramtype = "light",
+	is_ground_content = false,
+	buildable_to = true, 
+	sunlight_propagates = true,
+	inventory_image = "mapgen_jungletree.png",
+	visual_scale = 2,
+	wield_scale = {x=0.5, y=0.5, z=0.5},
+	groups = {snappy=3, flammable=1, attatched_node=1, flora=1},
+	sounds = default.node_sound_leaves_defaults(),
+	selection_box = {
+		type = "fixed",
+		fixed = {-0.2, -0.5, -0.2, 0.2, 1, 0.2}
 	},
 	walkable = false,
 })

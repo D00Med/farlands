@@ -1506,6 +1506,16 @@ minetest.register_decoration({
 	sidelen = 16,
 	fill_ratio = 0.02,
 	biomes = {"rainforest",},
+	decoration = "mapgen:jungletree",
+	height = 1,
+})
+
+minetest.register_decoration({
+	deco_type = "simple",
+	place_on = "mapgen:dirt_with_junglegrass",
+	sidelen = 16,
+	fill_ratio = 0.02,
+	biomes = {"rainforest",},
 	decoration = "mapgen:flame_lily",
 	height = 1,
 })
