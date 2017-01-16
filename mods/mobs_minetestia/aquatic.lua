@@ -50,6 +50,52 @@ mobs:register_spawn("mobs_m:smallfish", {"default:water_source",}, 20, 10, 15000
 
 mobs:register_egg("mobs_m:smallfish", "Small Fish", "default_water.png", 1)
 
+mobs:register_mob("mobs_m:trilobite", {
+	type = "animal",
+	passive = true,
+	reach = 1,
+	damage = 0,
+	attack_type = "dogfight",
+	hp_min = 10,
+	hp_max = 25,
+	armor = 100,
+	collisionbox = {-0.2, 0, -0.2, 0.2, 0.2, 0.2},
+	visual = "mesh",
+	mesh = "trilobite.b3d",
+	textures = {
+		{"mobs_trilobite.png"},
+	},
+	makes_footstep_sound = false,
+	view_range = 5,
+	walk_velocity = 1,
+	run_velocity = 2,
+	runaway = true,
+	runaway_timer = 40,
+	jump = 0,
+	floats = 0,
+	jump_height = 0,
+	stepheight = 1.3,
+	fall_damage = 0,
+	fall_speed = -5,
+	water_damage = 0,
+	lava_damage = 1,
+	light_damage = 0,
+	animation = {
+		speed_normal = 15,
+		speed_run = 20,
+		stand_start = 40,
+		stand_end = 60,
+		walk_start = 1,
+		walk_end = 30,
+		run_start = 1,
+		run_end = 30,
+	},
+})
+
+mobs:register_spawn("mobs_m:trilobite", {"default:water_source",}, 20, 10, 15000, 2, 11000)
+
+mobs:register_egg("mobs_m:trilobite", "Trilobite", "default_water.png", 1)
+
 mobs:register_mob("mobs_m:riverfish", {
 	type = "animal",
 	passive = true,
