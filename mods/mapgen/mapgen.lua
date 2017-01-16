@@ -150,6 +150,27 @@
 		},
 	})
 
+	--coarse dirt
+	
+			minetest.register_ore({
+		ore_type        = "blob",
+		ore             = "mapgen:coarse_dirt",
+		wherein         = {"mapgen:dirt_with_junglegrass"},
+		clust_scarcity  = 16 * 16 * 16,
+		clust_size      = 5,
+		y_min           = -31000,
+		y_max           = 31000,
+		noise_threshold = 0.0,
+		noise_params    = {
+			offset = 0.5,
+			scale = 0.2,
+			spread = {x = 5, y = 5, z = 5},
+			seed = 766,
+			octaves = 1,
+			persist = 0.0
+		},
+	})
+	
 	-- Scatter ores
 
 	-- Coal
@@ -952,10 +973,10 @@
 
 	minetest.register_biome({
 		name = "rainforest",
-		--node_dust = "",
-		node_top = "default:dirt_with_grass",
+		--node_dust = "mapgen:moss",
+		node_top = "mapgen:dirt_with_junglegrass",
 		depth_top = 1,
-		node_filler = "default:dirt",
+		node_filler = "mapgen:coarse_dirt",
 		depth_filler = 3,
 		--node_stone = "",
 		--node_water_top = "",
@@ -1138,10 +1159,23 @@ end
 
 	minetest.register_decoration({
 		deco_type = "schematic",
-		place_on = {"default:dirt_with_grass", "default:dirt"},
+		place_on = {"mapgen:dirt_with_junglegrass", "default:dirt"},
 		sidelen = 80,
-		fill_ratio = 0.1,
-		biomes = {"rainforest", "rainforest_swamp"},
+		fill_ratio = 0.03,
+		biomes = {"rainforest",},
+		y_min = -1,
+		y_max = 31000,
+		schematic = minetest.get_modpath("mapgen") .. "/schematics/jungletree.mts",
+		flags = "place_center_x, place_center_z",
+		rotation = "random",
+	})
+
+	minetest.register_decoration({
+		deco_type = "schematic",
+		place_on = {"mapgen:dirt_with_junglegrass", "default:dirt"},
+		sidelen = 80,
+		fill_ratio = 0.03,
+		biomes = {"rainforest_swamp"},
 		y_min = -1,
 		y_max = 31000,
 		schematic = minetest.get_modpath("default") .. "/schematics/jungle_tree.mts",
@@ -1151,7 +1185,20 @@ end
 
 	minetest.register_decoration({
 		deco_type = "schematic",
-		place_on = {"default:dirt_with_grass", "default:dirt"},
+		place_on = {"mapgen:dirt_with_junglegrass", "default:dirt"},
+		sidelen = 80,
+		fill_ratio = 0.03,
+		biomes = {"rainforest",},
+		y_min = -1,
+		y_max = 31000,
+		schematic = minetest.get_modpath("mapgen") .. "/schematics/junglepalm.mts",
+		flags = "place_center_x, place_center_z",
+		rotation = "random",
+	})
+
+	minetest.register_decoration({
+		deco_type = "schematic",
+		place_on = {"mapgen:dirt_with_junglegrass", "default:dirt"},
 		sidelen = 80,
 		fill_ratio = 0.005,
 		biomes = {"rainforest", "rainforest_swamp"},
@@ -1411,6 +1458,68 @@ end
 	height = 1,
 })
 
+	--ferns
+	
+minetest.register_decoration({
+	deco_type = "simple",
+	place_on = "mapgen:dirt_with_junglegrass",
+	sidelen = 16,
+	fill_ratio = 0.03,
+	biomes = {"rainforest",},
+	decoration = "mapgen:fern",
+	height = 1,
+})
+
+minetest.register_decoration({
+	deco_type = "simple",
+	place_on = "mapgen:dirt_with_junglegrass",
+	sidelen = 16,
+	fill_ratio = 0.03,
+	biomes = {"rainforest",},
+	decoration = "mapgen:fern2",
+	height = 1,
+})
+
+minetest.register_decoration({
+	deco_type = "simple",
+	place_on = "mapgen:dirt_with_junglegrass",
+	sidelen = 16,
+	fill_ratio = 0.02,
+	biomes = {"rainforest",},
+	decoration = "mapgen:dicksonia",
+	height = 1,
+})
+
+minetest.register_decoration({
+	deco_type = "simple",
+	place_on = "mapgen:dirt_with_junglegrass",
+	sidelen = 16,
+	fill_ratio = 0.02,
+	biomes = {"rainforest",},
+	decoration = "mapgen:bananaplant",
+	height = 1,
+})
+
+minetest.register_decoration({
+	deco_type = "simple",
+	place_on = "mapgen:dirt_with_junglegrass",
+	sidelen = 16,
+	fill_ratio = 0.02,
+	biomes = {"rainforest",},
+	decoration = "mapgen:flame_lily",
+	height = 1,
+})
+
+minetest.register_decoration({
+	deco_type = "simple",
+	place_on = "mapgen:dirt_with_junglegrass",
+	sidelen = 16,
+	fill_ratio = 0.05,
+	biomes = {"rainforest",},
+	decoration = "mapgen:moss",
+	height = 1,
+})
+
 	-- Bush
 
 	minetest.register_decoration({
@@ -1473,7 +1582,7 @@ end
 
 	minetest.register_decoration({
 		deco_type = "simple",
-		place_on = {"default:dirt_with_grass"},
+		place_on = {"mapgen:dirt_with_junglegrass"},
 		sidelen = 80,
 		fill_ratio = 0.1,
 		biomes = {"rainforest"},

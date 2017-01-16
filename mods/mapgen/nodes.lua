@@ -1,3 +1,52 @@
+mapgen = {}
+
+--functions
+function mapgen.register_fern(name, desc, texnumber)
+minetest.register_node("mapgen:"..name, {
+	description = desc,
+	drawtype = "mesh",
+	mesh = "fern.b3d",
+	tiles = {
+		"mapgen_fern"..texnumber..".png",
+	},
+	paramtype = "light",
+	selection_box = {
+		type = "fixed",
+		fixed = {-0.3, -0.5, -0.3, 0.3, 0.3, 0.3}
+	},
+	walkable = false,
+	buildable_to = true,
+	groups = {snappy = 1, oddly_breakable_by_hand = 1, flora = 1, flammable = 1},
+	sounds = default.node_sound_leaves_defaults()
+})
+end
+
+--function nodes
+
+mapgen.register_fern("fern", "Fern", "1")
+mapgen.register_fern("fern2", "Broad Leaf Fern", "2")
+
+--nodes
+
+minetest.register_node("mapgen:dicksonia", {
+	description = "Dicksonia",
+	drawtype = "mesh",
+	mesh = "dicksonia.b3d",
+	tiles = {
+		"mapgen_dicksonia.png",
+	},
+	paramtype = "light",
+	selection_box = {
+		type = "fixed",
+		fixed = {-0.3, -0.5, -0.3, 0.3, 0.5, 0.3}
+	},
+	collision_box = {
+		type = "fixed",
+		fixed = {-0.3, -0.5, -0.3, 0.3, 0.5, 0.3}
+	},
+	groups = {choppy = 1, oddly_breakable_by_hand = 1},
+	sounds = default.node_sound_wood_defaults()
+})
 
 minetest.register_node("mapgen:baobab_leaves", {
 	description = "baobab leaves",
@@ -232,4 +281,60 @@ minetest.register_node("mapgen:tallgrass", {
 		fixed = {-0.5, -0.5, -0.5, 0.5, 0, 0.5}
 	},
 	walkable = false,
+})
+
+minetest.register_node("mapgen:bananaplant", {
+	description = "Banana Plant",
+	drawtype = "plantlike",
+	tiles = {"mapgen_banana_plant.png"},
+	paramtype = "light",
+	is_ground_content = false,
+	buildable_to = true, 
+	sunlight_propagates = true,
+	inventory_image = "mapgen_banana_plant.png",
+	visual_scale = 1.4,
+	wield_scale = {x=0.5, y=0.5, z=0.5},
+	groups = {snappy=3, flammable=1, attatched_node=1, flora=1},
+	sounds = default.node_sound_leaves_defaults(),
+	selection_box = {
+		type = "fixed",
+		fixed = {-0.5, -0.5, -0.5, 0.5, 0, 0.5}
+	},
+	walkable = false,
+})
+
+minetest.register_node("mapgen:flame_lily", {
+	description = "Flame Lily",
+	drawtype = "plantlike",
+	tiles = {"mapgen_flame_lily.png"},
+	paramtype = "light",
+	is_ground_content = false,
+	buildable_to = true, 
+	sunlight_propagates = true,
+	inventory_image = "mapgen_flame_lily.png",
+	groups = {snappy=3, flammable=1, attatched_node=1, flora=1},
+	sounds = default.node_sound_leaves_defaults(),
+	selection_box = {
+		type = "fixed",
+		fixed = {-0.5, -0.5, -0.5, 0.5, 0, 0.5}
+	},
+	walkable = false,
+})
+
+minetest.register_node("mapgen:vine", {
+	description = "Vines",
+	drawtype = "nodebox",
+	tiles = {"mapgen_vines.png"},
+	inventory_image = "mapgen_vines.png",
+	paramtype = "light",
+	paramtype2 = "facedir",
+	sunlight_propagates = false,
+	walkable = false,
+	climbable = true,
+	drop = "mapgen:vine",
+	node_box = {
+		type = "fixed",
+		fixed = {{-0.5, -0.5, 0.5, 0.5, 0.5, 0.4}}
+	},
+	groups = {cracky=3, dig_immediate=3, oddly_breakeable_by_hand=1},
 })
