@@ -33,9 +33,9 @@ minetest.register_node("mapgen:baobab_tree", {
 
 default.register_fence("mapgen:fence_baobab", {
 	description = "Baobab Fence",
-	texture = "mapgen_baobab_wood.png",
-	inventory_image = "default_fence_overlay.png^mapgen_baobab_wood.png^default_fence_overlay.png^[makealpha:255,126,126",
-	wield_image = "default_fence_overlay.png^mapgen_baobab_wood.png^default_fence_overlay.png^[makealpha:255,126,126",
+	texture = "mapgen_baobab_fence.png",
+	inventory_image = "default_fence_overlay.png^mapgen_baobab_fence.png^default_fence_overlay.png^[makealpha:255,126,126",
+	wield_image = "default_fence_overlay.png^mapgen_baobab_fence.png^default_fence_overlay.png^[makealpha:255,126,126",
 	material = "mapgen:baobab_wood_planks",
 	groups = {choppy = 2, oddly_breakable_by_hand = 2, flammable = 2},
 	sounds = default.node_sound_wood_defaults()
@@ -75,9 +75,9 @@ minetest.register_node("mapgen:yellow_ipe_tree", {
 
 default.register_fence("mapgen:fence_yellow_ipe", {
 	description = "Yellow Ipe Fence",
-	texture = "mapgen_yellow_ipe_wood.png",
-	inventory_image = "default_fence_overlay.png^mapgen_yellow_ipe_wood.png^default_fence_overlay.png^[makealpha:255,126,126",
-	wield_image = "default_fence_overlay.png^mapgen_yellow_ipe_wood.png^default_fence_overlay.png^[makealpha:255,126,126",
+	texture = "mapgen_yellow_ipe_fence.png",
+	inventory_image = "default_fence_overlay.png^mapgen_yellow_ipe_fence.png^default_fence_overlay.png^[makealpha:255,126,126",
+	wield_image = "default_fence_overlay.png^mapgen_yellow_ipe_fence.png^default_fence_overlay.png^[makealpha:255,126,126",
 	material = "mapgen:yellow_ipe_planks",
 	groups = {choppy = 2, oddly_breakable_by_hand = 2, flammable = 2},
 	sounds = default.node_sound_wood_defaults()
@@ -137,6 +137,17 @@ minetest.register_node("mapgen:palm_wood", {
 	},
 	groups = {choppy = 1, flammable = 1, oddly_breakable_by_hand=1},
 	sounds = default.node_sound_wood_defaults()
+})
+
+default.register_fence("mapgen:fence_palm_wood", {
+	description = "palm fence",
+	texture = "mapgen_palm_fence.png",
+	inventory_image = "default_fence_overlay.png^mapgen_palm fence.png^default_fence_overlay.png^[makealpha:255,126,126",
+	wield_image = "default_fence_overlay.png^mapgen_palm fence.png^default_fence_overlay.png^[makealpha:255,126,126",
+	material = "mapgen:baobab_wood_planks",
+	groups = {choppy = 2, oddly_breakable_by_hand = 2, flammable = 2},
+	sounds = default.node_sound_wood_defaults()
+
 })
 
 minetest.register_node("mapgen:palm_leaves", {
