@@ -92,7 +92,7 @@ mobs:register_mob("mobs_m:trilobite", {
 	},
 })
 
-mobs:register_spawn("mobs_m:trilobite", {"default:water_source",}, 20, 10, 15000, 2, 11000)
+--mobs:register_spawn("mobs_m:trilobite", {"default:water_source",}, 20, 10, 15000, 2, 11000)
 
 mobs:register_egg("mobs_m:trilobite", "Trilobite", "default_water.png", 1)
 

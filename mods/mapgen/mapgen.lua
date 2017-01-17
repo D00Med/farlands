@@ -865,6 +865,28 @@
 		humidity_point = 0,
 	})
 
+	--Mesa 
+	
+		minetest.register_biome({
+		name = "mesa",
+		node_dust = "default:desert_stone",
+		node_top = "mapgen:granite_brown",
+		depth_top = 3,
+		node_filler = "default:clay",
+		depth_filler = 4,
+		--node_stone = "",
+		--node_water_top = "default:desert_sand",
+		--depth_water_top = 1,
+		--node_water = "",
+		--node_river_water = "",
+		node_riverbed = "default:desert_sand",
+		depth_riverbed = 2,
+		y_min = 1,
+		y_max = 31000,
+		heat_point = 85,
+		humidity_point = 15,
+	})
+	
 	-- Cold desert
 
 	minetest.register_biome({
@@ -981,7 +1003,7 @@
 		--node_stone = "",
 		--node_water_top = "",
 		--depth_water_top = ,
-		--node_water = "",
+		node_water = "mapgen:dirty_water_source",
 		--node_river_water = "",
 		node_riverbed = "default:sand",
 		depth_riverbed = 2,
@@ -1071,7 +1093,7 @@ local function register_grass_decoration(offset, scale, length)
 			persist = 0.6
 		},
 		biomes = {"grassland", "grassland_dunes", "deciduous_forest",
-			"coniferous_forest", "coniferous_forest_dunes"},
+			"coniferous_forest", "coniferous_forest_dunes",},
 		y_min = 1,
 		y_max = 31000,
 		decoration = "default:grass_" .. length,

@@ -1,7 +1,7 @@
 
 
 --spawns
-mobs:register_spawn("mobs_m:velociraptor", {"default:dirt_with_grass","default:dirt"}, 20, 10, 32000, 2, 31000)
+--mobs:register_spawn("mobs_m:velociraptor", {"default:dirt_with_grass","default:dirt"}, 20, 10, 32000, 2, 31000)
 
 --mobs
 
