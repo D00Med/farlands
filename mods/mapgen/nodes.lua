@@ -375,7 +375,7 @@ minetest.register_node("mapgen:dirty_water_source", {
 	drawtype = "liquid",
 	tiles = {
 		{
-			name = "default_river_water_source_animated.png^[colorize:green:100",
+			name = "mapgen_dirty_water_source_animated.png",
 			animation = {
 				type = "vertical_frames",
 				aspect_w = 16,
@@ -386,7 +386,7 @@ minetest.register_node("mapgen:dirty_water_source", {
 	},
 	special_tiles = {
 		{
-			name = "default_river_water_source_animated.png^[colorize:green:100",
+			name = "mapgen_dirty_water_source_animated.png",
 			animation = {
 				type = "vertical_frames",
 				aspect_w = 16,
@@ -422,7 +422,7 @@ minetest.register_node("mapgen:dirty_water_flowing", {
 	tiles = {"default_river_water.png^[colorize:green:100"},
 	special_tiles = {
 		{
-			name = "default_river_water_flowing_animated.png^[colorize:green:100",
+			name = "mapgen_dirty_water_flowing_animated.png",
 			backface_culling = false,
 			animation = {
 				type = "vertical_frames",
@@ -432,7 +432,7 @@ minetest.register_node("mapgen:dirty_water_flowing", {
 			},
 		},
 		{
-			name = "default_river_water_flowing_animated.png^[colorize:green:100",
+			name = "mapgen_dirty_water_flowing_animated.png",
 			backface_culling = true,
 			animation = {
 				type = "vertical_frames",
