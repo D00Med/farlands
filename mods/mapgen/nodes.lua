@@ -341,6 +341,219 @@ minetest.register_node("mapgen:flame_lily", {
 	walkable = false,
 })
 
+minetest.register_node("mapgen:jungle_grass_1", {
+	description = "Jungle Grass",
+	drawtype = "plantlike",
+	tiles = {"mapgen_jungle_grass_1.png"},
+	paramtype = "light",
+	is_ground_content = false,
+	buildable_to = true, 
+	sunlight_propagates = true,
+	drop = "mapgen:jungle_grass_5",
+	inventory_image = "mapgen_jungle_grass_1.png",
+	groups = {snappy=3, flammable=1, attatched_node=1, flora=1, not_in_creative_inventory=1},
+	sounds = default.node_sound_leaves_defaults(),
+	selection_box = {
+		type = "fixed",
+		fixed = {-0.5, -0.5, -0.5, 0.5, 0, 0.5}
+	},
+	walkable = false,
+})
+
+minetest.register_node("mapgen:jungle_grass_2", {
+	description = "Jungle Grass",
+	drawtype = "plantlike",
+	tiles = {"mapgen_jungle_grass_2.png"},
+	paramtype = "light",
+	is_ground_content = false,
+	buildable_to = true, 
+	sunlight_propagates = true,
+	drop = "mapgen:jungle_grass_5",
+	inventory_image = "mapgen_jungle_grass_2.png",
+	groups = {snappy=3, flammable=1, attatched_node=1, flora=1, not_in_creative_inventory=1},
+	sounds = default.node_sound_leaves_defaults(),
+	selection_box = {
+		type = "fixed",
+		fixed = {-0.5, -0.5, -0.5, 0.5, 0, 0.5}
+	},
+	walkable = false,
+})
+
+minetest.register_node("mapgen:jungle_grass_3", {
+	description = "Jungle Grass",
+	drawtype = "plantlike",
+	tiles = {"mapgen_jungle_grass_3.png"},
+	paramtype = "light",
+	is_ground_content = false,
+	buildable_to = true, 
+	sunlight_propagates = true,
+	drop = "mapgen:jungle_grass_5",
+	inventory_image = "mapgen_jungle_grass_3.png",
+	groups = {snappy=3, flammable=1, attatched_node=1, flora=1, not_in_creative_inventory=1},
+	sounds = default.node_sound_leaves_defaults(),
+	selection_box = {
+		type = "fixed",
+		fixed = {-0.5, -0.5, -0.5, 0.5, 0, 0.5}
+	},
+	walkable = false,
+})
+
+minetest.register_node("mapgen:jungle_grass_4", {
+	description = "Jungle Grass",
+	drawtype = "plantlike",
+	tiles = {"mapgen_jungle_grass_4.png"},
+	paramtype = "light",
+	is_ground_content = false,
+	buildable_to = true, 
+	sunlight_propagates = true,
+	drop = "mapgen:jungle_grass_5",
+	inventory_image = "mapgen_jungle_grass_4.png",
+	groups = {snappy=3, flammable=1, attatched_node=1, flora=1, not_in_creative_inventory=1},
+	sounds = default.node_sound_leaves_defaults(),
+	selection_box = {
+		type = "fixed",
+		fixed = {-0.5, -0.5, -0.5, 0.5, 0, 0.5}
+	},
+	walkable = false,
+})
+
+minetest.register_node("mapgen:jungle_grass_5", {
+	description = "Jungle Grass",
+	drawtype = "plantlike",
+	tiles = {"mapgen_jungle_grass_5.png"},
+	paramtype = "light",
+	is_ground_content = false,
+	buildable_to = true, 
+	sunlight_propagates = true,
+	drop = "mapgen:jungle_grass_5",
+	inventory_image = "mapgen_jungle_grass_5.png",
+	groups = {snappy=3, flammable=1, attatched_node=1, flora=1},
+	sounds = default.node_sound_leaves_defaults(),
+	selection_box = {
+		type = "fixed",
+		fixed = {-0.5, -0.5, -0.5, 0.5, 0, 0.5}
+	},
+	walkable = false,
+	on_construct = function(pos)
+		local num = math.random(1,5)
+		minetest.env:set_node(pos, {name="mapgen:jungle_grass_"..num})
+	end,
+})
+
+minetest.register_node("mapgen:stalagtite", {
+	description = "Stalagtite",
+	drawtype = "plantlike",
+	tiles = {"mapgen_stalagmite0.png"},
+	inventory_image = "mapgen_stalagmite0.png",
+	is_ground_content = false,
+	sunlight_propagates = true,
+	paramtype = "light",
+	selection_box = {
+	type = "fixed",
+	fixed = {{-0.3, -0.2, -0.3, 0.3, 0.5, 0.3}}
+	},
+	groups = {crumbly=1, oddly_breakable_by_hand=1},
+	sounds = default.node_sound_stone_defaults()
+})
+
+minetest.register_node("mapgen:stalagtite1", {
+	description = "Stalagtite",
+	drawtype = "plantlike",
+	tiles = {"mapgen_stalagmite1.png"},
+	inventory_image = "mapgen_stalagmite1.png",
+	is_ground_content = false,
+	sunlight_propagates = true,
+	paramtype = "light",
+	selection_box = {
+	type = "fixed",
+	fixed = {{-0.3, -0.2, -0.3, 0.3, 0.5, 0.3}}
+	},
+	groups = {crumbly=1, oddly_breakable_by_hand=1},
+})
+
+minetest.register_node("mapgen:stalagtite2", {
+	description = "Stalagtite",
+	drawtype = "plantlike",
+	tiles = {"mapgen_stalagmite2.png"},
+	inventory_image = "mapgen_stalagmite2.png",
+	is_ground_content = false,
+	sunlight_propagates = true,
+	paramtype = "light",
+	selection_box = {
+	type = "fixed",
+	fixed = {{-0.3, -0.2, -0.3, 0.3, 0.5, 0.3}}
+	},
+	groups = {crumbly=1, oddly_breakable_by_hand=1},
+	sounds = default.node_sound_stone_defaults()
+})
+
+minetest.register_node("mapgen:stalagtite3", {
+	description = "Stalagtite",
+	drawtype = "plantlike",
+	tiles = {"mapgen_stalagmite3.png"},
+	inventory_image = "mapgen_stalagmite3.png",
+	is_ground_content = false,
+	sunlight_propagates = true,
+	paramtype = "light",
+	selection_box = {
+	type = "fixed",
+	fixed = {{-0.3, -0.2, -0.3, 0.3, 0.5, 0.3}}
+	},
+	groups = {crumbly=1, oddly_breakable_by_hand=1},
+	sounds = default.node_sound_stone_defaults()
+})
+
+minetest.register_node("mapgen:stalagmite0", {
+	description = "Stalagmite",
+	drawtype = "plantlike",
+	tiles = {"mapgen_stalagmite0.png^[transformFY"},
+	inventory_image = "mapgen_stalagmite0.png^[transformFY",
+	is_ground_content = false,
+	sunlight_propagates = true,
+	paramtype = "light",
+	selection_box = {
+	type = "fixed",
+	fixed = {{-0.3, -0.2, -0.3, 0.3, 0.5, 0.3}}
+	},
+	groups = {crumbly=1, oddly_breakable_by_hand=1},
+	sounds = default.node_sound_stone_defaults()
+})
+
+minetest.register_node("mapgen:stalagmite1", {
+	description = "Stalagmite",
+	drawtype = "plantlike",
+	visual_scale = 1.5,
+	tiles = {"mapgen_stalagmite3.png^[transformFY"},
+	inventory_image = "mapgen_stalagmite3.png^[transformFY",
+	is_ground_content = false,
+	sunlight_propagates = true,
+	paramtype = "light",
+	selection_box = {
+	type = "fixed",
+	fixed = {{-0.3, -0.2, -0.3, 0.3, 0.5, 0.3}}
+	},
+	groups = {crumbly=1, oddly_breakable_by_hand=1},
+	sounds = default.node_sound_stone_defaults()
+})
+
+minetest.register_node("mapgen:stalagmite2", {
+	description = "Stalagmite",
+	drawtype = "plantlike",
+	visual_scale = 1.5,
+	tiles = {"mapgen_stalagmite2.png^[transformFY"},
+	inventory_image = "mapgen_stalagmite2.png^[transformFY",
+	is_ground_content = false,
+	sunlight_propagates = true,
+	paramtype = "light",
+	selection_box = {
+	type = "fixed",
+	fixed = {{-0.3, -0.2, -0.3, 0.3, 0.5, 0.3}}
+	},
+	groups = {crumbly=1, oddly_breakable_by_hand=1},
+	sounds = default.node_sound_stone_defaults()
+})
+
+
 minetest.register_node("mapgen:vine", {
 	description = "Vines",
 	drawtype = "nodebox",
@@ -357,111 +570,6 @@ minetest.register_node("mapgen:vine", {
 		fixed = {{-0.5, -0.5, 0.5, 0.5, 0.5, 0.4}}
 	},
 	groups = {cracky=3, dig_immediate=3, oddly_breakeable_by_hand=1},
-})
-
---code taken from default
-
---License of source code
-----------------------
-
---GNU Lesser General Public License, version 2.1
---Copyright (C) 2011-2016 celeron55, Perttu Ahola <celeron55@gmail.com>
---Copyright (C) 2011-2016 Various Minetest developers and contributors
-
-
-
-minetest.register_node("mapgen:dirty_water_source", {
-	description = "Dirty Water Source",
-	drawtype = "liquid",
-	tiles = {
-		{
-			name = "mapgen_dirty_water_source_animated.png",
-			animation = {
-				type = "vertical_frames",
-				aspect_w = 16,
-				aspect_h = 16,
-				length = 2.0,
-			},
-		},
-	},
-	special_tiles = {
-		{
-			name = "mapgen_dirty_water_source_animated.png",
-			animation = {
-				type = "vertical_frames",
-				aspect_w = 16,
-				aspect_h = 16,
-				length = 2.0,
-			},
-			backface_culling = false,
-		},
-	},
-	alpha = 160,
-	paramtype = "light",
-	walkable = false,
-	pointable = false,
-	diggable = false,
-	buildable_to = true,
-	is_ground_content = false,
-	drop = "",
-	drowning = 1,
-	liquidtype = "source",
-	liquid_alternative_flowing = "mapgen:dirty_water_flowing",
-	liquid_alternative_source = ",mapgen:dirty_water_source",
-	liquid_viscosity = 2,
-	liquid_renewable = false,
-	liquid_range = 2,
-	post_effect_color = {a = 103, r = 30, g = 76, b = 90},
-	groups = {water = 3, liquid = 3, puts_out_fire = 1, cools_lava = 1},
-	sounds = default.node_sound_water_defaults(),
-})
-
-minetest.register_node("mapgen:dirty_water_flowing", {
-	description = "Flowing Dirty Water",
-	drawtype = "flowingliquid",
-	tiles = {"default_river_water.png^[colorize:green:100"},
-	special_tiles = {
-		{
-			name = "mapgen_dirty_water_flowing_animated.png",
-			backface_culling = false,
-			animation = {
-				type = "vertical_frames",
-				aspect_w = 16,
-				aspect_h = 16,
-				length = 0.8,
-			},
-		},
-		{
-			name = "mapgen_dirty_water_flowing_animated.png",
-			backface_culling = true,
-			animation = {
-				type = "vertical_frames",
-				aspect_w = 16,
-				aspect_h = 16,
-				length = 0.8,
-			},
-		},
-	},
-	alpha = 160,
-	paramtype = "light",
-	paramtype2 = "flowingliquid",
-	walkable = false,
-	pointable = false,
-	diggable = false,
-	buildable_to = true,
-	is_ground_content = false,
-	drop = "",
-	drowning = 1,
-	liquidtype = "flowing",
-	liquid_alternative_flowing = "mapgen:dirty_water_flowing",
-	liquid_alternative_source = "mapgen:dirty_water_source",
-	liquid_viscosity = 1,
-	liquid_renewable = false,
-	liquid_range = 2,
-	post_effect_color = {a = 103, r = 30, g = 76, b = 90},
-	groups = {water = 3, liquid = 3, puts_out_fire = 1,
-		not_in_creative_inventory = 1, cools_lava = 1},
-	sounds = default.node_sound_water_defaults(),
 })
 
 minetest.register_node("mapgen:dirt_with_swampgrass", {
@@ -598,3 +706,110 @@ minetest.register_node("mapgen:dead_grass", {
 	},
 	walkable = false,
 })
+
+
+--code taken from default
+
+--License of source code
+----------------------
+
+--GNU Lesser General Public License, version 2.1
+--Copyright (C) 2011-2016 celeron55, Perttu Ahola <celeron55@gmail.com>
+--Copyright (C) 2011-2016 Various Minetest developers and contributors
+
+
+
+minetest.register_node("mapgen:dirty_water_source", {
+	description = "Dirty Water Source",
+	drawtype = "liquid",
+	tiles = {
+		{
+			name = "mapgen_dirty_water_source_animated.png",
+			animation = {
+				type = "vertical_frames",
+				aspect_w = 16,
+				aspect_h = 16,
+				length = 2.0,
+			},
+		},
+	},
+	special_tiles = {
+		{
+			name = "mapgen_dirty_water_source_animated.png",
+			animation = {
+				type = "vertical_frames",
+				aspect_w = 16,
+				aspect_h = 16,
+				length = 2.0,
+			},
+			backface_culling = false,
+		},
+	},
+	alpha = 160,
+	paramtype = "light",
+	walkable = false,
+	pointable = false,
+	diggable = false,
+	buildable_to = true,
+	is_ground_content = false,
+	drop = "",
+	drowning = 1,
+	liquidtype = "source",
+	liquid_alternative_flowing = "mapgen:dirty_water_flowing",
+	liquid_alternative_source = ",mapgen:dirty_water_source",
+	liquid_viscosity = 2,
+	liquid_renewable = false,
+	liquid_range = 2,
+	post_effect_color = {a = 103, r = 30, g = 76, b = 90},
+	groups = {water = 3, liquid = 3, puts_out_fire = 1, cools_lava = 1},
+	sounds = default.node_sound_water_defaults(),
+})
+
+minetest.register_node("mapgen:dirty_water_flowing", {
+	description = "Flowing Dirty Water",
+	drawtype = "flowingliquid",
+	tiles = {"default_river_water.png^[colorize:green:100"},
+	special_tiles = {
+		{
+			name = "mapgen_dirty_water_flowing_animated.png",
+			backface_culling = false,
+			animation = {
+				type = "vertical_frames",
+				aspect_w = 16,
+				aspect_h = 16,
+				length = 0.8,
+			},
+		},
+		{
+			name = "mapgen_dirty_water_flowing_animated.png",
+			backface_culling = true,
+			animation = {
+				type = "vertical_frames",
+				aspect_w = 16,
+				aspect_h = 16,
+				length = 0.8,
+			},
+		},
+	},
+	alpha = 160,
+	paramtype = "light",
+	paramtype2 = "flowingliquid",
+	walkable = false,
+	pointable = false,
+	diggable = false,
+	buildable_to = true,
+	is_ground_content = false,
+	drop = "",
+	drowning = 1,
+	liquidtype = "flowing",
+	liquid_alternative_flowing = "mapgen:dirty_water_flowing",
+	liquid_alternative_source = "mapgen:dirty_water_source",
+	liquid_viscosity = 1,
+	liquid_renewable = false,
+	liquid_range = 2,
+	post_effect_color = {a = 103, r = 30, g = 76, b = 90},
+	groups = {water = 3, liquid = 3, puts_out_fire = 1,
+		not_in_creative_inventory = 1, cools_lava = 1},
+	sounds = default.node_sound_water_defaults(),
+})
+

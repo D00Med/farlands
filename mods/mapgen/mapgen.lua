@@ -91,6 +91,27 @@
 		},
 	})
 	
+	--swamp water
+	
+		minetest.register_ore({
+		ore_type        = "blob",
+		ore             = "mapgen:dirty_water_source",
+		wherein         = {"mapgen:dirt_with_swampgrass"},
+		clust_scarcity  = 9 * 9 * 9,
+		clust_size      = 8,
+		y_min           = -31000,
+		y_max           = 31000,
+		noise_threshold = 0.0,
+		noise_params    = {
+			offset = 0.5,
+			scale = 0.2,
+			spread = {x = 5, y = 5, z = 5},
+			seed = 766,
+			octaves = 1,
+			persist = 0.0
+		},
+	})
+	
 	--new stone
 	
 		minetest.register_ore({
@@ -409,6 +430,25 @@
 
 	minetest.clear_registered_biomes()
 
+	--Swamp
+	minetest.register_biome({
+	name = "swamp",
+	--node_dust = "",
+	node_top = "mapgen:dirt_with_swampgrass",
+	depth_top = 3,
+	node_filler = "default:dirt",
+	depth_filler = 3,
+	--node_stone = "",
+	node_water_top = "mapgen:dirty_water_source",
+	depth_water_top = 1,
+	--node_water = "",
+	--node_river_water = "",
+	y_min = 1,
+	y_max = 21000,
+		heat_point = 40,
+		humidity_point = 0,
+})	
+	
 	-- Icesheet
 
 	minetest.register_biome({
@@ -888,7 +928,7 @@
 	})
 	
 	-- Cold desert
-
+	--[[
 	minetest.register_biome({
 		name = "cold_desert",
 		--node_dust = "",
@@ -928,6 +968,7 @@
 		heat_point = 40,
 		humidity_point = 0,
 	})
+	]]
 
 	-- Savanna
 
@@ -1117,6 +1158,26 @@ local function register_dry_grass_decoration(offset, scale, length)
 		y_min = 1,
 		y_max = 31000,
 		decoration = "default:dry_grass_" .. length,
+	})
+end
+
+local function register_jungle_grass_decoration(offset, scale, length)
+	minetest.register_decoration({
+		deco_type = "simple",
+		place_on = {"mapgen:dirt_with_junglegrass", "default:dirt"},
+		sidelen = 16,
+		noise_params = {
+			offset = offset,
+			scale = scale,
+			spread = {x = 200, y = 200, z = 200},
+			seed = 329,
+			octaves = 3,
+			persist = 0.6
+		},
+		biomes = {"rainforest", "rainforest_swamp", "rainforest_ocean",},
+		y_min = 1,
+		y_max = 31000,
+		decoration = "default:grass_" .. length,
 	})
 end
 
@@ -1602,6 +1663,14 @@ minetest.register_decoration({
 	register_grass_decoration(0.015,  0.045, 2)
 	register_grass_decoration(0.03,   0.03,  1)
 
+	--Jungle grasses 
+	
+	register_grass_decoration(-0.03,  0.09,  5)
+	register_grass_decoration(-0.015, 0.075, 4)
+	register_grass_decoration(0,      0.06,  3)
+	register_grass_decoration(0.015,  0.045, 2)
+	register_grass_decoration(0.03,   0.03,  1)
+	
 	-- Dry grasses
 
 	register_dry_grass_decoration(0.01, 0.05,  5)
@@ -1706,3 +1775,48 @@ minetest.register_decoration({
 	flags = "place_center_x, place_center_z",
 })
 
+minetest.register_on_generated(function(minp, maxp)
+	if maxp.y < -50 or maxp.y > 10 then
+		return
+	end
+	local dirt = minetest.find_nodes_in_area(minp, maxp,
+		{"default:stone"})
+	for n = 1, #dirt do
+		if math.random(1, 50) == 1 then
+			local pos = {x = dirt[n].x, y = dirt[n].y, z = dirt[n].z }
+				if minetest.get_node({x=pos.x, y=pos.y-1, z=pos.z}).name == "air" then
+					if math.random(1,2) == 1 then
+					minetest.add_node({x=pos.x, y=pos.y-1, z=pos.z}, {name = "mapgen:stalagtite"})
+					elseif math.random(1,2) == 1 then
+					minetest.add_node({x=pos.x, y=pos.y-1, z=pos.z}, {name = "mapgen:stalagtite1"})
+					elseif math.random(1,2) == 1 then
+					minetest.add_node({x=pos.x, y=pos.y-1, z=pos.z}, {name = "mapgen:stalagtite2"})
+					else
+					minetest.add_node({x=pos.x, y=pos.y-1, z=pos.z}, {name = "mapgen:stalagtite3"})
+					end
+				end
+		end
+	end
+end)
+
+minetest.register_on_generated(function(minp, maxp)
+	if maxp.y < -150 or maxp.y > 20 then
+		return
+	end
+	local dirt = minetest.find_nodes_in_area(minp, maxp,
+		{"default:stone"})
+	for n = 1, #dirt do
+		if math.random(1, 50) == 1 then
+			local pos = {x = dirt[n].x, y = dirt[n].y, z = dirt[n].z }
+				if minetest.get_node({x=pos.x, y=pos.y+1, z=pos.z}).name == "air" and pos.y >= -100 then
+					if math.random(1,2) == 1 then
+					minetest.add_node({x=pos.x, y=pos.y+1, z=pos.z}, {name = "mapgen:stalagmite0"})
+					elseif math.random(1,2) == 1 then
+					minetest.add_node({x=pos.x, y=pos.y+1, z=pos.z}, {name = "mapgen:stalagmite1"})
+					else
+					minetest.add_node({x=pos.x, y=pos.y+1, z=pos.z}, {name = "mapgen:stalagmite2"})
+					end
+				end
+		end
+	end
+end)
