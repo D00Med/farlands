@@ -435,7 +435,7 @@
 	name = "swamp",
 	--node_dust = "",
 	node_top = "mapgen:dirt_with_swampgrass",
-	depth_top = 3,
+	depth_top = 1,
 	node_filler = "default:dirt",
 	depth_filler = 3,
 	--node_stone = "",
