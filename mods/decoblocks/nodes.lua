@@ -31,6 +31,7 @@ minetest.register_node("decoblocks:scarecrow", {
 		type = "fixed",
 		fixed = {-0.3, -0.5, -0.3, 0.3, 1, 0.3}
 	},
+	inventory_image = "decoblocks_scarecrow_item.png",
 	groups = {choppy = 1, oddly_breakable_by_hand = 1},
 	sounds = default.node_sound_wood_defaults()
 })
