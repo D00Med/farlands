@@ -463,3 +463,120 @@ minetest.register_node("mapgen:dirty_water_flowing", {
 		not_in_creative_inventory = 1, cools_lava = 1},
 	sounds = default.node_sound_water_defaults(),
 })
+
+minetest.register_node("mapgen:dirt_with_swampgrass", {
+	description = "Dirt With Swamp Grass",
+	tiles = {"mapgen_swamp_grass.png", "default_dirt.png", "default_dirt.png^mapgen_swamp_grass_side.png"},
+	groups = {crumbly = 1, oddly_breakable_by_hand = 1},
+	sounds = default.node_sound_dirt_defaults()
+})
+
+minetest.register_node("mapgen:cattail", {
+	description = "Cattail",
+	drawtype = "plantlike",
+	tiles = {"mapgen_cattail.png"},
+	paramtype = "light",
+	is_ground_content = false,
+	buildable_to = true, 
+	sunlight_propagates = true,
+	inventory_image = "mapgen_cattail.png",
+	visual_scale = 1.4,
+	wield_scale = {x=0.5, y=0.5, z=0.5},
+	groups = {snappy=3, flammable=1, attatched_node=1, flora=1},
+	sounds = default.node_sound_leaves_defaults(),
+	selection_box = {
+		type = "fixed",
+		fixed = {-0.3, -0.5, -0.3, 0.3, 1, 0.3}
+	},
+	walkable = false,
+})
+
+minetest.register_node("mapgen:lavender_flower", {
+	description = "Lavender Flower",
+	drawtype = "plantlike",
+	tiles = {"mapgen_lavender_flower.png"},
+	paramtype = "light",
+	is_ground_content = false,
+	buildable_to = true, 
+	sunlight_propagates = true,
+	inventory_image = "mapgen_lavender_flower.png",
+	groups = {snappy=3, flammable=1, attatched_node=1, flora=1},
+	sounds = default.node_sound_leaves_defaults(),
+	selection_box = {
+		type = "fixed",
+		fixed = {-0.5, -0.5, -0.5, 0.5, 0, 0.5}
+	},
+	walkable = false,
+})
+
+minetest.register_node("mapgen:oxeye_daisy", {
+	description = "Oxeye Daisy",
+	drawtype = "plantlike",
+	tiles = {"mapgen_oxeye_daisy.png"},
+	paramtype = "light",
+	is_ground_content = false,
+	buildable_to = true, 
+	sunlight_propagates = true,
+	inventory_image = "mapgen_oxeye_daisy.png",
+	groups = {snappy=3, flammable=1, attatched_node=1, flora=1},
+	sounds = default.node_sound_leaves_defaults(),
+	selection_box = {
+		type = "fixed",
+		fixed = {-0.5, -0.5, -0.5, 0.5, 0, 0.5}
+	},
+	walkable = false,
+})
+
+minetest.register_node("mapgen:small_cactus", {
+	description = "Small Cactus",
+	drawtype = "plantlike",
+	tiles = {"mapgen_small_cactus.png"},
+	paramtype = "light",
+	is_ground_content = false,
+	buildable_to = true, 
+	sunlight_propagates = true,
+	inventory_image = "mapgen_small_cactus.png",
+	groups = {snappy=3, flammable=1, attatched_node=1, flora=1},
+	sounds = default.node_sound_leaves_defaults(),
+	selection_box = {
+		type = "fixed",
+		fixed = {-0.5, -0.5, -0.5, 0.5, 0, 0.5}
+	},
+	walkable = false,
+})
+
+minetest.register_node("mapgen:small_cactus_1", {
+	description = "Small Cactus",
+	drawtype = "plantlike",
+	tiles = {"mapgen_small_cactus_1.png"},
+	paramtype = "light",
+	is_ground_content = false,
+	buildable_to = true, 
+	sunlight_propagates = true,
+	inventory_image = "mapgen_small_cactus_1.png",
+	groups = {snappy=3, flammable=1, attatched_node=1, flora=1},
+	sounds = default.node_sound_leaves_defaults(),
+	selection_box = {
+		type = "fixed",
+		fixed = {-0.5, -0.5, -0.5, 0.5, 0, 0.5}
+	},
+	walkable = false,
+})
+
+minetest.register_node("mapgen:purple_allium", {
+	description = "Purple Allium",
+	drawtype = "plantlike",
+	tiles = {"mapgen_purple_allium.png"},
+	paramtype = "light",
+	is_ground_content = false,
+	buildable_to = true, 
+	sunlight_propagates = true,
+	inventory_image = "mapgen_purple_allium.png",
+	groups = {snappy=3, flammable=1, attatched_node=1, flora=1},
+	sounds = default.node_sound_leaves_defaults(),
+	selection_box = {
+		type = "fixed",
+		fixed = {-0.5, -0.5, -0.5, 0.5, 0, 0.5}
+	},
+	walkable = false,
+})
