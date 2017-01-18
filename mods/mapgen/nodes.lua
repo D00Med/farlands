@@ -580,3 +580,21 @@ minetest.register_node("mapgen:purple_allium", {
 	},
 	walkable = false,
 })
+
+minetest.register_node("mapgen:dead_grass", {
+	description = "Dead Grass",
+	drawtype = "plantlike",
+	tiles = {"mapgen_dead_grass.png"},
+	paramtype = "light",
+	is_ground_content = false,
+	buildable_to = true, 
+	sunlight_propagates = true,
+	inventory_image = "mapgen_dead_grass.png",
+	groups = {snappy=3, flammable=1, attatched_node=1, flora=1},
+	sounds = default.node_sound_leaves_defaults(),
+	selection_box = {
+		type = "fixed",
+		fixed = {-0.5, -0.5, -0.5, 0.5, 0, 0.5}
+	},
+	walkable = false,
+})
