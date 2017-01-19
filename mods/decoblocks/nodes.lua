@@ -78,7 +78,7 @@ minetest.register_node("decoblocks:human_skull", {
 	},
 	collision_box = {
 		type = "fixed",
-		fixed = {-0.3, -0.5, -0.3, 0.3, 1, 0.3}
+		fixed = {-0.3, -0.5, -0.3, 0.3, 0.0, 0.3}
 	},
 	inventory_image = "decoblocks_skull_item.png",
 	groups = {choppy = 1, oddly_breakable_by_hand = 1},
@@ -98,11 +98,11 @@ minetest.register_node("decoblocks:vase", {
 	paramtype = "light",
 	selection_box = {
 		type = "fixed",
-		fixed = {-0.3, -0.5, -0.3, 0.3, 1, 0.3}
+		fixed = {-0.3, -0.5, -0.3, 0.3, 0.5, 0.3}
 	},
 	collision_box = {
 		type = "fixed",
-		fixed = {-0.3, -0.5, -0.3, 0.3, 1, 0.3}
+		fixed = {-0.3, -0.5, -0.3, 0.3, 0.5, 0.3}
 	},
 	groups = {choppy = 1, oddly_breakable_by_hand = 1},
 	sounds = default.node_sound_wood_defaults()
@@ -121,11 +121,11 @@ minetest.register_node("decoblocks:Ancient_vase", {
 	paramtype = "light",
 	selection_box = {
 		type = "fixed",
-		fixed = {-0.3, -0.5, -0.3, 0.3, 1, 0.3}
+		fixed = {-0.3, -0.5, -0.3, 0.3, 0.5, 0.3}
 	},
 	collision_box = {
 		type = "fixed",
-		fixed = {-0.3, -0.5, -0.3, 0.3, 1, 0.3}
+		fixed = {-0.3, -0.5, -0.3, 0.3, 0.5, 0.3}
 	},
 	groups = {choppy = 1, oddly_breakable_by_hand = 1},
 	sounds = default.node_sound_wood_defaults()
