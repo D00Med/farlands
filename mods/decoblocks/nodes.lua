@@ -84,3 +84,49 @@ minetest.register_node("decoblocks:human_skull", {
 	groups = {choppy = 1, oddly_breakable_by_hand = 1},
 	sounds = default.node_sound_wood_defaults()
 })
+
+
+minetest.register_node("decoblocks:vase", {
+	description = "Vase",
+	drawtype = "mesh",
+	mesh = "vase.obj",
+	tiles = {
+		"vase.png",
+	},
+	visual_scale = 0.5,
+	wield_scale = {x=0.5, y=0.5, z=0.5},
+	paramtype = "light",
+	selection_box = {
+		type = "fixed",
+		fixed = {-0.3, -0.5, -0.3, 0.3, 1, 0.3}
+	},
+	collision_box = {
+		type = "fixed",
+		fixed = {-0.3, -0.5, -0.3, 0.3, 1, 0.3}
+	},
+	groups = {choppy = 1, oddly_breakable_by_hand = 1},
+	sounds = default.node_sound_wood_defaults()
+})
+
+
+minetest.register_node("decoblocks:Ancient_vase", {
+	description = "Ancient Vase",
+	drawtype = "mesh",
+	mesh = "vase.obj",
+	tiles = {
+		"Ancient_vase.png",
+	},
+	visual_scale = 0.5,
+	wield_scale = {x=0.5, y=0.5, z=0.5},
+	paramtype = "light",
+	selection_box = {
+		type = "fixed",
+		fixed = {-0.3, -0.5, -0.3, 0.3, 1, 0.3}
+	},
+	collision_box = {
+		type = "fixed",
+		fixed = {-0.3, -0.5, -0.3, 0.3, 1, 0.3}
+	},
+	groups = {choppy = 1, oddly_breakable_by_hand = 1},
+	sounds = default.node_sound_wood_defaults()
+})
