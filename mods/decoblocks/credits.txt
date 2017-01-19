@@ -1,3 +1,17 @@
-tobyplowy(aka toby109tt) for textures and copy pacte code original code made by minetest core devs 
+all textures and models are made by tobyplowy(aka toby109tt) and code is by D00med and tobyplowy(aka toby109tt) please give credit if used!
 
-D00med for being awesome!!!!!!
+textures made by tobyplowy(aka toby109tt)
+
+decoblocks_skull_item.png
+decoblocks_old_stone_tiles.png
+decoblocks_old_stone_tiles_with_dirt.png
+hanging_flower_item.png
+decoblocks_scarecrow_item.png
+
+models and textures for those models made by tobyplowy(aka toby109tt)
+
+hangingflower.obj and hanging_flower.png
+human_skull.obj and human_skull.png
+scarecrow.obj and decoblocks_scarecrow.png
+
+thanks D00med for being awesome!!!!!!
