@@ -42,13 +42,15 @@ Originally from PixelBOX (Gambit):
 	carts_cart_side.png
 	carts_cart_top.png
 	carts_cart_front.png*
-	carts_cart.png*
+	carts_cart2.png*
 
 sofar + stujones11:
-	carts_cart.b3d and carts_cart.blend
+	carts_cart2.b3d and carts_cart2.blend
 
 hexafraction, modified by sofar
 	carts_rail_*.png
 
 http://www.freesound.org/people/YleArkisto/sounds/253159/ - YleArkisto - CC-BY-3.0
 	carts_cart_moving.*.ogg
+
+carts_cart.b3d, carts_cart.blend, carts_cart_item.png, carts_cart.png(modified from Gambits texture above) - CC BY-SA 3.0 by toby109tt(aka tobyplowy)

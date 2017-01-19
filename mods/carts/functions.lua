@@ -20,6 +20,7 @@ function carts:manage_attachment(player, obj)
 	if status then
 		player:set_attach(obj, "", {x=0, y=6, z=0}, {x=0, y=0, z=0})
 		player:set_eye_offset({x=0, y=-4, z=0},{x=0, y=-4, z=0})
+		player:set_animation({x=81, y=160}, 30, 0)
 	else
 		player:set_detach()
 		player:set_eye_offset({x=0, y=0, z=0},{x=0, y=0, z=0})

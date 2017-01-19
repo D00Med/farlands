@@ -38,8 +38,8 @@ local boat = {
 	-- lowering it causes the boat to fall through the world if underwater
 	collisionbox = {-0.5, -0.35, -0.5, 0.5, 0.3, 0.5},
 	visual = "mesh",
-	mesh = "boats_boat.obj",
-	textures = {"default_wood.png"},
+	mesh = "boat.obj",
+	textures = {"boat.png"},
 
 	driver = nil,
 	v = 0,
@@ -218,8 +218,8 @@ minetest.register_entity("boats:boat", boat)
 
 minetest.register_craftitem("boats:boat", {
 	description = "Boat",
-	inventory_image = "boats_inventory.png",
-	wield_image = "boats_wield.png",
+	inventory_image = "boat_item.png",
+	wield_image = "boat_item.png",
 	wield_scale = {x = 2, y = 2, z = 1},
 	liquids_pointable = true,
 	groups = {flammable = 2},
