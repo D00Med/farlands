@@ -47,6 +47,7 @@ minetest.register_node("flowerpots:flower_pot", {
 
 for _, row in ipairs(flowers) do
 local flower = row[1]
+local flower_node = row[2]
 minetest.register_node("flowerpots:flower_pot_"..flower, {
 	description = "Flower Pot With "..flower.." Flower",
 	drawtype = "mesh",
@@ -69,5 +70,9 @@ minetest.register_node("flowerpots:flower_pot_"..flower, {
 	inventory_image = "flowerpot_item.png",
 	groups = {cracky = 2, stone = 1},
 	sounds = default.node_sound_stone_defaults(),
+	on_rightclick = function(pos, item, clicker)
+		minetest.env:add_item({x=pos.x, y=pos.y+0.5, z=pos.z}, flower_node)
+		minetest.env:set_node(pos, {name="flowerpots:flower_pot"})
+	end,
 })
 end

@@ -199,7 +199,7 @@ function object_drive(entity, dtime, def)
 	
 	--respond to controls
 	--check for water
-	if node == "default:river_water_source" or node == "default:water_source" or node == "default:river_water_flowing" or node == "default:water_flowing" then
+	if node == "default:river_water_source" or node == "default:water_source" or node == "default:river_water_flowing" or node == "default:water_flowing" or node == "mapgen:dirty_water_source" or node == "mapgen:dirty_water_flowing" then
 	entity.on_water = true
 	else 
 	entity.on_water = false
