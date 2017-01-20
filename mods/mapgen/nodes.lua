@@ -191,8 +191,8 @@ minetest.register_node("mapgen:palm_wood", {
 default.register_fence("mapgen:fence_palm_wood", {
 	description = "palm fence",
 	texture = "mapgen_palm_fence.png",
-	inventory_image = "default_fence_overlay.png^mapgen_palm fence.png^default_fence_overlay.png^[makealpha:255,126,126",
-	wield_image = "default_fence_overlay.png^mapgen_palm fence.png^default_fence_overlay.png^[makealpha:255,126,126",
+	inventory_image = "default_fence_overlay.png^mapgen_palm_fence.png^default_fence_overlay.png^[makealpha:255,126,126",
+	wield_image = "default_fence_overlay.png^mapgen_palm_fence.png^default_fence_overlay.png^[makealpha:255,126,126",
 	material = "mapgen:baobab_wood_planks",
 	groups = {choppy = 2, oddly_breakable_by_hand = 2, flammable = 2},
 	sounds = default.node_sound_wood_defaults()
@@ -689,15 +689,92 @@ minetest.register_node("mapgen:purple_allium", {
 	walkable = false,
 })
 
-minetest.register_node("mapgen:dead_grass", {
+minetest.register_node("mapgen:dead_grass_1", {
 	description = "Dead Grass",
 	drawtype = "plantlike",
-	tiles = {"mapgen_dead_grass.png"},
+	tiles = {"mapgen_dead_grass_2.png"},
 	paramtype = "light",
 	is_ground_content = false,
 	buildable_to = true, 
 	sunlight_propagates = true,
-	inventory_image = "mapgen_dead_grass.png",
+	drop = "mapgen:jungle_grass_5",
+	inventory_image = "mapgen_jungle_grass_1.png",
+	groups = {snappy=3, flammable=1, attatched_node=1, flora=1, not_in_creative_inventory=1},
+	sounds = default.node_sound_leaves_defaults(),
+	selection_box = {
+		type = "fixed",
+		fixed = {-0.5, -0.5, -0.5, 0.5, 0, 0.5}
+	},
+	walkable = false,
+})
+
+minetest.register_node("mapgen:dead_grass_2", {
+	description = "Dead Grass",
+	drawtype = "plantlike",
+	tiles = {"mapgen_dead_grass_3.png"},
+	paramtype = "light",
+	is_ground_content = false,
+	buildable_to = true, 
+	sunlight_propagates = true,
+	drop = "mapgen:jungle_grass_5",
+	inventory_image = "mapgen_jungle_grass_2.png",
+	groups = {snappy=3, flammable=1, attatched_node=1, flora=1, not_in_creative_inventory=1},
+	sounds = default.node_sound_leaves_defaults(),
+	selection_box = {
+		type = "fixed",
+		fixed = {-0.5, -0.5, -0.5, 0.5, 0, 0.5}
+	},
+	walkable = false,
+})
+
+minetest.register_node("mapgen:dead_grass_3", {
+	description = "Dead Grass",
+	drawtype = "plantlike",
+	tiles = {"mapgen_dead_grass_4.png"},
+	paramtype = "light",
+	is_ground_content = false,
+	buildable_to = true, 
+	sunlight_propagates = true,
+	drop = "mapgen:jungle_grass_5",
+	inventory_image = "mapgen_jungle_grass_3.png",
+	groups = {snappy=3, flammable=1, attatched_node=1, flora=1, not_in_creative_inventory=1},
+	sounds = default.node_sound_leaves_defaults(),
+	selection_box = {
+		type = "fixed",
+		fixed = {-0.5, -0.5, -0.5, 0.5, 0, 0.5}
+	},
+	walkable = false,
+})
+
+minetest.register_node("mapgen:dead_grass_4", {
+	description = "Dead Grass",
+	drawtype = "plantlike",
+	tiles = {"mapgen_dead_grass_5.png"},
+	paramtype = "light",
+	is_ground_content = false,
+	buildable_to = true, 
+	sunlight_propagates = true,
+	drop = "mapgen:jungle_grass_5",
+	inventory_image = "mapgen_jungle_grass_4.png",
+	groups = {snappy=3, flammable=1, attatched_node=1, flora=1, not_in_creative_inventory=1},
+	sounds = default.node_sound_leaves_defaults(),
+	selection_box = {
+		type = "fixed",
+		fixed = {-0.5, -0.5, -0.5, 0.5, 0, 0.5}
+	},
+	walkable = false,
+})
+
+minetest.register_node("mapgen:dead_grass_5", {
+	description = "Dead Grass",
+	drawtype = "plantlike",
+	tiles = {"mapgen_dead_grass_5.png"},
+	paramtype = "light",
+	is_ground_content = false,
+	buildable_to = true, 
+	sunlight_propagates = true,
+	drop = "mapgen:jungle_grass_5",
+	inventory_image = "mapgen_dead_grass_4.png",
 	groups = {snappy=3, flammable=1, attatched_node=1, flora=1},
 	sounds = default.node_sound_leaves_defaults(),
 	selection_box = {
@@ -705,6 +782,10 @@ minetest.register_node("mapgen:dead_grass", {
 		fixed = {-0.5, -0.5, -0.5, 0.5, 0, 0.5}
 	},
 	walkable = false,
+	on_construct = function(pos)
+		local num = math.random(1,5)
+		minetest.env:set_node(pos, {name="mapgen:dead_grass_"..num})
+	end,
 })
 
 
