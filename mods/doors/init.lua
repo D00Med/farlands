@@ -812,7 +812,6 @@ doors.register_fencegate("doors:gate_aspen_wood", {
 	groups = {choppy = 3, oddly_breakable_by_hand = 2, flammable = 3}
 })
 
-
 ----fuels----
 
 minetest.register_craft({

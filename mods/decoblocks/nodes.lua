@@ -104,8 +104,8 @@ minetest.register_node("decoblocks:vase", {
 		type = "fixed",
 		fixed = {-0.3, -0.5, -0.3, 0.3, 0.5, 0.3}
 	},
-	groups = {choppy = 1, oddly_breakable_by_hand = 1},
-	sounds = default.node_sound_wood_defaults()
+	groups = {cracky = 2, stone = 1},
+	sounds = default.node_sound_stone_defaults(),
 })
 
 
@@ -127,6 +127,6 @@ minetest.register_node("decoblocks:Ancient_vase", {
 		type = "fixed",
 		fixed = {-0.3, -0.5, -0.3, 0.3, 0.5, 0.3}
 	},
-	groups = {choppy = 1, oddly_breakable_by_hand = 1},
-	sounds = default.node_sound_wood_defaults()
+	groups = {cracky = 2, stone = 1},
+	sounds = default.node_sound_stone_defaults(),
 })
