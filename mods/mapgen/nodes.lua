@@ -59,6 +59,27 @@ minetest.register_node("mapgen:willow_leaves", {
 	sounds = default.node_sound_leaves_defaults()
 })
 
+minetest.register_node("mapgen:willow_wood_Planks", {
+	description = "Willow Wood Planks",
+	tiles = {
+		"mapgen_willow_wood.png",
+	},
+	groups = {choppy = 1, flammable = 1, oddly_breakable_by_hand=1},
+	sounds = default.node_sound_wood_defaults()
+})
+
+minetest.register_node("mapgen:willow_tree", {
+	description = "Willow Tree",
+	tiles = {
+		"mapgen_willow_tree_top.png",
+		"mapgen_willow_tree_top.png",
+		"mapgen_willow_tree.png",
+	},
+	groups = {choppy = 2, tree = 1, flammable = 1, oddly_breakable_by_hand=1},
+	sounds = default.node_sound_wood_defaults(),
+	on_place = minetest.rotate_node
+})
+
 minetest.register_node("mapgen:baobab_leaves", {
 	description = "Baobab Leaves",
 	drawtype = "allfaces",
@@ -71,7 +92,7 @@ minetest.register_node("mapgen:baobab_leaves", {
 })
 
 minetest.register_node("mapgen:baobab_wood_Planks", {
-	description = "baobab wood Planks",
+	description = "Baobab wood Planks",
 	tiles = {
 		"mapgen_baobab_wood.png",
 	},
@@ -80,7 +101,7 @@ minetest.register_node("mapgen:baobab_wood_Planks", {
 })
 
 minetest.register_node("mapgen:baobab_tree", {
-	description = "baobab tree",
+	description = "Baobab tree",
 	tiles = {
 		"mapgen_baobab_tree_top.png",
 		"mapgen_baobab_tree_top.png",
@@ -451,6 +472,105 @@ minetest.register_node("mapgen:jungle_grass_5", {
 	end,
 })
 
+minetest.register_node("mapgen:swamp_grass_1", {
+	description = "swamp Grass",
+	drawtype = "plantlike",
+	tiles = {"mapgen_swamp_grass_1.png"},
+	paramtype = "light",
+	is_ground_content = false,
+	buildable_to = true, 
+	sunlight_propagates = true,
+	drop = "mapgen:swamp_grass_5",
+	inventory_image = "mapgen_swamp_grass_1.png",
+	groups = {snappy=3, flammable=1, attatched_node=1, flora=1, not_in_creative_inventory=1},
+	sounds = default.node_sound_leaves_defaults(),
+	selection_box = {
+		type = "fixed",
+		fixed = {-0.5, -0.5, -0.5, 0.5, 0, 0.5}
+	},
+	walkable = false,
+})
+
+minetest.register_node("mapgen:swamp_grass_2", {
+	description = "swamp Grass",
+	drawtype = "plantlike",
+	tiles = {"mapgen_swamp_grass_2.png"},
+	paramtype = "light",
+	is_ground_content = false,
+	buildable_to = true, 
+	sunlight_propagates = true,
+	drop = "mapgen:swamp_grass_5",
+	inventory_image = "mapgen_swamp_grass_2.png",
+	groups = {snappy=3, flammable=1, attatched_node=1, flora=1, not_in_creative_inventory=1},
+	sounds = default.node_sound_leaves_defaults(),
+	selection_box = {
+		type = "fixed",
+		fixed = {-0.5, -0.5, -0.5, 0.5, 0, 0.5}
+	},
+	walkable = false,
+})
+
+minetest.register_node("mapgen:swamp_grass_3", {
+	description = "swamp Grass",
+	drawtype = "plantlike",
+	tiles = {"mapgen_swamp_grass_3.png"},
+	paramtype = "light",
+	is_ground_content = false,
+	buildable_to = true, 
+	sunlight_propagates = true,
+	drop = "mapgen:swamp_grass_5",
+	inventory_image = "mapgen_swamp_grass_3.png",
+	groups = {snappy=3, flammable=1, attatched_node=1, flora=1, not_in_creative_inventory=1},
+	sounds = default.node_sound_leaves_defaults(),
+	selection_box = {
+		type = "fixed",
+		fixed = {-0.5, -0.5, -0.5, 0.5, 0, 0.5}
+	},
+	walkable = false,
+})
+
+minetest.register_node("mapgen:swamp_grass_4", {
+	description = "swamp Grass",
+	drawtype = "plantlike",
+	tiles = {"mapgen_swamp_grass_4.png"},
+	paramtype = "light",
+	is_ground_content = false,
+	buildable_to = true, 
+	sunlight_propagates = true,
+	drop = "mapgen:swamp_grass_5",
+	inventory_image = "mapgen_swamp_grass_4.png",
+	groups = {snappy=3, flammable=1, attatched_node=1, flora=1, not_in_creative_inventory=1},
+	sounds = default.node_sound_leaves_defaults(),
+	selection_box = {
+		type = "fixed",
+		fixed = {-0.5, -0.5, -0.5, 0.5, 0, 0.5}
+	},
+	walkable = false,
+})
+
+minetest.register_node("mapgen:swamp_grass_5", {
+	description = "swamp Grass",
+	drawtype = "plantlike",
+	tiles = {"mapgen_swamp_grass_5.png"},
+	paramtype = "light",
+	is_ground_content = false,
+	buildable_to = true, 
+	sunlight_propagates = true,
+	drop = "mapgen:swamp_grass_5",
+	inventory_image = "mapgen_swamp_grass_5.png",
+	groups = {snappy=3, flammable=1, attatched_node=1, flora=1},
+	sounds = default.node_sound_leaves_defaults(),
+	selection_box = {
+		type = "fixed",
+		fixed = {-0.5, -0.5, -0.5, 0.5, 0, 0.5}
+	},
+	walkable = false,
+	on_construct = function(pos)
+		local num = math.random(1,5)
+		minetest.env:set_node(pos, {name="mapgen:swamp_grass_"..num})
+	end,
+})
+
 minetest.register_node("mapgen:stalagtite", {
 	description = "Stalagtite",
 	drawtype = "plantlike",
@@ -798,6 +918,9 @@ minetest.register_node("mapgen:dead_grass_5", {
 		minetest.env:set_node(pos, {name="mapgen:dead_grass_"..num})
 	end,
 })
+
+--crafting
+
 
 
 --code taken from default

@@ -1177,7 +1177,27 @@ local function register_jungle_grass_decoration(offset, scale, length)
 		biomes = {"rainforest", "rainforest_swamp", "rainforest_ocean",},
 		y_min = 1,
 		y_max = 31000,
-		decoration = "default:grass_" .. length,
+		decoration = "mapgen:jungle_grass_" .. length,
+	})
+end
+
+local function register_swamp_grass_decoration(offset, scale, length)
+	minetest.register_decoration({
+		deco_type = "simple",
+		place_on = {"mapgen:dirt_with_swampgrass", "default:dirt"},
+		sidelen = 16,
+		noise_params = {
+			offset = offset,
+			scale = scale,
+			spread = {x = 200, y = 200, z = 200},
+			seed = 329,
+			octaves = 3,
+			persist = 0.6
+		},
+		biomes = {"swamp",},
+		y_min = 1,
+		y_max = 31000,
+		decoration = "mapgen:swamp_grass_" .. length,
 	})
 end
 
@@ -1322,7 +1342,7 @@ end
 		biomes = {"taiga", "coniferous_forest"},
 		y_min = 2,
 		y_max = 31000,
-		schematic = minetest.get_modpath("default") .. "/schematics/pine_tree.mts",
+		schematic = minetest.get_modpath("mapgen") .. "/schematics/pine.mts",
 		flags = "place_center_x, place_center_z",
 	})
 
@@ -1411,6 +1431,27 @@ end
 		rotation = "random",
 	})
 
+	--Willow tree
+	
+	minetest.register_decoration({
+		deco_type = "schematic",
+		place_on = {"mapgen:dirt_with_swampgrass"},
+		sidelen = 16,
+		noise_params = {
+			offset = 0.0,
+			scale = -0.015,
+			spread = {x = 250, y = 250, z = 250},
+			seed = 2,
+			octaves = 3,
+			persist = 0.66
+		},
+		biomes = {"swamp"},
+		y_min = 1,
+		y_max = 31000,
+		schematic = minetest.get_modpath("mapgen") .. "/schematics/willow.mts",
+		flags = "place_center_x, place_center_z",
+	})
+	
 	-- Aspen tree and log
 
 	minetest.register_decoration({
@@ -1605,6 +1646,16 @@ minetest.register_decoration({
 
 minetest.register_decoration({
 	deco_type = "simple",
+	place_on = "mapgen:dirt_with_swampgrass",
+	sidelen = 16,
+	fill_ratio = 0.02,
+	biomes = {"swamp",},
+	decoration = "mapgen:lavender_flower",
+	height = 1,
+})
+
+minetest.register_decoration({
+	deco_type = "simple",
 	place_on = "mapgen:dirt_with_junglegrass",
 	sidelen = 16,
 	fill_ratio = 0.05,
@@ -1665,11 +1716,20 @@ minetest.register_decoration({
 
 	--Jungle grasses 
 	
-	register_grass_decoration(-0.03,  0.09,  5)
-	register_grass_decoration(-0.015, 0.075, 4)
-	register_grass_decoration(0,      0.06,  3)
-	register_grass_decoration(0.015,  0.045, 2)
-	register_grass_decoration(0.03,   0.03,  1)
+	register_jungle_grass_decoration(-0.03,  0.09,  5)
+	register_jungle_grass_decoration(-0.015, 0.075, 4)
+	register_jungle_grass_decoration(0,      0.06,  3)
+	register_jungle_grass_decoration(0.015,  0.045, 2)
+	register_jungle_grass_decoration(0.03,   0.03,  1)
+	
+	--Swamp grasses
+	
+	
+	register_swamp_grass_decoration(-0.03,  0.09,  5)
+	register_swamp_grass_decoration(-0.015, 0.075, 4)
+	register_swamp_grass_decoration(0,      0.06,  3)
+	register_swamp_grass_decoration(0.015,  0.045, 2)
+	register_swamp_grass_decoration(0.03,   0.03,  1)
 	
 	-- Dry grasses
 
@@ -1774,6 +1834,21 @@ minetest.register_decoration({
 	schematic = minetest.get_modpath("mapgen").."/schematics/palmtree.mts",
 	flags = "place_center_x, place_center_z",
 })
+
+minetest.register_on_generated(function(minp, maxp)
+	if maxp.y < -20 or maxp.y > 1000 then
+		return
+	end
+	local dirt = minetest.find_nodes_in_area(minp, maxp,
+		{"mapgen:dirty_water_source"})
+	for n = 1, #dirt do
+			local pos = {x = dirt[n].x, y = dirt[n].y, z = dirt[n].z }
+			local name = minetest.get_node({x=pos.x, y=pos.y-1, z=pos.z}).name
+				if name == "mapgen:lavender_flower" or name == "mapgen:swamp_grass_1" or name == "mapgen:swamp_grass_2" or name == "mapgen:swamp_grass_3" or name == "mapgen:swamp_grass_4" or name == "mapgen:swamp_grass_5" then
+					minetest.env:remove_node({x=pos.x, y=pos.y-1, z=pos.z})
+				end
+	end
+end)
 
 minetest.register_on_generated(function(minp, maxp)
 	if maxp.y < -50 or maxp.y > 10 then
