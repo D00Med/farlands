@@ -72,6 +72,7 @@ minetest.register_node("decoblocks:human_skull", {
 	wield_image = "decoblocks_skull_item.png",
 	wield_scale = {x=1.0, y=1.0, z=1.0},
 	paramtype = "light",
+	paramtype = "facedir",
 	selection_box = {
 		type = "fixed",
 		fixed = {-0.3, -0.5, -0.3, 0.3, 0.0, 0.3}

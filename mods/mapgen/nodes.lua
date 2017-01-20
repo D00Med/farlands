@@ -48,8 +48,19 @@ minetest.register_node("mapgen:dicksonia", {
 	sounds = default.node_sound_wood_defaults()
 })
 
+minetest.register_node("mapgen:willow_leaves", {
+	description = "Willow Leaves",
+	drawtype = "allfaces",
+	paramtype = "light",
+	tiles = {
+		"mapgen_willow_leaves.png",
+	},
+	groups = {snappy = 1, oddly_breakable_by_hand = 1, flammable = 1, dig_immediate = 1, leaves = 1, leafdecay = 3},
+	sounds = default.node_sound_leaves_defaults()
+})
+
 minetest.register_node("mapgen:baobab_leaves", {
-	description = "baobab leaves",
+	description = "Baobab Leaves",
 	drawtype = "allfaces",
 	paramtype = "light",
 	tiles = {
