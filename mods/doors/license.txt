@@ -1,4 +1,4 @@
-License of source code
+﻿License of source code
 ----------------------
 
 The MIT License (MIT)
@@ -29,6 +29,8 @@ https://opensource.org/licenses/MIT
 
 Licenses of media (textures, models and sounds)
 -----------------------------------------------
+
+Copyright (C) 2017 tobyplowy(aka toby109tt) all new textures
 
 Attribution-ShareAlike 3.0 Unported (CC BY-SA 3.0)
 Copyright (C) 2011-2016 Fernando Zapata
