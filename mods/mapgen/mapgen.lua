@@ -1432,7 +1432,7 @@ end
 	})
 
 	--Willow tree
-	
+	--[[
 	minetest.register_decoration({
 		deco_type = "schematic",
 		place_on = {"mapgen:dirt_with_swampgrass"},
@@ -1451,6 +1451,7 @@ end
 		schematic = minetest.get_modpath("mapgen") .. "/schematics/willow.mts",
 		flags = "place_center_x, place_center_z",
 	})
+	]]
 	
 	minetest.register_decoration({
 		deco_type = "schematic",
