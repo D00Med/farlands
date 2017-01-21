@@ -18,12 +18,8 @@ local flowers = {
 	{"small_cactus", "mapgen:small_cactus"},
 	{"small_cactus_1", "mapgen:small_cactus_1"},
 	{"oxeye_daisy", "mapgen:oxeye_daisy"},
-
-	{"dead_grass", "mapgen:dead_grass_1"},
-	{"jungle_grass", "mapgen:jungle_grass_1"},
-
-
-
+	{"dead_grass", "mapgen:dead_grass_5"},
+	{"jungle_grass", "mapgen:jungle_grass_5"},
 }
 
 minetest.register_node("flowerpots:flower_pot", {
