@@ -1,28 +1,26 @@
 
 local flowers = {
-	{"lavender", "mapgen:lavender_flower"},
-	{"rose", "flowers:rose"},
-	{"tulip", "flowers:tulip"},
-	{"geranium", "flowers:geranium"},
-	{"viola", "flowers:viola"},
-	{"dandelion_yellow", "flowers:dandelion_yellow"},
-	{"dandelion_white", "flowers:dandelion_white"},
-	{"flame_lily", "mapgen:flame_lily"},
-	{"mushroom_brown", "flowers:mushroom_brown"},
-	{"mushroom_red", "flowers:mushroom_red"},
-	{"grass", "default:grass_1"},
-	{"dry_grass", "default:dry_grass_1"},
-	{"dry_shrub", "default:dry_shrub"},
-	{"papyrus", "default:papyrus"},
-	{"purple_allium", "mapgen:purple_allium"},
-	{"small_cactus", "mapgen:small_cactus"},
-	{"small_cactus_1", "mapgen:small_cactus_1"},
-	{"oxeye_daisy", "mapgen:oxeye_daisy"},
+	{"lavender", "mapgen:lavender_flower", "flowerpot_with_Xflower.obj"},
+	{"rose", "flowers:rose", "flowerpot_with_Xflower.obj"},
+	{"tulip", "flowers:tulip", "flowerpot_with_Xflower.obj"},
+	{"geranium", "flowers:geranium", "flowerpot_with_Xflower.obj"},
+	{"viola", "flowers:viola", "flowerpot_with_Xflower.obj"},
+	{"dandelion_yellow", "flowers:dandelion_yellow", "flowerpot_with_Xflower.obj"},
+	{"dandelion_white", "flowers:dandelion_white", "flowerpot_with_Xflower.obj"},
+	{"flame_lily", "mapgen:flame_lily", "flowerpot_with_Xflower.obj"},
+	{"mushroom_brown", "flowers:mushroom_brown", "flowerpot_with_Xflower.obj"},
+	{"mushroom_red", "flowers:mushroom_red", "flowerpot_with_Xflower.obj"},
+	{"grass", "default:grass_1", "flowerpot_with_Xflower.obj"},
+	{"dry_grass", "default:dry_grass_1", "flowerpot_with_Xflower.obj"},
+	{"dry_shrub", "default:dry_shrub", "flowerpot_with_Xflower.obj"},
+	{"papyrus", "default:papyrus", "flowerpot_with_Xflower.obj"},
+	{"purple_allium", "mapgen:purple_allium", "flowerpot_with_Xflower.obj"},
+	{"small_cactus", "mapgen:small_cactus", "flowerpot_with_Xflower.obj"},
+	{"small_cactus_1", "mapgen:small_cactus_1", "flowerpot_with_Xflower.obj"},
+	{"oxeye_daisy", "mapgen:oxeye_daisy", "flowerpot_with_Xflower.obj"},
 
-	{"dead_grass", "mapgen:dead_grass_1"},
-	{"jungle_grass", "mapgen:jungle_grass_1"},
-
-
+	{"dead_grass", "mapgen:dead_grass_1", "flowerpot_with_Xflower.obj"},
+	{"jungle_grass", "mapgen:jungle_grass_1", "flowerpot_with_Xflower.obj"},
 
 }
 
@@ -64,10 +62,11 @@ minetest.register_node("flowerpots:flower_pot", {
 for _, row in ipairs(flowers) do
 local flower = row[1]
 local flower_node = row[2]
+local model = row[3]
 minetest.register_node("flowerpots:flower_pot_"..flower, {
 	description = "Flower Pot With "..flower.." Flower",
 	drawtype = "mesh",
-	mesh = "flowerpot_with_Xflower.obj",
+	mesh = model,
 	tiles = {
 		"flowerpot_"..flower..".png",
 	},
