@@ -8,6 +8,22 @@ local flowers = {
 	{"dandelion_yellow", "flowers:dandelion_yellow"},
 	{"dandelion_white", "flowers:dandelion_white"},
 	{"flame_lily", "mapgen:flame_lily"},
+	{"mushroom_brown", "flowers:mushroom_brown"},
+	{"mushroom_red", "flowers:mushroom_red"},
+	{"grass", "default:grass_1"},
+	{"dry_grass", "default:dry_grass_1"},
+	{"dry_shrub", "default:dry_shrub"},
+	{"papyrus", "default:papyrus"},
+	{"purple_allium", "mapgen:purple_allium"},
+	{"small_cactus", "mapgen:small_cactus"},
+	{"small_cactus_1", "mapgen:small_cactus_1"},
+	{"oxeye_daisy", "mapgen:oxeye_daisy"},
+
+	{"dead_grass", "mapgen:dead_grass_1"},
+	{"jungle_grass", "mapgen:jungle_grass_1"},
+
+
+
 }
 
 minetest.register_node("flowerpots:flower_pot", {
