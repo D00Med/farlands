@@ -48,6 +48,28 @@ minetest.register_node("mapgen:dicksonia", {
 	sounds = default.node_sound_wood_defaults()
 })
 
+minetest.register_node("mapgen:statue", {
+	description = "Statue",
+	drawtype = "mesh",
+	mesh = "statue.obj",
+	tiles = {
+		"mapgen_statue.png",
+	},
+	wield_scale = {x=0.5, y=0.5, z=0.5},
+	paramtype = "light",
+	paramtype2 = "facedir",
+	selection_box = {
+		type = "fixed",
+		fixed = {-1, -0.5, -1, 1, 1.8, 0.5}
+	},
+	collision_box = {
+		type = "fixed",
+		fixed = {-1, -0.5, -1, 1, 1.8, 0.5}
+	},
+	groups = {cracky = 1},
+	sounds = default.node_sound_wood_defaults()
+})
+
 minetest.register_node("mapgen:willow_leaves", {
 	description = "Willow Leaves",
 	drawtype = "allfaces",
