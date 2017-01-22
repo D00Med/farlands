@@ -17,11 +17,13 @@ minetest.register_node("decoblocks:scarecrow", {
 	description = "Scarecrow",
 	drawtype = "mesh",
 	mesh = "scarecrow.obj",
+	paramtype2 = "facedir",
 	tiles = {
 		"decoblocks_scarecrow.png",
 	},
 	visual_scale = 0.5,
-	wield_scale = {x=0.5, y=0.5, z=0.5},
+	wield_image = "decoblocks_scarecrow_item.png",
+	wield_scale = {x=1.0, y=1.0, z=1.0},
 	paramtype = "light",
 	selection_box = {
 		type = "fixed",
