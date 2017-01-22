@@ -12,6 +12,15 @@ minetest.register_node("decoblocks:old_stone_tiles_with_dirt", {
 	sounds = default.node_sound_stone_defaults(),
 })
 
+minetest.register_node("decoblocks:moss_stonebrick", {
+	description = "Mossy Stone Brick",
+	paramtype2 = "facedir",
+	place_param2 = 0,
+	tiles = {"decoblocks_moss_stone_brick.png"},
+	is_ground_content = false,
+	groups = {cracky = 2, stone = 1},
+	sounds = default.node_sound_stone_defaults(),
+})
 
 minetest.register_node("decoblocks:scarecrow", {
 	description = "Scarecrow",

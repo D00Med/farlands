@@ -686,10 +686,10 @@ minetest.register_node("mapgen:stalagmite2", {
 
 
 minetest.register_node("mapgen:vine", {
-	description = "Vines",
+	description = "Vine",
 	drawtype = "nodebox",
-	tiles = {"mapgen_vines.png"},
-	inventory_image = "mapgen_vines.png",
+	tiles = {"mapgen_vine.png"},
+	inventory_image = "mapgen_vine.png",
 	paramtype = "light",
 	paramtype2 = "facedir",
 	sunlight_propagates = false,
