@@ -10,6 +10,7 @@ local flowers = {
 	{"flame_lily", "mapgen:flame_lily", "flowerpot_with_Xflower.obj"},
 	{"mushroom_brown", "flowers:mushroom_brown", "flowerpot_with_Xflower.obj"},
 	{"mushroom_red", "flowers:mushroom_red", "flowerpot_with_Xflower.obj"},
+	{"cactus", "default:cactus", "flowerpot_with_long_cube.obj"},
 	{"grass", "default:grass_1", "flowerpot_with_Xflower.obj"},
 	{"dry_grass", "default:dry_grass_1", "flowerpot_with_Xflower.obj"},
 	{"dry_shrub", "default:dry_shrub", "flowerpot_with_Xflower.obj"},
@@ -20,6 +21,15 @@ local flowers = {
 	{"oxeye_daisy", "mapgen:oxeye_daisy", "flowerpot_with_Xflower.obj"},
 	{"dead_grass", "mapgen:dead_grass_5", "flowerpot_with_Xflower.obj"},
 	{"jungle_grass", "mapgen:jungle_grass_5", "flowerpot_with_Xflower.obj"},
+	{"leaves", "default:leaves", "flowerpot_with_long_cube.obj"},
+	{"aspen_leaves", "default:aspen_leaves", "flowerpot_with_long_cube.obj"},
+	{"pine_needles", "default:pine_needles", "flowerpot_with_long_cube.obj"},
+	{"jungleleaves", "default:jungleleaves", "flowerpot_with_long_cube.obj"},
+	{"acacia_leaves", "default:acacia_leaves", "flowerpot_with_long_cube.obj"},
+	{"willow_leaves", "mapgen:willow_leaves", "flowerpot_with_long_cube.obj"},
+	{"baobab_leaves", "mapgen:baobab_leaves", "flowerpot_with_long_cube.obj"},
+	{"yellow_ipe_leaves", "mapgen:yellow_ipe_leaves", "flowerpot_with_long_cube.obj"},
+	{"palm_leaves", "mapgen:palm_leaves", "flowerpot_with_long_cube.obj"},
 }
 
 minetest.register_node("flowerpots:flower_pot", {
