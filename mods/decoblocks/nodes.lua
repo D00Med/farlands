@@ -116,7 +116,7 @@ minetest.register_node("decoblocks:vase", {
 		type = "fixed",
 		fixed = {-0.3, -0.5, -0.3, 0.3, 0.5, 0.3}
 	},
-	groups = {cracky = 2, stone = 1},
+	groups = {cracky = 2, oddly_breakable_by_hand = 1},
 	sounds = default.node_sound_stone_defaults(),
 })
 
@@ -141,4 +141,30 @@ minetest.register_node("decoblocks:Ancient_vase", {
 	},
 	groups = {cracky = 2, stone = 1},
 	sounds = default.node_sound_stone_defaults(),
+})
+
+
+minetest.register_node("decoblocks:old_skeleton", {
+	description = "Old Human Skeleton",
+	drawtype = "mesh",
+	mesh = "old_skeleton.obj",
+	tiles = {
+		"old_skeleton.png",
+	},
+	visual_scale = 0.5,
+	wield_image = "decoblocks_skull_item.png",
+	wield_scale = {x=1.0, y=1.0, z=1.0},
+	paramtype = "light",
+	paramtype2 = "facedir",
+	selection_box = {
+		type = "fixed",
+		fixed = {-0.3, -0.5, -0.3, 0.3, 0.0, 0.3}
+	},
+	collision_box = {
+		type = "fixed",
+		fixed = {-0.3, -0.5, -0.3, 0.3, 0.0, 0.3}
+	},
+	inventory_image = "decoblocks_skull_item.png",
+	groups = {choppy = 1, oddly_breakable_by_hand = 1},
+	sounds = default.node_sound_wood_defaults()
 })
