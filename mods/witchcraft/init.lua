@@ -3775,26 +3775,30 @@ minetest.register_node("witchcraft:portal", {
 	groups = {cracky=3,dig_immediate=3, not_in_creative_inventory=1},
 })
 
+
 minetest.register_node("witchcraft:candle", {
 	description = "red candle",
+	drawtype = "mesh",
+	mesh = "candle.obj",
 	tiles = {
-		"witchcraft_candle_top.png",
-		"witchcraft_candle_top.png",
-		"witchcraft_candle.png",
-		"witchcraft_candle.png",
-		"witchcraft_candle.png",
-		"witchcraft_candle.png"
+		"witchcraft_red_candle.png",
 	},
-	drawtype = "nodebox",
+	visual_scale = 0.5,
+	wield_image = "witchcraft_red_candle_item.png",
+	wield_scale = {x=1.0, y=1.0, z=1.0},
 	paramtype = "light",
-	node_box = {
+	paramtype2 = "facedir",
+	selection_box = {
 		type = "fixed",
-		fixed = {
-			{-0.1875, -0.5, -0.1875, 0.1875, -0.0625, 0.1875}, -- NodeBox1
-			{-0.03125, -0.5, -0.03125, 0.03125, 0.0625, 0.03125}, -- NodeBox2
-		}
+		fixed = {-0.3, -0.5, -0.3, 0.3, 0.0, 0.3}
 	},
-	groups = {fleshy=1, oddly_breakable_by_hand=1, dig_immediate=3},
+	collision_box = {
+		type = "fixed",
+		fixed = {-0.3, -0.5, -0.3, 0.3, 0.0, 0.3}
+	},
+	inventory_image = "witchcraft_red_candle_item.png",
+	groups = {choppy = 1, oddly_breakable_by_hand = 1},
+	sounds = default.node_sound_wood_defaults()
 })
 
 --other stuff
