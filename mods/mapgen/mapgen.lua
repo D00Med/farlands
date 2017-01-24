@@ -1458,7 +1458,7 @@ end
 		place_on = {"mapgen:dirt_with_swampgrass"},
 		sidelen = 16,
 		noise_params = {
-			offset = 0.0,
+			offset = 0.01,
 			scale = -0.015,
 			spread = {x = 250, y = 250, z = 250},
 			seed = 2,
