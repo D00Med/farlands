@@ -311,12 +311,21 @@ minetest.register_abm({
 			x = 1
 		end
 		--minetest.chat_send_all(node.param2)
-		local objs = minetest.get_objects_inside_radius({x=pos.x+x, y=pos.y, z=pos.z+z}, 1)
+		local numbers = {
+		{1},
+		{2},
+		{3},
+		{4},
+		}
+		for _, number in ipairs(numbers) do
+		local num = number[1]
+		local objs = minetest.get_objects_inside_radius({x=pos.x+x*num, y=pos.y, z=pos.z+z*num}, 1)
 		for _, obj in ipairs(objs) do
 			if obj:is_player() then
 				local ent = minetest.env:add_entity(pos, "decoblocks:dart")
 				ent:setvelocity({x=7*x, y=0, z=7*z})
 			end
+		end
 		end
 	end
 })
