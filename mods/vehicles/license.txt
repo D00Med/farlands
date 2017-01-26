@@ -21,7 +21,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 License for Textures, Models
 ---------------------------------------
-all textures and models (but vehicles_explosion.png is made by D00med) are made by tobyplowy(aka toby109tt) give credit if used
+all textures and models (but vehicles_explosion.png is made by D00med) are made by tobyplowy(aka toby109tt) give credit if used (CC BY-SA 3.0)
 
 
 
