@@ -470,3 +470,14 @@ minetest.register_node("decoblocks:candle", {
 	groups = {choppy = 1, oddly_breakable_by_hand = 1},
 	sounds = default.node_sound_wood_defaults()
 })
+
+minetest.register_node("decoblocks:paper_lantern", {
+	description = "Paper Lantern",
+	tiles = {"decoblocks_paper_lantern_top.png", "decoblocks_paper_lantern_top.png", "decoblocks_paper_lantern.png"},
+	paramtype = "light",
+	light_source = 13,
+	is_ground_content = false,
+	groups = {tree = 1, choppy = 2, oddly_breakable_by_hand = 1, flammable = 2},
+	sounds = default.node_sound_wood_defaults(),
+
+})
