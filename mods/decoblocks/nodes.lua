@@ -488,3 +488,14 @@ minetest.register_node("decoblocks:mammoth_wool", {
 	groups = {crumbly = 3, soil = 1},
 	sounds = default.node_sound_dirt_defaults(),
 })
+
+minetest.register_node("decoblocks:bone_pillar", {
+	description = "Bone Pillar",
+	tiles = {"decoblocks_bone_pillar_top.png", "decoblocks_bone_pillar_top.png", "decoblocks_bone_pillar.png"},
+	paramtype2 = "facedir",
+	is_ground_content = false,
+	groups = {cracky = 3, stone = 2},
+	sounds = default.node_sound_stone_defaults(),
+
+	on_place = minetest.rotate_node
+})
