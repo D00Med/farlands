@@ -84,7 +84,7 @@ minetest.register_node("farming:desert_sand_soil_wet", {
 
 minetest.register_node("farming:straw", {
 	description = "Straw",
-	tiles = {"farming_straw.png"},
+	tiles = {"farming_straw_top.png", "farming_straw_top.png", "farming_straw.png"},
 	is_ground_content = false,
 	groups = {snappy=3, flammable=4, fall_damage_add_percent=-30},
 	sounds = default.node_sound_leaves_defaults(),
