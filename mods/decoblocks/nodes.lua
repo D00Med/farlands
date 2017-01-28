@@ -354,7 +354,7 @@ minetest.register_node("decoblocks:spikes", {
 
 minetest.register_node("decoblocks:crumblestone", {
 	description = "Crumbly Stone",
-	tiles = {"default_stone.png"},
+	tiles = {"decoblocks_crumblestone.png"},
 	groups = {crumbly = 1},
 	sounds = default.node_sound_stone_defaults()
 })
@@ -477,7 +477,14 @@ minetest.register_node("decoblocks:paper_lantern", {
 	paramtype = "light",
 	light_source = 13,
 	is_ground_content = false,
-	groups = {tree = 1, choppy = 2, oddly_breakable_by_hand = 1, flammable = 2},
-	sounds = default.node_sound_wood_defaults(),
+		groups = {snappy = 2, choppy = 2, oddly_breakable_by_hand = 3,
+				flammable = 3, wool = 1},
+		sounds = default.node_sound_defaults(),
+})
 
+minetest.register_node("decoblocks:mammoth_wool", {
+	description = "Mammoth Wool",
+	tiles = {"decoblocks_mammoth_wool.png"},
+	groups = {crumbly = 3, soil = 1},
+	sounds = default.node_sound_dirt_defaults(),
 })

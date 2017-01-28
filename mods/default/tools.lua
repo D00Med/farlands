@@ -64,6 +64,21 @@ minetest.register_tool("default:pick_steel", {
 	sound = {breaks = "default_tool_breaks"},
 })
 
+minetest.register_tool("default:pick_gold", {
+	description = "Golden Pickaxe",
+	inventory_image = "default_tool_goldpick.png",
+	tool_capabilities = {
+		full_punch_interval = 1.0,
+		max_drop_level=1,
+		groupcaps={
+			cracky = {times={[1]=4.00, [2]=1.60, [3]=0.80}, uses=30, maxlevel=2},
+		},
+		damage_groups = {fleshy=4},
+	},
+	sound = {breaks = "default_tool_breaks"},
+})
+
+
 minetest.register_tool("default:pick_bronze", {
 	description = "Bronze Pickaxe",
 	inventory_image = "default_tool_bronzepick.png",
@@ -150,6 +165,21 @@ minetest.register_tool("default:shovel_steel", {
 		max_drop_level=1,
 		groupcaps={
 			crumbly = {times={[1]=1.50, [2]=0.90, [3]=0.40}, uses=30, maxlevel=2},
+		},
+		damage_groups = {fleshy=3},
+	},
+	sound = {breaks = "default_tool_breaks"},
+})
+
+minetest.register_tool("default:shovel_gold", {
+	description = "Golden Shovel",
+	inventory_image = "default_tool_goldshovel.png",
+	wield_image = "default_tool_bronzeshovel.png^[transformR90",
+	tool_capabilities = {
+		full_punch_interval = 1.1,
+		max_drop_level=1,
+		groupcaps={
+			crumbly = {times={[1]=1.50, [2]=0.90, [3]=0.40}, uses=40, maxlevel=2},
 		},
 		damage_groups = {fleshy=3},
 	},
@@ -248,6 +278,20 @@ minetest.register_tool("default:axe_steel", {
 	sound = {breaks = "default_tool_breaks"},
 })
 
+minetest.register_tool("default:axe_gold", {
+	description = "Golden Axe",
+	inventory_image = "default_tool_goldaxe.png",
+	tool_capabilities = {
+		full_punch_interval = 1.0,
+		max_drop_level=1,
+		groupcaps={
+			choppy={times={[1]=2.50, [2]=1.40, [3]=1.00}, uses=30, maxlevel=2},
+		},
+		damage_groups = {fleshy=4},
+	},
+	sound = {breaks = "default_tool_breaks"},
+})
+
 minetest.register_tool("default:axe_bronze", {
 	description = "Bronze Axe",
 	inventory_image = "default_tool_bronzeaxe.png",
@@ -331,6 +375,20 @@ minetest.register_tool("default:sword_steel", {
 		max_drop_level=1,
 		groupcaps={
 			snappy={times={[1]=2.5, [2]=1.20, [3]=0.35}, uses=30, maxlevel=2},
+		},
+		damage_groups = {fleshy=6},
+	},
+	sound = {breaks = "default_tool_breaks"},
+})
+
+minetest.register_tool("default:sword_gold", {
+	description = "Golden Sword",
+	inventory_image = "default_tool_goldsword.png",
+	tool_capabilities = {
+		full_punch_interval = 0.8,
+		max_drop_level=1,
+		groupcaps={
+			snappy={times={[1]=2.5, [2]=1.20, [3]=0.35}, uses=40, maxlevel=2},
 		},
 		damage_groups = {fleshy=6},
 	},

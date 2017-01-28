@@ -27,6 +27,7 @@ mobs:register_mob("mobs_m:mimic", {
 	textures = {
 		{"mobs_mimic.png"},
 	},
+	blood_texture = "mobs_rotten_blood.png",
 	makes_footstep_sound = false,
 	sounds = {
 		random = "mobs_dirtmonster",
@@ -100,7 +101,7 @@ mobs:register_mob("mobs_m:mammoth", {
 	replace_rate = 10,
 	replace_what = {"default:grass_3", "default:grass_4", "default:grass_5", "ethereal:bamboo"},
 	replace_with = "air",
-	follow = {"farming:wheat"},
+	follow = {"compactblocks:default_leaves"},
 	view_range = 14,
 	drops = {
 		{name = "mobs:meat_raw", chance = 2, min = 5, max = 6},

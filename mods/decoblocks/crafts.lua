@@ -16,3 +16,12 @@ minetest.register_craft({
 		{'', 'group:wood', ''},
 	}
 })
+
+minetest.register_craft({
+	output = 'decoblocks:paper_lantern',
+	recipe = {
+		{'group:wood', 'default:paper', 'group:wood'},
+		{'default:paper', 'default:torch', 'default:paper'},
+		{'group:wood', 'default:paper', 'group:wood'},
+	}
+})
