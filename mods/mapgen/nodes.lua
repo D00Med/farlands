@@ -86,7 +86,7 @@ minetest.register_node("mapgen:willow_wood_Planks", {
 	tiles = {
 		"mapgen_willow_wood.png",
 	},
-	groups = {choppy = 1, flammable = 1, oddly_breakable_by_hand=1},
+	groups = {choppy = 1, flammable = 1, oddly_breakable_by_hand=1, wood=1},
 	sounds = default.node_sound_wood_defaults()
 })
 
@@ -118,7 +118,7 @@ minetest.register_node("mapgen:baobab_wood_Planks", {
 	tiles = {
 		"mapgen_baobab_wood.png",
 	},
-	groups = {choppy = 1, flammable = 1, oddly_breakable_by_hand=1},
+	groups = {choppy = 1, flammable = 1, oddly_breakable_by_hand=1, wood=1},
 	sounds = default.node_sound_wood_defaults()
 })
 
@@ -160,7 +160,7 @@ minetest.register_node("mapgen:yellow_ipe_planks", {
 	tiles = {
 		"mapgen_yellow_ipe_wood.png",
 	},
-	groups = {choppy = 1, flammable = 1, oddly_breakable_by_hand=1},
+	groups = {choppy = 1, flammable = 1, oddly_breakable_by_hand=1, wood=1},
 	sounds = default.node_sound_wood_defaults()
 })
 
@@ -238,7 +238,7 @@ minetest.register_node("mapgen:palm_wood", {
 	tiles = {
 		"mapgen_palmtree_wood.png",
 	},
-	groups = {choppy = 1, flammable = 1, oddly_breakable_by_hand=1},
+	groups = {choppy = 1, flammable = 1, oddly_breakable_by_hand=1, wood=1},
 	sounds = default.node_sound_wood_defaults()
 })
 
