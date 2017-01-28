@@ -101,6 +101,7 @@ minetest.register_node("mapgen:willow_tree", {
 	},
 	groups = {choppy = 2, tree = 1, flammable = 1, oddly_breakable_by_hand=1},
 	sounds = default.node_sound_wood_defaults(),
+	paramtype2 = "facedir",
 	on_place = minetest.rotate_node
 })
 
@@ -133,6 +134,7 @@ minetest.register_node("mapgen:baobab_tree", {
 	},
 	groups = {choppy = 2, tree = 1, flammable = 1, oddly_breakable_by_hand=1},
 	sounds = default.node_sound_wood_defaults(),
+	paramtype2 = "facedir",
 	on_place = minetest.rotate_node
 })
 
@@ -175,6 +177,7 @@ minetest.register_node("mapgen:yellow_ipe_tree", {
 	},
 	groups = {choppy = 2, tree = 1, flammable = 1, oddly_breakable_by_hand=1},
 	sounds = default.node_sound_wood_defaults(),
+	paramtype2 = "facedir",
 	on_place = minetest.rotate_node
 })
 

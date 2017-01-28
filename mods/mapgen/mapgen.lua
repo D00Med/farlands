@@ -805,6 +805,27 @@
 		humidity_point = 68,
 	})
 
+		minetest.register_biome({
+		name = "deciduous_forest2",
+		--node_dust = "",
+		node_top = "default:dirt_with_grass",
+		depth_top = 1,
+		node_filler = "default:dirt",
+		depth_filler = 3,
+		--node_stone = "",
+		--node_water_top = "",
+		--depth_water_top = ,
+		--node_water = "",
+		--node_river_water = "",
+		node_riverbed = "default:sand",
+		depth_riverbed = 2,
+		y_min = 1,
+		y_max = 31000,
+		heat_point = 62,
+		humidity_point = 70,
+	})
+
+	
 	minetest.register_biome({
 		name = "deciduous_forest_shore",
 		--node_dust = "",
@@ -1242,7 +1263,7 @@ end
 			octaves = 3,
 			persist = 0.66
 		},
-		biomes = {"deciduous_forest"},
+		biomes = {"deciduous_forest", "deciduous_forest2"},
 		y_min = 1,
 		y_max = 31000,
 		schematic = minetest.get_modpath("default") .. "/schematics/apple_tree.mts",
@@ -1403,6 +1424,51 @@ end
 		rotation = "random",
 	})
 
+	--yellow ipe
+	
+	minetest.register_decoration({
+		deco_type = "schematic",
+		place_on = {"default:dirt_with_grass"},
+		sidelen = 16,
+		noise_params = {
+			offset = 0,
+			scale = 0.002,
+			spread = {x = 250, y = 250, z = 250},
+			seed = 2,
+			octaves = 3,
+			persist = 0.66
+		},
+		biomes = {"deciduous_forest2"},
+		y_min = 1,
+		y_max = 31000,
+		schematic = minetest.get_modpath("mapgen") .. "/schematics/ipe.mts",
+		flags = "place_center_x, place_center_z",
+		rotation = "random",
+	})
+	
+	--baobab tree
+	
+		minetest.register_decoration({
+		deco_type = "schematic",
+		place_on = {"default:dirt_with_dry_grass"},
+		sidelen = 16,
+		noise_params = {
+			offset = 0,
+			scale = 0.002,
+			spread = {x = 250, y = 250, z = 250},
+			seed = 2,
+			octaves = 3,
+			persist = 0.66
+		},
+		biomes = {"savanna"},
+		y_min = 1,
+		y_max = 31000,
+		schematic = minetest.get_modpath("mapgen") .. "/schematics/baobab.mts",
+		flags = "place_center_x, place_center_z",
+		rotation = "random",
+	})
+
+	
 	-- Acacia tree and log
 
 	minetest.register_decoration({
