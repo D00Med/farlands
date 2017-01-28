@@ -26,15 +26,25 @@ local share_bones_time_early = tonumber(minetest.setting_get("share_bones_time_e
 
 minetest.register_node("bones:bones", {
 	description = "Bones",
+	drawtype = "mesh",
+	mesh = "tombstone.obj",
 	tiles = {
-		"bones_top.png^[transform2",
-		"bones_bottom.png",
-		"bones_side.png",
-		"bones_side.png",
-		"bones_rear.png",
-		"bones_front.png"
+		"tombstone.png",
 	},
+	visual_scale = 0.5,
+	wield_image = "tombstone_item.png",
+	wield_scale = {x=1.0, y=1.0, z=1.0},
 	paramtype2 = "facedir",
+	paramtype = "light",
+	selection_box = {
+		type = "fixed",
+		fixed = {-0.4, -0.5, -0.0, 0.4, 0.5, 0.3}
+	},
+	collision_box = {
+		type = "fixed",
+		fixed = {-0.3, -0.5, -0.3, 0.3, 1, 0.3}
+	},
+	inventory_image = "tombstone_item.png",
 	groups = {dig_immediate = 2},
 	sounds = default.node_sound_gravel_defaults(),
 
