@@ -28,6 +28,8 @@ mapgen.register_fern("fern2", "Broad Leaf Fern", "2")
 
 --nodes
 
+--plants (PLNT01)
+
 minetest.register_node("mapgen:dicksonia", {
 	description = "Dicksonia",
 	drawtype = "mesh",
@@ -200,25 +202,44 @@ minetest.register_node("mapgen:dirt_with_junglegrass", {
 	sounds = default.node_sound_dirt_defaults()
 })
 
-minetest.register_node("mapgen:granite", {
-	description = "Granite",
-	tiles = {"mapgen_granite.png"},
-	groups = {cracky = 2},
-	sounds = default.node_sound_stone_defaults()
+minetest.register_node("mapgen:cavefern1", {
+	description = "Cave Fern",
+	drawtype = "plantlike",
+	tiles = {
+		"mapgen_cavefern.png",
+	},
+	groups = {snappy=3, flammable=1, attatched_node=1, flora=1},
+	sounds = default.node_sound_leaves_defaults(),
+	is_ground_content=true,
+	buildable_to = true, 
+	walkable = false,
+	inventory_image = "mapgen_cavefern.png",
+	paramtype = "light",
+	sunlight_propagates=true,
+	selection_box = {
+		type = "fixed",
+		fixed = {-0.5, 0.1, -0.5, 0.5, 0.5, 0.5}
+	},
 })
 
-minetest.register_node("mapgen:granite_brown", {
-	description = "Brown Granite",
-	tiles = {"mapgen_granite_brown.png"},
-	groups = {cracky = 2},
-	sounds = default.node_sound_stone_defaults()
-})
-
-minetest.register_node("mapgen:limestone", {
-	description = "Limestone",
-	tiles = {"mapgen_limestone.png"},
-	groups = {cracky = 2},
-	sounds = default.node_sound_stone_defaults()
+minetest.register_node("mapgen:cavefern2", {
+	description = "Cave Fern",
+	drawtype = "plantlike",
+	tiles = {
+		"mapgen_cavefern2.png",
+	},
+	groups = {snappy=3, flammable=1, attatched_node=1, flora=1},
+	sounds = default.node_sound_leaves_defaults(),
+	is_ground_content=true,
+	buildable_to = true, 
+	walkable = false,
+	inventory_image = "mapgen_cavefern2.png",
+	paramtype = "light",
+	sunlight_propagates=true,
+	selection_box = {
+		type = "fixed",
+		fixed = {-0.5, 0.1, -0.5, 0.5, 0.5, 0.5}
+	},
 })
 
 minetest.register_node("mapgen:palm_tree", {
@@ -593,119 +614,6 @@ minetest.register_node("mapgen:swamp_grass_5", {
 	end,
 })
 
-minetest.register_node("mapgen:stalagtite", {
-	description = "Stalagtite",
-	drawtype = "plantlike",
-	tiles = {"mapgen_stalagmite0.png"},
-	inventory_image = "mapgen_stalagmite0.png",
-	is_ground_content = false,
-	sunlight_propagates = true,
-	paramtype = "light",
-	selection_box = {
-	type = "fixed",
-	fixed = {{-0.3, -0.2, -0.3, 0.3, 0.5, 0.3}}
-	},
-	groups = {crumbly=1, oddly_breakable_by_hand=1},
-	sounds = default.node_sound_stone_defaults()
-})
-
-minetest.register_node("mapgen:stalagtite1", {
-	description = "Stalagtite",
-	drawtype = "plantlike",
-	tiles = {"mapgen_stalagmite1.png"},
-	inventory_image = "mapgen_stalagmite1.png",
-	is_ground_content = false,
-	sunlight_propagates = true,
-	paramtype = "light",
-	selection_box = {
-	type = "fixed",
-	fixed = {{-0.3, -0.2, -0.3, 0.3, 0.5, 0.3}}
-	},
-	groups = {crumbly=1, oddly_breakable_by_hand=1},
-})
-
-minetest.register_node("mapgen:stalagtite2", {
-	description = "Stalagtite",
-	drawtype = "plantlike",
-	tiles = {"mapgen_stalagmite2.png"},
-	inventory_image = "mapgen_stalagmite2.png",
-	is_ground_content = false,
-	sunlight_propagates = true,
-	paramtype = "light",
-	selection_box = {
-	type = "fixed",
-	fixed = {{-0.3, -0.2, -0.3, 0.3, 0.5, 0.3}}
-	},
-	groups = {crumbly=1, oddly_breakable_by_hand=1},
-	sounds = default.node_sound_stone_defaults()
-})
-
-minetest.register_node("mapgen:stalagtite3", {
-	description = "Stalagtite",
-	drawtype = "plantlike",
-	tiles = {"mapgen_stalagmite3.png"},
-	inventory_image = "mapgen_stalagmite3.png",
-	is_ground_content = false,
-	sunlight_propagates = true,
-	paramtype = "light",
-	selection_box = {
-	type = "fixed",
-	fixed = {{-0.3, -0.2, -0.3, 0.3, 0.5, 0.3}}
-	},
-	groups = {crumbly=1, oddly_breakable_by_hand=1},
-	sounds = default.node_sound_stone_defaults()
-})
-
-minetest.register_node("mapgen:stalagmite0", {
-	description = "Stalagmite",
-	drawtype = "plantlike",
-	tiles = {"mapgen_stalagmite0.png^[transformFY"},
-	inventory_image = "mapgen_stalagmite0.png^[transformFY",
-	is_ground_content = false,
-	sunlight_propagates = true,
-	paramtype = "light",
-	selection_box = {
-	type = "fixed",
-	fixed = {{-0.3, -0.2, -0.3, 0.3, 0.5, 0.3}}
-	},
-	groups = {crumbly=1, oddly_breakable_by_hand=1},
-	sounds = default.node_sound_stone_defaults()
-})
-
-minetest.register_node("mapgen:stalagmite1", {
-	description = "Stalagmite",
-	drawtype = "plantlike",
-	visual_scale = 1.5,
-	tiles = {"mapgen_stalagmite3.png^[transformFY"},
-	inventory_image = "mapgen_stalagmite3.png^[transformFY",
-	is_ground_content = false,
-	sunlight_propagates = true,
-	paramtype = "light",
-	selection_box = {
-	type = "fixed",
-	fixed = {{-0.3, -0.2, -0.3, 0.3, 0.5, 0.3}}
-	},
-	groups = {crumbly=1, oddly_breakable_by_hand=1},
-	sounds = default.node_sound_stone_defaults()
-})
-
-minetest.register_node("mapgen:stalagmite2", {
-	description = "Stalagmite",
-	drawtype = "plantlike",
-	visual_scale = 1.5,
-	tiles = {"mapgen_stalagmite2.png^[transformFY"},
-	inventory_image = "mapgen_stalagmite2.png^[transformFY",
-	is_ground_content = false,
-	sunlight_propagates = true,
-	paramtype = "light",
-	selection_box = {
-	type = "fixed",
-	fixed = {{-0.3, -0.2, -0.3, 0.3, 0.5, 0.3}}
-	},
-	groups = {crumbly=1, oddly_breakable_by_hand=1},
-	sounds = default.node_sound_stone_defaults()
-})
-
 
 minetest.register_node("mapgen:vine", {
 	description = "Vine",
@@ -940,6 +848,159 @@ minetest.register_node("mapgen:dead_grass_5", {
 		minetest.env:set_node(pos, {name="mapgen:dead_grass_"..num})
 	end,
 })
+
+--stone (STN02)
+
+minetest.register_node("mapgen:stone_with_ammonite", {
+	description = "Stone with Ammonite",
+	tiles = {"mapgen_marine_fossil.png"},
+	groups = {cracky = 2},
+	sounds = default.node_sound_stone_defaults()
+})
+
+minetest.register_node("mapgen:stone_with_bone", {
+	description = "Stone with Bone",
+	tiles = {"mapgen_land_fossil.png"},
+	groups = {cracky = 2},
+	sounds = default.node_sound_stone_defaults()
+})
+
+minetest.register_node("mapgen:granite", {
+	description = "Granite",
+	tiles = {"mapgen_granite.png"},
+	groups = {cracky = 2},
+	sounds = default.node_sound_stone_defaults()
+})
+
+minetest.register_node("mapgen:granite_brown", {
+	description = "Brown Granite",
+	tiles = {"mapgen_granite_brown.png"},
+	groups = {cracky = 2},
+	sounds = default.node_sound_stone_defaults()
+})
+
+minetest.register_node("mapgen:limestone", {
+	description = "Limestone",
+	tiles = {"mapgen_limestone.png"},
+	groups = {cracky = 2},
+	sounds = default.node_sound_stone_defaults()
+})
+
+
+minetest.register_node("mapgen:stalagtite", {
+	description = "Stalagtite",
+	drawtype = "plantlike",
+	tiles = {"mapgen_stalagmite0.png"},
+	inventory_image = "mapgen_stalagmite0.png",
+	is_ground_content = false,
+	sunlight_propagates = true,
+	paramtype = "light",
+	selection_box = {
+	type = "fixed",
+	fixed = {{-0.3, -0.2, -0.3, 0.3, 0.5, 0.3}}
+	},
+	groups = {crumbly=1, oddly_breakable_by_hand=1},
+	sounds = default.node_sound_stone_defaults()
+})
+
+minetest.register_node("mapgen:stalagtite1", {
+	description = "Stalagtite",
+	drawtype = "plantlike",
+	tiles = {"mapgen_stalagmite1.png"},
+	inventory_image = "mapgen_stalagmite1.png",
+	is_ground_content = false,
+	sunlight_propagates = true,
+	paramtype = "light",
+	selection_box = {
+	type = "fixed",
+	fixed = {{-0.3, -0.2, -0.3, 0.3, 0.5, 0.3}}
+	},
+	groups = {crumbly=1, oddly_breakable_by_hand=1},
+})
+
+minetest.register_node("mapgen:stalagtite2", {
+	description = "Stalagtite",
+	drawtype = "plantlike",
+	tiles = {"mapgen_stalagmite2.png"},
+	inventory_image = "mapgen_stalagmite2.png",
+	is_ground_content = false,
+	sunlight_propagates = true,
+	paramtype = "light",
+	selection_box = {
+	type = "fixed",
+	fixed = {{-0.3, -0.2, -0.3, 0.3, 0.5, 0.3}}
+	},
+	groups = {crumbly=1, oddly_breakable_by_hand=1},
+	sounds = default.node_sound_stone_defaults()
+})
+
+minetest.register_node("mapgen:stalagtite3", {
+	description = "Stalagtite",
+	drawtype = "plantlike",
+	tiles = {"mapgen_stalagmite3.png"},
+	inventory_image = "mapgen_stalagmite3.png",
+	is_ground_content = false,
+	sunlight_propagates = true,
+	paramtype = "light",
+	selection_box = {
+	type = "fixed",
+	fixed = {{-0.3, -0.2, -0.3, 0.3, 0.5, 0.3}}
+	},
+	groups = {crumbly=1, oddly_breakable_by_hand=1},
+	sounds = default.node_sound_stone_defaults()
+})
+
+minetest.register_node("mapgen:stalagmite0", {
+	description = "Stalagmite",
+	drawtype = "plantlike",
+	tiles = {"mapgen_stalagmite0.png^[transformFY"},
+	inventory_image = "mapgen_stalagmite0.png^[transformFY",
+	is_ground_content = false,
+	sunlight_propagates = true,
+	paramtype = "light",
+	selection_box = {
+	type = "fixed",
+	fixed = {{-0.3, -0.2, -0.3, 0.3, 0.5, 0.3}}
+	},
+	groups = {crumbly=1, oddly_breakable_by_hand=1},
+	sounds = default.node_sound_stone_defaults()
+})
+
+minetest.register_node("mapgen:stalagmite1", {
+	description = "Stalagmite",
+	drawtype = "plantlike",
+	visual_scale = 1.5,
+	tiles = {"mapgen_stalagmite3.png^[transformFY"},
+	inventory_image = "mapgen_stalagmite3.png^[transformFY",
+	is_ground_content = false,
+	sunlight_propagates = true,
+	paramtype = "light",
+	selection_box = {
+	type = "fixed",
+	fixed = {{-0.3, -0.2, -0.3, 0.3, 0.5, 0.3}}
+	},
+	groups = {crumbly=1, oddly_breakable_by_hand=1},
+	sounds = default.node_sound_stone_defaults()
+})
+
+minetest.register_node("mapgen:stalagmite2", {
+	description = "Stalagmite",
+	drawtype = "plantlike",
+	visual_scale = 1.5,
+	tiles = {"mapgen_stalagmite2.png^[transformFY"},
+	inventory_image = "mapgen_stalagmite2.png^[transformFY",
+	is_ground_content = false,
+	sunlight_propagates = true,
+	paramtype = "light",
+	selection_box = {
+	type = "fixed",
+	fixed = {{-0.3, -0.2, -0.3, 0.3, 0.5, 0.3}}
+	},
+	groups = {crumbly=1, oddly_breakable_by_hand=1},
+	sounds = default.node_sound_stone_defaults()
+})
+
+
 
 --crafting
 

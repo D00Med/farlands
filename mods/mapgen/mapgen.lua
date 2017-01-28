@@ -427,7 +427,31 @@
 		y_min          = -31000,
 		y_max          = -1024,
 	})
-
+	
+	--fossils
+	
+	minetest.register_ore({
+		ore_type       = "scatter",
+		ore            = "mapgen:stone_with_ammonite",
+		wherein        = "default:stone",
+		clust_scarcity = 24 * 24 * 24,
+		clust_num_ores = 1,
+		clust_size     = 1,
+		y_min          = 625,
+		y_max          = 31000,
+	})
+	
+	minetest.register_ore({
+		ore_type       = "scatter",
+		ore            = "mapgen:stone_with_bone",
+		wherein        = "default:stone",
+		clust_scarcity = 24 * 24 * 24,
+		clust_num_ores = 1,
+		clust_size     = 1,
+		y_min          = 625,
+		y_max          = 31000,
+	})
+	
 	minetest.clear_registered_biomes()
 
 	--Swamp
@@ -1889,6 +1913,23 @@ minetest.register_on_generated(function(minp, maxp)
 					else
 					minetest.add_node({x=pos.x, y=pos.y-1, z=pos.z}, {name = "mapgen:stalagtite3"})
 					end
+				end
+		end
+	end
+end)
+
+minetest.register_on_generated(function(minp, maxp)
+	if maxp.y < -500 or maxp.y > 100 then
+		return
+	end
+	local dirt = minetest.find_nodes_in_area(minp, maxp,
+		{"default:stone"})
+	for n = 1, #dirt do
+		if math.random(1, 50) == 1 then
+			local pos = {x = dirt[n].x, y = dirt[n].y, z = dirt[n].z }
+				if minetest.get_node({x=pos.x, y=pos.y-1, z=pos.z}).name == "air" then
+					local num = math.random(1,2)
+					minetest.add_node({x=pos.x, y=pos.y-1, z=pos.z}, {name = "mapgen:cavefern"..num})
 				end
 		end
 	end
