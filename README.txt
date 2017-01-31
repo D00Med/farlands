@@ -1,4 +1,4 @@
-Minetest Game [minetest_game]
+ Minetest Game [minetest_game]
 =============================
 The main subgame for the Minetest engine
 ========================================
