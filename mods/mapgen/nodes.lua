@@ -254,6 +254,7 @@ minetest.register_node("mapgen:palm_tree", {
 	},
 	groups = {choppy = 2, tree = 1, flammable = 1, oddly_breakable_by_hand=1},
 	sounds = default.node_sound_wood_defaults(),
+	paramtype2 = "facedir",
 	on_place = minetest.rotate_node
 })
 
