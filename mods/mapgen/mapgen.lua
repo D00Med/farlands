@@ -2022,3 +2022,27 @@ minetest.register_on_generated(function(minp, maxp)
 		end
 	end
 end)
+
+--underground dungeons
+
+local dungeon_rarity = 500
+
+minetest.register_on_generated(function(minp, maxp)
+	if maxp.y > -60 or maxp.y < -30000 then
+		return
+	end
+	local stone = minetest.find_nodes_in_area(minp, maxp,
+		{"hyrule_mapgen:dungeon_seed"})
+	for n = 1, #stone do
+		if math.random(1, dungeon_rarity) == 1 then
+			local pos = {x = stone[n].x, y = stone[n].y, z = stone[n].z }
+			local number = math.random(1,4)
+				if math.random(1,10) == 1 then
+				minetest.place_schematic(pos, minetest.get_modpath("hyrule_mapgen").."/schematics/dungeon"..number..".mts", random, {{["decoblocks:chest"] = "mobs_m:mimic_chest2",}, {["mobs_m:mimic_chest2"] = "decoblocks:chest",}}, true)
+				else
+				minetest.place_schematic(pos, minetest.get_modpath("hyrule_mapgen").."/schematics/dungeon"..number..".mts", random, {}, true)
+				end
+			end
+		end
+	end
+end)

@@ -193,6 +193,61 @@ minetest.register_node("decoblocks:Ancient_vase_sand", {
 	sounds = default.node_sound_stone_defaults(),
 })
 
+chest_items = {
+	{"default:gold_ingot", 20},
+}
+
+minetest.register_node("decoblocks:chest", {
+	description = "Treasure Chest",
+	tiles = {"decoblocks_chest_top.png", "decoblocks_chest_top.png", "decoblocks_chest_side.png",
+		"decoblocks_chest_side.png", "decoblocks_chest_side.png", "decoblocks_chest_front.png"},
+	paramtype2 = "facedir",
+	groups = {cracky = 2, oddly_breakable_by_hand = 1},
+	is_ground_content = false,
+	on_construct = function(pos)
+		local meta = minetest.get_meta(pos)
+		local inv = meta:get_inventory()
+		for _, row in ipairs(chest_items) do
+		local item = row[1]
+		local rarity = row[2]
+		if math.random(1,rarity) == 1 then
+			meta:set_string("item", item)
+			else
+			meta:set_string("item", "default:steel_ingot 3")
+		end
+		end
+		inv:set_size("main", 1*1)
+	end,
+	can_dig = function(pos,player)
+		local meta = minetest.get_meta(pos);
+		local inv = meta:get_inventory()
+		return inv:is_empty("main")
+	end,
+	on_rightclick = function(pos, node, clicker, item, _)
+		local name = clicker:get_player_name()
+		--if clicker:get_wielded_item():get_name() == "hyruletools:key" then
+			item:take_item()
+			local meta = minetest.get_meta(pos)
+			local item = meta:get_string("item")
+			if item == nil then
+				for _, row in ipairs(chest_items) do
+				local item = row[1]
+				local rarity = row[2]
+				if math.random(1,rarity) == 1 then
+					meta:set_string("item", item)
+					else
+					meta:set_string("item", "default:steel_ingot 3")
+				end
+				end
+			end
+			minetest.env:add_item(pos, item)
+			minetest.env:remove_node(pos)
+		--else
+		--minetest.chat_send_player(name, "It is locked, you need a key!")
+		--end
+	end,
+})
+
 minetest.register_node("decoblocks:dartblock", {
 	description = "Dart Trap",
 	tiles = {

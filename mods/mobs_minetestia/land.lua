@@ -72,6 +72,78 @@ mobs:register_mob("mobs_m:mimic", {
 	},
 })
 
+minetest.register_node("mobs_m:mimic_chest2", {
+	description = "Mimic Treasure Chest",
+	tiles = {"default_chest_top.png", "default_chest_top.png", "default_chest_side.png",
+		"default_chest_side.png", "default_chest_side.png", "default_chest_front.png"},
+	paramtype2 = "facedir",
+	groups = {cracky=4},
+	on_rightclick = function(pos, node, clicker)
+		minetest.env:remove_node(pos)
+		minetest.env:add_entity(pos, "mobs_m:mimic2")
+	end
+})
+
+mobs:register_mob("mobs_m:mimic2", {
+	type = "monster",
+	passive = false,
+	attack_type = "dogfight",
+	reach = 2,
+	damage = 3,
+	hp_min = 10,
+	hp_max = 27,
+	armor = 90,
+	collisionbox = {-0.5, 0, -0.5, 0.5, 1, 0.5},
+	visual = "mesh",
+	mesh = "mimic.b3d",
+	textures = {
+		{"mobs_mimic2.png"},
+	},
+	blood_texture = "mobs_rotten_blood.png",
+	makes_footstep_sound = false,
+	sounds = {
+		random = "mobs_dirtmonster",
+	},
+	view_range = 3.5,
+	walk_velocity = 0.01,
+	run_velocity = 2,
+	jump = false,
+	jump_height = 0,
+	drops = {
+		{name = "default:gold_lump",
+		chance = 4, min = 1, max = 1},
+	},
+	do_custom = function(self)
+		if self.state ~= "attack" then
+			minetest.after(3, function()
+			if self.state ~= "attack" and self.object ~= nil then
+			local pos = self.object:getpos()
+			if pos ~= nil then
+			minetest.set_node(pos, {name="mobs_m:mimic_chest2", param2=1})
+			self.object:remove()
+			end
+			end
+			end)
+		end
+	end,
+	water_damage = 1,
+	lava_damage = 5,
+	light_damage = 0,
+	fear_height = 3,
+	animation = {
+		speed_normal = 15,
+		speed_run = 17,
+		stand_start = 1,
+		stand_end = 1,
+		walk_start = 1,
+		walk_end = 20,
+		run_start = 1,
+		run_end = 20,
+		punch_start = 20,
+		punch_end = 45,
+	},
+})
+
 mobs:register_mob("mobs_m:mammoth", {
 	type = "animal",
 	passive = false,
