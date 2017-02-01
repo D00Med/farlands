@@ -1,3 +1,31 @@
+minetest.register_node("decoblocks:sandstone_wall", {
+	description = "Painted Sandstone Wall",
+	tiles = {
+	"default_sandstone.png",
+	"default_sandstone.png",
+	"decoblocks_sandstone_wall.png",
+	"decoblocks_sandstone_wall2.png",
+	"decoblocks_sandstone_wall3.png",
+	"decoblocks_sandstone_wall4.png",
+	},
+	paramtype2 = "facedir",
+	groups = {cracky = 3, stone = 2},
+	sounds = default.node_sound_stone_defaults(),
+})
+
+minetest.register_node("decoblocks:sandstone_pillar", {
+	description = "Sandstone Pillar",
+	tiles = {
+	"decoblocks_sandstone_pillar_top.png",
+	"decoblocks_sandstone_pillar_top.png",
+	"decoblocks_sandstone_pillar.png",
+	},
+	paramtype2 = "facedir",
+	groups = {cracky = 3, stone = 2},
+	sounds = default.node_sound_stone_defaults(),
+	on_place = minetest.rotate_node
+})
+
 minetest.register_node("decoblocks:old_stone_tiles", {
 	description = "Old Stone Tiles",
 	tiles = {"decoblocks_old_stone_tiles.png"},
@@ -127,6 +155,28 @@ minetest.register_node("decoblocks:Ancient_vase", {
 	mesh = "vase.obj",
 	tiles = {
 		"Ancient_vase.png",
+	},
+	visual_scale = 0.5,
+	wield_scale = {x=0.5, y=0.5, z=0.5},
+	paramtype = "light",
+	selection_box = {
+		type = "fixed",
+		fixed = {-0.3, -0.5, -0.3, 0.3, 0.5, 0.3}
+	},
+	collision_box = {
+		type = "fixed",
+		fixed = {-0.3, -0.5, -0.3, 0.3, 0.5, 0.3}
+	},
+	groups = {cracky = 2, stone = 1},
+	sounds = default.node_sound_stone_defaults(),
+})
+
+minetest.register_node("decoblocks:Ancient_vase_sand", {
+	description = "Sandstone Vase",
+	drawtype = "mesh",
+	mesh = "vase.obj",
+	tiles = {
+		"Ancient_vase_sand.png",
 	},
 	visual_scale = 0.5,
 	wield_scale = {x=0.5, y=0.5, z=0.5},
@@ -319,7 +369,7 @@ minetest.register_abm({
 		}
 		for _, number in ipairs(numbers) do
 		local num = number[1]
-		local objs = minetest.get_objects_inside_radius({x=pos.x+x*num, y=pos.y, z=pos.z+z*num}, 1)
+		local objs = minetest.get_objects_inside_radius({x=pos.x+x*num, y=pos.y-0.5, z=pos.z+z*num}, 1.5)
 		for _, obj in ipairs(objs) do
 			if obj:is_player() then
 				local ent = minetest.env:add_entity(pos, "decoblocks:dart")
