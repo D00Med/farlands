@@ -2042,7 +2042,6 @@ minetest.register_on_generated(function(minp, maxp)
 				else
 				minetest.place_schematic(pos, minetest.get_modpath("hyrule_mapgen").."/schematics/dungeon"..number..".mts", random, {}, true)
 				end
-			end
 		end
 	end
 end)

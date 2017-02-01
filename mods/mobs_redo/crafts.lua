@@ -40,7 +40,7 @@ minetest.register_craft({
 	cooktime = 5,
 })
 
--- golden lasso
+-- magic lasso
 minetest.register_tool("mobs:magic_lasso", {
 	description = S("Magic Lasso (right-click animal to put in inventory)"),
 	inventory_image = "mobs_magic_lasso.png",

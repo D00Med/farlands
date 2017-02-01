@@ -80,6 +80,7 @@ local function force_detach(player)
 	default.player_attached[player:get_player_name()] = false
 	player:set_eye_offset({x = 0, y = 0, z = 0}, {x = 0, y = 0, z = 0})
 	default.player_set_animation(player, "stand" , 30)
+	player:set_properties({visual_size = {x = 1, y = 1} })
 
 end
 
@@ -108,22 +109,15 @@ function mobs.attach(entity, player)
 
 	local attach_at, eye_offset = {}, {}
 
-	if not entity.player_rotation then
-		entity.player_rotation = {x = 0, y = 0, z = 0}
-	end
+	entity.player_rotation = entity.player_rotation or {x = 0, y = 0, z = 0}
+	entity.driver_attach_at = entity.driver_attach_at or {x = 0, y = 0, z = 0}
+	entity.driver_eye_offset = entity.driver_eye_offset or {x = 0, y = 0, z = 0}
+	entity.driver_scale = entity.driver_scale or {x = 1, y = 1}
 
 	local rot_view = 0
 
 	if entity.player_rotation.y == 90 then
 		rot_view = math.pi/2
-	end
-
-	if not entity.driver_attach_at then
-		entity.driver_attach_at = {x = 0, y = 0, z = 0}
-	end
-
-	if not entity.driver_eye_offset then
-		entity.driver_eye_offset = {x = 0, y = 0, z = 0}
 	end
 
 	attach_at = entity.driver_attach_at
@@ -136,6 +130,13 @@ function mobs.attach(entity, player)
 	default.player_attached[player:get_player_name()] = true
 	player:set_eye_offset(eye_offset, {x = 0, y = 0, z = 0})
 
+	player:set_properties({
+		visual_size = {
+			x = entity.driver_scale.x,
+			y = entity.driver_scale.y
+		}
+	})
+
 	minetest.after(0.2, function()
 		default.player_set_animation(player, "sit" , 30)
 	end)
@@ -147,6 +148,7 @@ end
 function mobs.detach(player, offset)
 
 	force_detach(player)
+
 	default.player_set_animation(player, "stand" , 30)
 
 	local pos = player:getpos()
@@ -195,7 +197,10 @@ function mobs.drive(entity, moving_anim, stand_anim, can_fly, dtime)
 		end
 
 		--entity.object:setyaw(entity.driver:get_look_yaw() - rot_steer)
-		entity.object:setyaw(entity.driver:get_look_horizontal())-- - rot_steer)
+--		entity.object:setyaw(entity.driver:get_look_horizontal())-- - rot_steer)
+
+		-- fix mob rotation
+		entity.object:setyaw(entity.driver:get_look_horizontal() - entity.rotate)
 
 		if can_fly then
 

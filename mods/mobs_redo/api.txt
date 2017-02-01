@@ -1,5 +1,5 @@
 
-MOB API (29th December 2016)
+MOB API (31st January 2017)
 
 The mob api is a function that can be called on by other mods to add new animals or monsters into minetest.
 
@@ -82,8 +82,8 @@ This functions registers a new mob as a Minetest entity.
             'shoot' shoots defined arrows when player is within range
             'explode' follows player in range and will flash and explode when in reach
             'dogshoot' shoots arrows when in range and one on one attack when in reach
-	'dogshoot_switch' allows switching between shoot and dogfight modes inside dogshoot using timer (1 = shoot, 2 = dogfight)
-	'dogshoot_count_max' number of seconds before switching above modes.
+        'dogshoot_switch' allows switching between shoot and dogfight modes inside dogshoot using timer (1 = shoot, 2 = dogfight)
+        'dogshoot_count_max' number of seconds before switching above modes.
         'custom_attack' is a function that is called when mob is in range to attack player, parameters are (self, to_attack)
         'double_melee_attack' if false then api will choose randomly between 'punch' and 'punch2' attack animations
         'on_blast' is called when TNT explodes near mob, function uses (object, damage) and returns (do_damage, do_knockback, drops)
@@ -118,11 +118,14 @@ This functions registers a new mob as a Minetest entity.
             'die_start' start frame of die animation
             'die_end' end frame of die animation
             'speed_normal' normal animation speed
+            'fly_start' start frame of fly animation
+            'fly_end' end frame of fly animation
             'speed_run' running animation speed
             'speed_punch' punching animation speed
             'speed_punch2' alternative punching animation speed
             'speed_shoot' shooting animation speed
             'speed_die' die animation speed
+            'speed_fly' fly animation speed
         'replace_what' group if items to replace e.g. {"farming:wheat_8", "farming:carrot_8"}
         'replace_with' replace with what e.g. "air" or in chickens case "mobs:egg"
         'replace_rate' how random should the replace rate be (typically 10)
@@ -194,6 +197,9 @@ This function registers a arrow for mobs with the attack type shoot.
         'tail' when set to 1 adds a trail or tail to mob arrows
         'tail_texture' texture string used for above effect
         'tail_size' has size for above texture (defaults to between 5 and 10)
+        'expire' contains float value for how long tail appears for (defaults to 0.25)
+        'glow' has value for how brightly tail glows 1 to 10 (default is 0, no glow)
+        'rotate' integer value in degrees to rotate arrow
     'on_step' is a custom function when arrow is active, nil for default.
 
 
@@ -301,6 +307,7 @@ Certain variables need to be set before using the above functions:
     'self.terrain_type' integer containing terrain mob can walk on (1 = water, 2 or 3 = land)
     'self.driver_attach_at' position offset for attaching player to mob
     'self.driver_eye_offset' position offset for attached player view
+    'self.driver_scale' sets driver scale for mobs larger than {x=1, y=1}
 
 
 Here is an example mob to show how the above functions work:
@@ -357,6 +364,7 @@ mobs:register_mob("mob_horse:horse", {
 			self.terrain_type = 3
 			self.driver_attach_at = {x = 0, y = 20, z = -2}
 			self.driver_eye_offset = {x = 0, y = 3, z = 0}
+			self.driver_scale = {x = 1, y = 1}
 		end
 
 		-- if driver present allow control of horse
