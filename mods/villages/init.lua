@@ -3,6 +3,7 @@ minetest.register_node("villages:colony_deed", {
 	description = "Villager Colony Deed",
 	tiles = {"villages_deed.png"},
 	inventory_image = "villages_deed.png",
+	wield_image = "villages_deed.png",
 	drawtype = "signlike",
 	paramtype = "light",
 	paramtype2 = "wallmounted",
@@ -15,8 +16,9 @@ minetest.register_node("villages:colony_deed", {
 
 minetest.register_node("villages:hobo_deed", {
 	description = "Hobo Colony Deed",
-	tiles = {"villages_deed.png^[colorize:brown:50"},
-	inventory_image = "villages_deed.png^[colorize:brown:50",
+	tiles = {"villages_hobo_deed.png"},
+	inventory_image = "villages_hobo_deed.png",
+	wield_image = "villages_hobo_deed.png",
 	drawtype = "signlike",
 	paramtype = "light",
 	paramtype2 = "wallmounted",

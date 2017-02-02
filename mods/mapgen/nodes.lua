@@ -890,6 +890,12 @@ minetest.register_node("mapgen:limestone", {
 	sounds = default.node_sound_stone_defaults()
 })
 
+minetest.register_node("mapgen:savannah_stone", {
+	description = "Savannah Stone",
+	tiles = {"savannah_stone.png"},
+	groups = {cracky = 2},
+	sounds = default.node_sound_stone_defaults()
+})
 
 minetest.register_node("mapgen:stalagtite", {
 	description = "Stalagtite",
