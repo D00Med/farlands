@@ -171,6 +171,20 @@ xpanes.register_pane("bar", {
 	}
 })
 
+xpanes.register_pane("lattice", {
+	description = "Lattice",
+	textures = {"xpanes_lattice.png","xpanes_trans.png","xpanes_trans.png"},
+	inventory_image = "xpanes_lattice.png",
+	wield_image = "xpanes_lattice.png",
+	sounds = default.node_sound_glass_defaults(),
+	groups = {snappy=2, cracky=3, oddly_breakable_by_hand=3},
+	recipe = {
+		{"default:stick", "default:stick", "default:stick"},
+		{"default:stick", "default:stick", "default:stick"},
+		{"default:stick", "default:stick", "default:stick"}
+	}
+})
+
 minetest.register_lbm({
 	name = "xpanes:gen2",
 	nodenames = {"group:pane"},
