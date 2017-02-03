@@ -40,27 +40,6 @@ minetest.register_craft({
 	cooktime = 5,
 })
 
--- raw zombie flesh
-minetest.register_craftitem("mobs:zombie_flesh_raw", {
-	description = S("Raw Zombie Flesh"),
-	inventory_image = "mobs_zombie_flesh_raw.png",
-	on_use = minetest.item_eat(0),
-})
-
--- cooked zombie flesh
-minetest.register_craftitem("mobs:cooked_zombie_flesh", {
-	description = S("Cooked Zombie Flesh"),
-	inventory_image = "mobs_cooked_zombie_flesh.png",
-	on_use = minetest.item_eat(1),
-})
-
-minetest.register_craft({
-	type = "cooking",
-	output = "mobs:cooked_zombie_flesh",
-	recipe = "mobs:zombie_flesh_raw",
-	cooktime = 5,
-})
-
 -- magic lasso
 minetest.register_tool("mobs:magic_lasso", {
 	description = S("Magic Lasso (right-click animal to put in inventory)"),
