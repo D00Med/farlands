@@ -148,6 +148,59 @@ mobs:register_spawn("mobs_m:riverfish", {"default:river_water_source",}, 20, 10,
 
 mobs:register_egg("mobs_m:riverfish", "River Fish", "default_dirt.png", 1)
 
+mobs:register_mob("mobs_m:pirana", {
+	type = "monster",
+	passive = false,
+	group_attack = true,
+	reach = 1,
+	damage = 0.5,
+	attack_type = "dogfight",
+	hp_min = 10,
+	hp_max = 25,
+	armor = 90,
+	collisionbox = {-0.2, 0, -0.2, 0.2, 0.4, 0.2},
+	visual_size = {x=1.6, y=1.6},
+	visual = "mesh",
+	mesh = "pirana.b3d",
+	textures = {
+		{"mobs_pirana.png"},
+	},
+	makes_footstep_sound = false,
+	view_range = 10,
+	walk_velocity = 3,
+	run_velocity = 6,
+	runaway = false,
+	runaway_timer = 40,
+	jump = false,
+	jump_height = 0,
+	stepheight = 0,
+	fly = true,
+	fly_in = "default:river_water_source",
+	fall_damage = 0,
+	fall_speed = 0,
+	drops = {
+		{name = "mobs_m:smallfish_raw",
+		chance = 9, min = 1, max = 1},
+	},
+	water_damage = 0,
+	lava_damage = 1,
+	light_damage = 0,
+	animation = {
+		speed_normal = 15,
+		speed_run = 20,
+		stand_start = 2,
+		stand_end = 30,
+		walk_start = 2,
+		walk_end = 30,
+		run_start = 2,
+		run_end = 30,
+	},
+})
+
+mobs:register_spawn("mobs_m:pirana", {"default:river_water_source",}, 20, 10, 15000, 2, 11000)
+
+mobs:register_egg("mobs_m:pirana", "Pirana", "default_dirt.png", 1)
+
 minetest.register_craftitem("mobs_m:smallfish_raw", {
 	description = "Small Raw Fish",
 	inventory_image = "mobs_smallfish_item.png",
