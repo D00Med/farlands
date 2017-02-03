@@ -219,7 +219,7 @@ mobs:register_mob("mobs_m:zombie", {
 	textures = {
 		{"mobs_zombie.png"},
 	},
-	blood_texture = "mobs_blood.png",
+	blood_texture = "mobs_rotten_blood.png",
 	makes_footstep_sound = true,
 	walk_velocity = 1,
 	run_velocity = 1.5,
@@ -230,7 +230,7 @@ mobs:register_mob("mobs_m:zombie", {
 	fall_damage = 1,
 	view_range = 5,
 	drops = {
-		{name = "mobs:meat_raw", chance = 2, min = 1, max = 2},
+		{name = "mobs:zombie_flesh_raw", chance = 2, min = 1, max = 2},
 	},
 	animation = {
 		speed_normal = 27,
