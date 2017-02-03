@@ -163,7 +163,7 @@ mobs:register_mob("mobs_m:mammoth", {
 	makes_footstep_sound = true,
 	walk_velocity = 0.5,
 	run_velocity = 1,
-	jump = false,
+	jump = 0,
 	water_damage = 2,
 	lava_damage = 2,
 	light_damage = 0,
@@ -203,3 +203,49 @@ mobs:register_mob("mobs_m:mammoth", {
 
 
 mobs:register_egg("mobs_m:mammoth", "Mammoth", "default_dirt.png", 1)
+
+mobs:register_mob("mobs_m:zombie", {
+	type = "monster",
+	passive = false,
+	reach = 2,
+	damage = 1,
+	attack_type = "dogfight",
+	hp_min = 30,
+	hp_max = 40,
+	armor = 120,
+	collisionbox = {-0.35,-1.0,-0.35, 0.35,0.8,0.35},
+	visual = "mesh",
+	mesh = "character.b3d",
+	textures = {
+		{"mobs_zombie.png"},
+	},
+	blood_texture = "mobs_blood.png",
+	makes_footstep_sound = true,
+	walk_velocity = 1,
+	run_velocity = 1.5,
+	jump = 1,
+	water_damage = 2,
+	lava_damage = 2,
+	light_damage = 2,
+	fall_damage = 1,
+	view_range = 5,
+	drops = {
+		{name = "mobs:meat_raw", chance = 2, min = 1, max = 2},
+	},
+	animation = {
+		speed_normal = 27,
+		speed_run = 27,
+		stand_start = 0,
+		stand_end = 79,
+		walk_start = 168,
+		walk_end = 187,
+		run_start = 168,
+		run_end = 187,
+		punch_start = 200,
+		punch_end = 219,
+	},
+})
+
+
+mobs:register_egg("mobs_m:zombie", "Zombie", "default_dirt.png", 1)
+mobs:register_spawn("mobs_m:zombie", {"default:dirt_with_grass",}, 5, 0, 7000, 0, 11000)
