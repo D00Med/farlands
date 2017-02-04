@@ -64,7 +64,7 @@ beds.register_bed("beds:bed_purple", {
 	},
 	selectionbox = {-0.5, -0.5, -0.5, 0.5, 0.06, 1.5},
 	recipe = {
-		{"wool:purple", "wool:purple", "wool:white"},
+		{"wool:violet", "wool:violet", "wool:white"},
 		{"group:wood", "group:wood", "group:wood"}
 	},
 })
@@ -92,7 +92,119 @@ beds.register_bed("beds:bed_darkgreen", {
 	},
 	selectionbox = {-0.5, -0.5, -0.5, 0.5, 0.06, 1.5},
 	recipe = {
-		{"wool:darkgreen", "wool:darkgreen", "wool:white"},
+		{"wool:dark_green", "wool:dark_green", "wool:white"},
+		{"group:wood", "group:wood", "group:wood"}
+	},
+})
+
+beds.register_bed("beds:bed_cyan", {
+	description = "Cyan Bed",
+	inventory_image = "beds_cyan.png",
+	wield_image = "beds_cyan.png",
+	tiles = {
+		"beds_bed_cyan.png"
+	},
+	selectionbox = {-0.5, -0.5, -0.5, 0.5, 0.06, 1.5},
+	recipe = {
+		{"wool:cyan", "wool:cyan", "wool:white"},
+		{"group:wood", "group:wood", "group:wood"}
+	},
+})
+
+beds.register_bed("beds:bed_grey", {
+	description = "Grey Bed",
+	inventory_image = "beds_grey.png",
+	wield_image = "beds_dgrey.png",
+	tiles = {
+		"beds_bed_grey.png"
+	},
+	selectionbox = {-0.5, -0.5, -0.5, 0.5, 0.06, 1.5},
+	recipe = {
+		{"wool:grey", "wool:grey", "wool:white"},
+		{"group:wood", "group:wood", "group:wood"}
+	},
+})
+
+beds.register_bed("beds:bed_black", {
+	description = "Black Bed",
+	inventory_image = "beds_black.png",
+	wield_image = "beds_black.png",
+	tiles = {
+		"beds_bed_black.png"
+	},
+	selectionbox = {-0.5, -0.5, -0.5, 0.5, 0.06, 1.5},
+	recipe = {
+		{"wool:black", "wool:black", "wool:white"},
+		{"group:wood", "group:wood", "group:wood"}
+	},
+})
+
+beds.register_bed("beds:bed_white", {
+	description = "White Bed",
+	inventory_image = "beds_white.png",
+	wield_image = "beds_white.png",
+	tiles = {
+		"beds_bed_white.png"
+	},
+	selectionbox = {-0.5, -0.5, -0.5, 0.5, 0.06, 1.5},
+	recipe = {
+		{"wool:white", "wool:white", "wool:white"},
+		{"group:wood", "group:wood", "group:wood"}
+	},
+})
+
+beds.register_bed("beds:bed_magenta", {
+	description = "Magenta Bed",
+	inventory_image = "beds_magenta.png",
+	wield_image = "beds_magenta.png",
+	tiles = {
+		"beds_bed_magenta.png"
+	},
+	selectionbox = {-0.5, -0.5, -0.5, 0.5, 0.06, 1.5},
+	recipe = {
+		{"wool:magenta", "wool:magenta", "wool:white"},
+		{"group:wood", "group:wood", "group:wood"}
+	},
+})
+
+beds.register_bed("beds:bed_brown", {
+	description = "Brown Bed",
+	inventory_image = "beds_brown.png",
+	wield_image = "beds_brown.png",
+	tiles = {
+		"beds_bed_brown.png"
+	},
+	selectionbox = {-0.5, -0.5, -0.5, 0.5, 0.06, 1.5},
+	recipe = {
+		{"wool:brown", "wool:brown", "wool:white"},
+		{"group:wood", "group:wood", "group:wood"}
+	},
+})
+
+beds.register_bed("beds:bed_darkgrey", {
+	description = "Dark Grey Bed",
+	inventory_image = "beds_darkgrey.png",
+	wield_image = "beds_darkgrey.png",
+	tiles = {
+		"beds_bed_darkgrey.png"
+	},
+	selectionbox = {-0.5, -0.5, -0.5, 0.5, 0.06, 1.5},
+	recipe = {
+		{"wool:dark_grey", "wool:dark_grey", "wool:white"},
+		{"group:wood", "group:wood", "group:wood"}
+	},
+})
+
+beds.register_bed("beds:bed_pink", {
+	description = "Pink Bed",
+	inventory_image = "beds_pink.png",
+	wield_image = "beds_pink.png",
+	tiles = {
+		"beds_bed_pink.png"
+	},
+	selectionbox = {-0.5, -0.5, -0.5, 0.5, 0.06, 1.5},
+	recipe = {
+		{"wool:pink", "wool:pink", "wool:white"},
 		{"group:wood", "group:wood", "group:wood"}
 	},
 })
