@@ -604,3 +604,14 @@ minetest.register_node("decoblocks:bone_pillar", {
 
 	on_place = minetest.rotate_node
 })
+
+minetest.register_node("decoblocks:framed_glass", {
+	description = "Glass With Wooden Frame",
+	drawtype = "glasslike",
+	tiles = {"decoblocks_framed_glass.png", "decoblocks_framed_glass_detail.png"},
+	paramtype = "light",
+	sunlight_propagates = true,
+	is_ground_content = false,
+	groups = {cracky = 3, oddly_breakable_by_hand = 3},
+	sounds = default.node_sound_glass_defaults(),
+})
