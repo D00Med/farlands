@@ -259,6 +259,7 @@ mobs:register_mob("mobs_m:swamp_lurker", {
 	hp_min = 30,
 	hp_max = 40,
 	armor = 120,
+	visual_size = {x=0.7, y=0.7},
 	collisionbox = {-0.35, 0,-0.35, 0.35,1.8,0.35},
 	visual = "mesh",
 	mesh = "swamplurker.b3d",

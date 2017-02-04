@@ -27,18 +27,16 @@ function beds.register_bed(name, def)
 		description = def.description,
 		inventory_image = def.inventory_image,
 		wield_image = def.wield_image,
-		drawtype = "nodebox",
-		tiles = def.tiles.bottom,
+		drawtype = "mesh",
+		mesh = "bed.obj",
+		tiles = def.tiles,
+		visual_scale = 0.5,
 		paramtype = "light",
 		paramtype2 = "facedir",
 		is_ground_content = false,
 		stack_max = 1,
 		groups = {choppy = 2, oddly_breakable_by_hand = 2, flammable = 3, bed = 1},
 		sounds = default.node_sound_wood_defaults(),
-		node_box = {
-			type = "fixed",
-			fixed = def.nodebox.bottom,
-		},
 		selection_box = {
 			type = "fixed",
 			fixed = def.selectionbox,
@@ -131,8 +129,8 @@ function beds.register_bed(name, def)
 	})
 
 	minetest.register_node(name .. "_top", {
-		drawtype = "nodebox",
-		tiles = def.tiles.top,
+		drawtype = "glasslike",
+		tiles = {"beds_transparent.png"},
 		paramtype = "light",
 		paramtype2 = "facedir",
 		is_ground_content = false,
@@ -140,10 +138,6 @@ function beds.register_bed(name, def)
 		groups = {choppy = 2, oddly_breakable_by_hand = 2, flammable = 3, bed = 2},
 		sounds = default.node_sound_wood_defaults(),
 		drop = name .. "_bottom",
-		node_box = {
-			type = "fixed",
-			fixed = def.nodebox.top,
-		},
 		on_destruct = function(pos)
 			destruct_bed(pos, 2)
 		end,
