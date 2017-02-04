@@ -1,6 +1,6 @@
 
-minetest.register_craftitem("tools:doompick", {
-	description = "Pickaxe of Doom",
+minetest.register_craftitem("tools:superpick", {
+	description = "Super Pickaxe",
 	inventory_image = "default_tool_diamondpick.png^[colorize:red:100",
 	liquids_pointable = true,
 	on_use = function(item, placer, pointed_thing)
