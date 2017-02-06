@@ -45,7 +45,7 @@ minetest.register_abm({
 				minetest.chat_send_all("npc spawned")
 			end
 		end
-		local beds = minetest.find_node_near(pos, 5, {"beds:bed_bottom", "beds:bed", "beds:yellow_bottom", "beds:blue_bottom", "beds:orange_bottom", "beds:cyan_bottom", "beds:pink_bottom", "beds:black_bottom", "beds:white_bottom", "beds:darkgrey_bottom", "beds:grey_bottom", "beds:green_bottom", "beds:purple_bottom", "beds:darkgreen_bottom"})
+		local beds = minetest.find_node_near(pos, 5, {"beds:bed_bottom", "beds:bed", "beds:bed_yellow_bottom", "beds:bed_blue_bottom", "beds:bed_orange_bottom", "beds:bed_cyan_bottom", "beds:bed_pink_bottom", "beds:bed_black_bottom", "beds:bed_white_bottom", "beds:bed_darkgrey_bottom", "beds:bed_grey_bottom", "beds:bed_green_bottom", "beds:bed_purple_bottom", "beds:bed_darkgreen_bottom"})
 		local light_sources = minetest.find_node_near(pos, 5, {"default:torch", "default:torch_wall", "default:torch_floor", "default:torch_ceiling", "mese_lamp"})
 		local doors = minetest.find_node_near(pos, 5, {"doors:door_wood_a", "doors:door_glass_a", "doors:door_obsidian_glass_a"})
 		if beds ~= nil and light_sources ~= nil and doors ~= nil then

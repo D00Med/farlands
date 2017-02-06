@@ -75,6 +75,7 @@ function default.player_set_textures(player, textures)
 	player:set_properties({textures = textures,})
 end
 
+
 function default.player_set_animation(player, anim_name, speed)
 	local name = player:get_player_name()
 	if player_anim[name] == anim_name then

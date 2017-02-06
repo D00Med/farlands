@@ -1,0 +1,4 @@
+name = "Male",
+author = "toby109tt",
+description = "The default skin.",
+comment = "Male Skin",
