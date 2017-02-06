@@ -114,7 +114,7 @@ beds.register_bed("beds:bed_cyan", {
 beds.register_bed("beds:bed_grey", {
 	description = "Grey Bed",
 	inventory_image = "beds_grey.png",
-	wield_image = "beds_dgrey.png",
+	wield_image = "beds_grey.png",
 	tiles = {
 		"beds_bed_grey.png"
 	},
