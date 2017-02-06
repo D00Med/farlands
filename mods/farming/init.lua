@@ -7,6 +7,26 @@ dofile(farming.path .. "/api.lua")
 dofile(farming.path .. "/nodes.lua")
 dofile(farming.path .. "/hoes.lua")
 
+--Carrot
+farming.register_plant("farming:carrot", {
+	description = "Carrot seed",
+	paramtype2 = "meshoptions",
+	inventory_image = "farming_carrot_seed.png",
+	steps = 8,
+	minlight = 13,
+	maxlight = default.LIGHT_MAX,
+	fertility = {"grassland"},
+	groups = {flammable = 4},
+	place_param2 = 3,
+})
+
+minetest.register_craftitem("farming:carrot", {
+	description = "Carrot",
+	inventory_image = "farming_carrot.png",
+	on_use = minetest.item_eat(2),
+	groups = {flammable = 2},
+})
+
 -- WHEAT
 farming.register_plant("farming:wheat", {
 	description = "Wheat seed",
