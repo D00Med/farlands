@@ -342,6 +342,8 @@ minetest.register_node("mapgen:moss", {
 	sounds = default.node_sound_defaults()
 })
 
+--plantlike (PLNT02)
+
 minetest.register_node("mapgen:tallgrass", {
 	description = "Tall Grass",
 	drawtype = "plantlike",
@@ -851,6 +853,186 @@ minetest.register_node("mapgen:dead_grass_5", {
 		local num = math.random(1,5)
 		minetest.env:set_node(pos, {name="mapgen:dead_grass_"..num})
 	end,
+})
+
+--underwater (WATR01)
+
+minetest.register_node("mapgen:big_coral", {
+	description = "Big Red Coral",
+	drawtype = "plantlike",
+	visual_scale = 1.3,
+	tiles = {"mapgen_big_coral.png"},
+	paramtype = "light",
+	is_ground_content = false,
+	buildable_to = true, 
+	sunlight_propagates = true,
+	waving = 1,
+	inventory_image = "mapgen_big_coral.png",
+	groups = {snappy=3, flammable=1, attatched_node=1, sea=1},
+	sounds = default.node_sound_leaves_defaults(),
+	selection_box = {
+		type = "fixed",
+		fixed = {-0.5, -0.5, -0.5, 0.5, 0, 0.5}
+	},
+	walkable = false,
+})
+
+minetest.register_node("mapgen:red_coral", {
+	description = "Red Coral",
+	drawtype = "plantlike",
+	tiles = {"mapgen_red_coral.png"},
+	paramtype = "light",
+	is_ground_content = false,
+	buildable_to = true, 
+	sunlight_propagates = true,
+	waving = 1,
+	inventory_image = "mapgen_red_coral.png",
+	groups = {snappy=3, flammable=1, attatched_node=1, sea=1},
+	sounds = default.node_sound_leaves_defaults(),
+	selection_box = {
+		type = "fixed",
+		fixed = {-0.5, -0.5, -0.5, 0.5, 0, 0.5}
+	},
+	walkable = false,
+})
+
+minetest.register_node("mapgen:orange_coral", {
+	description = "Orange Coral",
+	drawtype = "plantlike",
+	tiles = {"mapgen_orange_coral.png"},
+	paramtype = "light",
+	is_ground_content = false,
+	buildable_to = true, 
+	sunlight_propagates = true,
+	waving = 1,
+	inventory_image = "mapgen_orange_coral.png",
+	groups = {snappy=3, flammable=1, attatched_node=1, sea=1},
+	sounds = default.node_sound_leaves_defaults(),
+	selection_box = {
+		type = "fixed",
+		fixed = {-0.5, -0.5, -0.5, 0.5, 0, 0.5}
+	},
+	walkable = false,
+})
+
+minetest.register_node("mapgen:blue_coral", {
+	description = "Blue Coral",
+	drawtype = "plantlike",
+	tiles = {"mapgen_blue_coral.png"},
+	paramtype = "light",
+	is_ground_content = false,
+	buildable_to = true, 
+	sunlight_propagates = true,
+	waving = 1,
+	inventory_image = "mapgen_blue_coral.png",
+	groups = {snappy=3, flammable=1, attatched_node=1, sea=1},
+	sounds = default.node_sound_leaves_defaults(),
+	selection_box = {
+		type = "fixed",
+		fixed = {-0.5, -0.5, -0.5, 0.5, 0, 0.5}
+	},
+	walkable = false,
+})
+
+minetest.register_node("mapgen:anemone", {
+	description = "Anemone",
+	drawtype = "plantlike",
+	tiles = {"mapgen_anemone.png"},
+	paramtype = "light",
+	is_ground_content = false,
+	buildable_to = true, 
+	sunlight_propagates = true,
+	waving = 1,
+	inventory_image = "mapgen_anemone.png",
+	groups = {snappy=3, flammable=1, attatched_node=1, sea=1},
+	sounds = default.node_sound_leaves_defaults(),
+	selection_box = {
+		type = "fixed",
+		fixed = {-0.5, -0.5, -0.5, 0.5, 0, 0.5}
+	},
+	walkable = false,
+})
+
+minetest.register_node("mapgen:kelp", {
+	description = "Kelp",
+	drawtype = "plantlike",
+	tiles = {"mapgen_kelp.png"},
+	paramtype = "light",
+	is_ground_content = false,
+	sunlight_propagates = true,
+	waving = 1,
+	inventory_image = "mapgen_kelp.png",
+	groups = {snappy=3, flammable=1, attatched_node=1, sea=1},
+	sounds = default.node_sound_leaves_defaults(),
+	selection_box = {
+		type = "fixed",
+		fixed = {-0.2, -0.5, -0.2, 0.2, 0.5, 0.2}
+	},
+	walkable = false,
+})
+
+minetest.register_node("mapgen:seagrass_1", {
+	description = "Sea Grass",
+	drawtype = "plantlike",
+	tiles = {"mapgen_seagrass_1.png"},
+	paramtype = "light",
+	is_ground_content = false,
+	buildable_to = true, 
+	sunlight_propagates = true,
+	waving = 1,
+	inventory_image = "mapgen_seagrass_1.png",
+	groups = {snappy=3, flammable=1, attatched_node=1, sea=1},
+	sounds = default.node_sound_leaves_defaults(),
+	selection_box = {
+		type = "fixed",
+		fixed = {-0.5, -0.5, -0.5, 0.5, 0, 0.5}
+	},
+	drop = "mapgen:seagrass_1",
+	walkable = false,
+	on_construct = function(pos)
+		local num = math.random(1,3)
+		minetest.env:set_node(pos, {name="mapgen:seagrass_"..num})
+	end,
+})
+
+minetest.register_node("mapgen:seagrass_2", {
+	description = "Sea Grass",
+	drawtype = "plantlike",
+	tiles = {"mapgen_seagrass_2.png"},
+	paramtype = "light",
+	is_ground_content = false,
+	buildable_to = true, 
+	sunlight_propagates = true,
+	waving = 1,
+	inventory_image = "mapgen_seagrass_2.png",
+	groups = {snappy=3, flammable=1, attatched_node=1, sea=1, not_in_creative_inventory=1},
+	sounds = default.node_sound_leaves_defaults(),
+	selection_box = {
+		type = "fixed",
+		fixed = {-0.5, -0.5, -0.5, 0.5, 0, 0.5}
+	},
+	drop = "mapgen:seagrass_1",
+	walkable = false,
+})
+
+minetest.register_node("mapgen:seagrass_3", {
+	description = "Sea Grass",
+	drawtype = "plantlike",
+	tiles = {"mapgen_seagrass_3.png"},
+	paramtype = "light",
+	is_ground_content = false,
+	buildable_to = true, 
+	sunlight_propagates = true,
+	waving = 1,
+	inventory_image = "mapgen_seagrass_3.png",
+	groups = {snappy=3, flammable=1, attatched_node=1, sea=1, not_in_creative_inventory=1},
+	sounds = default.node_sound_leaves_defaults(),
+	selection_box = {
+		type = "fixed",
+		fixed = {-0.5, -0.5, -0.5, 0.5, 0, 0.5}
+	},
+	drop = "mapgen:seagrass_1",
+	walkable = false,
 })
 
 --stone (STN02)
