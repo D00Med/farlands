@@ -1024,7 +1024,7 @@
 		depth_top = 1,
 		node_filler = "default:dirt",
 		depth_filler = 1,
-		--node_stone = "",
+		node_stone = "mapgen:savanna_stone",
 		--node_water_top = "",
 		--depth_water_top = ,
 		--node_water = "",
