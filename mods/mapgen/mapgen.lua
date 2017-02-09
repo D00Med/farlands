@@ -3,6 +3,27 @@
 	-- Blob ores
 	-- These first to avoid other ores in blobs
 
+	--kelp stone
+	
+	minetest.register_ore({
+		ore_type        = "blob",
+		ore             = "mapgen:stone_with_sea_grass",
+		wherein         = {"default:sand"},
+		clust_scarcity  = 16 * 16 * 16,
+		clust_size      = 5,
+		y_min           = -15,
+		y_max           = 0,
+		noise_threshold = 0.0,
+		noise_params    = {
+			offset = 0.5,
+			scale = 0.2,
+			spread = {x = 5, y = 5, z = 5},
+			seed = -316,
+			octaves = 1,
+			persist = 0.0
+		},
+	})
+	
 	-- Clay
 	-- This first to avoid clay in sand blobs
 
@@ -24,6 +45,7 @@
 			persist = 0.0
 		},
 	})
+	
 
 	-- Sand
 
@@ -1969,6 +1991,32 @@ minetest.register_on_generated(function(minp, maxp)
 				if name == "mapgen:lavender_flower" or name == "mapgen:swamp_grass_1" or name == "mapgen:swamp_grass_2" or name == "mapgen:swamp_grass_3" or name == "mapgen:swamp_grass_4" or name == "mapgen:swamp_grass_5" then
 					minetest.env:remove_node({x=pos.x, y=pos.y+1, z=pos.z})
 				end
+	end
+end)
+
+minetest.register_on_generated(function(minp, maxp)
+	if maxp.y < -100 or maxp.y > 100 then
+		return
+	end
+	local dirt = minetest.find_nodes_in_area(minp, maxp,
+		{"default:sand"})
+	for n = 1, #dirt do
+		if math.random(1, 50) == 1 then
+			local pos = {x = dirt[n].x, y = dirt[n].y, z = dirt[n].z }
+				if minetest.get_node({x=pos.x, y=pos.y+1, z=pos.z}).name == "default:water_source" and minetest.get_node({x=pos.x, y=pos.y+2, z=pos.z}).name ~= "air" then
+					if math.random(1,2) == 1 then
+					minetest.add_node({x=pos.x, y=pos.y+1, z=pos.z}, {name = "mapgen:red_coral"})
+					elseif math.random(1,2) == 1 then
+					minetest.add_node({x=pos.x, y=pos.y+1, z=pos.z}, {name = "mapgen:big_coral"})
+					elseif math.random(1,2) == 1 then
+					minetest.add_node({x=pos.x, y=pos.y+1, z=pos.z}, {name = "mapgen:anemone"})
+					elseif math.random(1,2) == 1 then
+					minetest.add_node({x=pos.x, y=pos.y+1, z=pos.z}, {name = "mapgen:blue_coral"})
+					else
+					minetest.add_node({x=pos.x, y=pos.y+1, z=pos.z}, {name = "mapgen:orange_coral"})
+					end
+				end
+		end
 	end
 end)
 
