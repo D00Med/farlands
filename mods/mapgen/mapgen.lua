@@ -1206,8 +1206,8 @@ local function register_dry_grass_decoration(offset, scale, length)
 	})
 end
 
-local function register_wild_oat_dry_decoration(offset, scale, length)
-minetest.register_decoration({
+local register_wild_oat_dry_decoration = function(offset, scale, length)
+	minetest.register_decoration({
 	deco_type = "simple",
 	place_on = {"default:dirt_with_dry_grass"},
 	sidelen = 6,
