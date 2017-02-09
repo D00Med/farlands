@@ -1206,6 +1206,18 @@ local function register_dry_grass_decoration(offset, scale, length)
 	})
 end
 
+local function register_wild_oat_dry_decoration(offset, scale, length)
+minetest.register_decoration({
+	deco_type = "simple",
+	place_on = {"default:dirt_with_dry_grass"},
+	sidelen = 6,
+	fill_ratio = 0.01,
+	biomes = {"savanna"},
+	decoration = "mapgen:wild_oat_dry",
+	height = 1,
+	})
+end
+
 local function register_jungle_grass_decoration(offset, scale, length)
 	minetest.register_decoration({
 		deco_type = "simple",
