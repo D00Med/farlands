@@ -2003,14 +2003,14 @@ minetest.register_on_generated(function(minp, maxp)
 	for n = 1, #dirt do
 		if math.random(1, 50) == 1 then
 			local pos = {x = dirt[n].x, y = dirt[n].y, z = dirt[n].z }
-				if minetest.get_node({x=pos.x, y=pos.y+1, z=pos.z}).name == "default:water_source" and minetest.get_node({x=pos.x, y=pos.y+2, z=pos.z}).name ~= "air" then
-					if math.random(1,2) == 1 then
+				if minetest.get_node({x=pos.x, y=pos.y+1, z=pos.z}).name == "default:water_source" and minetest.get_node({x=pos.x, y=pos.y+3, z=pos.z}).name ~= "air" then
+					if math.random(1,4) == 1 then
 					minetest.add_node({x=pos.x, y=pos.y+1, z=pos.z}, {name = "mapgen:red_coral"})
-					elseif math.random(1,2) == 1 then
+					elseif math.random(1,4) == 1 then
 					minetest.add_node({x=pos.x, y=pos.y+1, z=pos.z}, {name = "mapgen:big_coral"})
-					elseif math.random(1,2) == 1 then
+					elseif math.random(1,3) == 1 then
 					minetest.add_node({x=pos.x, y=pos.y+1, z=pos.z}, {name = "mapgen:anemone"})
-					elseif math.random(1,2) == 1 then
+					elseif math.random(1,3) == 1 then
 					minetest.add_node({x=pos.x, y=pos.y+1, z=pos.z}, {name = "mapgen:blue_coral"})
 					else
 					minetest.add_node({x=pos.x, y=pos.y+1, z=pos.z}, {name = "mapgen:orange_coral"})
