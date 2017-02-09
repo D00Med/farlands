@@ -870,7 +870,18 @@ minetest.register_node("mapgen:dead_grass_5", {
 	on_construct = function(pos)
 		local num = math.random(1,5)
 		minetest.env:set_node(pos, {name="mapgen:dead_grass_"..num})
-	end,
+	end
+})
+
+minetest.register_node("mapgen:stone_with_sea_grass", {
+	description = "Stone With Sea Grass",
+	tiles = {"mapgen_sea_grass.png", "default_stone.png",
+	{name = "default_stone.png^ mapgen_sea_grass_side.png",
+	tileable_vertical = false}},
+	groups = {crumbly = 3, soil = 1, spreading_dirt_type = 1},
+	drop = 'mapgen:stone_with_sea_grass:'
+	sounds = default.node_sound_stone_defaults()
+	end
 })
 
 --underwater (WATR01)
@@ -975,6 +986,24 @@ minetest.register_node("mapgen:kelp", {
 	description = "Kelp",
 	drawtype = "plantlike",
 	tiles = {"mapgen_kelp.png"},
+	paramtype = "light",
+	is_ground_content = false,
+	sunlight_propagates = true,
+	waving = 1,
+	inventory_image = "mapgen_kelp.png",
+	groups = {snappy=3, flammable=1, attatched_node=1, sea=1},
+	sounds = default.node_sound_leaves_defaults(),
+	selection_box = {
+		type = "fixed",
+		fixed = {-0.2, -0.5, -0.2, 0.2, 0.5, 0.2}
+	},
+	walkable = false,
+})
+
+minetest.register_node("mapgen:kelp_2", {
+	description = "Kelp",
+	drawtype = "plantlike",
+	tiles = {"mapgen_kelp_2.png"},
 	paramtype = "light",
 	is_ground_content = false,
 	sunlight_propagates = true,
