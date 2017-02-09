@@ -756,6 +756,24 @@ minetest.register_node("mapgen:purple_allium", {
 	walkable = false,
 })
 
+minetest.register_node("mapgen:wild_oat_dry", {
+	description = "Dry Wild Oat",
+	drawtype = "plantlike",
+	tiles = {"mapgen_wild_oat_dry.png"},
+	paramtype = "light",
+	is_ground_content = false,
+	buildable_to = true, 
+	sunlight_propagates = true,
+	inventory_image = "mapgen_wild_oat_dry.png",
+	groups = {snappy=3, flammable=1, attatched_node=1, flora=1},
+	sounds = default.node_sound_leaves_defaults(),
+	selection_box = {
+		type = "fixed",
+		fixed = {-0.5, -0.5, -0.5, 0.5, 0, 0.5}
+	},
+	walkable = false,
+})
+
 minetest.register_node("mapgen:dead_grass_1", {
 	description = "Dead Grass",
 	drawtype = "plantlike",
@@ -1072,7 +1090,7 @@ minetest.register_node("mapgen:limestone", {
 	sounds = default.node_sound_stone_defaults()
 })
 
-minetest.register_node("mapgen:savannah_stone", {
+minetest.register_node("mapgen:savanna_stone", {
 	description = "Savannah Stone",
 	tiles = {"savannah_stone.png"},
 	groups = {cracky = 2},
