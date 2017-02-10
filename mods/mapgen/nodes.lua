@@ -876,9 +876,9 @@ minetest.register_node("mapgen:dead_grass_5", {
 minetest.register_node("mapgen:stone_with_sea_grass", {
 	description = "Stone With Sea Grass",
 	tiles = {"mapgen_sea_grass.png", "default_stone.png",
-	{name = "default_stone.png^ mapgen_sea_grass_side.png",
+	{name = "default_stone.png^mapgen_sea_grass_side.png",
 	tileable_vertical = false}},
-	groups = {crumbly = 3, soil = 1, spreading_dirt_type = 1},
+	groups = {crumbly = 3, soil = 1,},
 	drop = 'mapgen:stone_with_sea_grass:',
 	sounds = default.node_sound_stone_defaults()
 })
