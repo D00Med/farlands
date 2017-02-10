@@ -699,6 +699,24 @@ minetest.register_node("mapgen:dirt_with_swampgrass", {
 	sounds = default.node_sound_dirt_defaults()
 })
 
+minetest.register_node("mapgen:aloe_vera", {
+	description = "Aloe Vera",
+	drawtype = "plantlike",
+	tiles = {"mapgen_aloe_vera.png"},
+	paramtype = "light",
+	is_ground_content = false,
+	buildable_to = true, 
+	sunlight_propagates = true,
+	inventory_image = "mapgen_aloe_vera.png",
+	groups = {snappy=3, flammable=1, attatched_node=1, flora=1},
+	sounds = default.node_sound_leaves_defaults(),
+	selection_box = {
+		type = "fixed",
+		fixed = {-0.5, -0.5, -0.5, 0.5, 0, 0.5}
+	},
+	walkable = false,
+})
+
 minetest.register_node("mapgen:cattail", {
 	description = "Cattail",
 	drawtype = "plantlike",
@@ -800,6 +818,24 @@ minetest.register_node("mapgen:purple_allium", {
 	buildable_to = true, 
 	sunlight_propagates = true,
 	inventory_image = "mapgen_purple_allium.png",
+	groups = {snappy=3, flammable=1, attatched_node=1, flora=1},
+	sounds = default.node_sound_leaves_defaults(),
+	selection_box = {
+		type = "fixed",
+		fixed = {-0.5, -0.5, -0.5, 0.5, 0, 0.5}
+	},
+	walkable = false,
+})
+
+minetest.register_node("mapgen:wild_oat", {
+	description = "Wild Oat",
+	drawtype = "plantlike",
+	tiles = {"mapgen_wild_oat.png"},
+	paramtype = "light",
+	is_ground_content = false,
+	buildable_to = true, 
+	sunlight_propagates = true,
+	inventory_image = "mapgen_wild_oat.png",
 	groups = {snappy=3, flammable=1, attatched_node=1, flora=1},
 	sounds = default.node_sound_leaves_defaults(),
 	selection_box = {
