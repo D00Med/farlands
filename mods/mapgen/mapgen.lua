@@ -1725,6 +1725,17 @@ minetest.register_decoration({
 	height = 1,
 })
 
+--pineapple
+minetest.register_decoration({
+	deco_type = "simple",
+	place_on = {"default:dirt_with_junglegrass"},
+	sidelen = 16,
+	fill_ratio = 0.01,
+	biomes = {"rainforest", "sandstone_desert"},
+	decoration = "mapgen:pineapple_plant",
+	height = 1,
+})
+
 	--ferns
 	
 minetest.register_decoration({
