@@ -289,6 +289,59 @@ minetest.register_node("mapgen:palm_leaves", {
 	sounds = default.node_sound_leaves_defaults()
 })
 
+minetest.register_node("mapgen:pineapple_plant_growing", {
+	description = "Pineapple Plant",
+	drawtype = "plantlike",
+	paramtype = "light",
+	visual_scale = 1.5,
+	walkable = false,
+	tiles = {
+		"mapgen_pineapple_plant_growing.png",
+	},
+	selection_box = {
+		type = "fixed",
+		fixed = {-0.2, -0.5, -0.2, 0.2, 0.3, 0.2},
+	},
+	groups = {snappy = 1, oddly_breakable_by_hand = 1, flammable = 1, dig_immediate = 1, flora = 1, not_in_creative_inventory=1},
+	sounds = default.node_sound_leaves_defaults(),
+})
+
+minetest.register_abm({
+	nodenames = {"mapgen:pineapple_plant_growing"},
+	interval = 30,
+	chance = 2,
+	action = function(pos, node)
+		minetest.env:set_node(pos, {name="mapgen:pineapple_plant"})
+	end
+})
+
+minetest.register_node("mapgen:pineapple_plant", {
+	description = "Pineapple Plant",
+	drawtype = "plantlike",
+	paramtype = "light",
+	visual_scale = 1.5,
+	walkable = false,
+	tiles = {
+		"mapgen_pineapple_plant.png",
+	},
+	selection_box = {
+		type = "fixed",
+		fixed = {-0.2, -0.5, -0.2, 0.2, 0.3, 0.2},
+	},
+	groups = {snappy = 1, oddly_breakable_by_hand = 1, flammable = 1, dig_immediate = 1, flora = 1,},
+	sounds = default.node_sound_leaves_defaults(),
+	on_rightclick = function(pos, node)
+		minetest.env:set_node(pos, {name="mapgen:pineapple_plant_growing"})
+		minetest.env:add_item(pos, "mapgen:pineapple")
+	end,
+})
+
+minetest.register_craftitem("mapgen:pineapple", {
+	description = "Pineapple",
+	inventory_image = "mapgen_pineapple.png",
+	on_use = minetest.item_eat(4)
+})
+
 minetest.register_node("mapgen:palm_leaves_coconut", {
 	description = "Palm Leaves (coconut)",
 	drawtype = "allfaces",
