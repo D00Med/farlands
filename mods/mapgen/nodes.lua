@@ -873,16 +873,6 @@ minetest.register_node("mapgen:dead_grass_5", {
 	end
 })
 
-minetest.register_node("mapgen:stone_with_sea_grass", {
-	description = "Stone With Sea Grass",
-	tiles = {"mapgen_sea_grass.png", "default_stone.png",
-	{name = "default_stone.png^ mapgen_sea_grass_side.png",
-	tileable_vertical = false}},
-	groups = {crumbly = 3, soil = 1, spreading_dirt_type = 1},
-	drop = 'mapgen:stone_with_sea_grass:',
-	sounds = default.node_sound_stone_defaults()
-})
-
 --underwater (WATR01)
 
 minetest.register_node("mapgen:big_coral", {
@@ -981,7 +971,7 @@ minetest.register_node("mapgen:anemone", {
 	walkable = false,
 })
 
-minetest.register_node("mapgen:kelp", {
+minetest.register_node("mapgen:kelp1", {
 	description = "Kelp",
 	drawtype = "plantlike",
 	tiles = {"mapgen_kelp.png"},
@@ -999,7 +989,7 @@ minetest.register_node("mapgen:kelp", {
 	walkable = false,
 })
 
-minetest.register_node("mapgen:kelp_2", {
+minetest.register_node("mapgen:kelp2", {
 	description = "Kelp",
 	drawtype = "plantlike",
 	tiles = {"mapgen_kelp_2.png"},
@@ -1082,6 +1072,16 @@ minetest.register_node("mapgen:seagrass_3", {
 })
 
 --stone (STN02)
+
+minetest.register_node("mapgen:stone_with_sea_grass", {
+	description = "Stone With Sea Grass",
+	tiles = {"mapgen_sea_grass.png", "default_stone.png",
+	{name = "default_stone.png^mapgen_sea_grass_side.png",
+	tileable_vertical = false}},
+	groups = {crumbly = 3, soil = 1, spreading_dirt_type = 1},
+	drop = 'mapgen:stone_with_sea_grass:',
+	sounds = default.node_sound_stone_defaults()
+})
 
 minetest.register_node("mapgen:stone_with_ammonite", {
 	description = "Stone with Ammonite",
