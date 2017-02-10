@@ -31,7 +31,7 @@ minetest.register_node("noairblocks:water_flowingx", {
 	liquid_alternative_source = "noairblocks:water_sourcex",
 	liquid_viscosity = WATER_VISC,
 	freezemelt = "default:snow",
-	post_effect_color = {a=64, r=100, g=100, b=200},
+	post_effect_color = {a = 103, r = 30, g = 60, b = 90},
 	groups = {water=3, liquid=3, puts_out_fire=1, not_in_creative_inventory=1, freezes=1, melt_around=1},
 })
 
@@ -63,7 +63,7 @@ minetest.register_node("noairblocks:water_sourcex", {
 	liquid_alternative_source = "noairblocks:water_sourcex",
 	liquid_viscosity = WATER_VISC,
 	freezemelt = "default:ice",
-	post_effect_color = {a=64, r=100, g=100, b=200},
+	post_effect_color = {a = 103, r = 30, g = 60, b = 90},
 	groups = {water=3, liquid=3, puts_out_fire=1, freezes=1},
 })
 

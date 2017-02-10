@@ -35,8 +35,8 @@ mobs:register_mob("mobs_m:smallbird", {
 	lava_damage = 1,
 	light_damage = 0,
 	animation = {
-		speed_normal = 20,
-		speed_run = 30,
+		speed_normal = 25,
+		speed_run = 35,
 		stand_start = 45,
 		stand_end = 65,
 		walk_start = 20,
