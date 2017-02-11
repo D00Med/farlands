@@ -1438,3 +1438,49 @@ minetest.register_node("mapgen:dirty_water_flowing", {
 	sounds = default.node_sound_water_defaults(),
 })
 
+
+--new materials
+
+minetest.register_craftitem("mapgen:tin_lump", {
+	description = "Tin Lump",
+	inventory_image = "mapgen_tin_lump.png",
+})
+
+minetest.register_craftitem("mapgen:tin_ingot", {
+	description = "Tin Ingot",
+	inventory_image = "mapgen_tin_ingot.png",
+})
+
+minetest.register_node("mapgen:tin", {
+	description = "Tin Block",
+	tiles = {
+	"mapgen_tin.png",
+	},
+	groups = {cracky=1},
+	sounds = default.node_sound_metal_defaults()
+})
+
+minetest.register_node("mapgen:tin_ore", {
+	description = "Stone with Tin",
+	tiles = {
+	"default_stone.png^mapgen_tin_ore.png",
+	},
+	groups = {cracky=1},
+	drop = "mapgen:tin_lump",
+	sounds = default.node_sound_stone_defaults()
+})
+
+minetest.register_craft({
+	type = "cooking",
+	output = "mapgen:tin_ingot",
+	recipe = "mapgen:tin_lump",
+})
+
+minetest.register_craft({
+	output = 'mapgen:tin',
+	recipe = {
+		{'mapgen:tin_ingot', 'mapgen:tin_ingot', 'mapgen:tin_ingot'},
+		{'mapgen:tin_ingot', 'mapgen:tin_ingot', 'mapgen:tin_ingot'},
+		{'mapgen:tin_ingot', 'mapgen:tin_ingot', 'mapgen:tin_ingot'},
+	}
+})
