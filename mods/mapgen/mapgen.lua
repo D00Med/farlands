@@ -1514,6 +1514,16 @@ minetest.register_decoration({
 	decoration = "mapgen:wild_oat_dry",
 	height = 1,
 })
+
+minetest.register_decoration({
+	deco_type = "simple",
+	place_on = {"default:dirt_with_grass"},
+	sidelen = 6,
+	fill_ratio = 0.01,
+	biomes = {"grassland"},
+	decoration = "mapgen:wild_oat",
+	height = 1,
+})
 	
 	-- Acacia tree and log
 
