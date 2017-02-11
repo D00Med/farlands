@@ -382,14 +382,14 @@ local function furnace_node_timer_advanced(pos, elapsed)
 		local fuel_percent = math.floor(fuel_time / fuel_totaltime * 100)
 		fuel_state = fuel_percent .. "%"
 		formspec = active_formspec(fuel_percent, item_percent)
-		swap_node(pos, "default:furnace_active")
+		swap_node(pos, "default:furnace_active2")
 		-- make sure timer restarts automatically
 		result = true
 	else
 		if not fuellist[1]:is_empty() then
 			fuel_state = "0%"
 		end
-		swap_node(pos, "default:furnace")
+		swap_node(pos, "default:furnace2")
 		-- stop timer on the inactive furnace
 		minetest.get_node_timer(pos):stop()
 	end
@@ -496,9 +496,9 @@ minetest.register_node("default:furnace_active", {
 minetest.register_node("default:furnace2", {
 	description = "Advanced Furnace",
 	tiles = {
-		"default_furnace_top.png", "default_furnace_bottom.png",
-		"default_furnace_side.png", "default_furnace_side.png",
-		"default_furnace_side.png", "default_furnace_front.png"
+		"default_furnace_top2.png", "default_furnace_bottom2.png",
+		"default_furnace_side2.png", "default_furnace_side2.png",
+		"default_furnace_side2.png", "default_furnace_front2.png"
 	},
 	paramtype2 = "facedir",
 	groups = {cracky=2},
@@ -531,7 +531,7 @@ minetest.register_node("default:furnace2", {
 		default.get_inventory_drops(pos, "src", drops)
 		default.get_inventory_drops(pos, "fuel", drops)
 		default.get_inventory_drops(pos, "dst", drops)
-		drops[#drops+1] = "default:furnace"
+		drops[#drops+1] = "default:furnace2"
 		minetest.remove_node(pos)
 		return drops
 	end,
@@ -544,11 +544,11 @@ minetest.register_node("default:furnace2", {
 minetest.register_node("default:furnace_active2", {
 	description = "Furnace",
 	tiles = {
-		"default_furnace_top.png", "default_furnace_bottom.png",
-		"default_furnace_side.png", "default_furnace_side.png",
-		"default_furnace_side.png",
+		"default_furnace_top2.png", "default_furnace_bottom2.png",
+		"default_furnace_side2.png", "default_furnace_side2.png",
+		"default_furnace_side2.png",
 		{
-			image = "default_furnace_front_active.png",
+			image = "default_furnace_front_active2.png",
 			backface_culling = false,
 			animation = {
 				type = "vertical_frames",
