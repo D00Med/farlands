@@ -504,7 +504,7 @@ minetest.register_node("default:furnace2", {
 	groups = {cracky=2},
 	legacy_facedir_simple = true,
 	is_ground_content = false,
-	sounds = default.node_sound_stone_defaults(),
+	sounds = default.node_sound_metal_defaults(),
 
 	can_dig = can_dig,
 
@@ -564,7 +564,7 @@ minetest.register_node("default:furnace_active2", {
 	groups = {cracky=2, not_in_creative_inventory=1},
 	legacy_facedir_simple = true,
 	is_ground_content = false,
-	sounds = default.node_sound_stone_defaults(),
+	sounds = default.node_sound_metal_defaults(),
 	on_timer = furnace_node_timer_advanced,
 
 	can_dig = can_dig,

@@ -1,3 +1,47 @@
+minetest.register_node("decoblocks:bamboo_fence", {
+	description = "Bamboo",
+	tiles = {
+		"decoblocks_bamboo_fence_top.png",
+		"decoblocks_bamboo_fence_top.png",
+		"decoblocks_bamboo_fence.png",
+	},
+	drawtype = "nodebox",
+	paramtype = "light",
+	connects_to = {"group:fence", "group:wood", "group:stone"},
+	node_box = {
+		type = "connected",
+		fixed = {
+			{-0.125, -0.5, -0.125, 0.125, 0.5, 0.125}, -- NodeBox1
+		},
+		connect_back = {
+			{-0.125, -0.5, -0.125, 0.125, 0.5, 0.125}, -- NodeBox1
+			{-0.0625, 0.25, -0.0625, 0.0625, 0.375, 0.5}, -- NodeBox2
+			{-0.0625, -0.0625, -0.0625, 0.0625, 0.0625, 0.5}, -- NodeBox3
+			{-0.0625, -0.375, -0.0625, 0.0625, -0.25, 0.5}, -- NodeBox4
+		},
+		connect_front = {
+			{-0.125, -0.5, -0.125, 0.125, 0.5, 0.125}, -- NodeBox1
+			{-0.0625, 0.25, -0.5, 0.0625, 0.375, 0.0625}, -- NodeBox2
+			{-0.0625, -0.0625, -0.5, 0.0625, 0.0625, 0.0625}, -- NodeBox3
+			{-0.0625, -0.375, -0.5, 0.0625, -0.25, 0.0625}, -- NodeBox4
+		},
+		connect_left = {
+			{-0.125, -0.5, -0.125, 0.125, 0.5, 0.125}, -- NodeBox1
+			{-0.5, 0.25, -0.0625, 0.0625, 0.375, 0.0625}, -- NodeBox2
+			{-0.5, -0.0625, -0.0625, 0.0625, 0.0625, 0.0625}, -- NodeBox3
+			{-0.5, -0.375, -0.0625, 0.0625, -0.25, 0.0625}, -- NodeBox4
+		},
+		connect_right = {
+			{-0.125, -0.5, -0.125, 0.125, 0.5, 0.125}, -- NodeBox1
+			{0, 0.25, -0.0625, 0.5, 0.375, 0.0625}, -- NodeBox2
+			{0, -0.0625, -0.0625, 0.5, 0.0625, 0.0625}, -- NodeBox3
+			{0, -0.375, -0.0625, 0.5, -0.25, 0.0625}, -- NodeBox4
+		}
+	},
+	groups = {choppy=1, oddly_breakable_by_hand=1, fence=1},
+	sounds = default.node_sound_wood_defaults()
+})
+
 minetest.register_node("decoblocks:sandstone_wall", {
 	description = "Painted Sandstone Wall",
 	tiles = {
