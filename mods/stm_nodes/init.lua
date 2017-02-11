@@ -26,7 +26,12 @@ minetest.register_node("stm_nodes:chimney", {
 minetest.register_node("stm_nodes:tank", {
 	description = "Small Boiler",
 	tiles = {
+		"stm_nodes_tin_top.png",
 		"stm_nodes_tin.png",
+		"stm_nodes_tin.png",
+		"stm_nodes_tin.png",
+		"stm_nodes_tin.png",
+		"stm_nodes_tin_pipe.png"
 	},
 	drawtype = "nodebox",
 	paramtype = "light",

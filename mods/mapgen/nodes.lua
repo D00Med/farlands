@@ -1207,10 +1207,18 @@ minetest.register_node("mapgen:limestone", {
 	sounds = default.node_sound_stone_defaults()
 })
 
+minetest.register_node("mapgen:savanna_cobblestone_stone", {
+	description = "Savanna Cobblestone Stone",
+	tiles = {"mapgen_savanna_cobblestone_stone.png"},
+	groups = {cracky = 2},
+	sounds = default.node_sound_stone_defaults()
+})
+
 minetest.register_node("mapgen:savanna_stone", {
 	description = "Savannah Stone",
-	tiles = {"savannah_stone.png"},
+	tiles = {"mapgen_savannah_stone.png"},
 	groups = {cracky = 2},
+	drop = 'mapgen:savanna_cobblestone_stone',
 	sounds = default.node_sound_stone_defaults()
 })
 
