@@ -205,6 +205,14 @@ minetest.register_node("mapgen:dirt_with_junglegrass", {
 	sounds = default.node_sound_dirt_defaults()
 })
 
+minetest.register_node("mapgen:dirt_with_bambooforest_grass", {
+	description = "Dirt With Bambooforest Grass",
+	tiles = {"mapgen_bambooforest_grass.png", "default_dirt.png", "default_dirt.png^mapgen_bambooforest_grass_side.png"},
+	groups = {crumbly = 1, oddly_breakable_by_hand = 1},
+	sounds = default.node_sound_dirt_defaults()
+})
+
+
 minetest.register_node("mapgen:cavefern1", {
 	description = "Cave Fern",
 	drawtype = "plantlike",
