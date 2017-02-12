@@ -812,6 +812,13 @@ doors.register_fencegate("doors:gate_aspen_wood", {
 	groups = {choppy = 3, oddly_breakable_by_hand = 2, flammable = 3}
 })
 
+doors.register_fencegate("doors:gate_bamboo", {
+	description = "Bamboo Fence Gate",
+	texture = "decoblocks_bamboo.png",
+	material = "decoblocks:bamboo_block",
+	groups = {choppy = 3, oddly_breakable_by_hand = 2, flammable = 3}
+})
+
 ----fuels----
 
 minetest.register_craft({

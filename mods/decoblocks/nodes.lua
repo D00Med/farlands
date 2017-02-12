@@ -70,6 +70,17 @@ minetest.register_node("decoblocks:sandstone_pillar", {
 	on_place = minetest.rotate_node
 })
 
+minetest.register_node("decoblocks:bamboo_block", {
+	description = "Bamboo Block",
+	tiles = {
+	"decoblocks_bamboo_top.png",
+	"decoblocks_bamboo_top.png",
+	"decoblocks_bamboo.png",
+	},
+	groups = {choppy = 1, oddly_breakable_by_hand = 2},
+	sounds = default.node_sound_wood_defaults(),
+})
+
 minetest.register_node("decoblocks:old_stone_tiles", {
 	description = "Old Stone Tiles",
 	tiles = {"decoblocks_old_stone_tiles.png"},

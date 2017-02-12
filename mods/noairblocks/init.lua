@@ -64,7 +64,7 @@ minetest.register_node("noairblocks:water_sourcex", {
 	liquid_viscosity = WATER_VISC,
 	freezemelt = "default:ice",
 	post_effect_color = {a = 103, r = 30, g = 60, b = 90},
-	groups = {water=3, liquid=3, puts_out_fire=1, freezes=1},
+	groups = {water=3, liquid=3, puts_out_fire=1, freezes=1, not_in_creative_inventory=1},
 })
 
 
