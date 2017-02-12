@@ -1,5 +1,5 @@
 minetest.register_node("decoblocks:bamboo_fence", {
-	description = "Bamboo",
+	description = "Bamboo Fence",
 	tiles = {
 		"decoblocks_bamboo_fence_top.png",
 		"decoblocks_bamboo_fence_top.png",
@@ -7,7 +7,7 @@ minetest.register_node("decoblocks:bamboo_fence", {
 	},
 	drawtype = "nodebox",
 	paramtype = "light",
-	connects_to = {"group:fence", "group:wood", "group:stone"},
+	connects_to = {"group:fence", "group:wood", "group:choppy", "group:stone"},
 	node_box = {
 		type = "connected",
 		fixed = {
