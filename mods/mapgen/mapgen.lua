@@ -777,6 +777,27 @@
 		heat_point = 45,
 		humidity_point = 70,
 	})
+	
+	
+	minetest.register_biome({
+		name = "coniferous_forest_tall",
+		--node_dust = "",
+		node_top = "default:dirt_with_grass",
+		depth_top = 1,
+		node_filler = "default:dirt",
+		depth_filler = 3,
+		--node_stone = "",
+		--node_water_top = "",
+		--depth_water_top = ,
+		--node_water = "",
+		--node_river_water = "",
+		node_riverbed = "default:sand",
+		depth_riverbed = 2,
+		y_min = 6,
+		y_max = 31000,
+		heat_point = 50,
+		humidity_point = 70,
+	})
 
 	minetest.register_biome({
 		name = "coniferous_forest_dunes",
@@ -1214,7 +1235,7 @@ local function register_grass_decoration(offset, scale, length)
 			persist = 0.6
 		},
 		biomes = {"grassland", "grassland_dunes", "deciduous_forest",
-			"coniferous_forest", "coniferous_forest_dunes",},
+			"coniferous_forest", "coniferous_forest_dunes", "coniferous_forest_tall"},
 		y_min = 1,
 		y_max = 31000,
 		decoration = "default:grass_" .. length,
@@ -1421,6 +1442,25 @@ end
 			persist = 0.66
 		},
 		biomes = {"taiga", "coniferous_forest"},
+		y_min = 2,
+		y_max = 31000,
+		schematic = minetest.get_modpath("default") .. "/schematics/pine_tree.mts",
+		flags = "place_center_x, place_center_z",
+	})
+	
+	minetest.register_decoration({
+		deco_type = "schematic",
+		place_on = {"default:dirt_with_grass"},
+		sidelen = 16,
+		noise_params = {
+			offset = 0.036,
+			scale = 0.022,
+			spread = {x = 250, y = 250, z = 250},
+			seed = 2,
+			octaves = 3,
+			persist = 0.66
+		},
+		biomes = {"coniferous_forest_tall"},
 		y_min = 2,
 		y_max = 31000,
 		schematic = minetest.get_modpath("mapgen") .. "/schematics/pine.mts",
@@ -1743,7 +1783,7 @@ minetest.register_decoration({
 	place_on = "default:dirt_with_grass",
 	sidelen = 16,
 	fill_ratio = 0.01,
-	biomes = {"grassland", "deciduous_forest"},
+	biomes = {"grassland", "deciduous_forest", "coniferous_forest_tall"},
 	decoration = "mapgen:tallgrass",
 	height = 1,
 })
@@ -1855,7 +1895,7 @@ minetest.register_decoration({
 			octaves = 3,
 			persist = 0.7,
 		},
-		biomes = {"snowy_grassland", "grassland", "deciduous_forest"},
+		biomes = {"snowy_grassland", "grassland", "deciduous_forest", "coniferous_forest_tall"},
 		y_min = 1,
 		y_max = 31000,
 		schematic = minetest.get_modpath("default") .. "/schematics/bush.mts",
