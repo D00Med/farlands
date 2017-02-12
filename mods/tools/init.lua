@@ -11,3 +11,18 @@ minetest.register_craftitem("tools:superpick", {
 		end
 	end,
 })
+
+minetest.register_tool("tools:bigstone_sword", {
+	description = "Big Stone Sword",
+	inventory_image = "tools_bigstone_sword.png",
+	wield_scale = {x=2, y=2, z=2},
+	tool_capabilities = {
+		full_punch_interval = 1.2,
+		max_drop_level=0,
+		groupcaps={
+			snappy={times={[2]=1.4, [3]=0.40}, uses=25, maxlevel=1},
+		},
+		damage_groups = {fleshy=5, choppy=4},
+	},
+	sound = {breaks = "default_tool_breaks"},
+})
