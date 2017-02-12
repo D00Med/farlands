@@ -716,6 +716,28 @@
 		humidity_point = 35,
 	})
 
+	--bamboo forest
+	
+	minetest.register_biome({
+		name = "bamboo_forest",
+		--node_dust = "",
+		node_top = "default:dirt_with_grass",
+		depth_top = 1,
+		node_filler = "default:dirt",
+		depth_filler = 1,
+		--node_stone = "",
+		--node_water_top = "",
+		--depth_water_top = ,
+		--node_water = "",
+		--node_river_water = "",
+		node_riverbed = "default:sand",
+		depth_riverbed = 2,
+		y_min = 6,
+		y_max = 31000,
+		heat_point = 50,
+		humidity_point = 32,
+	})
+
 	-- Grassland
 
 	minetest.register_biome({
@@ -1327,6 +1349,122 @@ end
 
 	minetest.clear_registered_decorations()
 
+	--bamboo
+	
+	minetest.register_decoration({
+	deco_type = "simple",
+	place_on = "default:dirt_with_grass",
+	sidelen = 16,
+	fill_ratio = 0.05,
+	biomes = {"bamboo_forest",},
+	decoration = "mapgen:bamboo_small",
+	height = 3,
+	})
+	
+	minetest.register_decoration({
+	deco_type = "simple",
+	place_on = "default:dirt_with_grass",
+	sidelen = 16,
+	fill_ratio = 0.15,
+	biomes = {"bamboo_forest",},
+	decoration = "mapgen:bamboo_grass",
+	height = 1,
+	})
+	
+		minetest.register_decoration({
+		deco_type = "schematic",
+		place_on = {"default:dirt_with_grass"},
+		sidelen = 16,
+		noise_params = {
+			offset = 0.016,
+			scale = 0.012,
+			spread = {x = 250, y = 250, z = 250},
+			seed = 2,
+			octaves = 3,
+			persist = 0.66
+		},
+		biomes = {"bamboo_forest",},
+		y_min = 1,
+		y_max = 31000,
+		schematic = minetest.get_modpath("mapgen") .. "/schematics/bamboo1.mts",
+		flags = "place_center_x, place_center_z",
+	})
+	
+			minetest.register_decoration({
+		deco_type = "schematic",
+		place_on = {"default:dirt_with_grass"},
+		sidelen = 16,
+		noise_params = {
+			offset = 0.016,
+			scale = 0.012,
+			spread = {x = 250, y = 250, z = 250},
+			seed = 2,
+			octaves = 3,
+			persist = 0.66
+		},
+		biomes = {"bamboo_forest",},
+		y_min = 1,
+		y_max = 31000,
+		schematic = minetest.get_modpath("mapgen") .. "/schematics/bamboo2.mts",
+		flags = "place_center_x, place_center_z",
+	})
+	
+			minetest.register_decoration({
+		deco_type = "schematic",
+		place_on = {"default:dirt_with_grass"},
+		sidelen = 16,
+		noise_params = {
+			offset = 0.016,
+			scale = 0.012,
+			spread = {x = 250, y = 250, z = 250},
+			seed = 2,
+			octaves = 3,
+			persist = 0.66
+		},
+		biomes = {"bamboo_forest",},
+		y_min = 1,
+		y_max = 31000,
+		schematic = minetest.get_modpath("mapgen") .. "/schematics/bamboo3.mts",
+		flags = "place_center_x, place_center_z",
+	})
+	
+			minetest.register_decoration({
+		deco_type = "schematic",
+		place_on = {"default:dirt_with_grass"},
+		sidelen = 16,
+		noise_params = {
+			offset = 0.016,
+			scale = 0.012,
+			spread = {x = 250, y = 250, z = 250},
+			seed = 2,
+			octaves = 3,
+			persist = 0.66
+		},
+		biomes = {"bamboo_forest",},
+		y_min = 1,
+		y_max = 31000,
+		schematic = minetest.get_modpath("mapgen") .. "/schematics/bamboo4.mts",
+		flags = "place_center_x, place_center_z",
+	})
+				minetest.register_decoration({
+		deco_type = "schematic",
+		place_on = {"default:dirt_with_grass"},
+		sidelen = 16,
+		noise_params = {
+			offset = 0.016,
+			scale = 0.012,
+			spread = {x = 250, y = 250, z = 250},
+			seed = 2,
+			octaves = 3,
+			persist = 0.66
+		},
+		biomes = {"bamboo_forest",},
+		y_min = 1,
+		y_max = 31000,
+		schematic = minetest.get_modpath("mapgen") .. "/schematics/bamboo5.mts",
+		flags = "place_center_x, place_center_z",
+	})
+
 	-- Apple tree and log
 
 
@@ -1929,7 +2067,26 @@ minetest.register_decoration({
 			octaves = 3,
 			persist = 0.7,
 		},
-		biomes = {"snowy_grassland", "grassland", "deciduous_forest", "coniferous_forest_tall"},
+		biomes = {"snowy_grassland", "grassland", "deciduous_forest", "bamboo_forest", "coniferous_forest_tall"},
+		y_min = 1,
+		y_max = 31000,
+		schematic = minetest.get_modpath("default") .. "/schematics/bush.mts",
+		flags = "place_center_x, place_center_z",
+	})
+	
+	minetest.register_decoration({
+		deco_type = "schematic",
+		place_on = {"default:dirt_with_grass",},
+		sidelen = 16,
+		noise_params = {
+			offset = 0.01,
+			scale = 0.015,
+			spread = {x = 100, y = 100, z = 100},
+			seed = 137,
+			octaves = 3,
+			persist = 0.7,
+		},
+		biomes = {"bamboo_forest",},
 		y_min = 1,
 		y_max = 31000,
 		schematic = minetest.get_modpath("default") .. "/schematics/bush.mts",

@@ -53,7 +53,7 @@ end
 mapgen.register_fern("fern", "Fern", "1")
 mapgen.register_fern("fern2", "Broad Leaf Fern", "2")
 
-mapgen.register_shrub("shrub", "Shrub", "1")
+mapgen.register_shrub("shrub", "Hog Peanut", "1")
 
 --nodes
 
@@ -494,13 +494,65 @@ minetest.register_node("mapgen:jungletree", {
 	walkable = false,
 })
 
+minetest.register_node("mapgen:bamboo_small", {
+	description = "Small Bamboo",
+	drawtype = "plantlike",
+	tiles = {"mapgen_bamboo_small.png"},
+	paramtype = "light",
+	is_ground_content = false,
+	sunlight_propagates = true,
+	inventory_image = "mapgen_bamboo_small.png",
+	groups = {snappy=1, flammable=1, oddly_breakable_by_hand=1, flora=1},
+	sounds = default.node_sound_leaves_defaults(),
+	selection_box = {
+		type = "fixed",
+		fixed = {-0.2, -0.5, -0.2, 0.2, 0.5, 0.2}
+	},
+	walkable = false,
+})
+
+minetest.register_node("mapgen:bamboo_small_top", {
+	description = "Small Bamboo Top",
+	drawtype = "plantlike",
+	tiles = {"mapgen_bamboo_small_top.png"},
+	paramtype = "light",
+	is_ground_content = false,
+	sunlight_propagates = true,
+	visual_scale = 1.4,
+	inventory_image = "mapgen_bamboo_small_top.png",
+	groups = {snappy=1, flammable=1, oddly_breakable_by_hand=1, flora=1},
+	sounds = default.node_sound_leaves_defaults(),
+	selection_box = {
+		type = "fixed",
+		fixed = {-0.2, -0.5, -0.2, 0.2, 0.5, 0.2}
+	},
+	walkable = false,
+})
+
+minetest.register_node("mapgen:bamboo_grass", {
+	description = "Bamboo Grass",
+	drawtype = "plantlike",
+	tiles = {"mapgen_bamboo_grass.png"},
+	paramtype = "light",
+	is_ground_content = false,
+	sunlight_propagates = true,
+	inventory_image = "mapgen_bamboo_grass.png",
+	groups = {snappy=1, flammable=1, oddly_breakable_by_hand=1, flora=1},
+	sounds = default.node_sound_leaves_defaults(),
+	selection_box = {
+		type = "fixed",
+		fixed = {-0.2, -0.5, -0.2, 0.2, 0.3, 0.2}
+	},
+	walkable = false,
+})
+
 minetest.register_node("mapgen:bamboo", {
 	description = "Bamboo",
 	drawtype = "plantlike",
 	tiles = {"mapgen_bamboo.png"},
 	paramtype = "light",
 	is_ground_content = false,
-	sunlight_propagates = true,
+	sunlight_propagates = false,
 	inventory_image = "mapgen_bamboo.png",
 	groups = {choppy=1, flammable=1, oddly_breakable_by_hand=1, tree=1},
 	sounds = default.node_sound_wood_defaults(),
@@ -517,7 +569,7 @@ minetest.register_node("mapgen:bamboo_leaves", {
 	tiles = {"mapgen_bamboo_leaves.png"},
 	paramtype = "light",
 	is_ground_content = false,
-	sunlight_propagates = true,
+	sunlight_propagates = false,
 	groups = {snappy=1, flammable=1, oddly_breakable_by_hand=1, leafdecay=1, leaves=1},
 	sounds = default.node_sound_leaves_defaults(),
 	walkable = false,
@@ -533,7 +585,7 @@ minetest.register_node("mapgen:bamboo_with_leaves", {
 	tiles = {"mapgen_bamboo_leaves.png^mapgen_bamboo.png"},
 	paramtype = "light",
 	is_ground_content = false,
-	sunlight_propagates = true,
+	sunlight_propagates = false,
 	groups = {choppy=1, flammable=1, oddly_breakable_by_hand=1, tree=1, leaves=1},
 	sounds = default.node_sound_wood_defaults(),
 	walkable = false,
