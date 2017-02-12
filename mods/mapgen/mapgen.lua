@@ -113,6 +113,8 @@
 		},
 	})
 	
+
+	
 	--swamp water
 	
 		minetest.register_ore({
@@ -212,6 +214,26 @@
 			octaves = 1,
 			persist = 0.0
 		},
+	})
+	
+	minetest.register_ore({
+		ore_type        = "blob",
+		ore             = "mapgen:coarse_dirt",
+		wherein         = {"mapgen:dirt_with_leafygrass"},
+		clust_scarcity  = 16 * 16 * 16,
+		clust_size      = 3,
+		y_min           = -31000,
+		y_max           = 31000,
+		noise_threshold = 0.0,
+		noise_params    = {
+			offset = 0.5,
+			scale = 0.2,
+			spread = {x = 5, y = 5, z = 5},
+			seed = 766,
+			octaves = 1,
+			persist = 0.0
+		},
+		biomes = {"coniferous_forest_tall",}
 	})
 	
 	-- Scatter ores
@@ -782,7 +804,7 @@
 	minetest.register_biome({
 		name = "coniferous_forest_tall",
 		--node_dust = "",
-		node_top = "default:dirt_with_grass",
+		node_top = "mapgen:dirt_with_leafygrass",
 		depth_top = 1,
 		node_filler = "default:dirt",
 		depth_filler = 3,
@@ -1224,7 +1246,7 @@
 local function register_grass_decoration(offset, scale, length)
 	minetest.register_decoration({
 		deco_type = "simple",
-		place_on = {"default:dirt_with_grass", "default:sand"},
+		place_on = {"default:dirt_with_grass", "default:sand", "mapgen:dirt_with_leafygrass"},
 		sidelen = 16,
 		noise_params = {
 			offset = offset,
@@ -1450,7 +1472,7 @@ end
 	
 	minetest.register_decoration({
 		deco_type = "schematic",
-		place_on = {"default:dirt_with_grass"},
+		place_on = {"mapgen:dirt_with_leafygrass"},
 		sidelen = 16,
 		noise_params = {
 			offset = 0.036,
@@ -1461,7 +1483,7 @@ end
 			persist = 0.66
 		},
 		biomes = {"coniferous_forest_tall"},
-		y_min = 2,
+		y_min = -50,
 		y_max = 31000,
 		schematic = minetest.get_modpath("mapgen") .. "/schematics/pine.mts",
 		flags = "place_center_x, place_center_z",
@@ -1560,7 +1582,7 @@ minetest.register_decoration({
 	place_on = {"default:dirt_with_grass"},
 	sidelen = 6,
 	fill_ratio = 0.01,
-	biomes = {"grassland"},
+	biomes = {"grassland", "deciduous_forest", "deciduous_forest2"},
 	decoration = "mapgen:wild_oat",
 	height = 1,
 })
@@ -1780,7 +1802,7 @@ minetest.register_decoration({
 	
 	minetest.register_decoration({
 	deco_type = "simple",
-	place_on = "default:dirt_with_grass",
+	place_on = "default:dirt_with_grass", "mapgen:dirt_with_leafygrass",
 	sidelen = 16,
 	fill_ratio = 0.01,
 	biomes = {"grassland", "deciduous_forest", "coniferous_forest_tall"},
@@ -1796,6 +1818,18 @@ minetest.register_decoration({
 	fill_ratio = 0.01,
 	biomes = {"rainforest", "sandstone_desert"},
 	decoration = "mapgen:pineapple_plant",
+	height = 1,
+})
+
+	--shrubs
+	
+	minetest.register_decoration({
+	deco_type = "simple",
+	place_on = "mapgen:dirt_with_leafygrass",
+	sidelen = 16,
+	fill_ratio = 0.2,
+	biomes = {"coniferous_forest_tall",},
+	decoration = "mapgen:shrub",
 	height = 1,
 })
 

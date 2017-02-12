@@ -14,6 +14,33 @@ minetest.register_node("mapgen:"..name, {
 		type = "fixed",
 		fixed = {-0.3, -0.5, -0.3, 0.3, 0.3, 0.3}
 	},
+	paramtype2 = "degrotate",
+	walkable = false,
+	buildable_to = true,
+	groups = {snappy = 1, oddly_breakable_by_hand = 1, flora = 1, flammable = 1},
+	sounds = default.node_sound_leaves_defaults()
+})
+end
+
+function mapgen.register_shrub(name, desc, texnumber)
+minetest.register_node("mapgen:"..name, {
+	description = desc,
+	drawtype = "mesh",
+	mesh = "shrub.obj",
+	tiles = {
+		"mapgen_shrub"..texnumber..".png",
+	},
+	paramtype = "light",
+	selection_box = {
+		type = "fixed",
+		fixed = {-0.3, -0.5, -0.3, 0.3, 0.3, 0.3}
+	},
+	on_construct = function(pos, node)
+		local node = minetest.get_node(pos)
+		node.param2 = math.random(0,179)
+	end,
+	paramtype2 = "degrotate",
+	visual_scale = 0.5,
 	walkable = false,
 	buildable_to = true,
 	groups = {snappy = 1, oddly_breakable_by_hand = 1, flora = 1, flammable = 1},
@@ -25,6 +52,8 @@ end
 
 mapgen.register_fern("fern", "Fern", "1")
 mapgen.register_fern("fern2", "Broad Leaf Fern", "2")
+
+mapgen.register_shrub("shrub", "Shrub", "1")
 
 --nodes
 
@@ -465,6 +494,55 @@ minetest.register_node("mapgen:jungletree", {
 	walkable = false,
 })
 
+minetest.register_node("mapgen:bamboo", {
+	description = "Bamboo",
+	drawtype = "plantlike",
+	tiles = {"mapgen_bamboo.png"},
+	paramtype = "light",
+	is_ground_content = false,
+	sunlight_propagates = true,
+	inventory_image = "mapgen_bamboo.png",
+	groups = {choppy=1, flammable=1, oddly_breakable_by_hand=1, tree=1},
+	sounds = default.node_sound_wood_defaults(),
+	selection_box = {
+		type = "fixed",
+		fixed = {-0.2, -0.5, -0.2, 0.2, 0.5, 0.2}
+	},
+	walkable = true,
+})
+
+minetest.register_node("mapgen:bamboo_leaves", {
+	description = "Bamboo Leaves",
+	drawtype = "firelike",
+	tiles = {"mapgen_bamboo_leaves.png"},
+	paramtype = "light",
+	is_ground_content = false,
+	sunlight_propagates = true,
+	groups = {snappy=1, flammable=1, oddly_breakable_by_hand=1, leafdecay=1, leaves=1},
+	sounds = default.node_sound_leaves_defaults(),
+	walkable = false,
+	selection_box = {
+		type = "fixed",
+		fixed = {-0.4, -0.4, -0.4, 0.4, 0.4, 0.4}
+	},
+})
+
+minetest.register_node("mapgen:bamboo_with_leaves", {
+	description = "Bamboo With Leaves",
+	drawtype = "plantlike",
+	tiles = {"mapgen_bamboo_leaves.png^mapgen_bamboo.png"},
+	paramtype = "light",
+	is_ground_content = false,
+	sunlight_propagates = true,
+	groups = {choppy=1, flammable=1, oddly_breakable_by_hand=1, tree=1, leaves=1},
+	sounds = default.node_sound_wood_defaults(),
+	walkable = false,
+	selection_box = {
+		type = "fixed",
+		fixed = {-0.2, -0.5, -0.2, 0.2, 0.5, 0.2}
+	},
+})
+
 minetest.register_node("mapgen:flame_lily", {
 	description = "Flame Lily",
 	drawtype = "plantlike",
@@ -478,7 +556,7 @@ minetest.register_node("mapgen:flame_lily", {
 	sounds = default.node_sound_leaves_defaults(),
 	selection_box = {
 		type = "fixed",
-		fixed = {-0.5, -0.5, -0.5, 0.5, 0, 0.5}
+		fixed = {-0.3, -0.5, -0.3, 0.3, 0, 0.3}
 	},
 	walkable = false,
 })
@@ -703,6 +781,13 @@ minetest.register_node("mapgen:vine", {
 minetest.register_node("mapgen:dirt_with_swampgrass", {
 	description = "Dirt With Swamp Grass",
 	tiles = {"mapgen_swamp_grass.png", "default_dirt.png", "default_dirt.png^mapgen_swamp_grass_side.png"},
+	groups = {crumbly = 1, oddly_breakable_by_hand = 1},
+	sounds = default.node_sound_dirt_defaults()
+})
+
+minetest.register_node("mapgen:dirt_with_leafygrass", {
+	description = "Dirt With Leaf Covered Grass",
+	tiles = {"mapgen_leafy_grass.png", "default_dirt.png", "default_dirt.png^mapgen_leafy_grass_side.png"},
 	groups = {crumbly = 1, oddly_breakable_by_hand = 1},
 	sounds = default.node_sound_dirt_defaults()
 })
