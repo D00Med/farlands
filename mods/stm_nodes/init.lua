@@ -23,15 +23,42 @@ minetest.register_node("stm_nodes:chimney", {
 	sounds = default.node_sound_metal_defaults()
 })
 
+minetest.register_abm({
+	nodenames = {"stm_nodes:chimney"},
+	interval = 1.0,
+	chance = 2,
+	action = function(pos, node)
+		if minetest.find_node_near(pos, 1, {"default:furnace_active2"}) then
+		minetest.add_particlespawner({
+			amount = 4,
+			time = 1,
+			minpos = {x=pos.x-0.1, y=pos.y+0.8, z=pos.z-0.1},
+			maxpos = {x=pos.x+0.1, y=pos.y+1, z=pos.z+0.1},
+			minvel = {x=-0.2, y=1, z=-0.2},
+			maxvel = {x=0.2, y=3, z=0.2},
+			minacc = {x=0, y=0.1, z=0},
+			maxacc = {x=0, y=0.2, z=0},
+			minexptime = 1,
+			maxexptime = 2,
+			minsize = 5,
+			maxsize = 10,
+			collisiondetection = false,
+			vertical = false,
+			texture = "stm_nodes_steam.png",
+		})
+		end
+	end
+})
+
 minetest.register_node("stm_nodes:tank", {
 	description = "Small Boiler",
 	tiles = {
-		"stm_nodes_tin_top.png",
-		"stm_nodes_tin.png",
-		"stm_nodes_tin.png",
-		"stm_nodes_tin.png",
-		"stm_nodes_tin.png",
-		"stm_nodes_tin_pipe.png"
+		"stm_nodes_boiler_top.png",
+		"stm_nodes_boiler.png",
+		"stm_nodes_boiler.png",
+		"stm_nodes_boiler.png",
+		"stm_nodes_boiler.png",
+		"stm_nodes_boiler_pipe.png"
 	},
 	drawtype = "nodebox",
 	paramtype = "light",
