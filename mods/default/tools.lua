@@ -45,7 +45,7 @@ minetest.register_tool("default:pick_stone", {
 		groupcaps={
 			cracky = {times={[2]=2.0, [3]=1.00}, uses=20, maxlevel=1},
 		},
-		damage_groups = {fleshy=3},
+		damage_groups = {fleshy=2.5},
 	},
 	sound = {breaks = "default_tool_breaks"},
 })
@@ -59,7 +59,7 @@ minetest.register_tool("default:pick_steel", {
 		groupcaps={
 			cracky = {times={[1]=4.00, [2]=1.60, [3]=0.80}, uses=20, maxlevel=2},
 		},
-		damage_groups = {fleshy=4},
+		damage_groups = {fleshy=3},
 	},
 	sound = {breaks = "default_tool_breaks"},
 })
@@ -73,7 +73,7 @@ minetest.register_tool("default:pick_gold", {
 		groupcaps={
 			cracky = {times={[1]=4.00, [2]=1.60, [3]=0.80}, uses=30, maxlevel=2},
 		},
-		damage_groups = {fleshy=4},
+		damage_groups = {fleshy=3.5},
 	},
 	sound = {breaks = "default_tool_breaks"},
 })
@@ -88,7 +88,7 @@ minetest.register_tool("default:pick_bronze", {
 		groupcaps={
 			cracky = {times={[1]=4.00, [2]=1.60, [3]=0.80}, uses=30, maxlevel=2},
 		},
-		damage_groups = {fleshy=4},
+		damage_groups = {fleshy=3.5},
 	},
 	sound = {breaks = "default_tool_breaks"},
 })
@@ -116,7 +116,7 @@ minetest.register_tool("default:pick_diamond", {
 		groupcaps={
 			cracky = {times={[1]=2.0, [2]=1.0, [3]=0.50}, uses=30, maxlevel=3},
 		},
-		damage_groups = {fleshy=5},
+		damage_groups = {fleshy=4.5},
 	},
 	sound = {breaks = "default_tool_breaks"},
 })
@@ -259,7 +259,7 @@ minetest.register_tool("default:axe_stone", {
 		groupcaps={
 			choppy={times={[1]=3.00, [2]=2.00, [3]=1.30}, uses=20, maxlevel=1},
 		},
-		damage_groups = {fleshy=3},
+		damage_groups = {fleshy=2.5},
 	},
 	sound = {breaks = "default_tool_breaks"},
 })
@@ -273,7 +273,7 @@ minetest.register_tool("default:axe_steel", {
 		groupcaps={
 			choppy={times={[1]=2.50, [2]=1.40, [3]=1.00}, uses=20, maxlevel=2},
 		},
-		damage_groups = {fleshy=4},
+		damage_groups = {fleshy=3},
 	},
 	sound = {breaks = "default_tool_breaks"},
 })
@@ -315,7 +315,7 @@ minetest.register_tool("default:axe_mese", {
 		groupcaps={
 			choppy={times={[1]=2.20, [2]=1.00, [3]=0.60}, uses=20, maxlevel=3},
 		},
-		damage_groups = {fleshy=6},
+		damage_groups = {fleshy=4},
 	},
 	sound = {breaks = "default_tool_breaks"},
 })
@@ -329,7 +329,7 @@ minetest.register_tool("default:axe_diamond", {
 		groupcaps={
 			choppy={times={[1]=2.10, [2]=0.90, [3]=0.50}, uses=30, maxlevel=2},
 		},
-		damage_groups = {fleshy=7},
+		damage_groups = {fleshy=5},
 	},
 	sound = {breaks = "default_tool_breaks"},
 })
@@ -362,7 +362,7 @@ minetest.register_tool("default:sword_stone", {
 		groupcaps={
 			snappy={times={[2]=1.4, [3]=0.40}, uses=20, maxlevel=1},
 		},
-		damage_groups = {fleshy=4},
+		damage_groups = {fleshy=3},
 	},
 	sound = {breaks = "default_tool_breaks"},
 })
@@ -376,7 +376,7 @@ minetest.register_tool("default:sword_steel", {
 		groupcaps={
 			snappy={times={[1]=2.5, [2]=1.20, [3]=0.35}, uses=30, maxlevel=2},
 		},
-		damage_groups = {fleshy=6},
+		damage_groups = {fleshy=4},
 	},
 	sound = {breaks = "default_tool_breaks"},
 })
@@ -390,7 +390,7 @@ minetest.register_tool("default:sword_gold", {
 		groupcaps={
 			snappy={times={[1]=2.5, [2]=1.20, [3]=0.35}, uses=40, maxlevel=2},
 		},
-		damage_groups = {fleshy=6},
+		damage_groups = {fleshy=4},
 	},
 	sound = {breaks = "default_tool_breaks"},
 })
@@ -404,7 +404,7 @@ minetest.register_tool("default:sword_bronze", {
 		groupcaps={
 			snappy={times={[1]=2.5, [2]=1.20, [3]=0.35}, uses=40, maxlevel=2},
 		},
-		damage_groups = {fleshy=6},
+		damage_groups = {fleshy=5},
 	},
 	sound = {breaks = "default_tool_breaks"},
 })
@@ -418,7 +418,7 @@ minetest.register_tool("default:sword_mese", {
 		groupcaps={
 			snappy={times={[1]=2.0, [2]=1.00, [3]=0.35}, uses=30, maxlevel=3},
 		},
-		damage_groups = {fleshy=7},
+		damage_groups = {fleshy=6},
 	},
 	sound = {breaks = "default_tool_breaks"},
 })
@@ -432,7 +432,7 @@ minetest.register_tool("default:sword_diamond", {
 		groupcaps={
 			snappy={times={[1]=1.90, [2]=0.90, [3]=0.30}, uses=40, maxlevel=3},
 		},
-		damage_groups = {fleshy=8},
+		damage_groups = {fleshy=6},
 	},
 	sound = {breaks = "default_tool_breaks"},
 })
