@@ -77,9 +77,19 @@ minetest.register_node("decoblocks:bamboo_block", {
 	"decoblocks_bamboo_top.png",
 	"decoblocks_bamboo.png",
 	},
+	paramtype2 = "facedir",
 	groups = {choppy = 1, oddly_breakable_by_hand = 2},
 	sounds = default.node_sound_wood_defaults(),
+	on_place = minetest.rotate_node
 })
+
+minetest.register_node("decoblocks:bamboo_planks", {
+	description = "Bamboo Wood Planks",
+	tiles = {"decoblocks_bamboo_planks.png"},
+	groups = {cracky = 3, stone = 2},
+	sounds = default.node_sound_stone_defaults(),
+})
+
 
 minetest.register_node("decoblocks:old_stone_tiles", {
 	description = "Old Stone Tiles",
