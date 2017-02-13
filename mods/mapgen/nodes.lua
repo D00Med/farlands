@@ -573,7 +573,21 @@ minetest.register_node("mapgen:bamboo", {
 			{-0.1875, -0.5, -0.1875, 0.1875, 0.5, 0.1875},
 		}
 	},
+	collision_box = {
+		type = "fixed",
+		fixed = {
+			{-0.1875, -0.5, -0.1875, 0.1875, 0.5, 0.1875},
+		}
+	},
 	walkable = true,
+})
+
+minetest.register_craft( {
+	output = "decoblocks:bamboo_block 4",
+	recipe = {
+		{ "mapgen:bamboo", "mapgen:bamboo",},
+		{ "mapgen:bamboo", "mapgen:bamboo",}
+	}
 })
 
 minetest.register_node("mapgen:bamboo_leaves", {
@@ -620,6 +634,13 @@ minetest.register_node("mapgen:bamboo_with_leaves", {
 			{-0.1875, -0.5, -0.1875, 0.1875, 0.5, 0.1875},
 		}
 	},
+	collision_box = {
+		type = "fixed",
+		fixed = {
+			{-0.1875, -0.5, -0.1875, 0.1875, 0.5, 0.1875},
+		}
+	},
+	drop = "mapgen:bamboo"
 })
 
 minetest.register_node("mapgen:flame_lily", {
