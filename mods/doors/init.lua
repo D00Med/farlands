@@ -449,6 +449,18 @@ doors.register("door_wood", {
 		}
 })
 
+doors.register("door_bamboo", {
+		tiles = {{ name = "doors_door_bamboo.png", backface_culling = true }},
+		description = "Bamboo Door",
+		inventory_image = "doors_item_bamboo.png",
+		groups = {choppy = 2, oddly_breakable_by_hand = 2, flammable = 2},
+		recipe = {
+			{"mapgen:bamboo", "mapgen:bamboo"},
+			{"mapgen:bamboo", "mapgen:bamboo"},
+			{"mapgen:bamboo", "mapgen:bamboo"},
+		}
+})
+
 doors.register("door_steel", {
 		tiles = {{name = "doors_door_steel.png", backface_culling = true}},
 		description = "Steel Door",
