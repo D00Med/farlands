@@ -195,6 +195,28 @@
 		},
 	})
 
+	--dirt with leaves
+	
+	minetest.register_ore({
+		ore_type        = "blob",
+		ore             = "mapgen:dirt_with_leafygrass",
+		wherein         = {"default:dirt_with_grass"},
+		clust_scarcity  = 5 * 5 * 5,
+		clust_size      = 5,
+		y_min           = -31000,
+		y_max           = 31000,
+		noise_threshold = 0.0,
+		noise_params    = {
+			offset = 0.5,
+			scale = 0.2,
+			spread = {x = 5, y = 5, z = 5},
+			seed = 766,
+			octaves = 1,
+			persist = 0.0
+		},
+		biomes = {"bamboo_forest",}
+	})
+
 	--coarse dirt
 	
 			minetest.register_ore({
@@ -1355,6 +1377,14 @@ end
 	deco_type = "simple",
 	place_on = "default:dirt_with_grass",
 	sidelen = 16,
+	noise_params = {
+			offset = 0.005,
+			scale = 0.01,
+			spread = {x = 250, y = 250, z = 250},
+			seed = 2,
+			octaves = 3,
+			persist = 0.66
+	},
 	fill_ratio = 0.05,
 	biomes = {"bamboo_forest",},
 	decoration = "mapgen:bamboo_small",
@@ -1363,21 +1393,28 @@ end
 	
 	minetest.register_decoration({
 	deco_type = "simple",
-	place_on = "default:dirt_with_grass",
+	place_on = "default:dirt_with_grass", "mapgen:dirt_with_leafygrass",
 	sidelen = 16,
-	fill_ratio = 0.15,
+	noise_params = {
+			offset = 0.005,
+			scale = 0.01,
+			spread = {x = 250, y = 250, z = 250},
+			seed = 2,
+			octaves = 3,
+			persist = 0.66
+	},
 	biomes = {"bamboo_forest",},
 	decoration = "mapgen:bamboo_grass",
 	height = 1,
 	})
 	
-		minetest.register_decoration({
+	minetest.register_decoration({
 		deco_type = "schematic",
 		place_on = {"default:dirt_with_grass"},
 		sidelen = 16,
 		noise_params = {
 			offset = 0.016,
-			scale = 0.012,
+			scale = 0.022,
 			spread = {x = 250, y = 250, z = 250},
 			seed = 2,
 			octaves = 3,
@@ -1396,7 +1433,7 @@ end
 		sidelen = 16,
 		noise_params = {
 			offset = 0.016,
-			scale = 0.012,
+			scale = 0.022,
 			spread = {x = 250, y = 250, z = 250},
 			seed = 2,
 			octaves = 3,
@@ -1406,62 +1443,6 @@ end
 		y_min = 1,
 		y_max = 31000,
 		schematic = minetest.get_modpath("mapgen") .. "/schematics/bamboo2.mts",
-		flags = "place_center_x, place_center_z",
-	})
-	
-			minetest.register_decoration({
-		deco_type = "schematic",
-		place_on = {"default:dirt_with_grass"},
-		sidelen = 16,
-		noise_params = {
-			offset = 0.016,
-			scale = 0.012,
-			spread = {x = 250, y = 250, z = 250},
-			seed = 2,
-			octaves = 3,
-			persist = 0.66
-		},
-		biomes = {"bamboo_forest",},
-		y_min = 1,
-		y_max = 31000,
-		schematic = minetest.get_modpath("mapgen") .. "/schematics/bamboo3.mts",
-		flags = "place_center_x, place_center_z",
-	})
-	
-			minetest.register_decoration({
-		deco_type = "schematic",
-		place_on = {"default:dirt_with_grass"},
-		sidelen = 16,
-		noise_params = {
-			offset = 0.016,
-			scale = 0.012,
-			spread = {x = 250, y = 250, z = 250},
-			seed = 2,
-			octaves = 3,
-			persist = 0.66
-		},
-		biomes = {"bamboo_forest",},
-		y_min = 1,
-		y_max = 31000,
-		schematic = minetest.get_modpath("mapgen") .. "/schematics/bamboo4.mts",
-		flags = "place_center_x, place_center_z",
-	})
-				minetest.register_decoration({
-		deco_type = "schematic",
-		place_on = {"default:dirt_with_grass"},
-		sidelen = 16,
-		noise_params = {
-			offset = 0.016,
-			scale = 0.012,
-			spread = {x = 250, y = 250, z = 250},
-			seed = 2,
-			octaves = 3,
-			persist = 0.66
-		},
-		biomes = {"bamboo_forest",},
-		y_min = 1,
-		y_max = 31000,
-		schematic = minetest.get_modpath("mapgen") .. "/schematics/bamboo5.mts",
 		flags = "place_center_x, place_center_z",
 	})
 
@@ -1629,7 +1610,7 @@ end
 
 	minetest.register_decoration({
 		deco_type = "schematic",
-		place_on = {"default:dirt_with_snow", "default:dirt_with_grass"},
+		place_on = {"default:dirt_with_snow", "default:dirt_with_grass", "mapgen:dirt_with_leafygrass"},
 		sidelen = 80,
 		noise_params = {
 			offset = 0.0018,
@@ -1639,7 +1620,7 @@ end
 			octaves = 3,
 			persist = 0.66
 		},
-		biomes = {"taiga", "coniferous_forest"},
+		biomes = {"taiga", "coniferous_forest", "coniferous_forest_tall"},
 		y_min = 1,
 		y_max = 31000,
 		schematic = {

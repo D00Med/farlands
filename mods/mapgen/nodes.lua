@@ -548,17 +548,30 @@ minetest.register_node("mapgen:bamboo_grass", {
 
 minetest.register_node("mapgen:bamboo", {
 	description = "Bamboo",
-	drawtype = "plantlike",
-	tiles = {"mapgen_bamboo.png"},
-	paramtype = "light",
+	tiles = {
+	"mapgen_bamboo_top.png",	
+	"mapgen_bamboo_top.png",
+	"mapgen_bamboo.png"
+	},
 	is_ground_content = false,
 	sunlight_propagates = false,
-	inventory_image = "mapgen_bamboo.png",
 	groups = {choppy=1, flammable=1, oddly_breakable_by_hand=1, tree=1},
 	sounds = default.node_sound_wood_defaults(),
+	drawtype = "nodebox",
+	paramtype = "light",
+	node_box = {
+		type = "fixed",
+		fixed = {
+			{-0.1875, -0.5, -0.1875, 0.1875, 0.5, 0.1875}, -- NodeBox1
+			{-0.5, -0.5, 0, 0.5, 0.5, 0}, -- NodeBox2
+			{0.00470524, -0.5, -0.5, 0.00470524, 0.5, 0.5}, -- NodeBox3
+		}
+	},
 	selection_box = {
 		type = "fixed",
-		fixed = {-0.2, -0.5, -0.2, 0.2, 0.5, 0.2}
+		fixed = {
+			{-0.1875, -0.5, -0.1875, 0.1875, 0.5, 0.1875},
+		}
 	},
 	walkable = true,
 })
@@ -570,7 +583,7 @@ minetest.register_node("mapgen:bamboo_leaves", {
 	paramtype = "light",
 	is_ground_content = false,
 	sunlight_propagates = false,
-	groups = {snappy=1, flammable=1, oddly_breakable_by_hand=1, leafdecay=1, leaves=1},
+	groups = {snappy=1, flammable=1, oddly_breakable_by_hand=1, leafdecay=4, leaves=1},
 	sounds = default.node_sound_leaves_defaults(),
 	walkable = false,
 	selection_box = {
@@ -581,17 +594,31 @@ minetest.register_node("mapgen:bamboo_leaves", {
 
 minetest.register_node("mapgen:bamboo_with_leaves", {
 	description = "Bamboo With Leaves",
-	drawtype = "plantlike",
-	tiles = {"mapgen_bamboo_leaves.png^mapgen_bamboo.png"},
-	paramtype = "light",
+	tiles = {
+	"mapgen_bamboo_top.png",
+	"mapgen_bamboo_top.png",
+	"mapgen_bamboo_leaves.png^mapgen_bamboo.png"
+	},
 	is_ground_content = false,
 	sunlight_propagates = false,
 	groups = {choppy=1, flammable=1, oddly_breakable_by_hand=1, tree=1, leaves=1},
 	sounds = default.node_sound_wood_defaults(),
 	walkable = false,
+	drawtype = "nodebox",
+	paramtype = "light",
+	node_box = {
+		type = "fixed",
+		fixed = {
+			{-0.1875, -0.5, -0.1875, 0.1875, 0.5, 0.1875}, -- NodeBox1
+			{-0.5, -0.5, 0, 0.5, 0.5, 0}, -- NodeBox2
+			{0.00470524, -0.5, -0.5, 0.00470524, 0.5, 0.5}, -- NodeBox3
+		}
+	},
 	selection_box = {
 		type = "fixed",
-		fixed = {-0.2, -0.5, -0.2, 0.2, 0.5, 0.2}
+		fixed = {
+			{-0.1875, -0.5, -0.1875, 0.1875, 0.5, 0.1875},
+		}
 	},
 })
 
