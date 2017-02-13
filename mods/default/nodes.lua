@@ -1691,6 +1691,63 @@ minetest.register_node("default:chest", {
 	end,
 })
 
+local register_door = function(name, desc, craft)
+minetest.register_node("default:chest_"..name, {
+	description = desc,
+	tiles = {"default_chest_"..name.."_top.png", "default_chest_"..name.."_top.png", "default_chest_"..name.."_side.png",
+		"default_chest_"..name.."_side.png", "default_chest_"..name.."_side.png", "default_chest_"..name.."_front.png"},
+	paramtype2 = "facedir",
+	groups = {choppy = 2, oddly_breakable_by_hand = 2},
+	legacy_facedir_simple = true,
+	is_ground_content = false,
+	sounds = default.node_sound_wood_defaults(),
+
+	on_construct = function(pos)
+		local meta = minetest.get_meta(pos)
+		meta:set_string("formspec", chest_formspec)
+		local inv = meta:get_inventory()
+		inv:set_size("main", 8*4)
+	end,
+	can_dig = function(pos,player)
+		local meta = minetest.get_meta(pos);
+		local inv = meta:get_inventory()
+		return inv:is_empty("main")
+	end,
+	on_metadata_inventory_move = function(pos, from_list, from_index,
+			to_list, to_index, count, player)
+		minetest.log("action", player:get_player_name() ..
+			" moves stuff in chest at " .. minetest.pos_to_string(pos))
+	end,
+    on_metadata_inventory_put = function(pos, listname, index, stack, player)
+		minetest.log("action", player:get_player_name() ..
+			" moves " .. stack:get_name() ..
+			" to chest at " .. minetest.pos_to_string(pos))
+	end,
+    on_metadata_inventory_take = function(pos, listname, index, stack, player)
+		minetest.log("action", player:get_player_name() ..
+			" takes " .. stack:get_name() ..
+			" from chest at " .. minetest.pos_to_string(pos))
+	end,
+	on_blast = function(pos)
+		local drops = {}
+		default.get_inventory_drops(pos, "main", drops)
+		drops[#drops+1] = "default:chest_"..name
+		minetest.remove_node(pos)
+		return drops
+	end,
+})
+minetest.register_craft( {
+	output = "default:chest_"..name.." 1",
+	recipe = {
+		{ craft, craft, craft },
+		{ craft, "", craft },
+		{ craft, craft, craft }
+	}
+})
+end
+
+register_door("bamboo", "Bamboo", "mapgen:bamboo")
+
 minetest.register_node("default:chest_locked", {
 	description = "Locked Chest",
 	tiles = {"default_chest_top.png", "default_chest_top.png", "default_chest_side.png",
