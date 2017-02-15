@@ -1415,6 +1415,22 @@ minetest.register_node("mapgen:savanna_stone", {
 	sounds = default.node_sound_stone_defaults()
 })
 
+minetest.register_node("mapgen:icicle", {
+	description = "Icicle",
+	drawtype = "plantlike",
+	tiles = {"mapgen_icicle.png"},
+	inventory_image = "mapgen_icicle.png",
+	is_ground_content = false,
+	sunlight_propagates = true,
+	paramtype = "light",
+	selection_box = {
+	type = "fixed",
+	fixed = {{-0.3, -0.2, -0.3, 0.3, 0.5, 0.3}}
+	},
+	groups = {crumbly=1, oddly_breakable_by_hand=1},
+	sounds = default.node_sound_stone_defaults()
+})
+
 minetest.register_node("mapgen:stalagtite", {
 	description = "Stalagtite",
 	drawtype = "plantlike",

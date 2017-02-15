@@ -1267,7 +1267,7 @@ minetest.register_node("default:acacia_bush_leaves", {
 	description = "Acacia Bush Leaves",
 	drawtype = "allfaces_optional",
 	waving = 1,
-	tiles = {"default_acacia_leaves_simple.png"},
+	tiles = {"default_acacia_bush_leaves.png"},
 	paramtype = "light",
 	groups = {snappy = 3, flammable = 2, leaves = 1},
 	sounds = default.node_sound_leaves_defaults(),
