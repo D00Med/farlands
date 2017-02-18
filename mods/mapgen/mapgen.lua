@@ -197,7 +197,7 @@
 
 	--dirt with leaves
 	
-	minetest.register_ore({
+	--[[minetest.register_ore({
 		ore_type        = "blob",
 		ore             = "mapgen:dirt_with_leafygrass",
 		wherein         = {"default:dirt_with_grass"},
@@ -215,7 +215,7 @@
 			persist = 0.0
 		},
 		biomes = {"bamboo_forest",}
-	})
+	})]]
 
 	--coarse dirt
 	
