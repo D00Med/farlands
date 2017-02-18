@@ -153,7 +153,7 @@ mobs:register_mob("mobs_m:mammoth", {
 	hp_min = 50,
 	hp_max = 60,
 	armor = 100,
-	collisionbox = {-1.8, 0, -1.8, 1.8, 3.5, 1.8},
+	collisionbox = {-1.3, 0, -1.3, 1.3, 2.5, 1.3},
 	visual = "mesh",
 	mesh = "mammoth.b3d",
 	textures = {
@@ -203,6 +203,67 @@ mobs:register_mob("mobs_m:mammoth", {
 
 
 mobs:register_egg("mobs_m:mammoth", "Mammoth", "default_dirt.png", 1)
+
+mobs:register_mob("mobs_m:elephant", {
+	type = "animal",
+	passive = false,
+	reach = 3,
+	damage = 5,
+	attack_type = "dogfight",
+	hp_min = 50,
+	hp_max = 550,
+	armor = 100,
+	collisionbox = {-1.8, 0, -1.8, 1.8, 3.5, 1.8},
+	visual = "mesh",
+	mesh = "elephant.b3d",
+	textures = {
+		{"mobs_elephant.png"},
+	},
+	blood_texture = "mobs_blood.png",
+	makes_footstep_sound = true,
+	walk_velocity = 1,
+	run_velocity = 2,
+	jump = 0,
+	water_damage = 2,
+	lava_damage = 2,
+	light_damage = 0,
+	fall_damage = 1,
+	fall_speed = -9, 
+	fear_height = 2,
+	replace_rate = 10,
+	replace_what = {"default:grass_3", "default:grass_4", "default:grass_5", "ethereal:bamboo"},
+	replace_with = "air",
+	follow = {"compactblocks:default_leaves"},
+	view_range = 14,
+	drops = {
+		{name = "mobs:meat_raw", chance = 2, min = 3, max = 4},
+	},
+	animation = {
+		speed_normal = 16,
+		speed_run = 19,
+		walk_start = 25,
+		walk_end = 45,
+		stand_start = 1,
+		stand_end = 20,
+		run_start = 25,
+		run_end = 45,
+		punch_start = 25,
+		punch_end = 45,
+
+	},
+	on_rightclick = function(self, clicker)
+
+		if mobs:feed_tame(self, clicker, 8, true, true) then
+			return
+		end
+
+		mobs:capture_mob(self, clicker, 0, 5, 50, false, nil)
+	end,
+})
+
+
+mobs:register_egg("mobs_m:elephant", "Elephant", "default_stone.png", 1)
+mobs:register_spawn("mobs_m:elephant", {"default:dirt_with_dry_grass",}, 5, 0, 7000, 0, 11000)
 
 mobs:register_mob("mobs_m:zombie", {
 	type = "monster",
@@ -295,3 +356,181 @@ mobs:register_mob("mobs_m:swamp_lurker", {
 
 mobs:register_egg("mobs_m:swamp_lurker", "Swamp Lurker", "default_dirt.png", 1)
 mobs:register_spawn("mobs_m:swamp_lurker", {"default:dirt_with_swamp_grass",}, 5, 0, 7000, 0, 11000)
+
+local all_colours = {
+	{"black",      "Black",      "#000000b0"},
+	{"blue",       "Blue",       "#015dbb70"},
+	{"brown",      "Brown",      "#663300a0"},
+	{"cyan",       "Cyan",       "#01ffd870"},
+	{"dark_green", "Dark Green", "#005b0770"},
+	{"dark_grey",  "Dark Grey",  "#303030b0"},
+	{"green",      "Green",      "#61ff0170"},
+	{"grey",       "Grey",       "#5b5b5bb0"},
+	{"magenta",    "Magenta",    "#ff05bb70"},
+	{"orange",     "Orange",     "#ff840170"},
+	{"pink",       "Pink",       "#ff65b570"},
+	{"red",        "Red",        "#ff0000a0"},
+	{"violet",     "Violet",     "#2000c970"},
+	{"white",      "White",      "#abababc0"},
+	{"yellow",     "Yellow",     "#e3ff0070"},
+}
+
+-- Sheep by PilzAdam, taken from mobs_animal
+
+for _, col in pairs(all_colours) do
+
+	mobs:register_mob("mobs_m:sheep_"..col[1], {
+		type = "animal",
+		passive = true,
+		hp_min = 8,
+		hp_max = 10,
+		armor = 200,
+		collisionbox = {-0.4, 0, -0.4, 0.4, 1.3, 0.4},
+		visual = "mesh",
+		mesh = "mobs_sheep.b3d",
+		textures = {
+			{"mobs_sheep_base.png^mobs_sheep_"..col[1]..".png"},
+		},
+		gotten_texture = {"mobs_sheep_shaved.png"},
+		gotten_mesh = "mobs_sheep_shaved.b3d",
+		makes_footstep_sound = true,
+		sounds = {
+			random = "mobs_sheep",
+		},
+		walk_velocity = 1,
+		run_velocity = 2,
+		runaway = true,
+		jump = true,
+		drops = {
+			{name = "mobs:meat_raw", chance = 1, min = 1, max = 2},
+			--{name = "wool:"..col[1], chance = 1, min = 1, max = 1},
+		},
+		water_damage = 1,
+		lava_damage = 5,
+		light_damage = 0,
+		animation = {
+			speed_normal = 16,
+			speed_run = 20,
+			stand_start = 1,
+			stand_end = 25,
+			walk_start = 27,
+			walk_end = 46,
+			run_start = 27,
+			run_end = 46,
+		},
+		follow = {"farming:wheat", "default:grass_5"},
+		view_range = 8,
+		replace_rate = 10,
+		replace_what = {"default:grass_3", "default:grass_4", "default:grass_5", "farming:wheat_8"},
+		replace_with = "air",
+		replace_offset = -1,
+		fear_height = 3,
+
+		on_rightclick = function(self, clicker)
+
+			--are we feeding?
+			if mobs:feed_tame(self, clicker, 8, true, true) then
+
+				--if full grow fuzz
+				if self.gotten == false then
+
+					self.object:set_properties({
+						textures = {"mobs_sheep_base.png^mobs_sheep_"..col[1]..".png"},
+						mesh = "mobs_sheep.b3d",
+					})
+				end
+
+				return
+			end
+
+			local item = clicker:get_wielded_item()
+			local itemname = item:get_name()
+
+			--are we giving a haircut>
+			if itemname == "mobs:shears" then
+
+				if self.gotten ~= false
+				or self.child ~= false
+				or not minetest.get_modpath("wool") then
+					return
+				end
+
+				self.gotten = true -- shaved
+
+				local obj = minetest.add_item(
+					self.object:getpos(),
+					ItemStack( "wool:" .. col[1] .. " " .. math.random(1, 3) )
+				)
+
+				if obj then
+
+					obj:setvelocity({
+						x = math.random(-1, 1),
+						y = 5,
+						z = math.random(-1, 1)
+					})
+				end
+
+				item:add_wear(650) -- 100 uses
+
+				clicker:set_wielded_item(item)
+
+				self.object:set_properties({
+					textures = {"mobs_sheep_shaved.png"},
+					mesh = "mobs_sheep.b3d",
+				})
+
+				return
+			end
+
+			local name = clicker:get_player_name()
+
+			--are we coloring?
+			if itemname:find("dye:") then
+
+				if self.gotten == false
+				and self.child == false
+				and self.tamed == true
+				and name == self.owner then
+
+					local colr = string.split(itemname, ":")[2]
+
+					for _,c in pairs(all_colours) do
+
+						if c[1] == colr then
+
+							local pos = self.object:getpos()
+
+							self.object:remove()
+
+							local mob = minetest.add_entity(pos, "mobs_m:sheep_" .. colr)
+							local ent = mob:get_luaentity()
+
+							ent.owner = name
+							ent.tamed = true
+
+							-- take item
+							if not minetest.setting_getbool("creative_mode") then
+								item:take_item()
+								clicker:set_wielded_item(item)
+							end
+
+							break
+						end
+					end
+				end
+
+				return
+			end
+
+			--are we capturing?
+			mobs:capture_mob(self, clicker, 0, 5, 60, false, nil)
+		end
+	})
+
+	mobs:register_egg("mobs_m:sheep_"..col[1], col[2] .. " Sheep", "wool_"..col[1]..".png", 1)
+
+	-- compatibility
+	mobs:alias_mob("mobs_animal:sheep_" .. col[1], "mobs_m:sheep_" .. col[1])
+
+end
