@@ -1428,7 +1428,7 @@ minetest.register_node("mapgen:icicle", {
 	fixed = {{-0.3, -0.2, -0.3, 0.3, 0.5, 0.3}}
 	},
 	groups = {crumbly=1, oddly_breakable_by_hand=1},
-	sounds = default.node_sound_stone_defaults()
+	sounds = default.node_sound_glass_defaults(),
 })
 
 minetest.register_node("mapgen:stalagtite", {
