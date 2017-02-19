@@ -83,7 +83,7 @@ minetest.register_node("stm_nodes:tank", {
 		"stm_nodes_boiler.png",
 		"stm_nodes_boiler.png",
 		"stm_nodes_boiler.png",
-		"stm_nodes_boiler_pipe.png"
+		"stm_nodes_boiler_pipe.png",
 	},
 	drawtype = "nodebox",
 	paramtype = "light",
@@ -100,7 +100,7 @@ minetest.register_node("stm_nodes:tank", {
 		}
 	},
 	groups = {cracky = 1, boiler = 1},
-	sounds = default:node_sound_metal_defaults()
+	sounds = default.node_sound_metal_defaults()
 })
 
 minetest.register_node("stm_nodes:tank2", {
@@ -128,5 +128,78 @@ minetest.register_node("stm_nodes:tank2", {
 		}
 	},
 	groups = {cracky = 1, boiler = 2},
-	sounds = default:node_sound_metal_defaults()
+	sounds = default.node_sound_metal_defaults()
+})
+
+minetest.register_node("stm_nodes:stand", {
+	description = "Tin Machinery Stand",
+	tiles = {
+		"stm_nodes_tin2.png",
+	},
+	drawtype = "nodebox",
+	paramtype = "light",
+	node_box = {
+		type = "fixed",
+		fixed = {
+			{-0.5, 0.4375, -0.5, 0.5, 0.5, 0.5}, -- NodeBox1
+			{0.1875, -0.5, 0.1875, 0.5, -0.375, 0.5}, -- NodeBox2
+			{-0.5, -0.5, -0.5, -0.1875, -0.375, -0.1875}, -- NodeBox3
+			{-0.5, -0.5, 0.1875, -0.1875, -0.375, 0.5}, -- NodeBox4
+			{0.1875, -0.5, -0.5, 0.4375, -0.375, -0.1875}, -- NodeBox5
+			{-0.4375, -0.4375, -0.4375, -0.1875, 0.4375, -0.1875}, -- NodeBox6
+			{0.1875, -0.5, 0.1875, 0.4375, 0.4375, 0.4375}, -- NodeBox7
+			{-0.4375, -0.5, 0.1875, -0.1875, 0.4375, 0.4375}, -- NodeBox8
+			{0.1875, -0.5, -0.4375, 0.4375, 0.4375, -0.1875}, -- NodeBox9
+			{-0.4375, 0.375, -0.4375, 0.4375, 0.4375, 0.4375}, -- NodeBox10
+		}
+	},
+	groups = {cracky=1,},
+	sounds = default.node_sound_metal_defaults()
+})
+
+minetest.register_node("stm_nodes:stand2", {
+	description = "Copper Machinery Stand",
+	tiles = {
+		"stm_nodes_copper2.png",
+	},
+	drawtype = "nodebox",
+	paramtype = "light",
+	node_box = {
+		type = "fixed",
+		fixed = {
+			{-0.5, 0.4375, -0.5, 0.5, 0.5, 0.5}, -- NodeBox1
+			{0.1875, -0.5, 0.1875, 0.5, -0.375, 0.5}, -- NodeBox2
+			{-0.5, -0.5, -0.5, -0.1875, -0.375, -0.1875}, -- NodeBox3
+			{-0.5, -0.5, 0.1875, -0.1875, -0.375, 0.5}, -- NodeBox4
+			{0.1875, -0.5, -0.5, 0.4375, -0.375, -0.1875}, -- NodeBox5
+			{-0.4375, -0.4375, -0.4375, -0.1875, 0.4375, -0.1875}, -- NodeBox6
+			{0.1875, -0.5, 0.1875, 0.4375, 0.4375, 0.4375}, -- NodeBox7
+			{-0.4375, -0.5, 0.1875, -0.1875, 0.4375, 0.4375}, -- NodeBox8
+			{0.1875, -0.5, -0.4375, 0.4375, 0.4375, -0.1875}, -- NodeBox9
+			{-0.4375, 0.375, -0.4375, 0.4375, 0.4375, 0.4375}, -- NodeBox10
+		}
+	},
+	groups = {cracky=1,},
+	sounds = default.node_sound_metal_defaults()
+})
+
+minetest.register_node("stm_nodes:pipes", {
+	description = "Pipe",
+	tiles = {
+		"stm_nodes_pipe_top.png",
+		"stm_nodes_pipe_top.png",
+		"stm_nodes_pipe.png",
+	},
+	drawtype = "nodebox",
+	paramtype = "light",
+	paramtype2 = "facedir",
+	node_box = {
+		type = "fixed",
+		fixed = {
+			{-0.375, -0.5, -0.375, 0.375, 0.5, 0.375}, -- NodeBox12
+		}
+	},
+	groups = {cracky=1, ventilation=1, pressure=1},
+	on_place = minetest.rotate_node,
+	sounds = default.node_sound_metal_defaults()
 })
