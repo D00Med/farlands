@@ -21,3 +21,5 @@ License for Textures, Models
 ---------------------------------------
 
 CC BY-SA 3.0 UNPORTED. Created by toby109tt(aka tobyplowy)
+
+Note: none of the pot contents are original, see the default mod and flowers mod license/readme for the license of those textures.

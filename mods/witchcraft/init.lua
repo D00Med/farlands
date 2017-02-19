@@ -2501,7 +2501,7 @@ register_food("witchcraft:potion_gred", -4)
 else
 
 	minetest.register_node("witchcraft:potion_gpurple", {
-	description = "Filling Potion (better with hunger mod)",
+	description = "Filling Potion",
 	drawtype = "plantlike",
 	tiles = {"witchcraft_potion_purple.png"},
 	wield_image = "witchcraft_potion_purple.png",
@@ -2524,7 +2524,7 @@ else
 	end,
 	
 	minetest.register_node("witchcraft:potion_gred", {
-	description = "Hunger Potion (better with hunger mod)",
+	description = "Hunger Potion",
 	drawtype = "plantlike",
 	tiles = {"witchcraft_potion_gred.png"},
 	wield_image = "witchcraft_potion_gred.png",

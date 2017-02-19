@@ -1,0 +1,15 @@
+{
+    "name": "craft_guide",
+    "description": "Provides items that will show you how to craft any craftable or cookable item.",
+    "keywords": [
+        "craft_guide"
+    ],
+    "homepage": "http://cornernote.github.io/minetest-craft_guide",
+    "forum": "https://forum.minetest.net/viewtopic.php?t=2334",
+    "screenshots": [
+        "http://cornernote.github.io/minetest-craft_guide/img/screenshot.png"
+    ],
+    "authors": [
+        "cornernote"
+    ]
+}
