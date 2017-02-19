@@ -449,6 +449,18 @@ doors.register("door_wood", {
 		}
 })
 
+doors.register("door_copper", {
+		tiles = {{ name = "doors_door_copper.png", backface_culling = true }},
+		description = "Copper Door",
+		inventory_image = "doors_item_copper.png",
+		groups = {choppy = 2, oddly_breakable_by_hand = 2, flammable = 2},
+		recipe = {
+			{"default:copper_ingot", "default:copper_ingot"},
+			{"default:copper_ingot", "default:copper_ingot"},
+			{"default:copper_ingot", "default:copper_ingot"},
+		}
+})
+
 doors.register("door_bamboo", {
 		tiles = {{ name = "doors_door_bamboo.png", backface_culling = true }},
 		description = "Bamboo Door",
