@@ -194,6 +194,25 @@
 			persist = 0.0
 		},
 	})
+	
+		minetest.register_ore({
+		ore_type        = "blob",
+		ore             = "mapgen:dry_dirt",
+		wherein         = {"mapgen:savanna_stone"},
+		clust_scarcity  = 16 * 16 * 16,
+		clust_size      = 5,
+		y_min           = -31000,
+		y_max           = 31000,
+		noise_threshold = 0.0,
+		noise_params    = {
+			offset = 0.5,
+			scale = 0.2,
+			spread = {x = 5, y = 5, z = 5},
+			seed = 766,
+			octaves = 1,
+			persist = 0.0
+		},
+	})
 
 	--dirt with leaves
 	
@@ -301,7 +320,7 @@
 		ore_type       = "scatter",
 		ore            = "mapgen:tin_ore",
 		wherein        = "default:stone",
-		clust_scarcity = 9 * 9 * 9,
+		clust_scarcity = 30 * 30 * 30,
 		clust_num_ores = 12,
 		clust_size     = 3,
 		y_min          = -1000,
@@ -1731,6 +1750,17 @@ minetest.register_decoration({
 	fill_ratio = 0.01,
 	biomes = {"savanna"},
 	decoration = "mapgen:wild_oat_dry",
+	height = 1,
+})
+
+	--dead grass
+minetest.register_decoration({
+	deco_type = "simple",
+	place_on = {"default:dirt_with_dry_grass"},
+	sidelen = 6,
+	fill_ratio = 0.01,
+	biomes = {"savanna"},
+	decoration = "mapgen:dead_grass_1",
 	height = 1,
 })
 

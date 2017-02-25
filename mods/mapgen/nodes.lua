@@ -227,6 +227,13 @@ minetest.register_node("mapgen:coarse_dirt", {
 	sounds = default.node_sound_dirt_defaults()
 })
 
+minetest.register_node("mapgen:dry_dirt", {
+	description = "Dry Dirt",
+	tiles = {"mapgen_dry_dirt.png"},
+	groups = {crumbly = 1, oddly_breakable_by_hand = 1},
+	sounds = default.node_sound_dirt_defaults()
+})
+
 minetest.register_node("mapgen:dirt_with_junglegrass", {
 	description = "Dirt With Jungle Grass",
 	tiles = {"mapgen_jungle_grass.png", "default_dirt.png", "default_dirt.png^mapgen_jungle_grass_side.png"},
