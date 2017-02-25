@@ -294,6 +294,17 @@
 
 	minetest.register_ore({
 		ore_type       = "scatter",
+		ore            = "mapgen:savanna_coal",
+		wherein        = "mapgen:savanna_stone",
+		clust_scarcity = 8 * 8 * 8,
+		clust_num_ores = 9,
+		clust_size     = 3,
+		y_min          = 1025,
+		y_max          = 31000,
+	})
+
+	minetest.register_ore({
+		ore_type       = "scatter",
 		ore            = "default:stone_with_coal",
 		wherein        = "default:stone",
 		clust_scarcity = 8 * 8 * 8,

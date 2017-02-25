@@ -1414,6 +1414,14 @@ minetest.register_node("mapgen:savanna_cobblestone_stone", {
 	sounds = default.node_sound_stone_defaults()
 })
 
+minetest.register_node("mapgen:savanna_coal", {
+	description = "Savanna Coal",
+	tiles = {"mapgen_savannah_coal.png"},
+	groups = {cracky = 2},
+	drop = 'default:coal',
+	sounds = default.node_sound_stone_defaults()
+})
+
 minetest.register_node("mapgen:savanna_stone", {
 	description = "Savannah Stone",
 	tiles = {"mapgen_savannah_stone.png"},
