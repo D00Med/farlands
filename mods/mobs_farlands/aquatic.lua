@@ -50,6 +50,97 @@ mobs:register_spawn("mobs_m:smallfish", {"default:water_source",}, 20, 10, 15000
 
 mobs:register_egg("mobs_m:smallfish", "Small Fish", "default_water.png", 1)
 
+mobs:register_mob("mobs_m:ammonite_s", {
+	type = "animal",
+	passive = true,
+	reach = 1,
+	damage = 0,
+	attack_type = "dogfight",
+	hp_min = 15,
+	hp_max = 35,
+	armor = 100,
+	collisionbox = {-0.5, -0.2, -0.5, 0.5, 0.5, 0.5},
+	visual = "mesh",
+	mesh = "ammonite.b3d",
+	textures = {
+		{"mobs_ammonite.png"},
+	},
+	makes_footstep_sound = false,
+	view_range = 10,
+	walk_velocity = 3,
+	run_velocity = 6,
+	runaway = true,
+	runaway_timer = 40,
+	jump = false,
+	jump_height = 0,
+	stepheight = 1.5,
+	fly = true,
+	fly_in = "default:water_source",
+	fall_damage = 0,
+	fall_speed = 0,
+	water_damage = 0,
+	lava_damage = 1,
+	light_damage = 0,
+	animation = {
+		speed_normal = 15,
+		speed_run = 20,
+		stand_start = 2,
+		stand_end = 23,
+		walk_start = 2,
+		walk_end = 23,
+		run_start = 2,
+		run_end = 23,
+	},
+})
+
+mobs:register_egg("mobs_m:ammonite_s", "Small Ammonite", "default_sand.png", 1)
+
+mobs:register_mob("mobs_m:ammonite_b", {
+	type = "animal",
+	passive = true,
+	reach = 1,
+	damage = 0,
+	attack_type = "dogfight",
+	hp_min = 15,
+	hp_max = 35,
+	armor = 100,
+	collisionbox = {-1, -0.2, -1, 1, 1, 1.2},
+	visual = "mesh",
+	mesh = "ammonite.b3d",
+	textures = {
+		{"mobs_ammonite.png"},
+	},
+	visual_size = {x=2.5, y=2.5},
+	makes_footstep_sound = false,
+	view_range = 10,
+	walk_velocity = 3,
+	run_velocity = 6,
+	runaway = true,
+	runaway_timer = 40,
+	jump = false,
+	jump_height = 0,
+	stepheight = 1.5,
+	fly = true,
+	fly_in = "default:water_source",
+	fall_damage = 0,
+	fall_speed = 0,
+	water_damage = 0,
+	lava_damage = 1,
+	light_damage = 0,
+	animation = {
+		speed_normal = 15,
+		speed_run = 20,
+		stand_start = 2,
+		stand_end = 23,
+		walk_start = 2,
+		walk_end = 23,
+		run_start = 2,
+		run_end = 23,
+	},
+})
+
+mobs:register_egg("mobs_m:ammonite_b", "Large Ammonite", "default_sand.png", 1)
+
 mobs:register_mob("mobs_m:trilobite", {
 	type = "animal",
 	passive = true,
