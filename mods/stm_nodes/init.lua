@@ -183,22 +183,14 @@ minetest.register_node("stm_nodes:stand2", {
 	sounds = default.node_sound_metal_defaults()
 })
 
-minetest.register_node("stm_nodes:pipes", {
+minetest.register_node("stm_nodes:pipe", {
 	description = "Pipe",
 	tiles = {
 		"stm_nodes_pipe_top.png",
 		"stm_nodes_pipe_top.png",
 		"stm_nodes_pipe.png",
 	},
-	drawtype = "nodebox",
-	paramtype = "light",
 	paramtype2 = "facedir",
-	node_box = {
-		type = "fixed",
-		fixed = {
-			{-0.375, -0.5, -0.375, 0.375, 0.5, 0.375}, -- NodeBox12
-		}
-	},
 	groups = {cracky=1, ventilation=1, pressure=1},
 	on_place = minetest.rotate_node,
 	sounds = default.node_sound_metal_defaults()
