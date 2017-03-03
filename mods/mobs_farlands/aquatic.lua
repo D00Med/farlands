@@ -108,7 +108,7 @@ mobs:register_mob("mobs_m:ammonite_b", {
 	visual = "mesh",
 	mesh = "ammonite.b3d",
 	textures = {
-		{"mobs_ammonite.png"},
+		{"mobs_ammonite_big.png"},
 	},
 	visual_size = {x=2.5, y=2.5},
 	makes_footstep_sound = false,
