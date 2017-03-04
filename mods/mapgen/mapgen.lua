@@ -1357,6 +1357,26 @@ local function register_jungle_grass_decoration(offset, scale, length)
 	})
 end
 
+local function register_snow_grass_decoration(offset, scale, length)
+	minetest.register_decoration({
+		deco_type = "simple",
+		place_on = {"mapgen:dirt_with_snow",},
+		sidelen = 16,
+		noise_params = {
+			offset = offset,
+			scale = scale,
+			spread = {x = 200, y = 200, z = 200},
+			seed = 329,
+			octaves = 3,
+			persist = 0.6
+		},
+		biomes = {"icesheet", "taiga", "snowy_grassland",},
+		y_min = 1,
+		y_max = 31000,
+		decoration = "mapgen:snow_grass_" .. length,
+	})
+end
+
 local function register_swamp_grass_decoration(offset, scale, length)
 	minetest.register_decoration({
 		deco_type = "simple",
@@ -1769,11 +1789,48 @@ minetest.register_decoration({
 	deco_type = "simple",
 	place_on = {"default:dirt_with_dry_grass"},
 	sidelen = 6,
-	fill_ratio = 0.01,
+	fill_ratio = 0.002,
 	biomes = {"savanna"},
 	decoration = "mapgen:dead_grass_1",
 	height = 1,
 })
+minetest.register_decoration({
+	deco_type = "simple",
+	place_on = {"default:dirt_with_dry_grass"},
+	sidelen = 6,
+	fill_ratio = 0.002,
+	biomes = {"savanna"},
+	decoration = "mapgen:dead_grass_2",
+	height = 1,
+})
+minetest.register_decoration({
+	deco_type = "simple",
+	place_on = {"default:dirt_with_dry_grass"},
+	sidelen = 6,
+	fill_ratio = 0.002,
+	biomes = {"savanna"},
+	decoration = "mapgen:dead_grass_3",
+	height = 1,
+})
+minetest.register_decoration({
+	deco_type = "simple",
+	place_on = {"default:dirt_with_dry_grass"},
+	sidelen = 6,
+	fill_ratio = 0.002,
+	biomes = {"savanna"},
+	decoration = "mapgen:dead_grass_4",
+	height = 1,
+})
+minetest.register_decoration({
+	deco_type = "simple",
+	place_on = {"default:dirt_with_dry_grass"},
+	sidelen = 6,
+	fill_ratio = 0.002,
+	biomes = {"savanna"},
+	decoration = "mapgen:dead_grass_5",
+	height = 1,
+})
+
 
 minetest.register_decoration({
 	deco_type = "simple",
@@ -2189,6 +2246,14 @@ minetest.register_decoration({
 	register_jungle_grass_decoration(0,      0.06,  3)
 	register_jungle_grass_decoration(0.015,  0.045, 2)
 	register_jungle_grass_decoration(0.03,   0.03,  1)
+	
+	--Snow grasses
+	
+	register_snow_grass_decoration(-0.03,  0.09,  5)
+	register_snow_grass_decoration(-0.015, 0.075, 4)
+	register_snow_grass_decoration(0,      0.06,  3)
+	register_snow_grass_decoration(0.015,  0.045, 2)
+	register_snow_grass_decoration(0.03,   0.03,  1)
 	
 	--Swamp grasses
 	

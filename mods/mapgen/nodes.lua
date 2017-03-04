@@ -767,6 +767,101 @@ minetest.register_node("mapgen:jungle_grass_5", {
 	end,
 })
 
+minetest.register_node("mapgen:snow_grass_1", {
+	description = "Frozen Grass",
+	drawtype = "plantlike",
+	tiles = {"mapgen_snow_grass_1.png"},
+	paramtype = "light",
+	is_ground_content = false,
+	buildable_to = true, 
+	sunlight_propagates = true,
+	drop = "mapgen:snow_grass_5",
+	inventory_image = "mapgen_snow_grass_1.png",
+	groups = {snappy=3, flammable=1, attatched_node=1, flora=1, not_in_creative_inventory=1},
+	sounds = default.node_sound_leaves_defaults(),
+	selection_box = {
+		type = "fixed",
+		fixed = {-0.5, -0.5, -0.5, 0.5, 0, 0.5}
+	},
+	walkable = false,
+})
+
+minetest.register_node("mapgen:snow_grass_2", {
+	description = "Frozen Grass",
+	drawtype = "plantlike",
+	tiles = {"mapgen_snow_grass_2.png"},
+	paramtype = "light",
+	is_ground_content = false,
+	buildable_to = true, 
+	sunlight_propagates = true,
+	drop = "mapgen:snow_grass_5",
+	inventory_image = "mapgen_snow_grass_2.png",
+	groups = {snappy=3, flammable=1, attatched_node=1, flora=1, not_in_creative_inventory=1},
+	sounds = default.node_sound_leaves_defaults(),
+	selection_box = {
+		type = "fixed",
+		fixed = {-0.5, -0.5, -0.5, 0.5, 0, 0.5}
+	},
+	walkable = false,
+})
+
+minetest.register_node("mapgen:snow_grass_3", {
+	description = "Frozen Grass",
+	drawtype = "plantlike",
+	tiles = {"mapgen_snow_grass_3.png"},
+	paramtype = "light",
+	is_ground_content = false,
+	buildable_to = true, 
+	sunlight_propagates = true,
+	drop = "mapgen:snow_grass_5",
+	inventory_image = "mapgen_snow_grass_3.png",
+	groups = {snappy=3, flammable=1, attatched_node=1, flora=1, not_in_creative_inventory=1},
+	sounds = default.node_sound_leaves_defaults(),
+	selection_box = {
+		type = "fixed",
+		fixed = {-0.5, -0.5, -0.5, 0.5, 0, 0.5}
+	},
+	walkable = false,
+})
+
+minetest.register_node("mapgen:snow_grass_4", {
+	description = "Frozen Grass",
+	drawtype = "plantlike",
+	tiles = {"mapgen_snow_grass_1.png"},
+	paramtype = "light",
+	is_ground_content = false,
+	buildable_to = true, 
+	sunlight_propagates = true,
+	drop = "mapgen:snow_grass_5",
+	inventory_image = "mapgen_snow_grass_4.png",
+	groups = {snappy=3, flammable=1, attatched_node=1, flora=1, not_in_creative_inventory=1},
+	sounds = default.node_sound_leaves_defaults(),
+	selection_box = {
+		type = "fixed",
+		fixed = {-0.5, -0.5, -0.5, 0.5, 0, 0.5}
+	},
+	walkable = false,
+})
+
+minetest.register_node("mapgen:snow_grass_5", {
+	description = "Frozen Grass",
+	drawtype = "plantlike",
+	tiles = {"mapgen_snow_grass_5.png"},
+	paramtype = "light",
+	is_ground_content = false,
+	buildable_to = true, 
+	sunlight_propagates = true,
+	drop = "mapgen:snow_grass_5",
+	inventory_image = "mapgen_snow_grass_5.png",
+	groups = {snappy=3, flammable=1, attatched_node=1, flora=1},
+	sounds = default.node_sound_leaves_defaults(),
+	selection_box = {
+		type = "fixed",
+		fixed = {-0.5, -0.5, -0.5, 0.5, 0, 0.5}
+	},
+	walkable = false,
+})
+
 minetest.register_node("mapgen:swamp_grass_1", {
 	description = "swamp Grass",
 	drawtype = "plantlike",
