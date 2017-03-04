@@ -2092,6 +2092,16 @@ minetest.register_decoration({
 	
 minetest.register_decoration({
 	deco_type = "simple",
+	place_on = "mapgen:dirt_with_leafygrass",
+	sidelen = 16,
+	fill_ratio = 0.03,
+	biomes = {"coniferous_forest_tall",},
+	decoration = "mapgen:fern",
+	height = 1,
+})
+	
+minetest.register_decoration({
+	deco_type = "simple",
 	place_on = "mapgen:dirt_with_junglegrass",
 	sidelen = 16,
 	fill_ratio = 0.03,
