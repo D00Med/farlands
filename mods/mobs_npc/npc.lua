@@ -42,7 +42,7 @@ mobs:register_mob("mobs_npc:npc", {
 	water_damage = 0,
 	lava_damage = 2,
 	light_damage = 0,
-	follow = {"farming:bread", "mobs:meat", "default:diamond"},
+	follow = {"farming:bread", "mobs:meat", "default:diamond", "villages:colony_deed"},
 	view_range = 15,
 	owner = "",
 	order = "follow",
@@ -59,15 +59,41 @@ mobs:register_mob("mobs_npc:npc", {
 		punch_start = 200,
 		punch_end = 219,
 	},
+	do_custom = function(self)
+		local pos = self.object:getpos()
+		pos.y = pos.y + 0.5
+			
+		local beds = minetest.find_node_near(pos, 5, {"beds:bed_bottom", "beds:bed", "beds:bed_yellow_bottom", "beds:bed_brown_bottom", "beds:bed_magenta_bottom", "beds:bed_blue_bottom", "beds:bed_orange_bottom", "beds:bed_cyan_bottom", "beds:bed_pink_bottom", "beds:bed_black_bottom", "beds:bed_white_bottom", "beds:bed_darkgrey_bottom", "beds:bed_grey_bottom", "beds:bed_green_bottom", "beds:bed_purple_bottom", "beds:bed_darkgreen_bottom"})
+		local light_sources = minetest.find_node_near(pos, 5, {"default:torch", "default:torch_wall", "default:torch_floor", "default:torch_ceiling", "mese_lamp"})
+		local doors = minetest.find_node_near(pos, 5, {"doors:door_wood_a", "doors:door_glass_a", "doors:door_obsidian_glass_a"})
+		local is_owned = minetest.find_node_near(pos, 5, {"villages:colony_deed", "villages:hobo_deed",})
+		local node_below = minetest.get_node({x=pos.x, y=pos.y-2.2, z=pos.z})
+		local good_floor = minetest.get_item_group("node_below", "crumbly")
+		if beds ~= nil and light_sources ~= nil and doors ~= nil and is_owned == nil and self.home == nil and good_floor == 0 then	
+			self.home = pos
+			minetest.set_node({x=pos.x, y=pos.y-1.5, z=pos.z}, {name="villages:colony_deed", param2=1})
+			minetest.chat_send_all("NPC home set!")
+		end
+		
+		local game_time = minetest.get_timeofday()*24000
+		
+		if game_time >= 6000 and game_time <= 18000 then
+		
+		else
+			
+		end
+		
+	end,
 	on_rightclick = function(self, clicker)
 
+		local item = clicker:get_wielded_item()
+		local name = clicker:get_player_name()
+		
 		-- feed to heal npc
 		if mobs:feed_tame(self, clicker, 8, true, true) then
 			return
 		end
 
-		local item = clicker:get_wielded_item()
-		local name = clicker:get_player_name()
 
 		-- right clicking with gold lump drops random item from mobs.npc_drops
 		if item:get_name() == "default:gold_lump" then
@@ -89,6 +115,7 @@ mobs:register_mob("mobs_npc:npc", {
 
 			return
 		end
+
 
 		-- capture npc with net or lasso
 		mobs:capture_mob(self, clicker, 0, 5, 80, false, nil)

@@ -9,9 +9,10 @@ minetest.register_node("villages:colony_deed", {
 	paramtype2 = "wallmounted",
 	selection_box = {type="wallmounted",},
 	groups = {crumbly=1, dig_immediate=3, oddly_breakable_by_hand=1},
-	on_construct = function(pos, node, placer)
-		local meta = minetest.get_meta(pos)
-	end,
+	--on_construct = function(pos, node, placer)
+		--local meta = minetest.get_meta(pos)
+	--end,
+	walkable = false,
 })
 
 minetest.register_node("villages:hobo_deed", {
@@ -24,13 +25,14 @@ minetest.register_node("villages:hobo_deed", {
 	paramtype2 = "wallmounted",
 	selection_box = {type="wallmounted",},
 	groups = {crumbly=1, dig_immediate=3, oddly_breakable_by_hand=1,},
-	on_construct = function(pos, node, placer)
-		local meta = minetest.get_meta(pos)
-		meta:set_string("position", "not in building")
-		meta:set_string("population", "0")
-	end,
+	--on_construct = function(pos, node, placer)
+		--local meta = minetest.get_meta(pos)
+		--meta:set_string("position", "not in building")
+		--meta:set_string("population", "0")
+	--end,
+	walkable = false,
 })
-
+--[[
 minetest.register_abm({
 	nodenames = {"villages:colony_deed"},
 	interval = 5,
@@ -57,3 +59,4 @@ minetest.register_abm({
 		end
 	end
 })
+]]
