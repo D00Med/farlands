@@ -337,7 +337,7 @@ minetest.register_node("default:dirt", {
 })
 
 minetest.register_node("default:dirt_with_grass", {
-	description = "Dirt with Grass",
+	description = "Grass",
 	tiles = {"default_grass.png", "default_dirt.png",
 		{name = "default_dirt.png^default_grass_side.png",
 			tileable_vertical = false}},
@@ -361,7 +361,7 @@ minetest.register_node("default:dirt_with_grass_footsteps", {
 })
 
 minetest.register_node("default:dirt_with_dry_grass", {
-	description = "Dirt with Dry Grass",
+	description = "Dry Grass",
 	tiles = {"default_dry_grass.png",
 		"default_dirt.png",
 		{name = "default_dirt.png^default_dry_grass_side.png",
@@ -374,7 +374,7 @@ minetest.register_node("default:dirt_with_dry_grass", {
 })
 
 minetest.register_node("default:dirt_with_snow", {
-	description = "Dirt with Snow",
+	description = "Snowy Grass",
 	tiles = {"default_snow.png", "default_dirt.png",
 		{name = "default_dirt.png^default_snow_side.png",
 			tileable_vertical = false}},
@@ -398,14 +398,6 @@ minetest.register_node("default:desert_sand", {
 	groups = {crumbly = 3, falling_node = 1, sand = 1},
 	sounds = default.node_sound_sand_defaults(),
 })
-
-minetest.register_node("default:silver_sand", {
-	description = "Silver Sand",
-	tiles = {"default_silver_sand.png"},
-	groups = {crumbly = 3, falling_node = 1, sand = 1},
-	sounds = default.node_sound_sand_defaults(),
-})
-
 
 minetest.register_node("default:gravel", {
 	description = "Gravel",

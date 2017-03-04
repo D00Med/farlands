@@ -235,14 +235,14 @@ minetest.register_node("mapgen:dry_dirt", {
 })
 
 minetest.register_node("mapgen:dirt_with_junglegrass", {
-	description = "Dirt With Jungle Grass",
+	description = "Jungle Grass",
 	tiles = {"mapgen_jungle_grass.png", "default_dirt.png", "default_dirt.png^mapgen_jungle_grass_side.png"},
 	groups = {crumbly = 1, oddly_breakable_by_hand = 1},
 	sounds = default.node_sound_dirt_defaults()
 })
 
-minetest.register_node("mapgen:dirt_with_bambooforest_grass", {
-	description = "Dirt With Bambooforest Grass",
+minetest.register_node("mapgen:dirt_with_dark_grass", {
+	description = "Dark Grass",
 	tiles = {"mapgen_bambooforest_grass.png", "default_dirt.png", "default_dirt.png^mapgen_bambooforest_grass_side.png"},
 	groups = {crumbly = 1, oddly_breakable_by_hand = 1},
 	sounds = default.node_sound_dirt_defaults()
@@ -1071,7 +1071,6 @@ minetest.register_node("mapgen:dead_grass_1", {
 	is_ground_content = false,
 	buildable_to = true, 
 	sunlight_propagates = true,
-	drop = "mapgen:jungle_grass_5",
 	inventory_image = "mapgen_jungle_grass_1.png",
 	groups = {snappy=3, flammable=1, attatched_node=1, flora=1, not_in_creative_inventory=1},
 	sounds = default.node_sound_leaves_defaults(),
@@ -1090,7 +1089,6 @@ minetest.register_node("mapgen:dead_grass_2", {
 	is_ground_content = false,
 	buildable_to = true, 
 	sunlight_propagates = true,
-	drop = "mapgen:jungle_grass_5",
 	inventory_image = "mapgen_jungle_grass_2.png",
 	groups = {snappy=3, flammable=1, attatched_node=1, flora=1, not_in_creative_inventory=1},
 	sounds = default.node_sound_leaves_defaults(),
@@ -1109,7 +1107,6 @@ minetest.register_node("mapgen:dead_grass_3", {
 	is_ground_content = false,
 	buildable_to = true, 
 	sunlight_propagates = true,
-	drop = "mapgen:jungle_grass_5",
 	inventory_image = "mapgen_jungle_grass_3.png",
 	groups = {snappy=3, flammable=1, attatched_node=1, flora=1, not_in_creative_inventory=1},
 	sounds = default.node_sound_leaves_defaults(),
@@ -1128,7 +1125,6 @@ minetest.register_node("mapgen:dead_grass_4", {
 	is_ground_content = false,
 	buildable_to = true, 
 	sunlight_propagates = true,
-	drop = "mapgen:jungle_grass_5",
 	inventory_image = "mapgen_jungle_grass_4.png",
 	groups = {snappy=3, flammable=1, attatched_node=1, flora=1, not_in_creative_inventory=1},
 	sounds = default.node_sound_leaves_defaults(),
@@ -1147,7 +1143,6 @@ minetest.register_node("mapgen:dead_grass_5", {
 	is_ground_content = false,
 	buildable_to = true, 
 	sunlight_propagates = true,
-	drop = "mapgen:jungle_grass_5",
 	inventory_image = "mapgen_dead_grass_4.png",
 	groups = {snappy=3, flammable=1, attatched_node=1, flora=1},
 	sounds = default.node_sound_leaves_defaults(),
@@ -1418,7 +1413,7 @@ minetest.register_node("mapgen:savanna_coal", {
 	description = "Savanna Coal",
 	tiles = {"mapgen_savannah_coal.png"},
 	groups = {cracky = 2, ore=1},
-	drop = 'default:coal',
+	drop = 'default:coal_lump',
 	sounds = default.node_sound_stone_defaults()
 })
 
