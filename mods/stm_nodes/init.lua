@@ -195,3 +195,25 @@ minetest.register_node("stm_nodes:pipe", {
 	on_place = minetest.rotate_node,
 	sounds = default.node_sound_metal_defaults()
 })
+
+minetest.register_node("stm_nodes:pipe_lid", {
+	description = "Pipe Cover",
+	tiles = {
+		"stm_nodes_pipe_closed.png",
+		"stm_nodes_pipe_closed.png",
+		"stm_nodes_pipe.png",
+	},
+	drawtype = "nodebox",
+	paramtype = "light",
+	paramtype2 = "facedir",
+	groups = {cracky=1, ventilation=1, pressure=1},
+	on_place = minetest.rotate_node,
+	node_box = {
+		type = "fixed",
+		fixed = {
+			{-0.375, -0.5, -0.4375, 0.375, -0.3125, 0.4375}, -- NodeBox1
+			{-0.4375, -0.5, -0.375, 0.4375, -0.3125, 0.375}, -- NodeBox2
+		}
+	},
+	sounds = default.node_sound_metal_defaults()
+})

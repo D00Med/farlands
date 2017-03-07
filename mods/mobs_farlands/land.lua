@@ -534,3 +534,60 @@ for _, col in pairs(all_colours) do
 	mobs:alias_mob("mobs_animal:sheep_" .. col[1], "mobs_m:sheep_" .. col[1])
 
 end
+
+mobs:register_mob("mobs_m:badger", {
+	type = "animal",
+	passive = false,
+	reach = 1.5,
+	damage = 1,
+	attack_type = "dogfight",
+	hp_min = 12,
+	hp_max = 22,
+	armor = 120,
+	collisionbox = {-0.5, 0, -0.5, 0.5, 0.7, 0.5},
+	visual = "mesh",
+	mesh = "badger.b3d",
+	textures = {
+		{"mobs_badger.png"},
+	},
+	blood_texture = "mobs_blood.png",
+	--visual_size = {x=2, y=2},
+	makes_footstep_sound = true,
+	walk_velocity = 1,
+	run_velocity = 1.5,
+	jump = 1,
+	jump_height = 5,
+	drops = {
+		{name = "mobs:meat_raw", chance = 2, min = 1, max = 1},
+	},
+	water_damage = 0,
+	lava_damage = 2,
+	light_damage = 0,
+	fall_damage = 1,
+	fear_height = 4,
+	follow = {"mobs:meat_raw"},
+	view_range = 7,
+	animation = {
+		speed_normal = 20,
+		speed_run = 25,
+		walk_start = 25,
+		walk_end = 45,
+		stand_start = 75,
+		stand_end = 95,
+		run_start = 50,
+		run_end = 70,
+
+	},
+	on_rightclick = function(self, clicker)
+
+		if mobs:feed_tame(self, clicker, 8, true, true) then
+			return
+		end
+
+		mobs:capture_mob(self, clicker, 0, 5, 50, false, nil)
+	end,
+})
+
+
+mobs:register_egg("mobs_m:badger", "Badger", "default_obsidian.png", 1)
+mobs:register_spawn("mobs_m:badger", {"default:dirt_with_grass",}, 5, 0, 7000, 0, 11000)

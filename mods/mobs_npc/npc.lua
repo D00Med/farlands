@@ -18,13 +18,12 @@ mobs:register_mob("mobs_npc:npc", {
 	hp_min = 10,
 	hp_max = 20,
 	armor = 100,
-	collisionbox = {-0.35,-1.0,-0.35, 0.35,0.8,0.35},
+	collisionbox = {-0.35,0,-0.35, 0.35,1.8,0.35},
 	visual = "mesh",
-	mesh = "character.b3d",
+	mesh = "villager.b3d",
 	drawtype = "front",
 	textures = {
-		{"mobs_npc.png"},
-		{"mobs_npc2.png"}, -- female by nuttmeg20
+		{"mobs_villager.png"},
 	},
 	child_texture = {
 		{"mobs_npc_baby.png"}, -- derpy baby by AmirDerAssassine
@@ -48,16 +47,16 @@ mobs:register_mob("mobs_npc:npc", {
 	order = "follow",
 	fear_height = 3,
 	animation = {
-		speed_normal = 30,
-		speed_run = 30,
-		stand_start = 0,
-		stand_end = 79,
-		walk_start = 168,
-		walk_end = 187,
-		run_start = 168,
-		run_end = 187,
-		punch_start = 200,
-		punch_end = 219,
+		speed_normal = 18,
+		speed_run = 27,
+		stand_start = 1,
+		stand_end = 20,
+		walk_start = 25,
+		walk_end = 45,
+		run_start = 70,
+		run_end = 90,
+		punch_start = 45,
+		punch_end = 65,
 	},
 	do_custom = function(self)
 		local pos = self.object:getpos()

@@ -50,7 +50,7 @@ end
 
 --function nodes
 
-mapgen.register_fern("fern", "Fern", "1")
+mapgen.register_fern("fern", "Ladyfern", "1")
 mapgen.register_fern("fern2", "Broad Leaf Fern", "2")
 
 mapgen.register_shrub("shrub", "Hog Peanut", "1")
