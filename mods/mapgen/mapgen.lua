@@ -267,8 +267,8 @@
 		y_max           = 31000,
 		noise_threshold = 0.0,
 		noise_params    = {
-			offset = 0.5,
-			scale = 0.2,
+			offset = 0.55,
+			scale = 0.3,
 			spread = {x = 5, y = 5, z = 5},
 			seed = 766,
 			octaves = 1,
