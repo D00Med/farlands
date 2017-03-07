@@ -1658,7 +1658,7 @@ end
 	
 	minetest.register_decoration({
 		deco_type = "schematic",
-		place_on = {"mapgen:dirt_with_leafygrass"},
+		place_on = {"mapgen:dirt_with_leafygrass", "mapgen:coarse_dirt"},
 		sidelen = 16,
 		noise_params = {
 			offset = 0.036,
