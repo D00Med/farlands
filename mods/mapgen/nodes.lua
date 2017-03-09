@@ -461,6 +461,27 @@ minetest.register_node("mapgen:tallgrass", {
 	walkable = false,
 })
 
+minetest.register_node("mapgen:giantgrass", {
+	description = "Giant Grass",
+	drawtype = "plantlike",
+	tiles = {"mapgen_giantgrass.png"},
+	paramtype = "light",
+	is_ground_content = false,
+	buildable_to = true, 
+	sunlight_propagates = true,
+	inventory_image = "mapgen_giantgrass.png",
+	visual_scale = 2,
+	wield_scale = {x=0.5, y=0.5, z=0.5},
+	groups = {snappy=3, flammable=1, attatched_node=1, flora=1},
+	sounds = default.node_sound_leaves_defaults(),
+	selection_box = {
+		type = "fixed",
+		fixed = {-0.5, -0.5, -0.5, 0.5, 0, 0.5}
+	},
+	walkable = false,
+})
+
+
 minetest.register_node("mapgen:bananaplant", {
 	description = "Banana Plant",
 	drawtype = "plantlike",
