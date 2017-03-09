@@ -292,6 +292,51 @@ mobs:register_spawn("mobs_m:pirana", {"default:river_water_source",}, 20, 10, 15
 
 mobs:register_egg("mobs_m:pirana", "Pirana", "default_dirt.png", 1)
 
+mobs:register_mob("mobs_m:dearcmhara", {
+	type = "monster",
+	passive = false,
+	reach = 1.5,
+	damage = 2,
+	attack_type = "dogfight",
+	hp_min = 30,
+	hp_max = 40,
+	armor = 100,
+	collisionbox = {-0.7, -0.1, -0.7, 0.7, 1.3, 0.7},
+	visual = "mesh",
+	mesh = "dearcmhara.b3d",
+	textures = {
+		{"mobs_dearcmhara.png"},
+	},
+	makes_footstep_sound = false,
+	view_range = 10,
+	walk_velocity = 3,
+	run_velocity = 6,
+	runaway = true,
+	runaway_timer = 40,
+	jump = 0,
+	jump_height = 0,
+	stepheight = 1.5,
+	fly = true,
+	fly_in = "default:water_source",
+	fall_damage = 0,
+	fall_speed = 0,
+	water_damage = 0,
+	lava_damage = 1,
+	light_damage = 0,
+	animation = {
+		speed_normal = 15,
+		speed_run = 20,
+		stand_start = 6,
+		stand_end = 24,
+		walk_start = 6,
+		walk_end = 24,
+		run_start = 31,
+		run_end = 49,
+	},
+})
+
+mobs:register_egg("mobs_m:dearcmhara", "Dearcmhara", "wool_cyan.png", 1)
+
 minetest.register_craftitem("mobs_m:smallfish_raw", {
 	description = "Small Raw Fish",
 	inventory_image = "mobs_smallfish_item.png",
