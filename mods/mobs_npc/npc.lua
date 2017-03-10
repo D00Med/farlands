@@ -66,11 +66,24 @@ mobs:register_mob("mobs_npc:npc", {
 		local light_sources = minetest.find_node_near(pos, 5, {"default:torch", "default:torch_wall", "default:torch_floor", "default:torch_ceiling", "mese_lamp"})
 		local doors = minetest.find_node_near(pos, 5, {"doors:door_wood_a", "doors:door_glass_a", "doors:door_obsidian_glass_a"})
 		local is_owned = minetest.find_node_near(pos, 5, {"villages:colony_deed", "villages:hobo_deed",})
-		local node_below = minetest.get_node({x=pos.x, y=pos.y-2.2, z=pos.z})
-		local good_floor = minetest.get_item_group("node_below", "crumbly")
+		local node_below = minetest.get_node({x=pos.x, y=pos.y-2.2, z=pos.z}).name
+		local good_floor = minetest.get_item_group(node_below, "crumbly")
 		if beds ~= nil and light_sources ~= nil and doors ~= nil and is_owned == nil and self.home == nil and good_floor == 0 then	
 			self.home = pos
-			minetest.set_node({x=pos.x, y=pos.y-1.5, z=pos.z}, {name="villages:colony_deed", param2=1})
+			local free_space = minetest.find_node_near(light_sources, 1, {"air"})
+			local pos1 = free_space
+			if minetest.get_node({x=pos1.x-1, y=pos1.y, z=pos1.z}).name ~= "air" then
+			minetest.set_node({x=pos1.x, y=pos1.y, z=pos1.z}, {name="villages:colony_deed", param2=3})
+			minetest.chat_send_all("param3")
+			elseif minetest.get_node({x=pos1.x+1, y=pos1.y, z=pos1.z}).name ~= "air" then
+			minetest.set_node({x=pos1.x, y=pos1.y, z=pos1.z}, {name="villages:colony_deed", param2=2})
+			minetest.chat_send_all("param2")
+			elseif minetest.get_node({x=pos1.x, y=pos1.y, z=pos1.z-1}).name ~= "air" then
+			minetest.set_node({x=pos1.x, y=pos1.y, z=pos1.z}, {name="villages:colony_deed", param2=5})
+			minetest.chat_send_all("param5")
+			elseif minetest.get_node({x=pos1.x, y=pos1.y, z=pos1.z+1}).name ~= "air" then
+			minetest.set_node({x=pos1.x, y=pos1.y, z=pos1.z}, {name="villages:colony_deed", param2=4})
+			end
 			minetest.chat_send_all("NPC home set!")
 		end
 		

@@ -2084,6 +2084,18 @@ minetest.register_decoration({
 	height = 1,
 })
 
+	--giant grass
+
+	minetest.register_decoration({
+	deco_type = "simple",
+	place_on = "mapgen:dirt_with_swampgrass",
+	sidelen = 16,
+	fill_ratio = 0.1,
+	biomes = {"swamp",},
+	decoration = "mapgen:giantgrass",
+	height = 1,
+})
+
 --pineapple
 minetest.register_decoration({
 	deco_type = "simple",
@@ -2313,6 +2325,18 @@ minetest.register_decoration({
 		y_max = 31000,
 		decoration = "default:junglegrass",
 	})
+	
+	--Aloe Vera
+
+minetest.register_decoration({
+	deco_type = "simple",
+	place_on = "default:desert_sand",
+	sidelen = 16,
+	fill_ratio = 0.02,
+	biomes = {"swamp",},
+	decoration = "mapgen:aloe_vera",
+	height = 1,
+})
 
 	-- Dry shrub
 
@@ -2406,7 +2430,7 @@ minetest.register_on_generated(function(minp, maxp)
 	for n = 1, #dirt do
 			local pos = {x = dirt[n].x, y = dirt[n].y, z = dirt[n].z }
 			local name = minetest.get_node({x=pos.x, y=pos.y+1, z=pos.z}).name
-				if name == "mapgen:lavender_flower" or name == "mapgen:swamp_grass_1" or name == "mapgen:swamp_grass_2" or name == "mapgen:swamp_grass_3" or name == "mapgen:swamp_grass_4" or name == "mapgen:swamp_grass_5" then
+				if name == "mapgen:lavender_flower" or name == "mapgen:swamp_grass_1" or name == "mapgen:giantgrass" or name == "mapgen:swamp_grass_2" or name == "mapgen:swamp_grass_3" or name == "mapgen:swamp_grass_4" or name == "mapgen:swamp_grass_5" then
 					minetest.env:remove_node({x=pos.x, y=pos.y+1, z=pos.z})
 				end
 	end
