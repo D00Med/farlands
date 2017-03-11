@@ -1,4 +1,47 @@
 
+
+minetest.register_node("stm_nodes:hopper", {
+	description = "Hopper",
+	tiles = {
+		"stm_nodes_hopper_top.png",
+		"stm_nodes_hopper_bottom.png",
+		"stm_nodes_hopper.png",
+		"stm_nodes_hopper.png",
+		"stm_nodes_hopper.png",
+		"stm_nodes_hopper.png"
+	},
+	drawtype = "nodebox",
+	paramtype = "light",
+	node_box = {
+		type = "fixed",
+		fixed = {
+			{-0.3125, -0.1875, -0.3125, 0.3125, -0.125, 0.3125}, -- NodeBox14
+			{-0.125, -0.5, -0.125, 0.125, -0.1875, 0.125}, -- NodeBox15
+			{0.3125, -0.125, -0.375, 0.375, 0.5, 0.375}, -- NodeBox16
+			{-0.375, -0.125, -0.375, -0.3125, 0.5, 0.375}, -- NodeBox17
+			{-0.375, -0.125, -0.375, 0.375, 0.5, -0.3125}, -- NodeBox18
+			{-0.375, -0.125, 0.3125, 0.375, 0.5, 0.375}, -- NodeBox19
+			{-0.1875, -0.25, -0.1875, 0.1875, -0.1875, 0.1875}, -- NodeBox20
+		}
+	},
+	collision_box = {
+		type = "fixed",
+		fixed = {
+			{0.3125, -0.125, -0.375, 0.375, 0.5, 0.375}, -- NodeBox16
+			{-0.375, -0.125, -0.375, -0.3125, 0.5, 0.375}, -- NodeBox17
+			{-0.375, -0.125, -0.375, 0.375, 0.5, -0.3125}, -- NodeBox18
+			{-0.375, -0.125, 0.3125, 0.375, 0.5, 0.375}, -- NodeBox19
+		}
+	},
+	groups = {cracky=1},
+	sounds = default.node_sound_metal_defaults(),
+	on_rightclick = function(pos, node, clicker, itemstack)
+		minetest.add_item({x=pos.x, y=pos.y+0.5, z=pos.z}, itemstack)
+		itemstack:clear()
+	end
+})
+
+
 minetest.register_node("stm_nodes:chimney", {
 	description = "Tin Chimney",
 	tiles = {
@@ -216,4 +259,123 @@ minetest.register_node("stm_nodes:pipe_lid", {
 		}
 	},
 	sounds = default.node_sound_metal_defaults()
+})
+
+minetest.register_node("stm_nodes:graveller", {
+	description = "Stone Grinder",
+	tiles = {
+		"stm_nodes_graveller_top.png",
+		"stm_nodes_graveller_top.png",
+		"stm_nodes_graveller.png",
+		"stm_nodes_graveller.png",
+		"stm_nodes_graveller_front.png",
+		"stm_nodes_graveller_front.png",
+	},
+	paramtype = "light",
+	paramtype2 = "facedir",
+	groups = {cracky = 1, machine = 1},
+	on_punch = function(pos, node)
+		minetest.set_node(pos, {name="stm_nodes:graveller_active", param2=node.param2})
+	end,
+	sounds = default.node_sound_metal_defaults()
+})
+
+minetest.register_node("stm_nodes:graveller_active", {
+	tiles = {
+		"stm_nodes_graveller_top.png",
+		"stm_nodes_graveller_top.png",
+		"stm_nodes_graveller_active.png",
+		"stm_nodes_graveller_active.png",
+		"stm_nodes_graveller_back.png",
+		"stm_nodes_graveller_back.png",
+	},
+	paramtype = "light",
+	paramtype2 = "facedir",
+	groups = {cracky = 1, machine = 1},
+	drop = "stm_nodes:graveller",
+	on_punch = function(pos, node)
+		minetest.set_node(pos, {name="stm_nodes:graveller", param2=node.param2})
+	end,
+	sounds = default.node_sound_metal_defaults()
+})
+
+minetest.register_node("stm_nodes:output_tray", {
+	description = "Collection Tray",
+	tiles = {
+		"stm_nodes_tin.png",
+	},
+	drawtype = "nodebox",
+	paramtype = "light",
+	node_box = {
+		type = "fixed",
+		fixed = {
+			{-0.5, -0.5, -0.5, 0.5, -0.4375, 0.5}, -- NodeBox21
+			{-0.5, -0.5, 0.4375, 0.5, -0.125, 0.5}, -- NodeBox22
+			{-0.5, -0.5, -0.5, 0.5, -0.125, -0.4375}, -- NodeBox23
+			{0.4375, -0.5, -0.5, 0.5, -0.125, 0.5}, -- NodeBox24
+			{-0.5, -0.5, -0.5, -0.4375, -0.125, 0.5}, -- NodeBox25
+		}
+	},
+	groups = {cracky=1},
+	sounds = default.node_sound_metal_defaults()
+})
+
+minetest.register_abm({
+	nodenames = {"stm_nodes:graveller_active"},
+	interval = 1,
+	chance = 1,
+	action = function(pos, node)
+		local input_pos = {x=pos.x, y=pos.y+1, z=pos.z}
+		local output_pos = minetest.find_node_near(pos, 1.5, {"stm_nodes:output_tray"})
+		local n = {
+			{x=pos.x+1, y=pos.y, z=pos.z},
+			{x=pos.x-1, y=pos.y, z=pos.z},
+			{x=pos.x, y=pos.y, z=pos.z+1},
+			{x=pos.x, y=pos.y, z=pos.z-1},
+			{x=pos.x, y=pos.y+1, z=pos.z},
+		}
+		local vent_pos = nil
+		
+		for _, position in ipairs(n) do
+			local item = minetest.get_node(position).name
+			if minetest.get_item_group(item, "ventilation") ~= 0 then
+				vent_pos = position
+			end
+		end
+		if vent_pos ~= nil then
+		if minetest.get_node(input_pos).name == "stm_nodes:hopper" then
+			local objects = minetest.get_objects_inside_radius(input_pos, 0.5)
+			for _, obj in ipairs(objects) do
+				if obj:get_luaentity().name == "__builtin:item" then
+					local input_item = obj:get_luaentity().itemstring
+					local itemname = ItemStack(input_item):get_name()
+					local itemcount = ItemStack(input_item):get_count()
+					if minetest.get_item_group(itemname, "cracky") ~= 0 then
+						obj:remove()
+						minetest.add_particlespawner({
+							amount = 4,
+							time = itemcount/2,
+							minpos = {x=vent_pos.x-0.1, y=vent_pos.y+0.8, z=vent_pos.z-0.1},
+							maxpos = {x=vent_pos.x+0.1, y=vent_pos.y+1, z=vent_pos.z+0.1},
+							minvel = {x=-0.2, y=1, z=-0.2},
+							maxvel = {x=0.2, y=3, z=0.2},
+							minacc = {x=0, y=0.1, z=0},
+							maxacc = {x=0, y=0.2, z=0},
+							minexptime = 1,
+							maxexptime = 2,
+							minsize = 5,
+							maxsize = 10,
+							collisiondetection = false,
+							vertical = false,
+							texture = "stm_nodes_steam.png",
+						})
+						minetest.after(itemcount/2, function()
+						minetest.add_item(output_pos, "default:gravel "..itemcount)
+						end)
+					end					
+				end
+			end
+		end
+		end
+	end
 })

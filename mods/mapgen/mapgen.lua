@@ -2119,6 +2119,19 @@ minetest.register_decoration({
 	height = 1,
 })
 
+	--purple allium
+	
+	
+minetest.register_decoration({
+	deco_type = "simple",
+	place_on = "mapgen:dirt_with_leafygrass",
+	sidelen = 16,
+	fill_ratio = 0.02,
+	biomes = {"coniferous_forest_tall",},
+	decoration = "mapgen:purple_allium",
+	height = 1,
+})
+
 	--ferns
 	
 minetest.register_decoration({

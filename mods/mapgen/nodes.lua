@@ -59,6 +59,63 @@ mapgen.register_shrub("shrub", "Hog Peanut", "1")
 
 --plants (PLNT01)
 
+minetest.register_node("mapgen:red_ground_flower", {
+	description = "Red Ground flower",
+	drawtype = "nodebox",
+	paramtype = "light",
+	paramtype2 = "facedir",
+	tiles = {
+		"mapgen_red_ground_flower.png",
+	},
+	node_box = {
+		type = "fixed",
+		fixed = {
+		{-0.5,-0.5,-0.5,0.5,-0.49,0.5}
+		}
+	},
+	buildable_to = true,
+	groups = {snappy = 1, oddly_breakable_by_hand = 1, flammable = 1, dig_immediate = 1, flower = 1},
+	sounds = default.node_sound_leaves_defaults()
+})
+
+minetest.register_node("mapgen:pink_ground_flower", {
+	description = "Pink Ground flower",
+	drawtype = "nodebox",
+	paramtype = "light",
+	paramtype2 = "facedir",
+	tiles = {
+		"mapgen_pink_ground_flower.png",
+	},
+	node_box = {
+		type = "fixed",
+		fixed = {
+		{-0.5,-0.5,-0.5,0.5,-0.49,0.5}
+		}
+	},
+	buildable_to = true,
+	groups = {snappy = 1, oddly_breakable_by_hand = 1, flammable = 1, dig_immediate = 1, flower = 1},
+	sounds = default.node_sound_leaves_defaults()
+})
+
+minetest.register_node("mapgen:blue_ground_flower", {
+	description = "Blue Ground Flower",
+	drawtype = "nodebox",
+	paramtype = "light",
+	paramtype2 = "facedir",
+	tiles = {
+		"mapgen_blue_ground_flower.png",
+	},
+	node_box = {
+		type = "fixed",
+		fixed = {
+		{-0.5,-0.5,-0.5,0.5,-0.49,0.5}
+		}
+	},
+	buildable_to = true,
+	groups = {snappy = 1, oddly_breakable_by_hand = 1, flammable = 1, dig_immediate = 1, flower = 1},
+	sounds = default.node_sound_leaves_defaults()
+})
+
 minetest.register_node("mapgen:dicksonia", {
 	description = "Dicksonia",
 	drawtype = "mesh",
