@@ -1941,7 +1941,7 @@ minetest.register_decoration({
 		sidelen = 16,
 		noise_params = {
 			offset = 0.01,
-			scale = -0.015,
+			scale = 0.001,
 			spread = {x = 250, y = 250, z = 250},
 			seed = 2,
 			octaves = 3,
@@ -2076,10 +2076,10 @@ minetest.register_decoration({
 	
 	minetest.register_decoration({
 	deco_type = "simple",
-	place_on = "default:dirt_with_grass", "mapgen:dirt_with_leafygrass",
+	place_on = "default:dirt_with_grass", "mapgen:dirt_with_leafygrass", "mapgen:dirt_with_swampgrass",
 	sidelen = 16,
 	fill_ratio = 0.01,
-	biomes = {"grassland", "deciduous_forest", "coniferous_forest_tall"},
+	biomes = {"grassland", "deciduous_forest", "coniferous_forest_tall", "swamp"},
 	decoration = "mapgen:tallgrass",
 	height = 1,
 })
