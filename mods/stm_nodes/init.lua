@@ -1,4 +1,29 @@
 
+minetest.register_node("stm_nodes:reactor", {
+	description = "Reactor (for testing)",
+	tiles = {
+		"stm_nodes_reactor.png",
+	},
+	on_rightclick = function(pos, node)
+		minetest.set_node(pos, {name="stm_nodes:reactor_active"})
+	end,
+	groups = {cracky=1, electric=1},
+	sounds = default.node_sound_metal_defaults(),
+})
+
+minetest.register_node("stm_nodes:reactor_active", {
+	tiles = {
+		"stm_nodes_reactor_active.png",
+	},
+	on_rightclick = function(pos, node)
+		minetest.set_node(pos, {name="stm_nodes:reactor"})
+	end,
+	paramtype = "light",
+	light_source = 10,
+	drop = "stm_nodes:reactor",
+	groups = {cracky=1, electric=1},
+	sounds = default.node_sound_metal_defaults(),
+})
 
 minetest.register_node("stm_nodes:hopper", {
 	description = "Hopper",
@@ -234,9 +259,62 @@ minetest.register_node("stm_nodes:pipe", {
 		"stm_nodes_pipe.png",
 	},
 	paramtype2 = "facedir",
+	groups = {cracky=1, ventilation=1,},
+	on_place = minetest.rotate_node,
+	sounds = default.node_sound_metal_defaults()
+})
+
+minetest.register_node("stm_nodes:pipe_active", {
+	tiles = {
+		"stm_nodes_pipe_top.png",
+		"stm_nodes_pipe_top.png",
+		"stm_nodes_pipe.png",
+	},
+	paramtype2 = "facedir",
+	drop = "stm_nodes:pipe",
 	groups = {cracky=1, ventilation=1, pressure=1},
 	on_place = minetest.rotate_node,
 	sounds = default.node_sound_metal_defaults()
+})
+
+minetest.register_abm({
+	nodenames = {"stm_nodes:pipe"},
+	interval = 1,
+	chance = 1,
+	action = function(pos, node)
+		local steam_source = minetest.find_node_near(pos, 1, {"default:furnace_active2", "stm_nodes:pipe_active", "stm_nodes:reactor_active"})
+			if steam_source then
+				minetest.set_node(pos, {name="stm_nodes:pipe_active", param2=node.param2})
+			end
+		local boiler_output = minetest.find_node_near(pos, 1, {"stm_nodes:boiler_output"})
+		if boiler_output and minetest.get_item_group(minetest.get_node({x=boiler_output.x, y=boiler_output.y-1, z=boiler_output.z}).name, "boiler") ~= 0 then
+			local heat = minetest.find_node_near({x=boiler_output.x, y=boiler_output.y-2, z=boiler_output.z}, 1, {"stm_nodes:furnace_active", "default:furnace_active2"})
+			if heat then
+				minetest.set_node(pos, {name="stm_nodes:pipe_active", param2=node.param2})
+			end
+		end
+	end
+})
+
+minetest.register_abm({
+	nodenames = {"stm_nodes:pipe_active"},
+	interval = 5,
+	chance = 1,
+	action = function(pos, node)
+				minetest.set_node(pos, {name="stm_nodes:pipe", param2=node.param2})
+	end
+})
+
+minetest.register_abm({
+	nodenames = {"stm_nodes:pipe"},
+	interval = 1,
+	chance = 1,
+	action = function(pos, node)
+		local furnace = minetest.find_node_near(pos, 1, {"default:furnace_active2"})
+			if furnace then
+				minetest.set_node(pos, {name="stm_nodes:pipe_active", param2=node.param2})
+			end
+	end
 })
 
 minetest.register_node("stm_nodes:pipe_lid", {
@@ -325,6 +403,12 @@ minetest.register_abm({
 	interval = 1,
 	chance = 1,
 	action = function(pos, node)
+		local steam_source = minetest.find_node_near(pos, 1, {"stm_nodes:pipe_active", "default:furnace_active2"})
+		
+		if steam_source == nil then
+		return
+		end
+			
 		local input_pos = {x=pos.x, y=pos.y+1, z=pos.z}
 		local output_pos = minetest.find_node_near(pos, 1.5, {"stm_nodes:output_tray"})
 		local n = {
@@ -371,6 +455,7 @@ minetest.register_abm({
 						})
 						minetest.after(itemcount/2, function()
 						minetest.add_item(output_pos, "default:gravel "..itemcount)
+						minetest.sound_play("default_place_node_metal", {pos = pos, gain = 0.3, max_hear_distance = 16})
 						end)
 					end					
 				end
@@ -378,4 +463,651 @@ minetest.register_abm({
 		end
 		end
 	end
+})
+
+minetest.register_node("stm_nodes:compressor_open", {
+	description = "Compressor",
+	tiles = {
+		"stm_nodes_compressor_top.png",
+		"stm_nodes_compressor_bottom.png",
+		"stm_nodes_compressor_side.png",
+		"stm_nodes_compressor_side.png",
+		"stm_nodes_compressor_side.png",
+		"stm_nodes_compressor_side.png"
+	},
+	drawtype = "nodebox",
+	paramtype = "light",
+	node_box = {
+		type = "fixed",
+		fixed = {
+			{-0.4375, -0.5, -0.4375, 0.4375, -0.4375, 0.4375}, -- NodeBox4
+			{-0.5, 0.25, -0.5, 0.5, 0.5, -0.4375}, -- NodeBox5
+			{-0.5, 0.25, 0.4375, 0.5, 0.5, 0.5}, -- NodeBox6
+			{0.4375, 0.25, -0.5, 0.5, 0.5, 0.5}, -- NodeBox7
+			{-0.5, 0.25, -0.5, -0.4375, 0.5, 0.5}, -- NodeBox8
+			{-0.4375, 0.25, -0.4375, 0.4375, 0.4375, 0.4375}, -- NodeBox9
+		}
+	},
+	collision_box = {
+		type = "fixed",
+		fixed = {
+			{-0.4375, -0.5, -0.4375, 0.4375, -0.4375, 0.4375}, -- NodeBox4
+			{-0.5, 0.25, -0.5, 0.5, 0.5, -0.4375}, -- NodeBox5
+			{-0.5, 0.25, 0.4375, 0.5, 0.5, 0.5}, -- NodeBox6
+			{0.4375, 0.25, -0.5, 0.5, 0.5, 0.5}, -- NodeBox7
+			{-0.5, 0.25, -0.5, -0.4375, 0.5, 0.5}, -- NodeBox8
+			--{-0.4375, 0.25, -0.4375, 0.4375, 0.4375, 0.4375}, -- NodeBox9
+		}
+	},
+	groups = {cracky=1},
+	sounds = default.node_sound_metal_defaults()
+})
+
+local compressor_function = function(pos)
+	minetest.after(0.5, function()
+		local steam_source = minetest.find_node_near(pos, 1, "stm_nodes:pipe_active")
+		if steam_source ~= nil then
+			minetest.set_node(pos, {name="stm_nodes:compressor_closed"})
+			minetest.sound_play("default_place_node_metal", {pos = pos, gain = 0.3, max_hear_distance = 16})
+		end
+	end)
+end
+
+local closed_compressor_function = function(pos)
+			local objects = minetest.get_objects_inside_radius(pos, 0.5)
+			for _, obj in ipairs(objects) do
+				if obj:get_luaentity().name == "__builtin:item" then
+					local input_item = obj:get_luaentity().itemstring
+					local itemname = ItemStack(input_item):get_name()
+					local itemcount = ItemStack(input_item):get_count()
+					if itemname == "default:papyrus" then
+						obj:remove()
+						minetest.after(1, function()
+						minetest.add_item(pos, "default:paper "..itemcount)
+						end)
+					end
+					if itemname == "default:gravel" then
+						obj:remove()
+						minetest.after(1, function()
+						minetest.add_item(pos, "default:stone "..itemcount)
+						end)
+					end
+					if itemname == "default:dirt" then
+						obj:remove()
+						minetest.after(1, function()
+						minetest.add_item(pos, "mapgen:coarse_dirt "..itemcount)
+						end)
+					end				
+				end
+			end
+			minetest.after(1, function()
+				minetest.set_node(pos, {name="stm_nodes:compressor_open"})
+				minetest.sound_play("default_metal_footstep", {pos = pos, gain = 0.3, max_hear_distance = 16})
+			end)
+end
+
+minetest.register_node("stm_nodes:compressor_closed", {
+	tiles = {
+		"stm_nodes_compressor_top.png",
+		"stm_nodes_compressor_bottom.png",
+		"stm_nodes_compressor_side.png",
+		"stm_nodes_compressor_side.png",
+		"stm_nodes_compressor_side.png",
+		"stm_nodes_compressor_side.png"
+	},
+	drawtype = "nodebox",
+	paramtype = "light",
+	node_box = {
+		type = "fixed",
+		fixed = {
+			{-0.4375, -0.5, -0.4375, 0.4375, -0.4375, 0.4375}, -- NodeBox4
+			{-0.5, 0.25, -0.5, 0.5, 0.5, -0.4375}, -- NodeBox5
+			{-0.5, 0.25, 0.4375, 0.5, 0.5, 0.5}, -- NodeBox6
+			{0.4375, 0.25, -0.5, 0.5, 0.5, 0.5}, -- NodeBox7
+			{-0.5, 0.25, -0.5, -0.4375, 0.5, 0.5}, -- NodeBox8
+			{-0.4375, -0.4375, -0.4375, 0.4375, 0.4375, 0.4375}, -- NodeBox9
+		}
+	},
+	collision_box = {
+		type = "fixed",
+		fixed = {
+			{-0.4375, -0.5, -0.4375, 0.4375, -0.4375, 0.4375}, -- NodeBox4
+			{-0.5, 0.25, -0.5, 0.5, 0.5, -0.4375}, -- NodeBox5
+			{-0.5, 0.25, 0.4375, 0.5, 0.5, 0.5}, -- NodeBox6
+			{0.4375, 0.25, -0.5, 0.5, 0.5, 0.5}, -- NodeBox7
+			{-0.5, 0.25, -0.5, -0.4375, 0.5, 0.5}, -- NodeBox8
+			--{-0.4375, 0.25, -0.4375, 0.4375, 0.4375, 0.4375}, -- NodeBox9
+		}
+	},
+	groups = {cracky=1},
+	sounds = default.node_sound_metal_defaults(),
+})
+
+minetest.register_node("stm_nodes:lever_open", {
+	tiles = {
+		"stm_nodes_lever_top.png",
+		"stm_nodes_lever_top.png",
+		"stm_nodes_lever_side.png",
+		"stm_nodes_lever_side.png^[transformFX",
+		"stm_nodes_lever_back.png",
+		"stm_nodes_lever_front.png"
+	},
+	drawtype = "nodebox",
+	paramtype = "light",
+	paramtype2 = "facedir",
+	node_box = {
+		type = "fixed",
+		fixed = {
+			{-0.0625, -0.125, -0.0625, 0.0625, 0, 0.5}, -- NodeBox1
+			{-0.0625, -0.125, -0.0625, 0.0625, 0.4375, 0.0625}, -- NodeBox2
+			{-0.125, 0.125, -0.125, 0.125, 0.375, -0.0625}, -- NodeBox3
+			{-0.0625, -0.125, -0.125, 0.0625, 0.3125, -0.0625}, -- NodeBox4
+		}
+	},
+	on_rightclick = function(pos, node)
+		minetest.set_node(pos, {name="stm_nodes:lever_closed", param2=node.param2})
+	end,
+	groups = {cracky=1,},
+	sounds = default.node_sound_metal_defaults(),
+})
+
+minetest.register_abm({
+	nodenames = {"stm_nodes:lever_open"},
+	interval = 1,
+	chance = 1,
+	action = function(pos, node)
+		local compressor = minetest.find_node_near(pos, 2, {"stm_nodes:compressor_open"})
+			if compressor then
+				compressor_function(compressor)
+			end
+		local compressor_closed = minetest.find_node_near(pos, 2, {"stm_nodes:compressor_closed"})
+			if compressor_closed then
+				closed_compressor_function(compressor_closed)
+			end
+	end
+})
+
+minetest.register_node("stm_nodes:lever_closed", {
+	description = "Lever",
+	tiles = {
+		"stm_nodes_lever_top.png",
+		"stm_nodes_lever_top.png",
+		"stm_nodes_lever_side.png",
+		"stm_nodes_lever_side.png^[transformFX",
+		"stm_nodes_lever_back.png",
+		"stm_nodes_lever_front2.png"
+	},
+	drawtype = "nodebox",
+	paramtype = "light",
+	paramtype2 = "facedir",
+	node_box = {
+		type = "fixed",
+		fixed = {
+			{-0.0625, -0.125, -0.0625, 0.0625, 0, 0.5}, -- NodeBox1
+			{-0.0625, -0.125, -0.0625, 0.0625, 0.4375, 0.0625}, -- NodeBox2
+			{-0.125, 0.125, -0.125, 0.125, 0.375, -0.0625}, -- NodeBox3
+			{-0.0625, 0.1875, -0.125, 0.375, 0.3125, -0.0625}, -- NodeBox4
+		}
+	},
+	on_rightclick = function(pos, node)
+		minetest.set_node(pos, {name="stm_nodes:lever_open", param2=node.param2})
+	end,
+	groups = {cracky=1,},
+	sounds = default.node_sound_metal_defaults(),
+})
+
+minetest.register_node("stm_nodes:cable", {
+	description = "Floor Cable",
+	tiles = {
+		"stm_nodes_cable.png",
+	},
+	drawtype = "nodebox",
+	paramtype = "light",
+	paramtype2 = "facedir",
+	connects_to = {"group:cable", "group:electric"},
+	node_box = {
+		type = "connected",
+		fixed = {
+			{-0.0625, -0.5, -0.0625, 0.0625, -0.375, 0.0625}, -- NodeBox1
+		},
+		connect_front = {
+			{-0.0625, -0.5, -0.5, 0.0625, -0.375, 0.0625}, -- NodeBox1
+		},
+		connect_back = {
+			{-0.0625, -0.5, -0.0625, 0.0625, -0.375, 0.5}, -- NodeBox1
+		},
+		connect_left = {
+			{-0.5, -0.5, -0.0625, 0.0625, -0.375, 0.0625}, -- NodeBox1
+		},
+		connect_right = {
+			{-0.0625, -0.5, -0.0625, 0.5, -0.375, 0.0625}, -- NodeBox1
+		},
+		connect_top = {
+			{-0.0625, -0.5, -0.0625, 0.0625, 0.5, 0.0625}, -- NodeBox1
+		}
+	},
+	groups = {cracky=1, cable=1},
+	sounds = default.node_sound_defaults()
+})
+
+minetest.register_node("stm_nodes:cable_active", {
+	tiles = {
+		"stm_nodes_cable.png",
+	},
+	drawtype = "nodebox",
+	paramtype = "light",
+	paramtype2 = "facedir",
+	connects_to = {"group:cable", "group:electric"},
+	node_box = {
+		type = "connected",
+		fixed = {
+			{-0.0625, -0.5, -0.0625, 0.0625, -0.375, 0.0625}, -- NodeBox1
+		},
+		connect_front = {
+			{-0.0625, -0.5, -0.5, 0.0625, -0.375, 0.0625}, -- NodeBox1
+		},
+		connect_back = {
+			{-0.0625, -0.5, -0.0625, 0.0625, -0.375, 0.5}, -- NodeBox1
+		},
+		connect_left = {
+			{-0.5, -0.5, -0.0625, 0.0625, -0.375, 0.0625}, -- NodeBox1
+		},
+		connect_right = {
+			{-0.0625, -0.5, -0.0625, 0.5, -0.375, 0.0625}, -- NodeBox1
+		},
+		connect_top = {
+			{-0.0625, -0.5, -0.0625, 0.0625, 0.5, 0.0625}, -- NodeBox1
+		}
+	},
+	drop = "stm_nodes:cable",
+	groups = {cracky=1, cable=1, electric=2},
+	sounds = default.node_sound_defaults()
+})
+
+minetest.register_node("stm_nodes:cable_ceiling", {
+	description = "Ceiling Cable",
+	tiles = {
+		"stm_nodes_cable.png",
+	},
+	drawtype = "nodebox",
+	paramtype = "light",
+	paramtype2 = "facedir",
+	connects_to = {"group:cable", "group:electric"},
+	node_box = {
+		type = "connected",
+		fixed = {
+			{-0.0625, 0.375, -0.0625, 0.0625, 0.5, 0.0625}, -- NodeBox1
+		},
+		connect_front = {
+			{-0.0625, 0.375, -0.5, 0.0625, 0.5, 0.0625}, -- NodeBox1
+		},
+		connect_back = {
+			{-0.0625, 0.375, -0.0625, 0.0625, 0.5, 0.5}, -- NodeBox1
+		},
+		connect_left = {
+			{-0.5, 0.375, -0.0625, 0.0625, 0.5, 0.0625}, -- NodeBox1
+		},
+		connect_right = {
+			{-0.0625, 0.375, -0.0625, 0.5, 0.5, 0.0625}, -- NodeBox1
+		},
+		connect_bottom = {
+			{-0.0625, -0.5, -0.0625, 0.0625, 0.5, 0.0625}, -- NodeBox1
+		}
+	},
+	groups = {cracky=1, cable=1},
+	sounds = default.node_sound_defaults()
+})
+
+minetest.register_node("stm_nodes:cable_ceiling_active", {
+	tiles = {
+		"stm_nodes_cable.png",
+	},
+	drawtype = "nodebox",
+	paramtype = "light",
+	paramtype2 = "facedir",
+	connects_to = {"group:cable", "group:electric"},
+	node_box = {
+		type = "connected",
+		fixed = {
+			{-0.0625, 0.375, -0.0625, 0.0625, 0.5, 0.0625}, -- NodeBox1
+		},
+		connect_front = {
+			{-0.0625, 0.375, -0.5, 0.0625, 0.5, 0.0625}, -- NodeBox1
+		},
+		connect_back = {
+			{-0.0625, 0.375, -0.0625, 0.0625, 0.5, 0.5}, -- NodeBox1
+		},
+		connect_left = {
+			{-0.5, 0.375, -0.0625, 0.0625, 0.5, 0.0625}, -- NodeBox1
+		},
+		connect_right = {
+			{-0.0625, 0.375, -0.0625, 0.5, 0.5, 0.0625}, -- NodeBox1
+		},
+		connect_bottom = {
+			{-0.0625, -0.5, -0.0625, 0.0625, 0.5, 0.0625}, -- NodeBox1
+		}
+	},
+	drop = "stm_nodes:cable_ceiling",
+	groups = {cracky=1, cable=1, electric=2},
+	sounds = default.node_sound_defaults()
+})
+
+
+minetest.register_abm({
+	nodenames = {"stm_nodes:cable"},
+	interval = 1,
+	chance = 1,
+	action = function(pos, node)
+		local power = minetest.find_node_near(pos, 1, {"stm_nodes:reactor_active", "stm_nodes:cable_active", "stm_nodes:cable_ceiling_active"})
+			if power then
+				minetest.set_node(pos, {name="stm_nodes:cable_active", param2=node.param2})
+			end
+	end
+})
+
+minetest.register_abm({
+	nodenames = {"stm_nodes:cable_active"},
+	interval = 5,
+	chance = 1,
+	action = function(pos, node)
+		minetest.set_node(pos, {name="stm_nodes:cable", param2=node.param2})
+	end
+})
+
+minetest.register_abm({
+	nodenames = {"stm_nodes:cable_ceiling"},
+	interval = 1,
+	chance = 1,
+	action = function(pos, node)
+		local power = minetest.find_node_near(pos, 1, {"stm_nodes:reactor_active", "stm_nodes:cable_active", "stm_nodes:cable_ceiling_active"})
+			if power then
+				minetest.set_node(pos, {name="stm_nodes:cable_ceiling_active", param2=node.param2})
+			end
+	end
+})
+
+minetest.register_abm({
+	nodenames = {"stm_nodes:cable_ceiling_active"},
+	interval = 5,
+	chance = 1,
+	action = function(pos, node)
+		minetest.set_node(pos, {name="stm_nodes:cable_ceiling", param2=node.param2})
+	end
+})
+
+minetest.register_node("stm_nodes:big_vent", {
+	description = "Fanned Vent",
+	tiles = {
+		"stm_nodes_block.png",
+		"stm_nodes_block.png",
+		"stm_nodes_block.png",
+		"stm_nodes_block.png",
+		"stm_nodes_block.png",
+		"stm_nodes_vent.png"
+	},
+	drawtype = "nodebox",
+	paramtype = "light",
+	paramtype2 = "facedir",
+	node_box = {
+		type = "fixed",
+		fixed = {
+			{-0.5, -0.4375, 0, 0.5, 0.4375, 0.5}, -- NodeBox1
+			{-0.4375, -0.5, 0, 0.4375, 0.5, 0.5}, -- NodeBox2
+			{-0.5, -0.4375, -0.0625, -0.4375, 0.4375, 0}, -- NodeBox3
+			{0.4375, -0.4375, -0.0625, 0.5, 0.4375, 0}, -- NodeBox5
+			{-0.4375, 0.4375, -0.0625, 0.4375, 0.5, 0}, -- NodeBox6
+			{-0.4375, -0.5, -0.0625, 0.4375, -0.4375, 0}, -- NodeBox7
+		}
+	},
+	groups = {cracky=1, ventilation=1},
+	sounds = default.node_sound_metal_defaults()
+})
+
+minetest.register_node("stm_nodes:coal_feed", {
+	description = "Coal Feeder",
+	tiles = {
+		"stm_nodes_block.png",
+	},
+	drawtype = "nodebox",
+	paramtype = "light",
+	node_box = {
+		type = "fixed",
+		fixed = {
+			{-0.5, -0.5, -0.5, 0.5, 0.5, -0.4375}, -- NodeBox16
+			{-0.5, -0.5, 0.4375, 0.5, 0.5, 0.5}, -- NodeBox17
+			{-0.5, -0.5, -0.5, -0.4375, 0.5, 0.5}, -- NodeBox18
+			{0.4375, -0.5, -0.5, 0.5, 0.5, 0.5}, -- NodeBox19
+			{-0.5, -0.5, -0.5, 0.5, -0.4375, 0.5}, -- NodeBox20
+		}
+	},
+	groups = {cracky=1},
+	sounds = default.node_sound_metal_defaults()
+})
+
+local check_for_coal = function(pos)
+	local node = minetest.get_node(pos)
+	local meta = minetest.get_meta(pos)
+	local objects = minetest.get_objects_inside_radius(pos, 0.5)
+	local item_taken = false
+	for _, obj in ipairs(objects) do
+		if not obj:is_player() and obj:get_luaentity().name == "__builtin:item" and not item_taken then		
+			local itemstring = obj:get_luaentity().itemstring
+			local item = ItemStack(itemstring):get_name()
+			local count = ItemStack(itemstring):get_count()
+			local new_count = count-1
+			if ItemStack(itemstring):get_count() < 1 then
+				obj:remove()
+			end
+			if item == "default:coal_lump" or item == "default:coalblock" then
+				obj:get_luaentity().itemstring = item.." "..new_count
+				item_taken = true
+			end
+		end
+	end
+	return item_taken
+end
+
+minetest.register_node("stm_nodes:machinery_base", {
+	description = "Machinery Base Block",
+	tiles = {
+	"stm_nodes_block.png",
+	},
+	groups = {cracky=1},
+	sounds = default.node_sound_metal_defaults()
+})
+
+minetest.register_node("stm_nodes:furnace_active", {
+	tiles = {{
+		name = "stm_nodes_furnace_core2.png",
+		animation = {type = "vertical_frames", aspect_w = 16, aspect_h = 16, length = 0.5},
+	}},
+	paramtype = "light",
+	light_source = 12,
+	groups = {cracky=1},
+	damage_per_second = 1,
+	drop = "stm_nodes:furnace",
+	sounds = default.node_sound_metal_defaults()
+})
+
+minetest.register_node("stm_nodes:furnace", {
+	description = "Industrial Furnace Core",
+	tiles = {
+	"stm_nodes_furnace_core.png",
+	},
+	groups = {cracky=1},
+	sounds = default.node_sound_metal_defaults()
+})
+
+minetest.register_abm({
+	nodenames = {"stm_nodes:furnace"},
+	interval = 3,
+	chance = 1,
+	action = function(pos, node)
+		local ventilation = minetest.find_node_near(pos, 1, {"stm_nodes:chimney", "stm_nodes:chimney2", "stm_nodes:big_vent"})
+		local fuel = minetest.find_node_near(pos, 1, {"stm_nodes:coal_feed"})
+		if ventilation and fuel and check_for_coal(fuel) then
+		minetest.set_node(pos, {name="stm_nodes:furnace_active", param2=node.param2})
+		minetest.add_particlespawner({
+			amount = 4,
+			time = 2,
+			minpos = {x=ventilation.x-0.1, y=ventilation.y+0.8, z=ventilation.z-0.1},
+			maxpos = {x=ventilation.x+0.1, y=ventilation.y+1, z=ventilation.z+0.1},
+			minvel = {x=-0.2, y=1, z=-0.2},
+			maxvel = {x=0.2, y=3, z=0.2},
+			minacc = {x=0, y=0.1, z=0},
+			maxacc = {x=0, y=0.2, z=0},
+			minexptime = 1,
+			maxexptime = 2,
+			minsize = 5,
+			maxsize = 10,
+			collisiondetection = false,
+			vertical = false,
+			texture = "stm_nodes_steam.png",
+		})
+		end
+	end
+})
+
+minetest.register_abm({
+	nodenames = {"stm_nodes:furnace_active"},
+	interval = 15,
+	chance = 1,
+	action = function(pos, node)
+		local ventilation = minetest.find_node_near(pos, 1, {"stm_nodes:chimney", "stm_nodes:chimney2", "stm_nodes:big_vent"})
+		local base = minetest.find_node_near({x=pos.x, y=pos.y-1, z=pos.z}, 1, {"stm_nodes:machinery_base", "stm_nodes:stand", "stm_nodes:stand2", "default:steelblock", "default:bronzeblock"})
+		local fuel = minetest.find_node_near(pos, 1, {"stm_nodes:coal_feed"})
+		if ventilation then
+		minetest.add_particlespawner({
+			amount = 4,
+			time = 2,
+			minpos = {x=ventilation.x-0.1, y=ventilation.y+0.8, z=ventilation.z-0.1},
+			maxpos = {x=ventilation.x+0.1, y=ventilation.y+1, z=ventilation.z+0.1},
+			minvel = {x=-0.2, y=1, z=-0.2},
+			maxvel = {x=0.2, y=3, z=0.2},
+			minacc = {x=0, y=0.1, z=0},
+			maxacc = {x=0, y=0.2, z=0},
+			minexptime = 1,
+			maxexptime = 2,
+			minsize = 5,
+			maxsize = 10,
+			collisiondetection = false,
+			vertical = false,
+			texture = "stm_nodes_steam.png",
+		})
+		end
+		if not base or not ventilation then
+			tnt.boom(pos, {damage_radius=3,radius=2,ignore_protection=false, disable_playerdamage=false})
+		end
+		if not ventilation or not fuel or not check_for_coal(fuel) then
+			minetest.set_node(pos, {name="stm_nodes:furnace", param2=node.param2})
+		end
+	end
+})
+
+minetest.register_node("stm_nodes:large_boiler_base", {
+	description = "Large Boiler",
+	tiles = {
+		"stm_nodes_lboiler_bottom.png",
+		"stm_nodes_lboiler_bottom.png",
+		"stm_nodes_lboiler.png^[transformFY",
+	},
+	drawtype = "nodebox",
+	paramtype = "light",
+	node_box = {
+		type = "fixed",
+		fixed = {
+			{-0.375, -0.5, -0.375, 0.375, -0.4375, 0.375}, -- NodeBox7
+			{-0.375, -0.4375, -0.4375, 0.375, -0.375, 0.4375}, -- NodeBox8
+			{-0.4375, -0.4375, -0.375, 0.4375, -0.375, 0.375}, -- NodeBox9
+			{-0.5, -0.375, -0.4375, 0.5, 0.5, 0.4375}, -- NodeBox10
+			{-0.4375, -0.375, -0.5, 0.4375, 0.5, 0.5}, -- NodeBox11
+		}
+	},
+	groups = {boiler=1, cracky=1,},
+	sounds = default.node_sound_metal_defaults(),
+	on_construct = function(pos, node)
+		local above = {x=pos.x, y=pos.y+1, z=pos.z}
+		if minetest.get_node(above).name ~= "air" then
+			minetest.add_item(pos, "stm_nodes:large_boiler_base")
+			minetest.remove_node(pos)
+		else
+			minetest.set_node(above, {name="stm_nodes:large_boiler_top"})
+		end
+	end,
+	on_destruct = function(pos, oldnode)
+		local above = {x=pos.x, y=pos.y+1, z=pos.z}
+		if minetest.get_node(above).name == "stm_nodes:large_boiler_top" then
+			minetest.remove_node(above)
+		end
+	end,
+})
+
+minetest.register_node("stm_nodes:large_boiler_top", {
+	tiles = {
+		"stm_nodes_lboiler_top.png",
+		"stm_nodes_lboiler_top.png",
+		"stm_nodes_lboiler.png",
+	},
+	drawtype = "nodebox",
+	paramtype = "light",
+	node_box = {
+		type = "fixed",
+		fixed = {
+			{-0.375, 0.4375, -0.375, 0.375, 0.5, 0.375}, -- NodeBox7
+			{-0.375, 0.375, -0.4375, 0.375, 0.4375, 0.4375}, -- NodeBox8
+			{-0.4375, 0.375, -0.375, 0.4375, 0.4375, 0.375}, -- NodeBox9
+			{-0.5, -0.5, -0.4375, 0.5, 0.375, 0.4375}, -- NodeBox10
+			{-0.4375, -0.5, -0.5, 0.4375, 0.375, 0.5}, -- NodeBox11
+		}
+	},
+	drop = "stm_nodes:large_boiler_base",
+	groups = {cracky=1, boiler=1},
+	sounds = default.node_sound_metal_defaults(),
+	on_destruct = function(pos, oldnode)
+		local under = {x=pos.x, y=pos.y-1, z=pos.z}
+		minetest.after(0.4, function()
+		if minetest.get_node(under).name == "stm_nodes:large_boiler_base" then
+			minetest.remove_node(under)
+		end
+		end)
+	end,
+})
+
+minetest.register_node("stm_nodes:boiler_output", {
+	description = "Boiler Output",
+	tiles = {
+		"stm_nodes_graveller_front.png",
+		"stm_nodes_graveller_front.png",
+		"stm_nodes_boiler_output.png",
+	},
+	drawtype = "nodebox",
+	paramtype = "light",
+	node_box = {
+		type = "fixed",
+		fixed = {
+			{-0.5, -0.3125, -0.5, 0.5, 0.5, 0.5}, -- NodeBox1
+			{-0.125, -0.5, -0.125, 0.125, -0.3125, 0.125}, -- NodeBox2
+		}
+	},
+	groups = {cracky=1, pressure=2},
+	sounds = default.node_sound_metal_defaults()
+})
+
+minetest.register_node("stm_nodes:plate", {
+	description = "Metal Plate",
+	tiles = {
+		"stm_nodes_plate.png",
+	},
+	drawtype = "nodebox",
+	paramtype = "light",
+	paramtype2 = "facedir",
+	node_box = {
+		type = "fixed",
+		fixed = {
+			{-0.5, -0.5, -0.5, 0.5, -0.4375, 0.5}, -- NodeBox1
+		}
+	},
+	groups = {cracky=1},
+	sounds = default.node_sound_metal_defaults(),
+	on_place = minetest.rotate_node
 })
