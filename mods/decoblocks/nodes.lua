@@ -680,3 +680,17 @@ minetest.register_node("decoblocks:framed_glass", {
 	groups = {cracky = 3, oddly_breakable_by_hand = 3},
 	sounds = default.node_sound_glass_defaults(),
 })
+
+minetest.register_node("decoblocks:granite", {
+	description = "Granite",
+	tiles = {"decoblocks_granite.png"},
+	groups = {crumbly = 3, soil = 1},
+	sounds = default.node_sound_dirt_defaults(),
+})
+
+minetest.register_node("decoblocks:granite_brown", {
+	description = "Brown Granite",
+	tiles = {"decoblocks_granite_brown.png"},
+	groups = {crumbly = 3, soil = 1},
+	sounds = default.node_sound_dirt_defaults(),
+})
