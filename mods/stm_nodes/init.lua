@@ -798,7 +798,7 @@ minetest.register_abm({
 	interval = 1,
 	chance = 1,
 	action = function(pos, node)
-		local power = minetest.find_node_near(pos, 1, {"stm_nodes:reactor_active", "stm_nodes:cable_active", "stm_nodes:cable_ceiling_active"})
+		local power = minetest.find_node_near(pos, 1, {"stm_nodes:reactor_active", "stm_nodes:cable_active", "stm_nodes:cable_ceiling_active", "stm_nodes:generator_active"})
 			if power then
 				minetest.set_node(pos, {name="stm_nodes:cable_active", param2=node.param2})
 			end
@@ -819,7 +819,7 @@ minetest.register_abm({
 	interval = 1,
 	chance = 1,
 	action = function(pos, node)
-		local power = minetest.find_node_near(pos, 1, {"stm_nodes:reactor_active", "stm_nodes:cable_active", "stm_nodes:cable_ceiling_active"})
+		local power = minetest.find_node_near(pos, 1, {"stm_nodes:reactor_active", "stm_nodes:cable_active", "stm_nodes:cable_ceiling_active", "stm_nodes:generator_active"})
 			if power then
 				minetest.set_node(pos, {name="stm_nodes:cable_ceiling_active", param2=node.param2})
 			end
@@ -1110,4 +1110,182 @@ minetest.register_node("stm_nodes:plate", {
 	groups = {cracky=1},
 	sounds = default.node_sound_metal_defaults(),
 	on_place = minetest.rotate_node
+})
+
+minetest.register_node("stm_nodes:motor", {
+	description = "Motor",
+	tiles = {
+		"stm_nodes_motor_top.png",
+		"stm_nodes_motor_top.png",
+		"stm_nodes_motor_side.png",
+		"stm_nodes_motor_side.png",
+		"stm_nodes_motor_front.png",
+		"stm_nodes_motor_front.png"
+	},
+	drawtype = "nodebox",
+	paramtype = "light",
+	paramtype2 = "facedir",
+	node_box = {
+		type = "fixed",
+		fixed = {
+			{-0.375, -0.5, -0.5, 0.375, 0.375, 0.5}, -- NodeBox1
+			{-0.4375, -0.4375, -0.5, 0.4375, 0.3125, 0.5}, -- NodeBox2
+		}
+	},
+	groups = {cracky=1, electric=1},
+	sounds = default.node_sound_defaults()	
+})
+
+minetest.register_node("stm_nodes:generator_core", {
+	description = "Generator core",
+	tiles = {
+		"stm_nodes_generator_top.png",
+		"stm_nodes_generator_bottom.png",
+		"stm_nodes_generator_side.png",
+		"stm_nodes_generator_side.png",
+		"stm_nodes_generator_front.png",
+		"stm_nodes_generator_back.png"
+	},
+	groups = {cracky=1, electric=1},
+	sounds = default.node_sound_metal_defaults()	
+})
+
+minetest.register_node("stm_nodes:generator_active", {
+	tiles = {
+		"stm_nodes_generator_top.png",
+		"stm_nodes_generator_bottom.png",
+		"stm_nodes_generator_side.png",
+		"stm_nodes_generator_side.png",
+		"stm_nodes_generator_front.png",
+		"stm_nodes_generator_back.png"
+	},
+	groups = {cracky=1, electric=2},
+	drop = "stm_nodes:generator_core",
+	sounds = default.node_sound_metal_defaults()	
+})
+
+minetest.register_abm({
+	nodenames = {"stm_nodes:generator_core"},
+	interval = 4,
+	chance = 1,
+	action = function(pos, node)
+		local motor = minetest.find_node_near(pos, 1, {"stm_nodes:motor",})
+		local steam_input = minetest.find_node_near(pos, 1, {"stm_nodes:pipe_active", "stm_nodes_boiler_output"})
+		if motor and steam_input then
+		minetest.set_node(pos, {name="stm_nodes:generator_active", param2=node.param2})
+		minetest.add_particlespawner({
+			amount = 4,
+			time = 2,
+			minpos = {x=motor.x-0.1, y=motor.y+0.8, z=motor.z-0.1},
+			maxpos = {x=motor.x+0.1, y=motor.y+1, z=motor.z+0.1},
+			minvel = {x=-0.2, y=1, z=-0.2},
+			maxvel = {x=0.2, y=3, z=0.2},
+			minacc = {x=0, y=0.1, z=0},
+			maxacc = {x=0, y=0.2, z=0},
+			minexptime = 1,
+			maxexptime = 2,
+			minsize = 2,
+			maxsize = 5,
+			collisiondetection = false,
+			vertical = false,
+			texture = "stm_nodes_steam.png",
+		})
+		end
+	end
+})
+
+minetest.register_abm({
+	nodenames = {"stm_nodes:generator_active"},
+	interval = 4,
+	chance = 1,
+	action = function(pos, node)
+		local motor = minetest.find_node_near(pos, 1, {"stm_nodes:motor",})
+		local steam_input = minetest.find_node_near(pos, 1, {"stm_nodes:pipe_active", "stm_nodes_boiler_output"})
+		minetest.add_particlespawner({
+			amount = 4,
+			time = 2,
+			minpos = {x=motor.x-0.1, y=motor.y+0.8, z=motor.z-0.1},
+			maxpos = {x=motor.x+0.1, y=motor.y+1, z=motor.z+0.1},
+			minvel = {x=-0.2, y=1, z=-0.2},
+			maxvel = {x=0.2, y=3, z=0.2},
+			minacc = {x=0, y=0.1, z=0},
+			maxacc = {x=0, y=0.2, z=0},
+			minexptime = 1,
+			maxexptime = 2,
+			minsize = 2,
+			maxsize = 5,
+			collisiondetection = false,
+			vertical = false,
+			texture = "stm_nodes_steam.png",
+		})
+		if not motor or not steam_input then
+			minetest.after(5, function()
+				if pos ~= nil then
+				local motor = minetest.find_node_near(pos, 1, {"stm_nodes:motor",})
+				local steam_input = minetest.find_node_near(pos, 1, {"stm_nodes:pipe_active", "stm_nodes_boiler_output"})
+				minetest.set_node(pos, {name="stm_nodes:generator_core", param2=node.param2})
+				end
+			end)
+		end
+	end
+})
+
+--electric, right-click activated
+
+minetest.register_node("stm_nodes:bulb", {
+	description = "Lightbulb",
+	tiles = {
+		"stm_nodes_bulb.png",
+	},
+	drawtype = "plantlike",
+	paramtype = "light",
+	--light_source = 5,
+	use_texture_alpha = true,
+	groups = {cracky=1, oddly_breakeable_by_hand=1, electric=1},
+	selection_box = {
+		type = "fixed",
+		fixed = {
+		{-0.2,-0.5,-0.2,0.2,0,0.2}
+		}
+	},
+	collision_box = {
+		type = "fixed",
+		fixed = {
+		{-0.2,-0.5,-0.2,0.2,0,0.2}
+		}
+	},
+	sounds = default.node_sound_glass_defaults(),
+	on_rightclick = function(pos, node)
+		if minetest.find_node_near(pos, 1, {"stm_nodes:cable_active", "stm_nodes:cable_ceiling_active"}) ~= nil then
+		minetest.set_node(pos, {name="stm_nodes:bulb_active", param2=node.param2})
+		end
+	end,
+})
+
+minetest.register_node("stm_nodes:bulb_active", {
+	tiles = {
+		"stm_nodes_bulb_active.png",
+	},
+	drawtype = "plantlike",
+	paramtype = "light",
+	light_source = 8,
+	use_texture_alpha = true,
+	groups = {cracky=1, oddly_breakeable_by_hand=1, electric=1},
+	sounds = default.node_sound_glass_defaults(),
+	on_rightclick = function(pos, node)
+		minetest.set_node(pos, {name="stm_nodes:bulb"})
+	end,
+	selection_box = {
+		type = "fixed",
+		fixed = {
+		{-0.2,-0.5,-0.2,0.2,0,0.2}
+		}
+	},
+	collision_box = {
+		type = "fixed",
+		fixed = {
+		{-0.2,-0.5,-0.2,0.2,0,0.2}
+		}
+	},
+	drop = "stm_nodes:bulb",
 })
