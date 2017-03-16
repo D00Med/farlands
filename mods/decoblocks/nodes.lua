@@ -681,16 +681,16 @@ minetest.register_node("decoblocks:framed_glass", {
 	sounds = default.node_sound_glass_defaults(),
 })
 
-minetest.register_node("decoblocks:granite", {
-	description = "Granite",
-	tiles = {"decoblocks_granite.png"},
-	groups = {crumbly = 3, soil = 1},
-	sounds = default.node_sound_dirt_defaults(),
+minetest.register_node("decoblocks:refined_granite", {
+	description = "Refined Granite",
+	tiles = {"decoblocks_refined_granite.png"},
+	groups = {cracky = 3, stone = 1},
+	sounds = default.node_sound_stone_defaults(),
 })
 
-minetest.register_node("decoblocks:granite_brown", {
-	description = "Brown Granite",
-	tiles = {"decoblocks_granite_brown.png"},
-	groups = {crumbly = 3, soil = 1},
-	sounds = default.node_sound_dirt_defaults(),
+minetest.register_node("decoblocks:refined_granite_brown", {
+	description = "Refined Brown Granite",
+	tiles = {"decoblocks_refined_granite_brown.png"},
+	groups = {cracky = 3, stone = 1},
+	sounds = default.node_sound_stone_defaults(),
 })

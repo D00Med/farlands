@@ -1557,15 +1557,15 @@ minetest.register_node("mapgen:stone_with_bone", {
 minetest.register_node("mapgen:granite", {
 	description = "Granite",
 	tiles = {"mapgen_granite.png"},
-	groups = {cracky = 2},
-	sounds = default.node_sound_stone_defaults()
+	groups = {cracky = 3, stone = 1},
+	sounds = default.node_sound_stone_defaults(),
 })
 
 minetest.register_node("mapgen:granite_brown", {
 	description = "Brown Granite",
 	tiles = {"mapgen_granite_brown.png"},
-	groups = {cracky = 2},
-	sounds = default.node_sound_stone_defaults()
+	groups = {cracky = 3, stone = 1},
+	sounds = default.node_sound_stone_defaults(),
 })
 
 minetest.register_node("mapgen:limestone", {

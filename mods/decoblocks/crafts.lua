@@ -25,3 +25,17 @@ minetest.register_craft({
 		{'group:wood', 'default:paper', 'group:wood'},
 	}
 })
+
+minetest.register_craft({
+	type = "cooking",
+	output = "decoblocks:refined_granite",
+	recipe = "mapgen:granite",
+	cooktime = 5,
+})
+
+minetest.register_craft({
+	type = "cooking",
+	output = "decoblocks:refined_granite_brown",
+	recipe = "mapgen:granite_brown",
+	cooktime = 5,
+})
