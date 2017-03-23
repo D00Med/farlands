@@ -48,6 +48,6 @@ mobs:register_mob("mobs_m:smallbird", {
 	},
 })
 
-mobs:register_spawn("mobs_m:smallbird", {"air",}, 20, 10, 50000, 2, 11000)
+mobs:register_spawn("mobs_m:smallbird", {"air",}, 20, 10, 100000, 2, 11000)
 
 mobs:register_egg("mobs_m:smallbird", "Small Bird", "wool_cyan.png", 1)

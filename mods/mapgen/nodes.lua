@@ -305,6 +305,50 @@ minetest.register_node("mapgen:dirt_with_dark_grass", {
 	sounds = default.node_sound_dirt_defaults()
 })
 
+minetest.register_node("mapgen:lantana", {
+	description = "Lantana",
+	drawtype = "plantlike",
+	tiles = {
+		"mapgen_lantana.png",
+	},
+	groups = {snappy=3, flammable=1, flora=1},
+	sounds = default.node_sound_leaves_defaults(),
+	is_ground_content=true,
+	buildable_to = true, 
+	walkable = false,
+	inventory_image = "mapgen_lantana.png",
+	paramtype = "light",
+	sunlight_propagates=true,
+	selection_box = {
+		type = "fixed",
+		fixed = {-0.5, -0.5, -0.5, 0.5, -0.1, 0.5}
+	},
+})
+
+minetest.register_node("mapgen:creeper", {
+	description = "Creeper",
+	drawtype = "firelike",
+	tiles = {
+		"mapgen_creeper.png",
+		"mapgen_trans.png",
+		"mapgen_creeper.png",
+		"mapgen_creeper.png",
+		"mapgen_creeper.png",
+		"mapgen_creeper.png"
+	},
+	groups = {snappy=3, flammable=1, attatched_node=1, flora=1},
+	sounds = default.node_sound_leaves_defaults(),
+	is_ground_content=true,
+	buildable_to = true, 
+	sunlight_propagates = true,
+	walkable = false,
+	inventory_image = "mapgen_creeper.png",
+	paramtype = "light",
+	selection_box = {
+		type = "fixed",
+		fixed = {-0.5, -0.5, -0.5, 0.5, -0.1, 0.5}
+	},
+})
 
 minetest.register_node("mapgen:cavefern1", {
 	description = "Cave Fern",

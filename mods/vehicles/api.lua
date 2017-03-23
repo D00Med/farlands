@@ -135,6 +135,7 @@ function object_drive(entity, dtime, def)
 	local driving_sound = def.driving_sound or nil
 	local sound_duration = def.sound_duration or 5
 	local extra_yaw = def.extra_yaw or 0
+	local ignore_water = def.ignore_water or false
 	
 	local moving_anim = def.moving_anim
 	local stand_anim = def.stand_anim
@@ -200,7 +201,9 @@ function object_drive(entity, dtime, def)
 	--respond to controls
 	--check for water
 	if node == "default:river_water_source" or node == "default:water_source" or node == "default:river_water_flowing" or node == "default:water_flowing" or node == "mapgen:dirty_water_source" or node == "mapgen:dirty_water_flowing" then
-	entity.on_water = true
+		if not ignore_water then
+			entity.on_water = true
+		end
 	else 
 	entity.on_water = false
 	end
