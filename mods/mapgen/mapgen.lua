@@ -1360,7 +1360,7 @@ end
 local function register_snow_grass_decoration(offset, scale, length)
 	minetest.register_decoration({
 		deco_type = "simple",
-		place_on = {"mapgen:dirt_with_snow",},
+		place_on = {"default:dirt_with_snow",},
 		sidelen = 16,
 		noise_params = {
 			offset = offset,
