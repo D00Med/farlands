@@ -8,6 +8,13 @@ mobs.npc_drops = {
 	"default:shovel_steel", "farming:bread", "bucket:bucket_water"
 }
 
+minetest.register_entity("mobs_npc:dummy", {
+	visual = "sprite",
+	textures = {"xpanes_trans.png"},
+	physical = false,
+	collisionbox = {0, 0, 0, 0.1, 0.1, 0.1},
+	})
+
 mobs:register_mob("mobs_npc:npc", {
 	type = "npc",
 	passive = false,
@@ -24,6 +31,7 @@ mobs:register_mob("mobs_npc:npc", {
 	drawtype = "front",
 	textures = {
 		{"mobs_villager.png"},
+		{"mobs_villager2.png"},
 	},
 	child_texture = {
 		{"mobs_npc_baby.png"}, -- derpy baby by AmirDerAssassine
@@ -66,7 +74,7 @@ mobs:register_mob("mobs_npc:npc", {
 		local light_sources = minetest.find_node_near(pos, 5, {"default:torch", "default:torch_wall", "default:torch_floor", "default:torch_ceiling", "mese_lamp"})
 		local doors = minetest.find_node_near(pos, 5, {"doors:door_wood_a", "doors:door_glass_a", "doors:door_obsidian_glass_a"})
 		local is_owned = minetest.find_node_near(pos, 5, {"villages:colony_deed", "villages:hobo_deed",})
-		local node_below = minetest.get_node({x=pos.x, y=pos.y-2.2, z=pos.z}).name
+		local node_below = minetest.get_node({x=pos.x, y=pos.y-1.5, z=pos.z}).name
 		local good_floor = minetest.get_item_group(node_below, "crumbly")
 		if beds ~= nil and light_sources ~= nil and doors ~= nil and is_owned == nil and self.home == nil and good_floor == 0 then	
 			self.home = pos
@@ -89,8 +97,10 @@ mobs:register_mob("mobs_npc:npc", {
 		
 		local game_time = minetest.get_timeofday()*24000
 		
-		if game_time >= 6000 and game_time <= 18000 then
-		
+		if game_time <= 6000 and game_time >= 18000 and self.pos ~= nil and self.home_object == nil then
+			self.home_object = minetest.add_entity(self.home, "mobs_npc:dummy")
+			local home_object = self.home_object
+			self.following = home_object.object
 		else
 			
 		end
