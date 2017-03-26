@@ -298,13 +298,6 @@ minetest.register_node("mapgen:dirt_with_junglegrass", {
 	sounds = default.node_sound_dirt_defaults()
 })
 
-minetest.register_node("mapgen:dirt_with_dark_grass", {
-	description = "Dark Grass",
-	tiles = {"mapgen_bambooforest_grass.png", "default_dirt.png", "default_dirt.png^mapgen_bambooforest_grass_side.png"},
-	groups = {crumbly = 1, oddly_breakable_by_hand = 1},
-	sounds = default.node_sound_dirt_defaults()
-})
-
 minetest.register_node("mapgen:lantana", {
 	description = "Lantana",
 	drawtype = "plantlike",
@@ -1927,4 +1920,65 @@ minetest.register_craft({
 		{'mapgen:tin_ingot', 'mapgen:tin_ingot', 'mapgen:tin_ingot'},
 		{'mapgen:tin_ingot', 'mapgen:tin_ingot', 'mapgen:tin_ingot'},
 	}
+})
+
+minetest.register_node("mapgen:big_mushroom_stem", {
+	description = "Big Mushroom Stem",
+	tiles = {
+		"mapgen_big_mushroom_stem_top.png",
+		"mapgen_big_mushroom_stem_top.png",
+		"mapgen_big_mushroom_stem.png",
+	},
+	groups = {choppy = 1, flammable = 1, oddly_breakable_by_hand=1, wood=1},
+	sounds = default.node_sound_wood_defaults(),
+	paramtype2 = "facedir",
+	on_place = minetest.rotate_node
+})
+
+minetest.register_node("mapgen:big_mushroom_red", {
+	description = "Big Mushroom Red",
+	tiles = {
+		"mapgen_big_mushroom_red.png",
+		"mapgen_big_mushroom_bottom.png",
+		"mapgen_big_mushroom_red.png",
+	},
+	groups = {choppy = 1, flammable = 1, oddly_breakable_by_hand=1, wood=1},
+	sounds = default.node_sound_wood_defaults()
+})
+
+minetest.register_node("mapgen:big_mushroom_brown", {
+	description = "Big Mushroom Brown",
+	tiles = {
+		"mapgen_big_mushroom_brown.png",
+		"mapgen_big_mushroom_bottom.png",
+		"mapgen_big_mushroom_brown.png",
+	},
+	groups = {choppy = 1, flammable = 1, oddly_breakable_by_hand=1, wood=1},
+	sounds = default.node_sound_wood_defaults()
+})
+
+minetest.register_node("mapgen:dirt_with_fungi_coved_grass", {
+	description = "Fungi Coved Grass",
+	tiles = {"mapgen_fungi_coved_grass.png", "default_dirt.png", "default_dirt.png^mapgen_fungi_coved_grass_side.png"},
+	groups = {crumbly = 1, oddly_breakable_by_hand = 1},
+	sounds = default.node_sound_dirt_defaults()
+})
+
+minetest.register_node("mapgen:glowing_mushroom_white", {
+	description = "White Glowing Mushroom",
+	drawtype = "plantlike",
+	tiles = {"mapgen_glowing_mushroom_white.png"},
+	paramtype = "light",
+	light_source = 9,
+	is_ground_content = false,
+	buildable_to = true, 
+	sunlight_propagates = true,
+	inventory_image = "mapgen_glowing_mushroom_white.png",
+	groups = {snappy=3, flammable=1, attatched_node=1, flora=1},
+	sounds = default.node_sound_leaves_defaults(),
+	selection_box = {
+		type = "fixed",
+		fixed = {-0.5, -0.5, -0.5, 0.5, 0, 0.5}
+	},
+	walkable = false,
 })
