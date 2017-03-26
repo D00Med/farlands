@@ -38,7 +38,7 @@ mobs:register_mob("mobs_npc:npc", {
 	},
 	makes_footstep_sound = true,
 	sounds = {},
-	walk_velocity = 2,
+	walk_velocity = 1.5,
 	run_velocity = 3,
 	jump = true,
 	drops = {
@@ -50,7 +50,7 @@ mobs:register_mob("mobs_npc:npc", {
 	lava_damage = 2,
 	light_damage = 0,
 	follow = {"farming:bread", "mobs:meat", "default:diamond", "villages:colony_deed"},
-	view_range = 15,
+	view_range = 20,
 	owner = "",
 	order = "follow",
 	fear_height = 3,
@@ -97,12 +97,12 @@ mobs:register_mob("mobs_npc:npc", {
 		
 		local game_time = minetest.get_timeofday()*24000
 		
-		if game_time <= 6000 and game_time >= 18000 and self.pos ~= nil and self.home_object == nil then
+		if game_time <= 6000 or game_time >= 18000 and self.home ~= nil then
+			if self.home_object == nil then
 			self.home_object = minetest.add_entity(self.home, "mobs_npc:dummy")
+			end
 			local home_object = self.home_object
-			self.following = home_object.object
-		else
-			
+			self.following = home_object
 		end
 		
 	end,

@@ -1289,3 +1289,28 @@ minetest.register_node("stm_nodes:bulb_active", {
 	},
 	drop = "stm_nodes:bulb",
 })
+
+minetest.register_node("stm_nodes:conveyor", {
+	description = "Conveyor Belt",
+	tiles = {
+		"stm_nodes_conveyor.png",
+		"stm_nodes_conveyor.png",
+		"stm_nodes_conveyor_side.png",
+		"stm_nodes_conveyor_side.png",
+		"stm_nodes_conveyor.png",
+		"stm_nodes_conveyor.png"
+	},
+	drawtype = "nodebox",
+	paramtype = "light",
+	paramtype2 = "facedir",
+	node_box = {
+		type = "fixed",
+		fixed = {
+			{-0.4375, -0.5, -0.5, 0.4375, -0.1875, 0.5}, -- NodeBox1
+			{-0.5, -0.5, 0.1875, 0.5, -0.25, 0.4375}, -- NodeBox2
+			{-0.5, -0.5, -0.4375, 0.5, -0.25, -0.1875}, -- NodeBox3
+			{-0.5, -0.5, -0.125, 0.5, -0.25, 0.125}, -- NodeBox4
+		}
+	},
+	groups = {cracky=1,}
+})
