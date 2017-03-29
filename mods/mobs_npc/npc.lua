@@ -98,11 +98,10 @@ mobs:register_mob("mobs_npc:npc", {
 		local game_time = minetest.get_timeofday()*24000
 		
 		if game_time <= 6000 or game_time >= 18000 and self.home ~= nil then
-			if self.home_object == nil then
-			self.home_object = minetest.add_entity(self.home, "mobs_npc:dummy")
+			local pos1 = self.home
+			if math.abs(pos1.x-pos.x) >= 10 or math.abs(pos1.z-pos.z) >= 10 then
+			self.object:setpos({x=pos1.x, y=pos1.y-0.5, z=pos1.z})
 			end
-			local home_object = self.home_object
-			self.following = home_object
 		end
 		
 	end,

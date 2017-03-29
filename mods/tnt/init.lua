@@ -190,29 +190,60 @@ end
 
 local function add_effects(pos, radius, drops)
 	minetest.add_particle({
-		pos = pos,
-		velocity = vector.new(),
+		pos = {x=pos.x, y=pos.y, z=pos.z},
+		velocity = {x=0, y=1, z=0},
 		acceleration = vector.new(),
-		expirationtime = 0.4,
+		expirationtime = 2,
 		size = radius * 10,
 		collisiondetection = false,
 		vertical = false,
-		texture = "tnt_boom.png",
+		texture = "farlands_explosion.png",
+			animation = {type="vertical_frames", aspect_w=32, aspect_h=32, frame_length=1},
+		glow = 10
 	})
+	minetest.after(0.2, function()
+		minetest.add_particle({
+			pos = {x=pos.x-0.5, y=pos.y-0.5, z=pos.z},
+			velocity = {x=0, y=1, z=0},
+			acceleration = {x=0, y=0, z=0},
+			expirationtime = 2,
+			size = radius * 10,
+			collisiondetection = false,
+			vertical = false,
+			texture = "farlands_explosion.png",
+			animation = {type="vertical_frames", aspect_w=32, aspect_h=32, frame_length=1},
+			glow = 10
+		})
+	end)
+	minetest.after(0.4, function()
+		minetest.add_particle({
+			pos = {x=pos.x+0.5, y=pos.y+0.5, z=pos.z+0.5},
+			velocity = {x=0, y=1, z=0},
+			acceleration = {x=0, y=0, z=0},
+			expirationtime = 2,
+			size = radius * 15,
+			collisiondetection = false,
+			vertical = false,
+			texture = "farlands_explosion.png",
+			animation = {type="vertical_frames", aspect_w=32, aspect_h=32, frame_length=1},
+			glow = 10
+		})
+	end)
 	minetest.add_particlespawner({
-		amount = 64,
+		amount = 32,
 		time = 0.5,
 		minpos = vector.subtract(pos, radius / 2),
 		maxpos = vector.add(pos, radius / 2),
-		minvel = {x = -10, y = -10, z = -10},
-		maxvel = {x = 10, y = 10, z = 10},
+		minvel = {x = -1, y = 2, z = -1},
+		maxvel = {x = 1, y = 5, z = 1},
 		minacc = vector.new(),
 		maxacc = vector.new(),
 		minexptime = 1,
 		maxexptime = 2.5,
 		minsize = radius * 3,
 		maxsize = radius * 5,
-		texture = "tnt_smoke.png",
+		texture = "farlands_smoke.png",
+			animation = {type="vertical_frames", aspect_w=32, aspect_h=32, frame_length=1},
 	})
 
 	-- we just dropped some items. Look at the items entities and pick
