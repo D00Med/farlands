@@ -230,7 +230,7 @@ local function add_effects(pos, radius, drops)
 		})
 	end)
 	minetest.add_particlespawner({
-		amount = 32,
+		amount = 16,
 		time = 0.5,
 		minpos = vector.subtract(pos, radius / 2),
 		maxpos = vector.add(pos, radius / 2),
@@ -238,12 +238,28 @@ local function add_effects(pos, radius, drops)
 		maxvel = {x = 1, y = 5, z = 1},
 		minacc = vector.new(),
 		maxacc = vector.new(),
-		minexptime = 1,
-		maxexptime = 2.5,
+		minexptime = 0.5,
+		maxexptime = 1,
 		minsize = radius * 3,
 		maxsize = radius * 5,
-		texture = "farlands_smoke.png",
+		texture = "farlands_explosion_small.png",
 			animation = {type="vertical_frames", aspect_w=32, aspect_h=32, frame_length=1},
+	})
+	minetest.add_particlespawner({
+		amount = 64,
+		time = 1,
+		minpos = vector.subtract(pos, radius / 3),
+		maxpos = vector.add(pos, radius / 3),
+		minvel = {x = -1, y = 2, z = -1},
+		maxvel = {x = 1, y = 5, z = 1},
+		minacc = vector.new(),
+		maxacc = vector.new(),
+		minexptime = 1.5,
+		maxexptime = 2,
+		minsize = radius * 2,
+		maxsize = radius * 2.5,
+		texture = "farlands_smoke.png",
+			animation = {type="vertical_frames", aspect_w=16, aspect_h=16, frame_length=0.2},
 	})
 
 	-- we just dropped some items. Look at the items entities and pick

@@ -15,6 +15,91 @@ minetest.register_entity("mobs_npc:dummy", {
 	collisionbox = {0, 0, 0, 0.1, 0.1, 0.1},
 	})
 
+local npc_make_home = function(self, dtime)
+		local pos = self.object:getpos()
+		pos.y = pos.y + 0.5
+			
+		local beds = minetest.find_node_near(pos, 5, {"beds:bed_bottom", "beds:bed", "beds:bed_yellow_bottom", "beds:bed_brown_bottom", "beds:bed_magenta_bottom", "beds:bed_blue_bottom", "beds:bed_orange_bottom", "beds:bed_cyan_bottom", "beds:bed_pink_bottom", "beds:bed_black_bottom", "beds:bed_white_bottom", "beds:bed_darkgrey_bottom", "beds:bed_grey_bottom", "beds:bed_green_bottom", "beds:bed_purple_bottom", "beds:bed_darkgreen_bottom"})
+		local light_sources = minetest.find_node_near(pos, 5, {"default:torch", "default:torch_wall", "default:torch_floor", "default:torch_ceiling", "mese_lamp"})
+		local doors = minetest.find_node_near(pos, 5, {"doors:door_wood_a", "doors:door_glass_a", "doors:door_obsidian_glass_a"})
+		local is_owned = minetest.find_node_near(pos, 5, {"villages:colony_deed", "villages:hobo_deed",})
+		local node_below = minetest.get_node({x=pos.x, y=pos.y-1.5, z=pos.z}).name
+		local good_floor = minetest.get_item_group(node_below, "crumbly")
+		if beds ~= nil and light_sources ~= nil and doors ~= nil and is_owned == nil and self.home == nil and good_floor == 0 then	
+			self.home = pos
+			local free_space = minetest.find_node_near(light_sources, 1, {"air"})
+			local pos1 = free_space
+			if minetest.get_node({x=pos1.x-1, y=pos1.y, z=pos1.z}).name ~= "air" then
+			minetest.set_node({x=pos1.x, y=pos1.y, z=pos1.z}, {name="villages:colony_deed", param2=3})
+			minetest.chat_send_all("param3")
+			elseif minetest.get_node({x=pos1.x+1, y=pos1.y, z=pos1.z}).name ~= "air" then
+			minetest.set_node({x=pos1.x, y=pos1.y, z=pos1.z}, {name="villages:colony_deed", param2=2})
+			minetest.chat_send_all("param2")
+			elseif minetest.get_node({x=pos1.x, y=pos1.y, z=pos1.z-1}).name ~= "air" then
+			minetest.set_node({x=pos1.x, y=pos1.y, z=pos1.z}, {name="villages:colony_deed", param2=5})
+			minetest.chat_send_all("param5")
+			elseif minetest.get_node({x=pos1.x, y=pos1.y, z=pos1.z+1}).name ~= "air" then
+			minetest.set_node({x=pos1.x, y=pos1.y, z=pos1.z}, {name="villages:colony_deed", param2=4})
+			end
+			minetest.chat_send_all("NPC home set!")
+		end
+end
+local npc_go_home = function(self, dtime)
+	      self.home_timer = (self.home_timer or 0) + dtime
+      if self.home_timer < 1 then 
+	  npc_make_home(self, dtime)
+	  return end -- every 1 second
+      self.home_timer = 0
+
+      if self.time_of_day > 0.2 and self.time_of_day < 0.8 then
+		npc_make_home(self, dtime)
+         return  -- return if not night time
+      end
+	  
+	  if self.home == nil then
+	  --minetest.chat_send_all("something went wrong")
+	  npc_make_home(self, dtime)
+	  return
+	  end
+	  --minetest.chat_send_all(minetest.pos_to_string(self.home))
+      local h = self.home -- destination coords
+      local p = self.object:getpos() -- mob position
+      local x, y, z = p.x - h.x, p.y - h.y, p.z - h.z
+      local dist = math.floor(math.sqrt(x * x + y * y + z * z))
+
+      if dist <= 1 then
+         print ("--- home!")
+         self.homepath = nil
+         self.state = "stand"
+         return
+      end
+
+      if self.homepath == nil then
+         self.homepath = minetest.find_path(h, h, 50, 3, 6, "Dijkstra")
+         print ("--- finding route", self.homepath, dist)
+      end
+
+      if self.homepath then
+         print ("--- following path", dist, #self.homepath)
+
+         local np = self.homepath[1] ; if not np then return end
+
+         if math.abs(np.x - p.x) + math.abs(np.z - p.z) < 0.6 then
+            table.remove(self.homepath, 1) ; print ("-- removed entry")
+         end
+
+         np = {x = np.x, y = np.y, z = np.z}
+
+         local vec = {x = np.x - p.x, z = np.z - p.z}
+         local yaw = (math.atan(vec.z / vec.x) + math.pi / 2) - self.rotate
+
+         if np.x > p.x then yaw = yaw + math.pi end
+
+         self.object:setyaw(yaw)
+         set_velocity(self, self.walk_velocity)
+      end
+end
+
 mobs:register_mob("mobs_npc:npc", {
 	type = "npc",
 	passive = false,
@@ -66,44 +151,18 @@ mobs:register_mob("mobs_npc:npc", {
 		punch_start = 45,
 		punch_end = 65,
 	},
-	do_custom = function(self)
-		local pos = self.object:getpos()
-		pos.y = pos.y + 0.5
-			
-		local beds = minetest.find_node_near(pos, 5, {"beds:bed_bottom", "beds:bed", "beds:bed_yellow_bottom", "beds:bed_brown_bottom", "beds:bed_magenta_bottom", "beds:bed_blue_bottom", "beds:bed_orange_bottom", "beds:bed_cyan_bottom", "beds:bed_pink_bottom", "beds:bed_black_bottom", "beds:bed_white_bottom", "beds:bed_darkgrey_bottom", "beds:bed_grey_bottom", "beds:bed_green_bottom", "beds:bed_purple_bottom", "beds:bed_darkgreen_bottom"})
-		local light_sources = minetest.find_node_near(pos, 5, {"default:torch", "default:torch_wall", "default:torch_floor", "default:torch_ceiling", "mese_lamp"})
-		local doors = minetest.find_node_near(pos, 5, {"doors:door_wood_a", "doors:door_glass_a", "doors:door_obsidian_glass_a"})
-		local is_owned = minetest.find_node_near(pos, 5, {"villages:colony_deed", "villages:hobo_deed",})
-		local node_below = minetest.get_node({x=pos.x, y=pos.y-1.5, z=pos.z}).name
-		local good_floor = minetest.get_item_group(node_below, "crumbly")
-		if beds ~= nil and light_sources ~= nil and doors ~= nil and is_owned == nil and self.home == nil and good_floor == 0 then	
-			self.home = pos
-			local free_space = minetest.find_node_near(light_sources, 1, {"air"})
-			local pos1 = free_space
-			if minetest.get_node({x=pos1.x-1, y=pos1.y, z=pos1.z}).name ~= "air" then
-			minetest.set_node({x=pos1.x, y=pos1.y, z=pos1.z}, {name="villages:colony_deed", param2=3})
-			minetest.chat_send_all("param3")
-			elseif minetest.get_node({x=pos1.x+1, y=pos1.y, z=pos1.z}).name ~= "air" then
-			minetest.set_node({x=pos1.x, y=pos1.y, z=pos1.z}, {name="villages:colony_deed", param2=2})
-			minetest.chat_send_all("param2")
-			elseif minetest.get_node({x=pos1.x, y=pos1.y, z=pos1.z-1}).name ~= "air" then
-			minetest.set_node({x=pos1.x, y=pos1.y, z=pos1.z}, {name="villages:colony_deed", param2=5})
-			minetest.chat_send_all("param5")
-			elseif minetest.get_node({x=pos1.x, y=pos1.y, z=pos1.z+1}).name ~= "air" then
-			minetest.set_node({x=pos1.x, y=pos1.y, z=pos1.z}, {name="villages:colony_deed", param2=4})
-			end
-			minetest.chat_send_all("NPC home set!")
-		end
+	do_custom = function(self, dtime)
+				
+		npc_go_home(self, dtime)
 		
-		local game_time = minetest.get_timeofday()*24000
+		--local game_time = minetest.get_timeofday()*24000
 		
-		if game_time <= 6000 or game_time >= 18000 and self.home ~= nil then
+		--[[if game_time <= 6000 or game_time >= 18000 and self.home ~= nil then
 			local pos1 = self.home
 			if math.abs(pos1.x-pos.x) >= 10 or math.abs(pos1.z-pos.z) >= 10 then
 			self.object:setpos({x=pos1.x, y=pos1.y-0.5, z=pos1.z})
 			end
-		end
-		
+		end]]		
 	end,
 	on_rightclick = function(self, clicker)
 
