@@ -2,15 +2,6 @@ local MINE_DEEP_MIN = tonumber(minetest.setting_get("mines_deep_min")) or -64
 local MINE_DEEP_MAX = tonumber(minetest.setting_get("mines_deep_max")) or -380
 local MINE_FACTOR = tonumber(minetest.setting_get("mines_spawnfactor")) or 1.5
 
-if not MINE_DEEP_MIN then
-    MINE_DEEP_MIN = -64
-end
-if not MINE_DEEP_MAX then
-    MINE_DEEP_MAX = -380
-end
-if not MINE_FACTOR then
-    MINE_FACTOR = 1.5
-end
 
 minetest.register_node("mines:dummy", {
 	description = "Air (you hacker you!)",
@@ -69,7 +60,7 @@ local function fill_chest(pos)
 				--meta:set_string("infotext", "Chest")
 				local inv = meta:get_inventory()
 				inv:set_size("main", 8*4)
-				for i=0,2,1 do
+				for i = 0, 2, 1 do
 					local stuff = chest_stuff[math.random(1,#chest_stuff)]
 					local stack = {name=stuff.name, count = math.random(1,stuff.max)}
 					if not inv:contains_item("main", stack) then
