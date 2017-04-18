@@ -118,10 +118,12 @@ local function make_mine(mpos,p2,p3, vm_data, vx_area,cnt)
 			local x2
 			local x3
 			local x4
+			local x5
 			local z1
 			local z2
 			local z3
 			local z4
+			local z5
 			if switch == 1 then
 				x1 = pos.x+1
 				x2 = pos.x
