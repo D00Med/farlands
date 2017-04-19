@@ -404,11 +404,11 @@ minetest.register_abm({
 	chance = 1,
 	action = function(pos, node)
 		local steam_source = minetest.find_node_near(pos, 1, {"stm_nodes:pipe_active", "default:furnace_active2"})
-		
+
 		if steam_source == nil then
 		return
 		end
-			
+
 		local input_pos = {x=pos.x, y=pos.y+1, z=pos.z}
 		local output_pos = minetest.find_node_near(pos, 1.5, {"stm_nodes:output_tray"})
 		local n = {
@@ -419,7 +419,7 @@ minetest.register_abm({
 			{x=pos.x, y=pos.y+1, z=pos.z},
 		}
 		local vent_pos = nil
-		
+
 		for _, position in ipairs(n) do
 			local item = minetest.get_node(position).name
 			if minetest.get_item_group(item, "ventilation") ~= 0 then
@@ -430,7 +430,7 @@ minetest.register_abm({
 		if minetest.get_node(input_pos).name == "stm_nodes:hopper" then
 			local objects = minetest.get_objects_inside_radius(input_pos, 0.5)
 			for _, obj in ipairs(objects) do
-				if obj:get_luaentity().name == "__builtin:item" then
+				if not obj:is_player() and obj:get_luaentity().name == "__builtin:item" then
 					local input_item = obj:get_luaentity().itemstring
 					local itemname = ItemStack(input_item):get_name()
 					local itemcount = ItemStack(input_item):get_count()
@@ -457,7 +457,7 @@ minetest.register_abm({
 						minetest.add_item(output_pos, "default:gravel "..itemcount)
 						minetest.sound_play("default_place_node_metal", {pos = pos, gain = 0.3, max_hear_distance = 16})
 						end)
-					end					
+					end
 				end
 			end
 		end
@@ -537,7 +537,7 @@ local closed_compressor_function = function(pos)
 						minetest.after(1, function()
 						minetest.add_item(pos, "mapgen:coarse_dirt "..itemcount)
 						end)
-					end				
+					end
 				end
 			end
 			minetest.after(1, function()
@@ -890,7 +890,7 @@ local check_for_coal = function(pos)
 	local objects = minetest.get_objects_inside_radius(pos, 0.5)
 	local item_taken = false
 	for _, obj in ipairs(objects) do
-		if not obj:is_player() and obj:get_luaentity().name == "__builtin:item" and not item_taken then		
+		if not obj:is_player() and obj:get_luaentity().name == "__builtin:item" and not item_taken then
 			local itemstring = obj:get_luaentity().itemstring
 			local item = ItemStack(itemstring):get_name()
 			local count = ItemStack(itemstring):get_count()
@@ -1133,7 +1133,7 @@ minetest.register_node("stm_nodes:motor", {
 		}
 	},
 	groups = {cracky=1, electric=1},
-	sounds = default.node_sound_defaults()	
+	sounds = default.node_sound_defaults()
 })
 
 minetest.register_node("stm_nodes:generator_core", {
@@ -1147,7 +1147,7 @@ minetest.register_node("stm_nodes:generator_core", {
 		"stm_nodes_generator_back.png"
 	},
 	groups = {cracky=1, electric=1},
-	sounds = default.node_sound_metal_defaults()	
+	sounds = default.node_sound_metal_defaults()
 })
 
 minetest.register_node("stm_nodes:generator_active", {
@@ -1161,7 +1161,7 @@ minetest.register_node("stm_nodes:generator_active", {
 	},
 	groups = {cracky=1, electric=2},
 	drop = "stm_nodes:generator_core",
-	sounds = default.node_sound_metal_defaults()	
+	sounds = default.node_sound_metal_defaults()
 })
 
 minetest.register_abm({
