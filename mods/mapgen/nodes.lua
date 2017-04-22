@@ -1957,9 +1957,9 @@ minetest.register_node("mapgen:big_mushroom_brown", {
 	sounds = default.node_sound_wood_defaults()
 })
 
-minetest.register_node("mapgen:dirt_with_fungi_coved_grass", {
-	description = "Fungi Coved Grass",
-	tiles = {"mapgen_fungi_coved_grass.png", "default_dirt.png", "default_dirt.png^mapgen_fungi_coved_grass_side.png"},
+minetest.register_node("mapgen:dirt_with_fungi_covered_grass", {
+	description = "Fungi Covered Grass",
+	tiles = {"mapgen_fungi_covered_grass.png", "default_dirt.png", "default_dirt.png^mapgen_fungi_covered_grass_side.png"},
 	groups = {crumbly = 1, oddly_breakable_by_hand = 1},
 	sounds = default.node_sound_dirt_defaults()
 })

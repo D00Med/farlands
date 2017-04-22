@@ -1,16 +1,7 @@
-local MINE_DEEP_MIN = tonumber(minetest.setting_get("mines_deep_min"))
-local MINE_DEEP_MAX = tonumber(minetest.setting_get("mines_deep_max"))
-local MINE_FACTOR = tonumber(minetest.setting_get("mines_spawnfactor"))
+local MINE_DEEP_MIN = tonumber(minetest.setting_get("mines_deep_min")) or -64
+local MINE_DEEP_MAX = tonumber(minetest.setting_get("mines_deep_max")) or -380
+local MINE_FACTOR = tonumber(minetest.setting_get("mines_spawnfactor")) or 1.5
 
-if not MINE_DEEP_MIN then
-    MINE_DEEP_MIN = -64
-end
-if not MINE_DEEP_MAX then
-    MINE_DEEP_MAX = -380
-end
-if not MINE_FACTOR then
-    MINE_FACTOR = 1.5
-end
 
 minetest.register_node("mines:dummy", {
 	description = "Air (you hacker you!)",
@@ -25,7 +16,7 @@ minetest.register_node("mines:dummy", {
 	buildable_to = true,
 	air_equivalent = true,
 	drop = "",
-	groups = {not_in_creative_inventory=1},
+	groups = {not_in_creative_inventory = 1},
 })
 
 
@@ -69,7 +60,7 @@ local function fill_chest(pos)
 				--meta:set_string("infotext", "Chest")
 				local inv = meta:get_inventory()
 				inv:set_size("main", 8*4)
-				for i=0,2,1 do
+				for i = 0, 2, 1 do
 					local stuff = chest_stuff[math.random(1,#chest_stuff)]
 					local stack = {name=stuff.name, count = math.random(1,stuff.max)}
 					if not inv:contains_item("main", stack) then
@@ -81,7 +72,7 @@ local function fill_chest(pos)
 	end)
 end
 
-local function check_dir(dir,old_dir)
+local function check_dir(dir, old_dir)
 	if old_dir == 1 and dir == 3 then
 		--n_switch = 2
 		return true
@@ -97,117 +88,119 @@ local function check_dir(dir,old_dir)
 	end
 	return false
 end
-local function make_mine(mpos,p2,p3, vm_data, vx_area,cnt)
-	local pos = {x=mpos.x,y=mpos.y,z=mpos.z}
-	for j=0,12,1 do
+local function make_mine(mpos, p2, p3, vm_data, vx_area,cnt)
+	local pos = {x = mpos.x, y = mpos.y, z = mpos.z}
+	for j = 0, 12, 1 do
 	local switch = cnt+1
-	n_switch = math.random(1,4)
-	while check_dir(n_switch,switch) == true do
-		n_switch = math.random(1,4)
+	n_switch = math.random(1, 4)
+	while check_dir(n_switch, switch) == true do
+		n_switch = math.random(1, 4)
 	end
 	switch = n_switch
 
-		for i=0,20,1 do
-			local pillar = ids.air
-			local pillar_top = ids.air
-			if i==0 or i == 5 or i == 10 or i == 15 or i == 20 then
-				pillar = ids.fence
-				pillar_top = ids.wood
-			end
-			local x1
-			local x2
-			local x3
-			local x4
-			local z1
-			local z2
-			local z3
-			local z4
-			if switch == 1 then
-				x1 = pos.x+1
-				x2 = pos.x
-				x3 = pos.x-1
-				x4 = pos.x
-				x5 = pos.x+1
-
-				z1 = pos.z+i
-				z2 = pos.z+i
-				z3 = pos.z+i
-				z4 = pos.z+i-1
-				z5 = pos.z+i
-			elseif switch == 2 then
-				x1 = pos.x+i
-				x2 = pos.x+i
-				x3 = pos.x+i
-				x4 = pos.x+i-1
-				x5 = pos.x+i
-
-				z1 = pos.z+1
-				z2 = pos.z
-				z3 = pos.z-1
-				z4 = pos.z
-				z5 = pos.z+1
-			elseif switch == 3 then
-				x1 = pos.x+1
-				x2 = pos.x
-				x3 = pos.x-1
-				x4 = pos.x
-				x5 = pos.x+1
-
-				z1 = pos.z-i
-				z2 = pos.z-i
-				z3 = pos.z-i
-				z4 = pos.z-i-1
-				z5 = pos.z-i
-			else
-				x1 = pos.x-i
-				x2 = pos.x-i
-				x3 = pos.x-i
-				x4 = pos.x-i-1
-				x5 = pos.x-i
-
-				z1 = pos.z+1
-				z2 = pos.z
-				z3 = pos.z-1
-				z4 = pos.z
-				z5 = pos.z+1
-			end
-			vm_data[vx_area:indexp({x=x1, y=pos.y-1, z=z1})] = pillar
-			vm_data[vx_area:indexp({x=x2, y=pos.y-1, z=z2})] = ids.air
-			vm_data[vx_area:indexp({x=x3, y=pos.y-1, z=z3})] = pillar
-
-			vm_data[vx_area:indexp({x=x1, y=pos.y, z=z1})] = pillar
-			vm_data[vx_area:indexp({x=x2, y=pos.y, z=z2})] = ids.air
-			vm_data[vx_area:indexp({x=x3, y=pos.y, z=z3})] = pillar
-
-			vm_data[vx_area:indexp({x=x1, y=pos.y+1, z=z1})] = pillar_top
-			vm_data[vx_area:indexp({x=x2, y=pos.y+1, z=z2})] = pillar_top
-			vm_data[vx_area:indexp({x=x3, y=pos.y+1, z=z3})] = pillar_top
-
-			if math.random(0,6) == 3 then 
-				vm_data[vx_area:indexp({x=x4, y=pos.y-1, z=z4})] = ids.dummy
-				rotate_torch({x=x4, y=pos.y-1, z=z4})
-			end
-			if math.random(0,60) == 13 then
-				local p = {x=x5, y=pos.y-1, z=z5}
-				if vm_data[vx_area:indexp(p)] ~= ids.fence then
-					vm_data[vx_area:indexp(p)] = ids.dummy
-					fill_chest(p)
-				end
-			end
+	for i=0,20,1 do
+		local pillar = ids.air
+		local pillar_top = ids.air
+		if i==0 or i == 5 or i == 10 or i == 15 or i == 20 then
+			pillar = ids.fence
+			pillar_top = ids.wood
 		end
-		if switch == 1 then			
-			pos.z = pos.z+20
-			--pos.x = pos.x+step
+		local x1
+		local x2
+		local x3
+		local x4
+		local x5
+		local z1
+		local z2
+		local z3
+		local z4
+		local z5
+		if switch == 1 then
+			x1 = pos.x+1
+			x2 = pos.x
+			x3 = pos.x-1
+			x4 = pos.x
+			x5 = pos.x+1
+
+			z1 = pos.z+i
+			z2 = pos.z+i
+			z3 = pos.z+i
+			z4 = pos.z+i-1
+			z5 = pos.z+i
 		elseif switch == 2 then
-			pos.x = pos.x+20
-			--pos.z = pos.z+step
-		elseif switch == 3 then			
-			pos.z = pos.z-20
-			--pos.x = pos.x+step
-		elseif switch == 4 then	
-			pos.x = pos.x-20
-			--pos.z = pos.z+step
+			x1 = pos.x+i
+			x2 = pos.x+i
+			x3 = pos.x+i
+			x4 = pos.x+i-1
+			x5 = pos.x+i
+
+			z1 = pos.z+1
+			z2 = pos.z
+			z3 = pos.z-1
+			z4 = pos.z
+			z5 = pos.z+1
+		elseif switch == 3 then
+			x1 = pos.x+1
+			x2 = pos.x
+			x3 = pos.x-1
+			x4 = pos.x
+			x5 = pos.x+1
+
+			z1 = pos.z-i
+			z2 = pos.z-i
+			z3 = pos.z-i
+			z4 = pos.z-i-1
+			z5 = pos.z-i
+		else
+			x1 = pos.x-i
+			x2 = pos.x-i
+			x3 = pos.x-i
+			x4 = pos.x-i-1
+			x5 = pos.x-i
+
+			z1 = pos.z+1
+			z2 = pos.z
+			z3 = pos.z-1
+			z4 = pos.z
+			z5 = pos.z+1
 		end
+		vm_data[vx_area:indexp({x=x1, y=pos.y-1, z=z1})] = pillar
+		vm_data[vx_area:indexp({x=x2, y=pos.y-1, z=z2})] = ids.air
+		vm_data[vx_area:indexp({x=x3, y=pos.y-1, z=z3})] = pillar
+
+		vm_data[vx_area:indexp({x=x1, y=pos.y, z=z1})] = pillar
+		vm_data[vx_area:indexp({x=x2, y=pos.y, z=z2})] = ids.air
+		vm_data[vx_area:indexp({x=x3, y=pos.y, z=z3})] = pillar
+
+		vm_data[vx_area:indexp({x=x1, y=pos.y+1, z=z1})] = pillar_top
+		vm_data[vx_area:indexp({x=x2, y=pos.y+1, z=z2})] = pillar_top
+		vm_data[vx_area:indexp({x=x3, y=pos.y+1, z=z3})] = pillar_top
+
+		if math.random(0,6) == 3 then 
+			vm_data[vx_area:indexp({x=x4, y=pos.y-1, z=z4})] = ids.dummy
+			rotate_torch({x=x4, y=pos.y-1, z=z4})
+		end
+		if math.random(0,60) == 13 then
+			local p = {x=x5, y=pos.y-1, z=z5}
+			if vm_data[vx_area:indexp(p)] ~= ids.fence then
+				vm_data[vx_area:indexp(p)] = ids.dummy
+				fill_chest(p)
+			end
+		end
+	end
+	if switch == 1 then			
+		pos.z = pos.z+20
+		--pos.x = pos.x+step
+	elseif switch == 2 then
+		pos.x = pos.x+20
+		--pos.z = pos.z+step
+	elseif switch == 3 then			
+		pos.z = pos.z-20
+		--pos.x = pos.x+step
+	elseif switch == 4 then	
+		pos.x = pos.x-20
+		--pos.z = pos.z+step
+	end
 	end
 	if cnt == 0 then
 		minetest.log("action", "Created mine at ("..mpos.x..","..mpos.y..","..mpos.z..")")
