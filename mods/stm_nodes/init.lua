@@ -800,13 +800,13 @@ minetest.register_node("stm_nodes:cable_ceiling_active", {
 
 minetest.register_abm({
 	nodenames = {"stm_nodes:cable_active", "stm_nodes:cable_ceiling_active"},
-	interval = 1,
+	interval = 4,
 	chance = 1,
 	action = function(pos, node)
-		local sustainer = minetest.find_node_near(pos, 1, {"stm_nodes:sustainer_inactive"})
+		--[[local sustainer = minetest.find_node_near(pos, 1, {"stm_nodes:sustainer_inactive"})
 		if sustainer then
 		minetest.set_node(sustainer, {name="stm_nodes:sustainer"})
-		end
+		end]]
 		
 		local nodename = minetest.get_node(pos).name
 		local newname = "stm_nodes:cable_ceiling"
@@ -1155,6 +1155,20 @@ minetest.register_node("stm_nodes:generator_active", {
 })
 
 minetest.register_node("stm_nodes:sustainer", {
+	tiles = {
+		"stm_nodes_sustainer_top.png",
+		"stm_nodes_sustainer_top.png",
+		"stm_nodes_sustainer.png",
+		"stm_nodes_sustainer.png",
+		"stm_nodes_sustainer.png",
+		"stm_nodes_sustainer.png"
+	},
+	drop = "stm_nodes:sustainer_inactive",
+	groups = {cracky=1, electric=2},
+	sounds = default.node_sound_metal_defaults()	
+})
+
+minetest.register_node("stm_nodes:sustainer_inactive", {
 	description = "Power Sustainer",
 	tiles = {
 		"stm_nodes_sustainer_top.png",
@@ -1164,20 +1178,6 @@ minetest.register_node("stm_nodes:sustainer", {
 		"stm_nodes_sustainer.png",
 		"stm_nodes_sustainer.png"
 	},
-	groups = {cracky=1, electric=2},
-	sounds = default.node_sound_metal_defaults()	
-})
-
-minetest.register_node("stm_nodes:sustainer_inactive", {
-	tiles = {
-		"stm_nodes_sustainer_top.png",
-		"stm_nodes_sustainer_top.png",
-		"stm_nodes_sustainer.png",
-		"stm_nodes_sustainer.png",
-		"stm_nodes_sustainer.png",
-		"stm_nodes_sustainer.png"
-	},
-	drop = "stm_nodes:sustainer",
 	groups = {cracky=1, electric=2},
 	sounds = default.node_sound_metal_defaults()	
 })
@@ -1208,6 +1208,10 @@ minetest.register_abm({
 			vertical = false,
 			texture = "stm_nodes_steam.png",
 		})
+		end
+		local sustainer = minetest.find_node_near(pos, 9, {"stm_nodes:sustainer",})
+		if sustainer then
+			minetest.set_node(sustainer, {name="stm_nodes:sustainer_inactive",})
 		end
 	end
 })
@@ -1249,20 +1253,39 @@ minetest.register_abm({
 })
 
 minetest.register_abm({
-	nodenames = {"stm_nodes:generator_active", "stm_nodes:sustainer"},
-	interval = 1,
+	nodenames = {"stm_nodes:sustainer_inactive"},
+	interval = 2,
 	chance = 1,
 	action = function(pos, node)
-		if minetest.get_node(pos).name == "stm_nodes:sustainer" and not minetest.find_node_near(pos, 1, {"stm_nodes:cable_active", "stm_nodes:cable_ceiling_active"}) then
+		local generator = minetest.find_node_near(pos, 8, {"stm_nodes:generator_active",})
+		local sustainer = minetest.find_node_near(pos, 8, {"stm_nodes:sustainer",})
+		local sustainer2 = minetest.find_node_near(pos, 8, {"stm_nodes:sustainer",})
+		if not sustainer and not sustainer2 and not generator then
+		return
+		end
+		if generator or sustainer ~= sustainer2 then
+			if minetest.find_node_near(pos, 1, {"stm_nodes:cable_active", "stm_nodes:cable_ceiling_active"}) then
+				minetest.set_node(pos, {name="stm_nodes:sustainer", param2=node.param2})
+			end
+		end
+	end
+})
+
+minetest.register_abm({
+	nodenames = {"stm_nodes:generator_active", "stm_nodes:sustainer"},
+	interval = 4,
+	chance = 1,
+	action = function(pos, node)
+		if minetest.get_node(pos).name == "stm_nodes:sustainer" and not minetest.find_node_near(pos, 8, {"stm_nodes:sustainer", "stm_nodes:generator_active"}) then
 		minetest.set_node(pos, {name="stm_nodes:sustainer_inactive"})
 		return
 		end
 		
 		local power = minetest.find_node_near(pos, 1, {"stm_nodes:cable", "stm_nodes:cable_ceiling"})
-		local name = minetest.get_node(power).name
 		if not power then
 		return 
 		end
+		local name = minetest.get_node(power).name
 		if name == "stm_nodes:cable" then
 		minetest.set_node(power, {name="stm_nodes:cable_active", param2=minetest.get_node(power).param2})
 		else
