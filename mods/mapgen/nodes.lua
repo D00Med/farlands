@@ -1764,7 +1764,68 @@ minetest.register_node("mapgen:stalagmite2", {
 	sounds = default.node_sound_stone_defaults()
 })
 
+--crystals
 
+minetest.register_node("mapgen:crystal_small", {
+	description = "Small Crystal",
+	tiles = {
+		"mapgen_crystal.png",
+	},
+	use_texture_alpha = true,
+	drawtype = "nodebox",
+	paramtype = "light",
+	paramtype2 = "facedir",
+	light_source = 5,
+	node_box = {
+		type = "fixed",
+		fixed = {
+			{-0.125, -0.5, -0.125, 0.125, 0.375, 0.125}, -- NodeBox3
+			{-0.0625, -0.5, -0.0625, 0.0625, 0.4375, 0.0625}, -- NodeBox4
+			{0, -0.5, 0.1875, 0.1875, 0.125, 0.375}, -- NodeBox5
+			{0.0625, -0.5, 0.25, 0.125, 0.0625, 0.3125}, -- NodeBox6
+			{-0.3125, -0.5, -0.375, -0.125, -0.0625, -0.1875}, -- NodeBox7
+			{-0.25, -0.5, -0.3125, -0.1875, -0.125, -0.25}, -- NodeBox8
+			{0.125, -0.5, -0.3125, 0.375, 0.125, -0.0625}, -- NodeBox9
+			{0.1875, -0.5, -0.25, 0.3125, 0.1875, -0.125}, -- NodeBox10
+			{-0.375, -0.5, 0.125, -0.1875, -0.1875, 0.3125}, -- NodeBox11
+			{-0.3125, -0.5, 0.1875, -0.25, -0.25, 0.25}, -- NodeBox12
+		}
+	},
+	groups = {cracky=2, dig_immediate=3, flammable=1},
+	sounds = default.node_sound_glass_defaults()	
+})
+
+minetest.register_node("mapgen:crystal", {
+	description = "Crystal",
+	tiles = {
+		"mapgen_crystal.png",
+	},
+	use_texture_alpha = true,
+	drawtype = "nodebox",
+	paramtype = "light",
+	paramtype2 = "facedir",
+	light_source = 5,
+	node_box = {
+		type = "fixed",
+		fixed = {
+			{-0.25, -0.5, -0.25, 0.25, 0.875, 0.25}, -- NodeBox1
+			{-0.1875, -0.5, -0.1875, 0.1875, 1.25, 0.1875}, -- NodeBox2
+			{-0.625, -0.5, -0.1875, -0.3125, 0.5, 0.125}, -- NodeBox3
+			{0.0625, -0.5, -0.625, 0.375, 0.3125, -0.3125}, -- NodeBox5
+			{0.3125, -0.5, 0.3125, 0.5625, 0.5, 0.5625}, -- NodeBox7
+			{-0.5625, -0.5, -0.125, -0.375, 0.4375, 0.0625}, -- NodeBox8
+			{0.125, -0.5, -0.5625, 0.3125, 0.25, -0.375}, -- NodeBox9
+			{0.375, -0.5, 0.375, 0.5, 0.4375, 0.5}, -- NodeBox10
+		}
+	},
+	groups = {cracky=2, dig_immediate=3, flammable=1},
+	sounds = default.node_sound_glass_defaults()
+})
+
+minetest.register_craftitem("mapgen:crystal_item", {
+	description = "Crystal Shard",
+	inventory_image = "mapgen_crystal_item.png"
+})
 
 --crafting
 
