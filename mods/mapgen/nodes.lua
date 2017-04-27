@@ -1768,14 +1768,15 @@ minetest.register_node("mapgen:stalagmite2", {
 
 minetest.register_node("mapgen:crystal_small", {
 	description = "Small Crystal",
-	tiles = {
-		"mapgen_crystal.png",
-	},
+	tiles = {{
+		name = "mapgen_crystal_anim.png",
+		animation = {type = "vertical_frames", aspect_w = 16, aspect_h = 16, length = 1.00},
+	}},
 	use_texture_alpha = true,
 	drawtype = "nodebox",
 	paramtype = "light",
 	paramtype2 = "facedir",
-	light_source = 5,
+	light_source = 7,
 	node_box = {
 		type = "fixed",
 		fixed = {
@@ -1797,14 +1798,15 @@ minetest.register_node("mapgen:crystal_small", {
 
 minetest.register_node("mapgen:crystal", {
 	description = "Crystal",
-	tiles = {
-		"mapgen_crystal.png",
-	},
+	tiles = {{
+		name = "mapgen_crystal_anim.png",
+		animation = {type = "vertical_frames", aspect_w = 16, aspect_h = 16, length = 1.00},
+	}},
 	use_texture_alpha = true,
 	drawtype = "nodebox",
 	paramtype = "light",
 	paramtype2 = "facedir",
-	light_source = 5,
+	light_source = 7,
 	node_box = {
 		type = "fixed",
 		fixed = {
@@ -1820,6 +1822,48 @@ minetest.register_node("mapgen:crystal", {
 	},
 	groups = {cracky=2, dig_immediate=3, flammable=1},
 	sounds = default.node_sound_glass_defaults()
+})
+
+minetest.register_abm({
+	nodenames = {"mapgen:crystal_small"},
+	interval = 5,
+	chance = 1,
+	action = function(pos, node)
+		minetest.add_particle({
+			pos = {x=pos.x, y=pos.y+0.1, z=pos.z},
+			velocity = {x=0, y=0, z=0},
+			acceleration = {x=0, y=0, z=0},
+			expirationtime = 5,
+			size = 15,
+			collisiondetection = false,
+			collisionremoval = false,
+			vertical = true,
+			texture = "mapgen_crystal_glow.png",
+			animation = {type = "vertical_frames", aspect_w = 32, aspect_h = 32, length = 1.00},
+			glow = 9
+		})
+	end
+})
+
+minetest.register_abm({
+	nodenames = {"mapgen:crystal"},
+	interval = 5,
+	chance = 1,
+	action = function(pos, node)
+		minetest.add_particle({
+			pos = {x=pos.x, y=pos.y+0.5, z=pos.z},
+			velocity = {x=0, y=0, z=0},
+			acceleration = {x=0, y=0, z=0},
+			expirationtime = 5,
+			size = 25,
+			collisiondetection = false,
+			collisionremoval = false,
+			vertical = true,
+			texture = "mapgen_crystal_glow.png",
+			animation = {type = "vertical_frames", aspect_w = 32, aspect_h = 32, length = 1.00},
+			glow = 9
+		})
+	end
 })
 
 minetest.register_craftitem("mapgen:crystal_item", {
