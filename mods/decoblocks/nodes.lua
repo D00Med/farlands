@@ -715,3 +715,11 @@ minetest.register_node("decoblocks:refined_granite_brown", {
 	groups = {cracky = 3, stone = 1},
 	sounds = default.node_sound_stone_defaults(),
 })
+
+
+minetest.register_node("decoblocks:stucco", {
+	description = "Stucco",
+	tiles = {"decoblocks_stucco.png"},
+	groups = {cracky = 3, stone = 2},
+	sounds = default.node_sound_stone_defaults(),
+})
