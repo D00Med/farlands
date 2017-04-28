@@ -652,6 +652,27 @@ minetest.register_node("decoblocks:paper_lantern", {
 		sounds = default.node_sound_defaults(),
 })
 
+minetest.register_abm({
+	nodenames = {"decoblocks:paper_lantern"},
+	interval = 5,
+	chance = 1,
+	action = function(pos, node)
+		minetest.add_particle({
+			pos = {x=pos.x, y=pos.y, z=pos.z},
+			velocity = {x=0, y=0, z=0},
+			acceleration = {x=0, y=0, z=0},
+			expirationtime = 5,
+			size = 25,
+			collisiondetection = false,
+			collisionremoval = false,
+			vertical = true,
+			texture = "decoblocks_glow.png",
+			animation = {type = "vertical_frames", aspect_w = 32, aspect_h = 32, length = 2.00},
+			glow = 9
+		})
+	end
+})
+
 minetest.register_node("decoblocks:mammoth_wool", {
 	description = "Mammoth Wool",
 	tiles = {"decoblocks_mammoth_wool.png"},
