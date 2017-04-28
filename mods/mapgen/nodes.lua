@@ -1879,6 +1879,51 @@ minetest.register_craftitem("mapgen:crystal_item", {
 	inventory_image = "mapgen_crystal_item.png"
 })
 
+
+--torch glow
+minetest.register_abm({
+	nodenames = {"default:torch", "default:torch_ceiling",},
+	interval = 5,
+	chance = 1,
+	action = function(pos, node)
+		minetest.add_particle({
+			pos = {x=pos.x, y=pos.y+0.1, z=pos.z},
+			velocity = {x=0, y=0, z=0},
+			acceleration = {x=0, y=0, z=0},
+			expirationtime = 5,
+			size = 15,
+			collisiondetection = false,
+			collisionremoval = false,
+			vertical = true,
+			texture = "mapgen_glow.png",
+			animation = {type = "vertical_frames", aspect_w = 32, aspect_h = 32, length = 0.20},
+			glow = 9
+		})
+	end
+})
+
+minetest.register_abm({
+	nodenames = {"default:torch_wall"},
+	interval = 5,
+	chance = 1,
+	action = function(pos, node)
+		local dir = minetest.facedir_to_dir(node.param2)
+		minetest.add_particle({
+			pos = {x=pos.x-0.25*dir.z, y=pos.y+0.1, z=pos.z-0.25*dir.x},
+			velocity = {x=0, y=0, z=0},
+			acceleration = {x=0, y=0, z=0},
+			expirationtime = 5,
+			size = 15,
+			collisiondetection = false,
+			collisionremoval = false,
+			vertical = true,
+			texture = "mapgen_glow.png",
+			animation = {type = "vertical_frames", aspect_w = 32, aspect_h = 32, length = 0.20},
+			glow = 9
+		})
+	end
+})
+
 --crafting
 
 
