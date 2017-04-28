@@ -126,6 +126,7 @@ mobs:register_mob("mobs_npc:npc", {
 	walk_velocity = 1.5,
 	run_velocity = 3,
 	jump = true,
+	stepheight = 1.2,
 	drops = {
 		{name = "default:wood", chance = 1, min = 1, max = 3},
 		{name = "default:apple", chance = 2, min = 1, max = 2},
@@ -153,7 +154,56 @@ mobs:register_mob("mobs_npc:npc", {
 	},
 	do_custom = function(self, dtime)
 				
-		npc_go_home(self, dtime)
+	--npc_go_home(self, dtime)
+
+      self.home_timer = (self.home_timer or 0) + dtime
+      if self.home_timer < 1 then
+	  npc_make_home(self, dtime)
+	  return end -- every 1 second
+      self.home_timer = 0
+
+      if self.time_of_day > 0.2 and self.time_of_day < 0.8 then
+         return  -- return if not night time
+      end
+	  
+	  if self.home == nil then return end
+
+      local h = self.home--{x = 1, y = 8, z = 2} -- destination coords
+      local p = self.object:getpos() -- mob position
+      local x, y, z = p.x - h.x, p.y - h.y, p.z - h.z
+      local dist = math.floor(math.sqrt(x * x + y * y + z * z))
+
+      if dist <= 1 then
+         print ("--- home!")
+         self.homepath = nil
+         self.state = "stand"
+         return
+      end
+
+      if self.homepath == nil then
+         self.homepath = minetest.find_path(h, h, 16, 3, 6, "Dijkstra")
+         print ("--- finding route", self.homepath, dist)
+      end
+
+      if self.homepath then
+         print ("--- following path", dist, #self.homepath)
+
+         local np = self.homepath[1] ; if not np then return end
+
+         if math.abs(np.x - p.x) + math.abs(np.z - p.z) < 0.6 then
+            table.remove(self.homepath, 1) ; print ("-- removed entry")
+         end
+
+         np = {x = np.x, y = np.y, z = np.z}
+
+         local vec = {x = np.x - p.x, z = np.z - p.z}
+         local yaw = (math.atan(vec.z / vec.x) + math.pi / 2) - self.rotate
+
+         if np.x > p.x then yaw = yaw + math.pi end
+
+         self.object:setyaw(yaw)
+         set_velocity(self, self.walk_velocity)
+      end
 		
 		--local game_time = minetest.get_timeofday()*24000
 		

@@ -1647,6 +1647,7 @@ minetest.register_node("mapgen:icicle", {
 	type = "fixed",
 	fixed = {{-0.3, -0.2, -0.3, 0.3, 0.5, 0.3}}
 	},
+	walkable = false,
 	groups = {crumbly=1, oddly_breakable_by_hand=1},
 	sounds = default.node_sound_glass_defaults(),
 })
@@ -1663,6 +1664,7 @@ minetest.register_node("mapgen:stalagtite", {
 	type = "fixed",
 	fixed = {{-0.3, -0.2, -0.3, 0.3, 0.5, 0.3}}
 	},
+	walkable = false,
 	groups = {crumbly=1, oddly_breakable_by_hand=1},
 	sounds = default.node_sound_stone_defaults()
 })
@@ -1679,6 +1681,7 @@ minetest.register_node("mapgen:stalagtite1", {
 	type = "fixed",
 	fixed = {{-0.3, -0.2, -0.3, 0.3, 0.5, 0.3}}
 	},
+	walkable = false,
 	groups = {crumbly=1, oddly_breakable_by_hand=1},
 })
 
@@ -1694,6 +1697,7 @@ minetest.register_node("mapgen:stalagtite2", {
 	type = "fixed",
 	fixed = {{-0.3, -0.2, -0.3, 0.3, 0.5, 0.3}}
 	},
+	walkable = false,
 	groups = {crumbly=1, oddly_breakable_by_hand=1},
 	sounds = default.node_sound_stone_defaults()
 })
@@ -1710,6 +1714,7 @@ minetest.register_node("mapgen:stalagtite3", {
 	type = "fixed",
 	fixed = {{-0.3, -0.2, -0.3, 0.3, 0.5, 0.3}}
 	},
+	walkable = false,
 	groups = {crumbly=1, oddly_breakable_by_hand=1},
 	sounds = default.node_sound_stone_defaults()
 })
@@ -1726,6 +1731,7 @@ minetest.register_node("mapgen:stalagmite0", {
 	type = "fixed",
 	fixed = {{-0.3, -0.2, -0.3, 0.3, 0.5, 0.3}}
 	},
+	walkable = false,
 	groups = {crumbly=1, oddly_breakable_by_hand=1},
 	sounds = default.node_sound_stone_defaults()
 })
@@ -1743,6 +1749,7 @@ minetest.register_node("mapgen:stalagmite1", {
 	type = "fixed",
 	fixed = {{-0.3, -0.2, -0.3, 0.3, 0.5, 0.3}}
 	},
+	walkable = false,
 	groups = {crumbly=1, oddly_breakable_by_hand=1},
 	sounds = default.node_sound_stone_defaults()
 })
@@ -1760,6 +1767,7 @@ minetest.register_node("mapgen:stalagmite2", {
 	type = "fixed",
 	fixed = {{-0.3, -0.2, -0.3, 0.3, 0.5, 0.3}}
 	},
+	walkable = false,
 	groups = {crumbly=1, oddly_breakable_by_hand=1},
 	sounds = default.node_sound_stone_defaults()
 })
