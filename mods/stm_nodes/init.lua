@@ -824,6 +824,52 @@ minetest.register_abm({
 	end
 })
 
+minetest.register_node("stm_nodes:lever2_off", {
+	description = "Electric lever",
+	tiles = {
+		"stm_nodes_plate.png",
+	},
+	drawtype = "nodebox",
+	paramtype = "light",
+	node_box = {
+		type = "fixed",
+		fixed = {
+			{-0.25, -0.25, 0.4375, 0.25, 0.375, 0.5}, -- NodeBox1
+			{-0.1875, -0.25, 0.3125, -0.0625, 0.3125, 0.4375}, -- NodeBox2
+			{0.0625, -0.25, 0.3125, 0.1875, 0.3125, 0.4375}, -- NodeBox3
+			{-0.0625, 0.1875, 0.25, 0.0625, 0.5, 0.375}, -- NodeBox4
+		}
+	},
+	groups = {cracky=1, oddly_breakeable_by_hand=1},
+	paramtype2 = "facedir",
+	on_rightclick = function(pos, node)
+		minetest.set_node(pos, {name="stm_nodes:lever2_on", param2=node.param2})
+	end,
+})
+
+minetest.register_node("stm_nodes:lever2_on", {
+	tiles = {
+		"stm_nodes_plate.png",
+	},
+	drawtype = "nodebox",
+	paramtype = "light",
+	node_box = {
+		type = "fixed",
+		fixed = {
+			{-0.25, -0.25, 0.4375, 0.25, 0.375, 0.5}, -- NodeBox1
+			{-0.1875, -0.3125, 0.3125, -0.0625, 0.25, 0.4375}, -- NodeBox2
+			{0.0625, -0.3125, 0.3125, 0.1875, 0.25, 0.4375}, -- NodeBox3
+			{-0.0625, -0.5, 0.25, 0.0625, -0.1875, 0.375}, -- NodeBox4
+		}
+	},
+	groups = {cracky=1, oddly_breakeable_by_hand=1},
+	paramtype2 = "facedir",
+	on_rightclick = function(pos, node)
+		minetest.set_node(pos, {name="stm_nodes:lever2_off", param2=node.param2})
+	end,
+	drop = "stm_nodes:lever2_off"
+})
+
 minetest.register_node("stm_nodes:big_vent", {
 	description = "Fanned Vent",
 	tiles = {
@@ -1257,6 +1303,9 @@ minetest.register_abm({
 	interval = 2,
 	chance = 1,
 	action = function(pos, node)
+		if minetest.find_node_near(pos, 1, {"stm_nodes:lever2_off",}) then
+		return
+		end
 		local generator = minetest.find_node_near(pos, 8, {"stm_nodes:generator_active",})
 		local sustainer = minetest.find_node_near(pos, 8, {"stm_nodes:sustainer",})
 		local sustainer2 = minetest.find_node_near(pos, 8, {"stm_nodes:sustainer",})
@@ -1277,6 +1326,10 @@ minetest.register_abm({
 	chance = 1,
 	action = function(pos, node)
 		if minetest.get_node(pos).name == "stm_nodes:sustainer" and not minetest.find_node_near(pos, 8, {"stm_nodes:sustainer", "stm_nodes:generator_active"}) then
+		minetest.set_node(pos, {name="stm_nodes:sustainer_inactive"})
+		return
+		end
+		if minetest.get_node(pos).name == "stm_nodes:sustainer" and minetest.find_node_near(pos, 1, {"stm_nodes:lever2_off"}) then
 		minetest.set_node(pos, {name="stm_nodes:sustainer_inactive"})
 		return
 		end
