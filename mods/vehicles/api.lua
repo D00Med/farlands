@@ -689,40 +689,78 @@ end
 
 function vehicles.explodinate(ent, radius)
 	local pos = ent.object:getpos()
-	minetest.add_particlespawner({
-			amount = 90,
-			time = 4,
-			minpos = {x=pos.x-0.6, y=pos.y, z=pos.z-0.6},
-			maxpos = {x=pos.x+0.6, y=pos.y+1, z=pos.z+0.6},
-			minvel = {x=-0.1, y=3.5, z=-0.1},
-			maxvel = {x=0.1, y=4.5, z=0.1},
-			minacc = {x=-1.3, y=-0.7, z=-1.3},
-			maxacc = {x=1.3, y=-0.7, z=1.3},
-			minexptime = 2,
-			maxexptime = 3,
-			minsize = 15,
-			maxsize = 25,
+	minetest.add_particle({
+		pos = {x=pos.x, y=pos.y, z=pos.z},
+		velocity = {x=0, y=1, z=0},
+		acceleration = {x=0, y=0.5, z=0},
+		expirationtime = 2,
+		size = radius * 8,
+		collisiondetection = false,
+		vertical = false,
+		texture = "farlands_explosion.png",
+			animation = {type="vertical_frames", aspect_w=32, aspect_h=32, frame_length=1},
+		glow = 10
+	})
+	minetest.after(0.2, function()
+		minetest.add_particle({
+			pos = {x=pos.x-0.5, y=pos.y-0.5, z=pos.z},
+			velocity = {x=0, y=1, z=0},
+			acceleration = {x=0, y=0, z=0},
+			expirationtime = 2,
+			size = radius * 8,
 			collisiondetection = false,
-			texture = "vehicles_explosion.png"
+			vertical = false,
+			texture = "farlands_explosion.png",
+			animation = {type="vertical_frames", aspect_w=32, aspect_h=32, frame_length=1},
+			glow = 10
 		})
-	minetest.after(1, function()
-	minetest.add_particlespawner({
-			amount = 30,
-			time = 4,
-			minpos = {x=pos.x-1, y=pos.y+2, z=pos.z-1},
-			maxpos = {x=pos.x+1, y=pos.y+3, z=pos.z+1},
-			minvel = {x=0, y=-1, z=0},
-			maxvel = {x=0, y=-2, z=0},
-			minacc = {x=0, y=-0.6, z=0},
-			maxacc = {x=0, y=-0.6, z=0},
-			minexptime = 1,
-			maxexptime = 3,
-			minsize = 1,
-			maxsize = 2,
+	end)
+	minetest.after(0.4, function()
+		minetest.add_particle({
+			pos = {x=pos.x+0.5, y=pos.y+0.5, z=pos.z+0.5},
+			velocity = {x=0, y=1, z=0},
+			acceleration = {x=0, y=0, z=0},
+			expirationtime = 2,
+			size = radius * 8,
 			collisiondetection = false,
-			texture = "vehicles_explosion.png"
+			vertical = false,
+			texture = "farlands_explosion.png",
+			animation = {type="vertical_frames", aspect_w=32, aspect_h=32, frame_length=1},
+			glow = 10
 		})
-		end)
+	end)
+	minetest.add_particlespawner({
+		amount = 16,
+		time = 0.5,
+		minpos = vector.subtract(pos, radius / 2),
+		maxpos = vector.add(pos, radius / 2),
+		minvel = {x = -1, y = 2, z = -1},
+		maxvel = {x = 1, y = 5, z = 1},
+		minacc = {x=0, y=0.5, z=0},
+		maxacc = {x=0, y=0.5, z=0},
+		minexptime = 0.5,
+		maxexptime = 1,
+		minsize = radius * 3,
+		maxsize = radius * 5,
+		texture = "farlands_explosion_small.png",
+			animation = {type="vertical_frames", aspect_w=32, aspect_h=32, frame_length=1},
+	})
+	minetest.add_particlespawner({
+		amount = 64,
+		time = 1,
+		minpos = vector.subtract(pos, radius / 3),
+		maxpos = vector.add(pos, radius / 3),
+		minvel = {x = -1, y = 2, z = -1},
+		maxvel = {x = 1, y = 5, z = 1},
+		minacc = {x=0, y=0.5, z=0},
+		maxacc = {x=0, y=0.5, z=0},
+		minexptime = 1.5,
+		maxexptime = 2,
+		minsize = radius * 2,
+		maxsize = radius * 2.5,
+		texture = "farlands_smoke.png",
+			animation = {type="vertical_frames", aspect_w=16, aspect_h=16, frame_length=0.2},
+	})
 end
 
 function vehicles.on_punch(self, puncher)

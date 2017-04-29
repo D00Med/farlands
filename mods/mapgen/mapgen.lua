@@ -261,14 +261,14 @@
 		ore_type        = "blob",
 		ore             = "mapgen:coarse_dirt",
 		wherein         = {"mapgen:dirt_with_leafygrass"},
-		clust_scarcity  = 16 * 16 * 16,
+		clust_scarcity  = 15 * 15 * 15,
 		clust_size      = 3,
 		y_min           = -31000,
 		y_max           = 31000,
 		noise_threshold = 0.0,
 		noise_params    = {
 			offset = 0.55,
-			scale = 0.3,
+			scale = 0.2,
 			spread = {x = 5, y = 5, z = 5},
 			seed = 766,
 			octaves = 1,
@@ -1494,6 +1494,118 @@ end
 		flags = "place_center_x, place_center_z",
 	})
 	
+	--stone
+	
+	minetest.register_decoration({
+		deco_type = "schematic",
+		place_on = {"default:dirt_with_grass"},
+		sidelen = 16,
+		noise_params = {
+			offset = 0.0005,
+			scale = 0.0005,
+			spread = {x = 250, y = 250, z = 250},
+			seed = 2,
+			octaves = 3,
+			persist = 0.66
+		},
+		biomes = {"coniferous_forest_tall"},
+		y_min = 1,
+		y_max = 31000,
+		schematic = minetest.get_modpath("mapgen") .. "/schematics/rocks/s_stone1.mts",
+		flags = "place_center_x, place_center_z",
+	})	
+		minetest.register_decoration({
+		deco_type = "schematic",
+		place_on = {"default:dirt_with_grass"},
+		sidelen = 16,
+		noise_params = {
+			offset = 0.0005,
+			scale = 0.0005,
+			spread = {x = 250, y = 250, z = 250},
+			seed = 2,
+			octaves = 3,
+			persist = 0.66
+		},
+		biomes = {"coniferous_forest_tall"},
+		y_min = 1,
+		y_max = 31000,
+		schematic = minetest.get_modpath("mapgen") .. "/schematics/rocks/s_stone2.mts",
+		flags = "place_center_x, place_center_z",
+	})	
+		minetest.register_decoration({
+		deco_type = "schematic",
+		place_on = {"default:dirt_with_grass"},
+		sidelen = 16,
+		noise_params = {
+			offset = 0.0005,
+			scale = 0.0005,
+			spread = {x = 250, y = 250, z = 250},
+			seed = 2,
+			octaves = 3,
+			persist = 0.66
+		},
+		biomes = {"coniferous_forest_tall"},
+		y_min = 1,
+		y_max = 31000,
+		schematic = minetest.get_modpath("mapgen") .. "/schematics/rocks/s_stone3.mts",
+		flags = "place_center_x, place_center_z",
+	})	
+	
+		minetest.register_decoration({
+		deco_type = "schematic",
+		place_on = {"default:dirt_with_grass"},
+		sidelen = 16,
+		noise_params = {
+			offset = 0.0005,
+			scale = 0.0005,
+			spread = {x = 250, y = 250, z = 250},
+			seed = 2,
+			octaves = 3,
+			persist = 0.66
+		},
+		biomes = {"deciduous_forest2", "grassland"},
+		y_min = 1,
+		y_max = 31000,
+		schematic = minetest.get_modpath("mapgen") .. "/schematics/rocks/stone1.mts",
+		flags = "place_center_x, place_center_z",
+	})	
+		minetest.register_decoration({
+		deco_type = "schematic",
+		place_on = {"default:dirt_with_grass"},
+		sidelen = 16,
+		noise_params = {
+			offset = 0.0005,
+			scale = 0.0005,
+			spread = {x = 250, y = 250, z = 250},
+			seed = 2,
+			octaves = 3,
+			persist = 0.66
+		},
+		biomes = {"deciduous_forest2", "grassland"},
+		y_min = 1,
+		y_max = 31000,
+		schematic = minetest.get_modpath("mapgen") .. "/schematics/rocks/stone2.mts",
+		flags = "place_center_x, place_center_z",
+	})	
+		minetest.register_decoration({
+		deco_type = "schematic",
+		place_on = {"default:dirt_with_grass"},
+		sidelen = 16,
+		noise_params = {
+			offset = 0.0005,
+			scale = 0.0005,
+			spread = {x = 250, y = 250, z = 250},
+			seed = 2,
+			octaves = 3,
+			persist = 0.66
+		},
+		biomes = {"deciduous_forest2", "grassland"},
+		y_min = 1,
+		y_max = 31000,
+		schematic = minetest.get_modpath("mapgen") .. "/schematics/rocks/stone3.mts",
+		flags = "place_center_x, place_center_z",
+	})	
+	
 	--deciduous_forest trees
 	
 	minetest.register_decoration({
@@ -1501,7 +1613,7 @@ end
 		place_on = {"default:dirt_with_grass"},
 		sidelen = 16,
 		noise_params = {
-			offset = 0.026,
+			offset = 0.016,
 			scale = 0.012,
 			spread = {x = 250, y = 250, z = 250},
 			seed = 2,
@@ -1520,7 +1632,7 @@ end
 		place_on = {"default:dirt_with_grass"},
 		sidelen = 16,
 		noise_params = {
-			offset = 0.026,
+			offset = 0.016,
 			scale = 0.012,
 			spread = {x = 250, y = 250, z = 250},
 			seed = 2,
@@ -1531,6 +1643,25 @@ end
 		y_min = 1,
 		y_max = 31000,
 		schematic = minetest.get_modpath("mapgen") .. "/schematics/deciduous_tree2.mts",
+		flags = "place_center_x, place_center_z",
+	})
+	
+	minetest.register_decoration({
+		deco_type = "schematic",
+		place_on = {"default:dirt_with_grass"},
+		sidelen = 16,
+		noise_params = {
+			offset = 0.016,
+			scale = 0.012,
+			spread = {x = 250, y = 250, z = 250},
+			seed = 2,
+			octaves = 3,
+			persist = 0.66
+		},
+		biomes = {"deciduous_forest2"},
+		y_min = 1,
+		y_max = 31000,
+		schematic = minetest.get_modpath("mapgen") .. "/schematics/deciduous_tree3.mts",
 		flags = "place_center_x, place_center_z",
 	})
 	
@@ -2191,7 +2322,7 @@ minetest.register_decoration({
 	height = 1,
 })
 
-	--ferns
+--deciduous_forest2 stuff
 
 minetest.register_decoration({
 	deco_type = "simple",
@@ -2212,6 +2343,28 @@ minetest.register_decoration({
 	decoration = "mapgen:creeper",
 	height = 1,
 })	
+
+minetest.register_decoration({
+	deco_type = "simple",
+	place_on = "default:dirt_with_grass",
+	sidelen = 16,
+	fill_ratio = 0.2,
+	biomes = {"deciduous_forest2",},
+	decoration = "mapgen:shrub2",
+	height = 1,
+})	
+
+minetest.register_decoration({
+	deco_type = "simple",
+	place_on = "default:dirt_with_grass",
+	sidelen = 16,
+	fill_ratio = 0.2,
+	biomes = {"deciduous_forest2",},
+	decoration = "mapgen:bush",
+	height = 1,
+})	
+
+	--ferns
 
 minetest.register_decoration({
 	deco_type = "simple",

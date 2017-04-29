@@ -190,10 +190,11 @@ minetest.register_craftitem("default:copper_lump", {
 	inventory_image = "default_copper_lump.png",
 })
 
+--[[
 minetest.register_craftitem("default:mese_crystal", {
 	description = "Mese Crystal",
 	inventory_image = "default_mese_crystal.png",
-})
+})]]
 
 minetest.register_craftitem("default:gold_lump", {
 	description = "Gold Lump",

@@ -979,7 +979,7 @@ minetest.register_node("default:bronzeblock", {
 	sounds = default.node_sound_metal_defaults(),
 })
 
-
+--[[
 minetest.register_node("default:stone_with_mese", {
 	description = "Mese Ore",
 	tiles = {"default_stone.png^default_mineral_mese.png"},
@@ -996,6 +996,7 @@ minetest.register_node("default:mese", {
 	sounds = default.node_sound_stone_defaults(),
 	light_source = 3,
 })
+]]
 
 
 minetest.register_node("default:stone_with_gold", {
@@ -2114,7 +2115,7 @@ minetest.register_node("default:brick", {
 	sounds = default.node_sound_stone_defaults(),
 })
 
-
+--[[
 minetest.register_node("default:meselamp", {
 	description = "Mese Lamp",
 	drawtype = "glasslike",
@@ -2125,7 +2126,7 @@ minetest.register_node("default:meselamp", {
 	groups = {cracky = 3, oddly_breakable_by_hand = 3},
 	sounds = default.node_sound_glass_defaults(),
 	light_source = default.LIGHT_MAX,
-})
+})]]
 
 --
 -- Misc

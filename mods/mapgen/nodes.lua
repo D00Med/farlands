@@ -54,6 +54,7 @@ mapgen.register_fern("fern", "Ladyfern", "1")
 mapgen.register_fern("fern2", "Broad Leaf Fern", "2")
 
 mapgen.register_shrub("shrub", "Hog Peanut", "1")
+mapgen.register_shrub("shrub2", "Deciduous Forest Shrub", "2")
 
 --nodes
 
@@ -720,6 +721,22 @@ minetest.register_node("mapgen:bamboo_leaves", {
 	is_ground_content = false,
 	sunlight_propagates = false,
 	groups = {snappy=1, flammable=1, oddly_breakable_by_hand=1, leafdecay=4, leaves=1},
+	sounds = default.node_sound_leaves_defaults(),
+	walkable = false,
+	selection_box = {
+		type = "fixed",
+		fixed = {-0.4, -0.4, -0.4, 0.4, 0.4, 0.4}
+	},
+})
+
+minetest.register_node("mapgen:bush", {
+	description = "Deciduous Forest Bush",
+	drawtype = "firelike",
+	tiles = {"mapgen_bush.png"},
+	paramtype = "light",
+	is_ground_content = false,
+	sunlight_propagates = false,
+	groups = {snappy=1, flammable=1, oddly_breakable_by_hand=1, leaves=1},
 	sounds = default.node_sound_leaves_defaults(),
 	walkable = false,
 	selection_box = {
@@ -1923,6 +1940,7 @@ minetest.register_abm({
 		})
 	end
 })
+
 
 --crafting
 
