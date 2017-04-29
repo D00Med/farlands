@@ -434,7 +434,7 @@ minetest.register_node("default:snow", {
 	node_box = {
 		type = "fixed",
 		fixed = {
-			{-0.5, -0.5, -0.5, 0.5, -0.25, 0.5},
+			{-0.5, -0.5, -0.5, 0.5, -0.3125, 0.5},
 		},
 	},
 	groups = {crumbly = 3, falling_node = 1, puts_out_fire = 1},
