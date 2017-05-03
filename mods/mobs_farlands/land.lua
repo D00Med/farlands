@@ -263,7 +263,7 @@ mobs:register_mob("mobs_m:elephant", {
 
 
 mobs:register_egg("mobs_m:elephant", "Elephant", "default_stone.png", 1)
-mobs:register_spawn("mobs_m:elephant", {"default:dirt_with_dry_grass",}, 5, 0, 7000, 0, 11000)
+mobs:register_spawn("mobs_m:elephant", {"default:dirt_with_dry_grass",}, 20, 10, 7000, 0, 11000)
 
 mobs:register_mob("mobs_m:horse", {
 	type = "animal",
@@ -339,7 +339,7 @@ mobs:register_mob("mobs_m:horse", {
 
 
 mobs:register_egg("mobs_m:horse", "Horse", "default_dirt.png", 1)
-mobs:register_spawn("mobs_m:horse", {"default:dirt_with_grass",}, 5, 0, 7000, 0, 11000)
+mobs:register_spawn("mobs_m:horse", {"default:dirt_with_grass",}, 20, 10, 7000, 0, 11000)
 
 mobs:register_mob("mobs_m:quagga", {
 	type = "animal",
@@ -491,7 +491,7 @@ mobs:register_mob("mobs_m:zebra", {
 
 
 mobs:register_egg("mobs_m:zebra", "Zebra", "default_obsidian.png", 1)
-mobs:register_spawn("mobs_m:zebra", {"default:dirt_with_dry_grass",}, 5, 0, 7000, 0, 11000)
+mobs:register_spawn("mobs_m:zebra", {"default:dirt_with_dry_grass",}, 20, 10, 7000, 0, 11000)
 
 mobs:register_mob("mobs_m:zombie", {
 	type = "monster",
@@ -853,6 +853,9 @@ for _, col in pairs(all_colours) do
 
 end
 
+
+mobs:register_spawn("mobs_m:sheep_white", {"default:dirt_with_grass",}, 20, 10, 7000, 0, 11000)
+
 mobs:register_mob("mobs_m:badger", {
 	type = "animal",
 	passive = false,
@@ -908,7 +911,7 @@ mobs:register_mob("mobs_m:badger", {
 
 
 mobs:register_egg("mobs_m:badger", "Badger", "default_obsidian.png", 1)
-mobs:register_spawn("mobs_m:badger", {"default:dirt_with_grass",}, 5, 0, 7000, 0, 11000)
+mobs:register_spawn("mobs_m:badger", {"mapgen:dirt_with_leafy_grass",}, 20, 10, 7000, 0, 11000)
 
 
 

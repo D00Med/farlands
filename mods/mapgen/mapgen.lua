@@ -2328,7 +2328,7 @@ minetest.register_decoration({
 	deco_type = "simple",
 	place_on = "default:dirt_with_grass",
 	sidelen = 16,
-	fill_ratio = 0.09,
+	fill_ratio = 0.2,
 	biomes = {"deciduous_forest2",},
 	decoration = "mapgen:lantana",
 	height = 1,

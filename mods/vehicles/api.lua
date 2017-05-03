@@ -673,15 +673,19 @@ minetest.register_craftitem(vehicle.."_spawner", {
 			local obj = minetest.env:add_entity(pointed_thing.above, vehicle)
 			local object = obj:get_luaentity()
 			object.owner = placer
+			if not minetest.setting_getbool("creative_mode") then
 			item:take_item()
 			return item
+			end
 			elseif pointed_thing.type == "node" and minetest.get_item_group(pointed_thing.name, "water") then
 			local obj = minetest.env:add_entity(pointed_thing.under, vehicle)
 			obj:setvelocity({x=0, y=-1, z=0})
 			local object = obj:get_luaentity()
 			object.owner = placer
+			if not minetest.setting_getbool("creative_mode") then
 			item:take_item()
 			return item
+			end
 			end
 	end,
 })

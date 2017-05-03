@@ -1200,6 +1200,56 @@ minetest.register_node("stm_nodes:generator_active", {
 	sounds = default.node_sound_metal_defaults()
 })
 
+minetest.register_node("stm_nodes:light", {
+	tiles = {
+		"stm_nodes_light.png",
+	},
+	paramtype = "light",
+	light_source = 13,
+	drop = "stm_nodes:light_off",
+	groups = {cracky=1, electric=2},
+	sounds = default.node_sound_metal_defaults()	
+})
+
+minetest.register_node("stm_nodes:light_off", {
+	description = "Electric Light",
+	tiles = {
+		"stm_nodes_light_off.png",
+	},
+	groups = {cracky=1, electric=2},
+	sounds = default.node_sound_metal_defaults()
+})
+
+minetest.register_abm({
+	nodenames = {"stm_nodes:light_off"},
+	interval = 2,
+	chance = 1,
+	action = function(pos, node)
+		if minetest.find_node_near(pos, 1, {"stm_nodes:lever2_off",}) then
+		return
+		end
+		local power = minetest.find_node_near(pos, 1, {"stm_nodes:cable_active", "stm_nodes:cable_ceiling_active",})
+		if power then
+			minetest.set_node(pos, {name="stm_nodes:light", param2=node.param2})
+		end
+	end
+})
+
+minetest.register_abm({
+	nodenames = {"stm_nodes:light"},
+	interval = 5,
+	chance = 1,
+	action = function(pos, node)
+		if minetest.find_node_near(pos, 1, {"stm_nodes:lever2_off",}) then
+			minetest.set_node(pos, {name="stm_nodes:light_off", param2=node.param2})
+		end
+		local power = minetest.find_node_near(pos, 1, {"stm_nodes:cable_active", "stm_nodes:cable_ceiling_active",})
+		if not power then
+			minetest.set_node(pos, {name="stm_nodes:light_off", param2=node.param2})
+		end
+	end
+})
+
 minetest.register_node("stm_nodes:sustainer", {
 	tiles = {
 		"stm_nodes_sustainer_top.png",
@@ -1287,11 +1337,13 @@ minetest.register_abm({
 			texture = "stm_nodes_steam.png",
 		})
 		if not motor or not steam_input then
-			minetest.after(5, function()
+			minetest.after(1, function()
 				if pos ~= nil then
 				local motor = minetest.find_node_near(pos, 1, {"stm_nodes:motor",})
 				local steam_input = minetest.find_node_near(pos, 1, {"stm_nodes:pipe_active", "stm_nodes_boiler_output"})
+				if not steam_input or not motor then
 				minetest.set_node(pos, {name="stm_nodes:generator_core", param2=node.param2})
+				end
 				end
 			end)
 		end
@@ -1420,6 +1472,51 @@ minetest.register_abm({
 	end
 })
 
+
+minetest.register_node("stm_nodes:conveyor", {
+	description = "Conveyor Belt",
+	tiles = {
+		"stm_nodes_conveyor.png",
+		"stm_nodes_conveyor.png",
+		"stm_nodes_conveyor_side.png",
+		"stm_nodes_conveyor_side.png",
+		"stm_nodes_conveyor.png",
+		"stm_nodes_conveyor.png"
+	},
+	drawtype = "nodebox",
+	paramtype = "light",
+	paramtype2 = "facedir",
+	node_box = {
+		type = "fixed",
+		fixed = {
+			{-0.4375, -0.5, -0.5, 0.4375, -0.1875, 0.5}, -- NodeBox1
+			{-0.5, -0.5, 0.1875, 0.5, -0.25, 0.4375}, -- NodeBox2
+			{-0.5, -0.5, -0.4375, 0.5, -0.25, -0.1875}, -- NodeBox3
+			{-0.5, -0.5, -0.125, 0.5, -0.25, 0.125}, -- NodeBox4
+		}
+	},
+	groups = {cracky=1, electric=1}
+})
+
+minetest.register_abm({
+	nodenames = {"stm_nodes:conveyor",},
+	interval = 1,
+	chance = 1,
+	action = function(pos, node)
+		if minetest.find_node_near(pos, 1, {"stm_nodes:cable_active", "stm_nodes:cable_ceiling_active"}) then
+			local objs = minetest.get_objects_inside_radius(pos, 0.6)
+			for _, obj in ipairs(objs) do
+				if obj:is_player() then
+				return end
+				if obj:get_luaentity() ~= nil then
+					local dir = minetest.facedir_to_dir(node.param2)
+					obj:setvelocity({x=2*dir.x, y=2*dir.y, z=2*dir.z})
+				end
+			end
+		end
+	end,
+})
+
 --electric, right-click activated
 
 minetest.register_node("stm_nodes:bulb", {
@@ -1477,29 +1574,4 @@ minetest.register_node("stm_nodes:bulb_active", {
 		}
 	},
 	drop = "stm_nodes:bulb",
-})
-
-minetest.register_node("stm_nodes:conveyor", {
-	description = "Conveyor Belt",
-	tiles = {
-		"stm_nodes_conveyor.png",
-		"stm_nodes_conveyor.png",
-		"stm_nodes_conveyor_side.png",
-		"stm_nodes_conveyor_side.png",
-		"stm_nodes_conveyor.png",
-		"stm_nodes_conveyor.png"
-	},
-	drawtype = "nodebox",
-	paramtype = "light",
-	paramtype2 = "facedir",
-	node_box = {
-		type = "fixed",
-		fixed = {
-			{-0.4375, -0.5, -0.5, 0.4375, -0.1875, 0.5}, -- NodeBox1
-			{-0.5, -0.5, 0.1875, 0.5, -0.25, 0.4375}, -- NodeBox2
-			{-0.5, -0.5, -0.4375, 0.5, -0.25, -0.1875}, -- NodeBox3
-			{-0.5, -0.5, -0.125, 0.5, -0.25, 0.125}, -- NodeBox4
-		}
-	},
-	groups = {cracky=1}
 })

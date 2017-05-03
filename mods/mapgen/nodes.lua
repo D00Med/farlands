@@ -737,6 +737,7 @@ minetest.register_node("mapgen:bush", {
 	is_ground_content = false,
 	sunlight_propagates = false,
 	groups = {snappy=1, flammable=1, oddly_breakable_by_hand=1, leaves=1},
+	visual_scale = 1.2,
 	sounds = default.node_sound_leaves_defaults(),
 	walkable = false,
 	selection_box = {
