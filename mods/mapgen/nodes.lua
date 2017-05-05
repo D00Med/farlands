@@ -1904,6 +1904,9 @@ minetest.register_abm({
 	interval = 5,
 	chance = 1,
 	action = function(pos, node)
+		if minetest.get_timeofday() <= 0.6 and minetest.get_timeofday() >= 0.2 then
+		return 
+		end
 		minetest.add_particle({
 			pos = {x=pos.x, y=pos.y+0.1, z=pos.z},
 			velocity = {x=0, y=0, z=0},
@@ -1925,6 +1928,9 @@ minetest.register_abm({
 	interval = 5,
 	chance = 1,
 	action = function(pos, node)
+		if minetest.get_timeofday() <= 0.6 and minetest.get_timeofday() >= 0.2 then
+		return 
+		end
 		local dir = minetest.facedir_to_dir(node.param2)
 		minetest.add_particle({
 			pos = {x=pos.x-0.25*dir.z, y=pos.y+0.1, z=pos.z-0.25*dir.x},

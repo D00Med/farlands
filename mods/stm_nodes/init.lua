@@ -280,20 +280,64 @@ minetest.register_abm({
 	action = function(pos, node)
 		local steam_source = minetest.find_node_near(pos, 1, {
 			"default:furnace_active2",
-			"stm_nodes:pipe_active",
 			"stm_nodes:reactor_active"
 		})
 		if steam_source then
 			minetest.set_node(pos, {name="stm_nodes:pipe_active", param2=node.param2})
 		end
-		local boiler_output = minetest.find_node_near(pos, 1, {"stm_nodes:boiler_output"})
-		if not boiler_output or minetest.get_item_group(minetest.get_node(vector.add(boiler_output, {x=0,y=-1,z=0})).name, "boiler") == 0 then
-			return
+	end
+})
+
+minetest.register_abm({
+	nodenames = {"stm_nodes:boiler_output"},
+	interval = 1,
+	chance = 1,
+	action = function(pos, node)
+		local active = true
+	
+		local steam_input = minetest.find_node_near(pos, 1, {"stm_nodes:pipe"})
+		local source = minetest.get_node({x=pos.x, y=pos.y-3, z=pos.z})
+		local source2 = minetest.get_node({x=pos.x, y=pos.y-2, z=pos.z})
+		if source.name ~= "stm_nodes:furnace_active" and source2.name ~= "stm_nodes:furnace_active" then
+		active = false
+		steam_input = minetest.find_node_near(pos, 1, {"stm_nodes:pipe_active"})
 		end
-		local heat = minetest.find_node_near(vector.add(boiler_output, {x=0,y=-2,z=0}),
-				1, {"stm_nodes:furnace_active", "default:furnace_active2"})
-		if heat then
-			minetest.set_node(pos, {name="stm_nodes:pipe_active", param2=node.param2})
+		
+		if not minetest.find_node_near(pos, 2, {"stm_nodes:boiler", "stm_nodes:large_boiler_top"}) then
+		active = false 
+		steam_input = minetest.find_node_near(pos, 1, {"stm_nodes:pipe_active"})
+		end
+		
+		if steam_input == nil then 
+		return 
+		end
+		
+		if not active then
+		for i = 1, 20 do
+		local name = minetest.get_node(steam_input).name
+		if name == "stm_nodes:pipe_active" then
+		minetest.set_node(steam_input, {name="stm_nodes:pipe", param2=minetest.get_node(steam_input).param2})
+		end
+		local nextpos = minetest.find_node_near(steam_input, 1, {"stm_nodes:pipe_active",})
+		if not nextpos then
+		return 
+		end
+		steam_input = nextpos
+		end
+		return 
+		end
+		
+		
+		for i = 1, 20 do
+		local name = minetest.get_node(steam_input).name
+		if name == "stm_nodes:pipe" then
+		minetest.set_node(steam_input, {name="stm_nodes:pipe_active", param2=minetest.get_node(steam_input).param2})
+		end
+		local nextpos = minetest.find_node_near(steam_input, 1, {"stm_nodes:pipe",})
+		if not nextpos then
+		return 
+		end
+		steam_input = nextpos
 		end
 	end
 })
@@ -303,17 +347,8 @@ minetest.register_abm({
 	interval = 5,
 	chance = 1,
 	action = function(pos, node)
+		if not minetest.find_node_near(pos, 1, {"stm_nodes:pipe_active"}) then
 		minetest.set_node(pos, {name = "stm_nodes:pipe", param2 = node.param2})
-	end
-})
-
-minetest.register_abm({
-	nodenames = {"stm_nodes:pipe"},
-	interval = 1,
-	chance = 1,
-	action = function(pos, node)
-		if minetest.find_node_near(pos, 1, {"default:furnace_active2"}) then
-			minetest.set_node(pos, {name="stm_nodes:pipe_active", param2=node.param2})
 		end
 	end
 })
@@ -815,7 +850,7 @@ minetest.register_abm({
 		end
 	
 		local cable = minetest.find_node_near(pos, 1, {"stm_nodes:cable", "stm_nodes:cable_active", "stm_nodes:cable_ceiling", "stm_nodes:cable_ceiling_active"})
-		local power = minetest.find_node_near(pos, 7, {"stm_nodes:generator_active", "stm_nodes:sustainer"})
+		local power = minetest.find_node_near(pos, 10, {"stm_nodes:generator_active", "stm_nodes:sustainer"})
 		if not cable then 
 		minetest.set_node(pos, {name=newname, param2=node.param2})
 		elseif not power then
@@ -1237,7 +1272,7 @@ minetest.register_abm({
 
 minetest.register_abm({
 	nodenames = {"stm_nodes:light"},
-	interval = 5,
+	interval = 2,
 	chance = 1,
 	action = function(pos, node)
 		if minetest.find_node_near(pos, 1, {"stm_nodes:lever2_off",}) then
@@ -1305,7 +1340,7 @@ minetest.register_abm({
 			texture = "stm_nodes_steam.png",
 		})
 		end
-		local sustainer = minetest.find_node_near(pos, 9, {"stm_nodes:sustainer",})
+		local sustainer = minetest.find_node_near(pos, 11, {"stm_nodes:sustainer",})
 		if sustainer then
 			minetest.set_node(sustainer, {name="stm_nodes:sustainer_inactive",})
 		end
@@ -1319,6 +1354,7 @@ minetest.register_abm({
 	action = function(pos, node)
 		local motor = minetest.find_node_near(pos, 1, {"stm_nodes:motor",})
 		local steam_input = minetest.find_node_near(pos, 1, {"stm_nodes:pipe_active", "stm_nodes_boiler_output"})
+		if motor ~= nil then
 		minetest.add_particlespawner({
 			amount = 4,
 			time = 2,
@@ -1336,6 +1372,7 @@ minetest.register_abm({
 			vertical = false,
 			texture = "stm_nodes_steam.png",
 		})
+		end
 		if not motor or not steam_input then
 			minetest.after(1, function()
 				if pos ~= nil then
@@ -1358,11 +1395,17 @@ minetest.register_abm({
 		if minetest.find_node_near(pos, 1, {"stm_nodes:lever2_off",}) then
 		return
 		end
-		local generator = minetest.find_node_near(pos, 8, {"stm_nodes:generator_active",})
-		local sustainer = minetest.find_node_near(pos, 8, {"stm_nodes:sustainer",})
-		local sustainer2 = minetest.find_node_near(pos, 8, {"stm_nodes:sustainer",})
+		local generator = minetest.find_node_near(pos, 11, {"stm_nodes:generator_active",})
+		local sustainer = minetest.find_node_near(pos, 11, {"stm_nodes:sustainer",})
+		local sustainer2 = minetest.find_node_near(pos, 11, {"stm_nodes:sustainer",})
 		if not sustainer and not sustainer2 and not generator then
 		return
+		end
+		if sustainer and not minetest.find_node_near(sustainer, 11, {"stm_nodes:generator_active", "stm_nodes:sustainer"}) then
+			minetest.set_node(pos, {name="stm_nodes:sustainer_inactive", param2=node.param2})
+		end
+		if sustainer2 and not minetest.find_node_near(sustainer2, 11, {"stm_nodes:generator_active", "stm_nodes:sustainer"}) then
+			minetest.set_node(pos, {name="stm_nodes:sustainer_inactive", param2=node.param2})
 		end
 		if generator or sustainer ~= sustainer2 then
 			if minetest.find_node_near(pos, 1, {"stm_nodes:cable_active", "stm_nodes:cable_ceiling_active"}) then
@@ -1377,7 +1420,7 @@ minetest.register_abm({
 	interval = 4,
 	chance = 1,
 	action = function(pos, node)
-		if minetest.get_node(pos).name == "stm_nodes:sustainer" and not minetest.find_node_near(pos, 8, {"stm_nodes:sustainer", "stm_nodes:generator_active"}) then
+		if minetest.get_node(pos).name == "stm_nodes:sustainer" and not minetest.find_node_near(pos, 11, {"stm_nodes:sustainer", "stm_nodes:generator_active"}) then
 		minetest.set_node(pos, {name="stm_nodes:sustainer_inactive"})
 		return
 		end
@@ -1390,6 +1433,8 @@ minetest.register_abm({
 		if not power then
 		return 
 		end
+		
+		for i = 1, 11 do
 		local name = minetest.get_node(power).name
 		if name == "stm_nodes:cable" then
 		minetest.set_node(power, {name="stm_nodes:cable_active", param2=minetest.get_node(power).param2})
@@ -1401,74 +1446,7 @@ minetest.register_abm({
 		return 
 		end
 		power = nextpos
-		
-		local name = minetest.get_node(power).name
-		if name == "stm_nodes:cable" then
-		minetest.set_node(power, {name="stm_nodes:cable_active", param2=minetest.get_node(power).param2})
-		else
-		minetest.set_node(power, {name="stm_nodes:cable_ceiling_active", param2=minetest.get_node(power).param2})
 		end
-		local nextpos = minetest.find_node_near(power, 1, {"stm_nodes:cable", "stm_nodes:cable_ceiling"})
-		if not nextpos then
-		return 
-		end
-		power = nextpos
-		
-		local name = minetest.get_node(power).name
-		if name == "stm_nodes:cable" then
-		minetest.set_node(power, {name="stm_nodes:cable_active", param2=minetest.get_node(power).param2})
-		else
-		minetest.set_node(power, {name="stm_nodes:cable_ceiling_active", param2=minetest.get_node(power).param2})
-		end
-		local nextpos = minetest.find_node_near(power, 1, {"stm_nodes:cable", "stm_nodes:cable_ceiling"})
-		if not nextpos then
-		return 
-		end
-		power = nextpos
-		
-		local name = minetest.get_node(power).name
-		if name == "stm_nodes:cable" then
-		minetest.set_node(power, {name="stm_nodes:cable_active", param2=minetest.get_node(power).param2})
-		else
-		minetest.set_node(power, {name="stm_nodes:cable_ceiling_active", param2=minetest.get_node(power).param2})
-		end
-		local nextpos = minetest.find_node_near(power, 1, {"stm_nodes:cable", "stm_nodes:cable_ceiling"})
-		if not nextpos then
-		return 
-		end
-		power = nextpos
-		
-		local name = minetest.get_node(power).name
-		if name == "stm_nodes:cable" then
-		minetest.set_node(power, {name="stm_nodes:cable_active", param2=minetest.get_node(power).param2})
-		else
-		minetest.set_node(power, {name="stm_nodes:cable_ceiling_active", param2=minetest.get_node(power).param2})
-		end
-		local nextpos = minetest.find_node_near(power, 1, {"stm_nodes:cable", "stm_nodes:cable_ceiling"})
-		if not nextpos then
-		return 
-		end
-		power = nextpos
-		
-		local name = minetest.get_node(power).name
-		if name == "stm_nodes:cable" then
-		minetest.set_node(power, {name="stm_nodes:cable_active", param2=minetest.get_node(power).param2})
-		else
-		minetest.set_node(power, {name="stm_nodes:cable_ceiling_active", param2=minetest.get_node(power).param2})
-		end
-		local nextpos = minetest.find_node_near(power, 1, {"stm_nodes:cable", "stm_nodes:cable_ceiling"})
-		if not nextpos then
-		return 
-		end
-		power = nextpos
-		
-		local name = minetest.get_node(power).name
-		if name == "stm_nodes:cable" then
-		minetest.set_node(power, {name="stm_nodes:cable_active", param2=minetest.get_node(power).param2})
-		else
-		minetest.set_node(power, {name="stm_nodes:cable_ceiling_active", param2=minetest.get_node(power).param2})
-		end
-		local nextpos = minetest.find_node_near(power, 1, {"stm_nodes:cable", "stm_nodes:cable_ceiling"})
 	end
 })
 
@@ -1515,6 +1493,186 @@ minetest.register_abm({
 			end
 		end
 	end,
+})
+
+minetest.register_node("stm_nodes:piston", {
+	description = "Piston",
+	tiles = {
+		"default_wood.png",
+		"default_wood.png",
+		"default_wood.png",
+		"default_wood.png",
+		"default_wood.png",
+		"default_wood.png"
+	},
+	drawtype = "nodebox",
+	paramtype = "light",
+	paramtype2 = "facedir",
+	node_box = {
+		type = "fixed",
+		fixed = {
+			{-0.4375, -0.4375, -0.5, 0.4375, 0.4375, -0.25}, -- NodeBox1
+			{-0.5, -0.5, -0.25, 0.5, 0.5, 0.5}, -- NodeBox2
+		}
+	},
+	groups = {cracky=1, electric=1},
+	drop = "stm_nodes:piston"
+})
+
+minetest.register_node("stm_nodes:piston_open", {
+	tiles = {
+		"default_wood.png",
+		"default_wood.png",
+		"default_wood.png",
+		"default_wood.png",
+		"default_wood.png",
+		"default_wood.png"
+	},
+	drawtype = "nodebox",
+	paramtype = "light",
+	paramtype2 = "facedir",
+	node_box = {
+		type = "fixed",
+		fixed = {
+			{-0.4375, -0.4375, -1.5, 0.4375, 0.4375, -1.25}, -- NodeBox1
+			{-0.5, -0.5, -0.25, 0.5, 0.5, 0.5}, -- NodeBox2
+			{-0.125, -0.125, -1.25, 0.125, 0.125, -0.25}, -- NodeBox3
+		}
+	},
+	groups = {cracky=1, electric=1},
+	drop = "stm_nodes:piston",
+})
+
+minetest.register_abm({
+	nodenames = {"stm_nodes:piston"},
+	interval = 1,
+	chance = 1,
+	action = function(pos, node)
+		if minetest.find_node_near(pos, 1, {"stm_nodes:lever2_off",}) then
+		return 
+		end
+		local power = minetest.find_node_near(pos, 1, {"stm_nodes:cable_active", "stm_nodes:cable_ceiling_active",})
+		if power then
+			minetest.set_node(pos, {name="stm_nodes:piston_open", param2=node.param2})
+			local dir = minetest.facedir_to_dir(node.param2)
+			local movenode = minetest.get_node({x=pos.x-1*dir.x, y=pos.y, z=pos.z-1*dir.z})
+			if minetest.get_node({x=pos.x-2*dir.x, y=pos.y, z=pos.z-2*dir.z}).name == "air" then
+				minetest.set_node({x=pos.x-2*dir.x, y=pos.y, z=pos.z-2*dir.z}, {name=movenode.name, param2=movenode.param2})
+				minetest.remove_node({x=pos.x-1*dir.x, y=pos.y, z=pos.z-1*dir.z})
+			end
+		end
+	end
+})
+
+minetest.register_abm({
+	nodenames = {"stm_nodes:piston_open"},
+	interval = 1,
+	chance = 1,
+	action = function(pos, node)
+		if minetest.find_node_near(pos, 1, {"stm_nodes:lever2_off",}) then
+			minetest.set_node(pos, {name="stm_nodes:piston", param2=node.param2})
+		end
+		local power = minetest.find_node_near(pos, 1, {"stm_nodes:cable_active", "stm_nodes:cable_ceiling_active",})
+		if not power then
+			minetest.set_node(pos, {name="stm_nodes:piston", param2=node.param2})
+		end
+	end
+})
+
+minetest.register_node("stm_nodes:spiston", {
+	description = "Sticky Piston",
+	tiles = {
+		"default_wood.png",
+		"default_wood.png",
+		"default_wood.png",
+		"default_wood.png",
+		"default_wood.png",
+		"default_wood.png"
+	},
+	drawtype = "nodebox",
+	paramtype = "light",
+	paramtype2 = "facedir",
+	node_box = {
+		type = "fixed",
+		fixed = {
+			{-0.4375, -0.4375, -0.5, 0.4375, 0.4375, -0.25}, -- NodeBox1
+			{-0.5, -0.5, -0.25, 0.5, 0.5, 0.5}, -- NodeBox2
+		}
+	},
+	groups = {cracky=1, electric=1},
+	drop = "stm_nodes:piston"
+})
+
+minetest.register_node("stm_nodes:spiston_open", {
+	tiles = {
+		"default_wood.png",
+		"default_wood.png",
+		"default_wood.png",
+		"default_wood.png",
+		"default_wood.png",
+		"default_wood.png"
+	},
+	drawtype = "nodebox",
+	paramtype = "light",
+	paramtype2 = "facedir",
+	node_box = {
+		type = "fixed",
+		fixed = {
+			{-0.4375, -0.4375, -1.5, 0.4375, 0.4375, -1.25}, -- NodeBox1
+			{-0.5, -0.5, -0.25, 0.5, 0.5, 0.5}, -- NodeBox2
+			{-0.125, -0.125, -1.25, 0.125, 0.125, -0.25}, -- NodeBox3
+		}
+	},
+	groups = {cracky=1, electric=1},
+	drop = "stm_nodes:spiston",
+})
+
+minetest.register_abm({
+	nodenames = {"stm_nodes:spiston"},
+	interval = 1,
+	chance = 1,
+	action = function(pos, node)
+		if minetest.find_node_near(pos, 1, {"stm_nodes:lever2_off",}) then
+		return 
+		end
+		local power = minetest.find_node_near(pos, 1, {"stm_nodes:cable_active", "stm_nodes:cable_ceiling_active",})
+		if power then
+			minetest.set_node(pos, {name="stm_nodes:spiston_open", param2=node.param2})
+			local dir = minetest.facedir_to_dir(node.param2)
+			local movenode = minetest.get_node({x=pos.x-1*dir.x, y=pos.y, z=pos.z-1*dir.z})
+			if minetest.get_node({x=pos.x-2*dir.x, y=pos.y, z=pos.z-2*dir.z}).name == "air" then
+				minetest.set_node({x=pos.x-2*dir.x, y=pos.y, z=pos.z-2*dir.z}, {name=movenode.name, param2=movenode.param2})
+				minetest.remove_node({x=pos.x-1*dir.x, y=pos.y, z=pos.z-1*dir.z})
+			end
+		end
+	end
+})
+
+minetest.register_abm({
+	nodenames = {"stm_nodes:spiston_open"},
+	interval = 1,
+	chance = 1,
+	action = function(pos, node)
+		if minetest.find_node_near(pos, 1, {"stm_nodes:lever2_off",}) then
+			minetest.set_node(pos, {name="stm_nodes:spiston", param2=node.param2})
+			local dir = minetest.facedir_to_dir(node.param2)
+			local movenode = minetest.get_node({x=pos.x-2*dir.x, y=pos.y, z=pos.z-2*dir.z})
+			if minetest.get_node({x=pos.x-1*dir.x, y=pos.y, z=pos.z-1*dir.z}).name == "air" then
+				minetest.set_node({x=pos.x-1*dir.x, y=pos.y, z=pos.z-1*dir.z}, {name=movenode.name, param2=movenode.param2})
+				minetest.remove_node({x=pos.x-2*dir.x, y=pos.y, z=pos.z-2*dir.z})
+			end
+		end
+		local power = minetest.find_node_near(pos, 1, {"stm_nodes:cable_active", "stm_nodes:cable_ceiling_active",})
+		if not power then
+			minetest.set_node(pos, {name="stm_nodes:spiston", param2=node.param2})
+			local dir = minetest.facedir_to_dir(node.param2)
+			local movenode = minetest.get_node({x=pos.x-2*dir.x, y=pos.y, z=pos.z-2*dir.z})
+			if minetest.get_node({x=pos.x-1*dir.x, y=pos.y, z=pos.z-1*dir.z}).name == "air" then
+				minetest.set_node({x=pos.x-1*dir.x, y=pos.y, z=pos.z-1*dir.z}, {name=movenode.name, param2=movenode.param2})
+				minetest.remove_node({x=pos.x-2*dir.x, y=pos.y, z=pos.z-2*dir.z})
+			end
+		end
+	end
 })
 
 --electric, right-click activated
