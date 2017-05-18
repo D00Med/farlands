@@ -39,3 +39,11 @@ minetest.register_craft({
 	recipe = "mapgen:granite_brown",
 	cooktime = 5,
 })
+
+minetest.register_craft({
+	output = 'decoblocks:gold_brick',
+	recipe = {
+		{'default:gold_ingot', 'default:gold_ingot'},
+		{'default:gold_ingot', 'default:gold_ingot'},
+	}
+})

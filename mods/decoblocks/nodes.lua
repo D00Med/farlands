@@ -748,3 +748,10 @@ minetest.register_node("decoblocks:altar", {
 	groups = {choppy = 1, oddly_breakable_by_hand = 1},
 	sounds = default.node_sound_wood_defaults()
 })
+
+minetest.register_node("decoblocks:gold_brick", {
+	description = "Gold Brick",
+	tiles = {"decoblocks_gold_brick.png"},
+	groups = {cracky = 1},
+	sounds = default.node_sound_metal_defaults(),
+})
