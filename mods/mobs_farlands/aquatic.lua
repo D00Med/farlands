@@ -337,6 +337,71 @@ mobs:register_mob("mobs_m:dearcmhara", {
 
 mobs:register_egg("mobs_m:dearcmhara", "Dearcmhara", "wool_cyan.png", 1)
 
+mobs:register_mob("mobs_m:whale", {
+	type = "animal",
+	passive = false,
+	reach = 1,
+	damage = 2,
+	attack_type = "dogfight",
+	hp_min = 52,
+	hp_max = 82,
+	armor = 230,
+	collisionbox = {-4, -2, -4, 4, 2, 4},
+	visual = "mesh",
+	mesh = "whale.b3d",
+	textures = {
+		{"mobs_m_whale.png"},
+	},
+	blood_texture = "mobs_blood.png",
+	rotate = 180,
+	visual_size = {x=1.5, y=1.5},
+	makes_footstep_sound = true,
+	walk_velocity = 1,
+	run_velocity = 2,
+	jump = false,	
+	stepheight = 1.5,
+	fall_damage = 0,
+	fall_speed = -6,
+	fly = true,
+	fly_in = "default:water_source",
+	water_damage = 0,
+	lava_damage = 2,
+	light_damage = 0,
+	follow = {"fishing:fish_cooked"},
+	view_range = 14,
+	drops = {
+		{name = "mobs:meat_raw", chance = 1, min = 1, max = 1},
+	},
+	sounds = {
+      random = "whale_1",
+      death = "whale_1",
+      distance = 128,
+	},
+	animation = {
+		speed_normal = 0.1,
+		speed_run = 0.5,
+		walk_start = 2,
+		walk_end = 28,
+		stand_start = 30,
+		stand_end = 50,
+		run_start = 2,
+		run_end = 28,
+
+	},
+	on_rightclick = function(self, clicker)
+
+		if mobs:feed_tame(self, clicker, 8, true, true) then
+			return
+		end
+
+		mobs:capture_mob(self, clicker, 0, 5, 50, false, nil)
+	end,
+})
+
+
+mobs:register_egg("mobs_m:whale", "Whale", "default_water.png", 1)
+	mobs:register_spawn("mobs_m:whale", {"default:water_source"}, 20, 10, 15000, -20, 1000)
+
 minetest.register_craftitem("mobs_m:smallfish_raw", {
 	description = "Small Raw Fish",
 	inventory_image = "mobs_smallfish_item.png",

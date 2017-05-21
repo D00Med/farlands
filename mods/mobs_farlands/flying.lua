@@ -167,3 +167,51 @@ mobs:register_mob("mobs_m:pterodactyl_walking", {
 })
 
 mobs:register_egg("mobs_m:pterodactyl", "Pterodactyl", "default_dirt.png", 1)
+
+mobs:register_mob("mobs_m:wasp", {
+	type = "monster",
+	reach = 1,
+	damage = 1,
+	attack_type = "dogfight",
+	hp_min = 2,
+	hp_max = 5,
+	armor = 100,
+	collisionbox = {-0.1, -0, -0.1, 0.1, 0.5, 0.1},
+	fly = true,
+	fall_speed = 0,
+	stepheight = 1.5,
+	visual = "mesh",
+	mesh = "wasp.b3d",
+	textures = {
+		{"mobs_m_wasp.png"},
+	},
+	sounds = {
+		random = "wasp",
+	},
+	blood_texture = "mobs_blood.png",
+	visual_size = {x=0.6, y=0.6},
+	makes_footstep_sound = true,
+	walk_velocity = 2,
+	run_velocity = 3,
+	jump = true,
+	water_damage = 2,
+	lava_damage = 2,
+	light_damage = 0,
+	view_range = 14,
+	animation = {
+		speed_normal = 15,
+		speed_run = 20,
+		walk_start = 6,
+		walk_end = 16,
+		stand_start = 6,
+		stand_end = 16,
+		run_start = 6,
+		run_end = 16,
+		punch_start = 6,
+		punch_end = 16,
+	},
+})
+
+
+mobs:register_egg("mobs_m:wasp", "Wasp", "default_obsidian.png", 1)
+	mobs:register_spawn("mobs_m:wasp", {"default:dirt_with_grass"}, 20, 10, 32000, 2, 31000)
