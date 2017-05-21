@@ -1,7 +1,3 @@
-local function release_player(player, attach_obj)
-	attach_obj:remove()
-end
-
 local function check_for_mobs(pos, self)
 	local objs = minetest.get_objects_inside_radius(pos, 2)
 	for i = 1, #objs do
@@ -25,6 +21,14 @@ minetest.register_entity("clawshot:dummy", {
 	textures = {"blank.png"},
 	physical = false,
 	collisionbox = {-0.1, -0.1, -0.1, 0.1, 0.1, 0.1},
+	on_activate = function(self, staticdata)
+		if staticdata == "delete" then
+			self.object:remove()
+		end
+	end,
+	get_staticdata = function(self)
+		return "delete"
+	end,
 })
 
 local function register_clawshot(def)
@@ -33,7 +37,15 @@ local function register_clawshot(def)
 		mesh = "claw.b3d",
 		textures = {def.texture_claw},
 		physical = false,
-		collisionbox = {-0.1, -0.1, -0.1, 0.1, 0.1, 0.1},
+		collisionbox = {0, 0, 0, 0, 0, 0},
+		on_activate = function(self, staticdata)
+			if staticdata == "delete" then
+				self.object:remove()
+			end
+		end,
+		get_staticdata = function(self)
+			return "delete"
+		end,
 		on_step = function(self)
 			local pos = self.object:getpos()
 			check_for_mobs(pos, self)
@@ -63,13 +75,19 @@ local function register_clawshot(def)
 					minetest.get_node({x=pos.x-1, y=pos.y, z=pos.z}).name == "air" or
 					minetest.get_node({x=pos.x, y=pos.y, z=pos.z+1}).name == "air" or
 					minetest.get_node({x=pos.x, y=pos.y, z=pos.z-1}).name == "air" then
-				local vel
-				if not self.launcher:get_player_control().sneak then
-					vel = vector.multiply(vector.direction(player_pos, pos), def.speed2)
+				local vel = vector.direction(player_pos, pos)
+				local t = 1
+				if self.launcher:get_player_control().sneak then
+					vel.y = 0
+					vel = vector.normalize(vel)
+					t = 2
+					pos.y = player_pos.y
 				end
-				attach_obj:setvelocity(vel)
-				minetest.after(vector.distance(player_pos, pos)/def.speed2, function()
-					release_player(self.launcher, attach_obj)
+				vel = vector.multiply(vel, def.speed2)
+				t = vector.distance(player_pos, pos)/vector.length(vel)*t
+				attach_obj:set_velocity(vel)
+				minetest.after(t, function()
+					attach_obj:remove()
 				end)
 			end
 			self.object:remove()
@@ -97,12 +115,12 @@ local function register_clawshot(def)
 			end)
 			obj:set_velocity(vector.multiply(dir, def.speed))
 			obj:set_yaw(placer:get_look_horizontal())
-			--~ obj:set_bone_position("", {x=0,y=0,z=0}, dir)
+			--~ obj:set_bone_position("", {x=0,y=0,z=0}, dir) --TODO
 			obj:set_acceleration(vector.multiply(dir, def.acceleration))
-			local luaent = obj:get_luaentity()
-			luaent.launcher = placer
-			luaent.ready = true
-			item:add_wear(300)
+			obj:get_luaentity().launcher = placer
+			if not minetest.settings:get_bool("creative_mode") then
+				item:add_wear(300)
+			end
 			return item
 		end,
 	})
