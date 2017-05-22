@@ -141,30 +141,6 @@ minetest.register_node("decoblocks:scarecrow", {
 })
 
 
-minetest.register_node("decoblocks:hanging_flower", {
-	description = "Hanging Flower",
-	drawtype = "mesh",
-	mesh = "hangingflower.obj",
-	tiles = {
-		"hanging_flower.png",
-	},
-	visual_scale = 0.5,
-	wield_scale = {x=0.5, y=0.5, z=0.5},
-	paramtype = "light",
-	selection_box = {
-		type = "fixed",
-		fixed = {-0.3, -0.5, -0.3, 0.3, 1, 0.3}
-	},
-	collision_box = {
-		type = "fixed",
-		fixed = {-0.3, -0.5, -0.3, 0.3, 1, 0.3}
-	},
-	inventory_image = "hanging_flower_item.png",
-	groups = {choppy = 1, oddly_breakable_by_hand = 1},
-	sounds = default.node_sound_wood_defaults()
-})
-
-
 minetest.register_node("decoblocks:human_skull", {
 	description = "Human Skull",
 	drawtype = "mesh",
@@ -754,4 +730,73 @@ minetest.register_node("decoblocks:gold_brick", {
 	tiles = {"decoblocks_gold_brick.png"},
 	groups = {cracky = 1},
 	sounds = default.node_sound_metal_defaults(),
+})
+
+minetest.register_node("decoblocks:D00Med_Statue", {
+	description = "D00Med Statue",
+	drawtype = "mesh",
+	mesh = "player_statue.obj",
+	paramtype2 = "facedir",
+	tiles = {
+		"decoblocks_D00Med_statue.png",
+	},
+	visual_scale = 0.5,
+	wield_scale = {x=1.0, y=1.0, z=1.0},
+	paramtype = "light",
+	selection_box = {
+		type = "fixed",
+		fixed = {-0.3, -0.5, -0.3, 0.3, 1, 0.3}
+	},
+	collision_box = {
+		type = "fixed",
+		fixed = {-0.3, -0.5, -0.3, 0.3, 1, 0.3}
+	},
+	groups = {choppy = 1, oddly_breakable_by_hand = 1},
+	sounds = default.node_sound_wood_defaults()
+})
+
+minetest.register_node("decoblocks:toby109tt_Statue", {
+	description = "Toby109tt Statue",
+	drawtype = "mesh",
+	mesh = "player_statue.obj",
+	paramtype2 = "facedir",
+	tiles = {
+		"decoblocks_toby109tt_statue.png",
+	},
+	visual_scale = 0.5,
+	wield_scale = {x=1.0, y=1.0, z=1.0},
+	paramtype = "light",
+	selection_box = {
+		type = "fixed",
+		fixed = {-0.3, -0.5, -0.3, 0.3, 1, 0.3}
+	},
+	collision_box = {
+		type = "fixed",
+		fixed = {-0.3, -0.5, -0.3, 0.3, 1, 0.3}
+	},
+	groups = {choppy = 1, oddly_breakable_by_hand = 1},
+	sounds = default.node_sound_wood_defaults()
+})
+
+minetest.register_node("decoblocks:GreenXenith_Statue", {
+	description = "GreenXenith Statue",
+	drawtype = "mesh",
+	mesh = "player_statue.obj",
+	paramtype2 = "facedir",
+	tiles = {
+		"decoblocks_GreenXenith_statue.png",
+	},
+	visual_scale = 0.5,
+	wield_scale = {x=1.0, y=1.0, z=1.0},
+	paramtype = "light",
+	selection_box = {
+		type = "fixed",
+		fixed = {-0.3, -0.5, -0.3, 0.3, 1, 0.3}
+	},
+	collision_box = {
+		type = "fixed",
+		fixed = {-0.3, -0.5, -0.3, 0.3, 1, 0.3}
+	},
+	groups = {choppy = 1, oddly_breakable_by_hand = 1},
+	sounds = default.node_sound_wood_defaults()
 })
