@@ -83,20 +83,23 @@ minetest.register_node("decoblocks:lantern", {
 })
 
 minetest.register_abm({
-	nodenames = {"decoblocks:lantern"},
+	nodenames = {"decoblocks:lantern", "decoblocks:lantern_ceiling"},
 	interval = 5,
 	chance = 1,
 	action = function(pos, node)
+		if minetest.get_timeofday() <= 0.6 and minetest.get_timeofday() >= 0.2 then
+		return 
+		end
 		minetest.add_particle({
 			pos = {x=pos.x, y=pos.y, z=pos.z},
 			velocity = {x=0, y=0, z=0},
 			acceleration = {x=0, y=0, z=0},
 			expirationtime = 5,
-			size = 25,
+			size = 15,
 			collisiondetection = false,
 			collisionremoval = false,
 			vertical = true,
-			texture = "decoblocks_glow.png",
+			texture = "mapgen_glow.png",
 			animation = {type = "vertical_frames", aspect_w = 32, aspect_h = 32, length = 2.00},
 			glow = 9
 		})
@@ -122,6 +125,31 @@ minetest.register_node("decoblocks:lantern_wall", {
 		wall_side = {-1/2, -1/2, -1/8, -1/8, 1/8, 1/8},
 	},
 	sounds = default.node_sound_wood_defaults(),
+})
+
+minetest.register_abm({
+	nodenames = {"decoblocks:lantern_wall"},
+	interval = 5,
+	chance = 1,
+	action = function(pos, node)
+		if minetest.get_timeofday() <= 0.6 and minetest.get_timeofday() >= 0.2 then
+		return 
+		end
+		local dir = minetest.facedir_to_dir(node.param2)
+		minetest.add_particle({
+			pos = {x=pos.x-0.35*dir.z, y=pos.y-0.1, z=pos.z-0.35*dir.x},
+			velocity = {x=0, y=0, z=0},
+			acceleration = {x=0, y=0, z=0},
+			expirationtime = 5,
+			size = 15,
+			collisiondetection = false,
+			collisionremoval = false,
+			vertical = true,
+			texture = "mapgen_glow.png",
+			animation = {type = "vertical_frames", aspect_w = 32, aspect_h = 32, length = 0.20},
+			glow = 9
+		})
+	end
 })
 
 minetest.register_node("decoblocks:lantern_ceiling", {
