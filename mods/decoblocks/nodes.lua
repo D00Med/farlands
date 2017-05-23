@@ -800,3 +800,26 @@ minetest.register_node("decoblocks:GreenXenith_Statue", {
 	groups = {choppy = 1, oddly_breakable_by_hand = 1},
 	sounds = default.node_sound_wood_defaults()
 })
+
+minetest.register_node("decoblocks:DS_Minetest_Statue", {
+	description = "DS Minetest Statue",
+	drawtype = "mesh",
+	mesh = "player_statue.obj",
+	paramtype2 = "facedir",
+	tiles = {
+		"decoblocks_DS_Minetest_statue.png",
+	},
+	visual_scale = 0.5,
+	wield_scale = {x=1.0, y=1.0, z=1.0},
+	paramtype = "light",
+	selection_box = {
+		type = "fixed",
+		fixed = {-0.3, -0.5, -0.3, 0.3, 1, 0.3}
+	},
+	collision_box = {
+		type = "fixed",
+		fixed = {-0.3, -0.5, -0.3, 0.3, 1, 0.3}
+	},
+	groups = {choppy = 1, oddly_breakable_by_hand = 1},
+	sounds = default.node_sound_wood_defaults()
+})
