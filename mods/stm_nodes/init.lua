@@ -859,6 +859,257 @@ minetest.register_abm({
 	end
 })
 
+minetest.register_node("stm_nodes:incinerator", {
+	description = "Incinerator",
+	tiles = {
+		"stm_nodes_incinerator_top.png",
+		"stm_nodes_plate.png",
+		"stm_nodes_incinerator.png",
+		"stm_nodes_incinerator.png",
+		"stm_nodes_incinerator.png",
+		"stm_nodes_incinerator.png"
+	},
+	drawtype = "nodebox",
+	paramtype = "light",
+	paramtype2 = "facedir",
+	node_box = {
+		type = "fixed",
+		fixed = {
+			{-0.4375, -0.5, -0.3125, 0.4375, 0.5, 0.3125}, -- NodeBox1
+			{-0.3125, -0.5, -0.4375, 0.3125, 0.5, 0.4375}, -- NodeBox2
+			{-0.375, -0.5, -0.375, 0.375, 0.5, 0.375}, -- NodeBox3
+			{-0.125, 0.5, -0.0625, 0.125, 1.5, 0.1875}, -- NodeBox4
+		}
+	}, 
+	groups = {cracky=1},
+	sounds = default.node_sound_metal_defaults(),
+	on_rightclick = function(pos, node, clicker, itemstack)
+		itemstack:take_item()
+		local output = minetest.find_node_near(pos, 1, {"stm_nodes:output_tray",})
+		if output then
+		minetest.after(2.5, function()
+			minetest.add_item(output, "stm_nodes:barrel")
+		end)
+		end
+		minetest.add_particlespawner({
+			amount = 4,
+			time = 2,
+			minpos = {x=pos.x-0.1, y=pos.y+0.8, z=pos.z-0.1},
+			maxpos = {x=pos.x+0.1, y=pos.y+1, z=pos.z+0.1},
+			minvel = {x=-0.2, y=1, z=-0.2},
+			maxvel = {x=0.2, y=3, z=0.2},
+			minacc = {x=0, y=0.1, z=0},
+			maxacc = {x=0, y=0.2, z=0},
+			minexptime = 1,
+			maxexptime = 2,
+			minsize = 5,
+			maxsize = 10,
+			collisiondetection = false,
+			vertical = false,
+			texture = "stm_nodes_steam.png",
+		})
+		minetest.add_particle({
+			pos = {x=pos.x+0.4, y=pos.y-0.4, z=pos.z+0.4},
+			velocity = {x=0, y=-0.05, z=0},
+			acceleration = {x=0, y=0.05, z=0},
+			expirationtime = 2.5,
+			size = 3,
+			collisiondetection = false,
+			collisionremoval = false,
+			vertical = true,
+			texture = "fire_little_flame.png",
+			animation = {type = "vertical_frames", aspect_w = 8, aspect_h = 8, length = 0.5},
+			glow = 9
+		})
+		minetest.add_particle({
+			pos = {x=pos.x-0.4, y=pos.y-0.4, z=pos.z+0.4},
+			velocity = {x=0, y=-0.05, z=0},
+			acceleration = {x=0, y=0.05, z=0},
+			expirationtime = 2.5,
+			size = 3,
+			collisiondetection = false,
+			collisionremoval = false,
+			vertical = true,
+			texture = "fire_little_flame.png",
+			animation = {type = "vertical_frames", aspect_w = 8, aspect_h = 8, length = 0.5},
+			glow = 9
+		})
+		minetest.add_particle({
+			pos = {x=pos.x+0.4, y=pos.y-0.4, z=pos.z-0.4},
+			velocity = {x=0, y=-0.05, z=0},
+			acceleration = {x=0, y=0.05, z=0},
+			expirationtime = 2.5,
+			size = 3,
+			collisiondetection = false,
+			collisionremoval = false,
+			vertical = true,
+			texture = "fire_little_flame.png",
+			animation = {type = "vertical_frames", aspect_w = 8, aspect_h = 8, length = 0.5},
+			glow = 9
+		})
+		minetest.add_particle({
+			pos = {x=pos.x-0.4, y=pos.y-0.4, z=pos.z-0.4},
+			velocity = {x=0, y=-0.05, z=0},
+			acceleration = {x=0, y=0.05, z=0},
+			expirationtime = 2.5,
+			size = 3,
+			collisiondetection = false,
+			collisionremoval = false,
+			vertical = true,
+			texture = "fire_little_flame.png",
+			animation = {type = "vertical_frames", aspect_w = 8, aspect_h = 8, length = 0.5},
+			glow = 9
+		})
+		minetest.add_particle({
+			pos = {x=pos.x-0.2, y=pos.y-0.35, z=pos.z+0.5},
+			velocity = {x=0, y=-0.05, z=0},
+			acceleration = {x=0, y=0.05, z=0},
+			expirationtime = 2.5,
+			size = 3,
+			collisiondetection = false,
+			collisionremoval = false,
+			vertical = true,
+			texture = "fire_little_flame.png",
+			animation = {type = "vertical_frames", aspect_w = 8, aspect_h = 8, length = 0.5},
+			glow = 9
+		})
+		minetest.add_particle({
+			pos = {x=pos.x+0.2, y=pos.y-0.35, z=pos.z-0.5},
+			velocity = {x=0, y=-0.05, z=0},
+			acceleration = {x=0, y=0.05, z=0},
+			expirationtime = 2.5,
+			size = 3,
+			collisiondetection = false,
+			collisionremoval = false,
+			vertical = true,
+			texture = "fire_little_flame.png",
+			animation = {type = "vertical_frames", aspect_w = 8, aspect_h = 8, length = 0.5},
+			glow = 9
+		})
+		minetest.add_particle({
+			pos = {x=pos.x-0.2, y=pos.y-0.35, z=pos.z-0.5},
+			velocity = {x=0, y=-0.05, z=0},
+			acceleration = {x=0, y=0.05, z=0},
+			expirationtime = 2.5,
+			size = 3,
+			collisiondetection = false,
+			collisionremoval = false,
+			vertical = true,
+			texture = "fire_little_flame.png",
+			animation = {type = "vertical_frames", aspect_w = 8, aspect_h = 8, length = 0.5},
+			glow = 9
+		})
+		minetest.add_particle({
+			pos = {x=pos.x+0.2, y=pos.y-0.35, z=pos.z+0.5},
+			velocity = {x=0, y=-0.05, z=0},
+			acceleration = {x=0, y=0.05, z=0},
+			expirationtime = 2.5,
+			size = 3,
+			collisiondetection = false,
+			collisionremoval = false,
+			vertical = true,
+			texture = "fire_little_flame.png",
+			animation = {type = "vertical_frames", aspect_w = 8, aspect_h = 8, length = 0.5},
+			glow = 9
+		})
+		minetest.add_particle({
+			pos = {x=pos.x-0.5, y=pos.y-0.35, z=pos.z+0.2},
+			velocity = {x=0, y=-0.05, z=0},
+			acceleration = {x=0, y=0.05, z=0},
+			expirationtime = 2.5,
+			size = 3,
+			collisiondetection = false,
+			collisionremoval = false,
+			vertical = true,
+			texture = "fire_little_flame.png",
+			animation = {type = "vertical_frames", aspect_w = 8, aspect_h = 8, length = 0.5},
+			glow = 9
+		})
+		minetest.add_particle({
+			pos = {x=pos.x-0.5, y=pos.y-0.35, z=pos.z-0.2},
+			velocity = {x=0, y=-0.05, z=0},
+			acceleration = {x=0, y=0.05, z=0},
+			expirationtime = 2.5,
+			size = 3,
+			collisiondetection = false,
+			collisionremoval = false,
+			vertical = true,
+			texture = "fire_little_flame.png",
+			animation = {type = "vertical_frames", aspect_w = 8, aspect_h = 8, length = 0.5},
+			glow = 9
+		})
+		minetest.add_particle({
+			pos = {x=pos.x+0.5, y=pos.y-0.35, z=pos.z-0.2},
+			velocity = {x=0, y=-0.05, z=0},
+			acceleration = {x=0, y=0.05, z=0},
+			expirationtime = 2.5,
+			size = 3,
+			collisiondetection = false,
+			collisionremoval = false,
+			vertical = true,
+			texture = "fire_little_flame.png",
+			animation = {type = "vertical_frames", aspect_w = 8, aspect_h = 8, length = 0.5},
+			glow = 9
+		})
+		minetest.add_particle({
+			pos = {x=pos.x+0.5, y=pos.y-0.35, z=pos.z+0.2},
+			velocity = {x=0, y=-0.05, z=0},
+			acceleration = {x=0, y=0.05, z=0},
+			expirationtime = 2.5,
+			size = 3,
+			collisiondetection = false,
+			collisionremoval = false,
+			vertical = true,
+			texture = "fire_little_flame.png",
+			animation = {type = "vertical_frames", aspect_w = 8, aspect_h = 8, length = 0.5},
+			glow = 9
+		})
+	end,
+})
+
+minetest.register_node("stm_nodes:barrel", {
+	description = "Toxic Waste",
+	tiles = {
+		"stm_nodes_barrel_top.png",
+		"stm_nodes_barrel_bottom.png",
+		"stm_nodes_barrel.png",
+		"stm_nodes_barrel.png",
+		"stm_nodes_barrel.png",
+		"stm_nodes_barrel.png"
+	},
+	drawtype = "nodebox",
+	paramtype = "light",
+	node_box = {
+		type = "fixed",
+		fixed = {
+			{-0.25, -0.5, -0.375, 0.25, 0.375, 0.375}, -- NodeBox1
+			{-0.375, -0.5, -0.25, 0.375, 0.375, 0.25}, -- NodeBox2
+			{-0.3125, -0.5, -0.3125, 0.3125, 0.375, 0.3125}, -- NodeBox3
+			{-0.25, -0.5, 0.25, 0.25, 0.5, 0.375}, -- NodeBox4
+			{-0.25, -0.5, -0.375, 0.25, 0.5, -0.25}, -- NodeBox5
+			{-0.375, -0.5, -0.25, -0.25, 0.5, 0.25}, -- NodeBox6
+			{0.25, -0.5, -0.25, 0.375, 0.5, 0.25}, -- NodeBox7
+			{0.1875, -0.5, 0.1875, 0.3125, 0.5, 0.3125}, -- NodeBox8
+			{0.1875, -0.5, -0.3125, 0.3125, 0.5, -0.1875}, -- NodeBox9
+			{-0.3125, -0.5, -0.3125, -0.1875, 0.5, -0.1875}, -- NodeBox10
+			{-0.3125, -0.5, 0.1875, -0.1875, 0.5, 0.3125}, -- NodeBox11
+		}
+	},
+	groups = {cracky=1, explody=1},
+})
+
+minetest.register_abm({
+	nodenames = {"stm_nodes:barrel"},
+	interval = 3,
+	chance = 2,
+	action = function(pos, node)
+		local ignition = minetest.find_node_near(pos, 1, {"fire:basic_flame",})
+		if ignition then
+			tnt.boom(pos, {damage_radius=3,radius=1,ignore_protection=false})
+		end
+	end
+})
+
 minetest.register_node("stm_nodes:lever2_off", {
 	description = "Electric lever",
 	tiles = {
