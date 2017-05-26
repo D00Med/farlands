@@ -2883,7 +2883,7 @@ function mobs:register_arrow(name, def)
 		rotate = def.rotate,
 		automatic_face_movement_dir = def.rotate
 			and (def.rotate - (pi / 180)) or false,
-
+		on_activate = def.on_activate or nil,
 		on_step = def.on_step or function(self, dtime)
 
 			self.timer = self.timer + 1

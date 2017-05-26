@@ -539,6 +539,108 @@ mobs:register_mob("mobs_m:zombie", {
 mobs:register_egg("mobs_m:zombie", "Zombie", "default_dirt.png", 1)
 mobs:register_spawn("mobs_m:zombie", {"default:dirt_with_grass",}, 5, 0, 7000, 0, 11000)
 
+mobs:register_mob("mobs_m:zombie_brute", {
+	type = "monster",
+	passive = false,
+	reach = 2.5,
+	damage = 2,
+	attack_type = "dogshoot",
+   shoot_interval = 3,
+	dogshoot_switch = 2,
+	dogshoot_count = 0,
+	dogshoot_count_max =1,
+   arrow = "mobs_m:stone",
+   shoot_offset = 1,
+	hp_min = 60,
+	hp_max = 80,
+	armor = 100,
+	collisionbox = {-0.7,0,-0.7, 0.7,2,0.7},
+	visual = "mesh",
+	mesh = "zombie_brute.b3d",
+	textures = {
+		{"mobs_zombie_brute.png"},
+	},
+	blood_texture = "mobs_rotten_blood.png",
+	makes_footstep_sound = true,
+	walk_velocity = 1,
+	run_velocity = 1.5,
+	jump = 1,
+	water_damage = 1,
+	lava_damage = 2,
+	light_damage = 1,
+	fall_damage = 0,
+	view_range = 15,
+	drops = {
+		{name = "mobs:zombie_flesh_raw", chance = 2, min = 2, max = 5},
+	},
+	animation = {
+		speed_normal = 27,
+		speed_run = 35,
+		stand_start = 1,
+		stand_end = 20,
+		walk_start = 45,
+		walk_end = 65,
+		run_start = 45,
+		run_end = 65,
+		punch_start = 20,
+		punch_end = 40,
+		shoot_start = 75,
+		shoot_end = 95,
+	},
+})
+
+
+mobs:register_egg("mobs_m:zombie_brute", "Zombie Brute (boss)", "default_dirt.png", 1)
+--mobs:register_spawn("mobs_m:zombie_brute", {"default:dirt_with_grass",}, 5, 0, 7000, 0, 11000)
+
+mobs:register_arrow("mobs_m:stone", {
+   visual = "cube",
+   visual_size = {x = 1, y = 1},
+   textures = {
+   "default_stone.png",
+   "default_stone.png",
+   "default_stone.png",
+   "default_stone.png",
+   "default_stone.png",
+   "default_stone.png",
+   },
+   velocity = 8,
+   tail = 0, -- enable tail
+
+   hit_player = function(self, player)
+	  player:punch(self.object, 1.0, {
+	 full_punch_interval = 1.0,
+	 damage_groups = {fleshy = 5},
+	  }, nil)
+   end,
+   
+   hit_mob = function(self, player)
+	  player:punch(self.object, 1.0, {
+	 full_punch_interval = 1.0,
+	 damage_groups = {fleshy = 5},
+	  }, nil)
+   end,
+
+   hit_node = function(self, pos, node)
+		if minetest.get_node({x=pos.x, y=pos.y+1, z=pos.z}).name == "air" then
+			minetest.set_node({x=pos.x, y=pos.y+1, z=pos.z}, {name="default:stone"})
+		end
+		self.object:remove()
+   end,
+   
+   on_activate = function(self)
+		self.object:set_properties({visual_size = {x=0, y=0},})
+		local pos = self.object:getpos()
+		local velo = self.object:get_velocity()
+		self.object:set_pos({x=pos.x, y=pos.y+1.5, z=pos.z})
+		minetest.after(0.5, function()
+		self.object:set_properties({visual_size = {x=1, y=1},})
+		--self.object:set_velocity({x=velo.x*8, y=0, z=velo.z*8})
+		self.object:set_acceleration({x=velo.x*8, y=-9, z=velo.z*8})
+		end)
+   end
+})
+
 mobs:register_mob("mobs_m:witch", {
 	type = "monster",
 	passive = false,
@@ -674,6 +776,52 @@ mobs:register_mob("mobs_m:swamp_lurker", {
 
 mobs:register_egg("mobs_m:swamp_lurker", "Swamp Lurker", "default_dirt.png", 1)
 mobs:register_spawn("mobs_m:swamp_lurker", {"default:dirt_with_swamp_grass",}, 5, 0, 7000, 0, 11000)
+
+mobs:register_mob("mobs_m:beetle", {
+	type = "monster",
+	passive = false,
+	reach = 1,
+	damage = 1,
+	attack_type = "dogfight",
+	hp_min = 10,
+	hp_max = 20,
+	armor = 110,
+	collisionbox = {-0.35,0,-0.35, 0.35,0.8,0.35},
+	visual = "mesh",
+	mesh = "beetle.b3d",
+	textures = {
+		{"mobs_beetle.png"},
+	},
+	blood_texture = "mobs_rotten_blood.png",
+	makes_footstep_sound = true,
+	walk_velocity = 1,
+	run_velocity = 1.5,
+	jump = 1,
+	water_damage = 2,
+	lava_damage = 2,
+	light_damage = 0,
+	fall_damage = 1,
+	view_range = 15,
+	drops = {
+		{name = "default:dirt", chance = 2, min = 1, max = 1},
+	},
+	animation = {
+		speed_normal = 27,
+		speed_run = 27,
+		stand_start = 1,
+		stand_end = 20,
+		walk_start = 25,
+		walk_end = 45,
+		run_start = 25,
+		run_end = 45,
+		punch_start = 1,
+		punch_end = 20,
+	},
+})
+
+
+mobs:register_egg("mobs_m:beetle", "Giant Beetle", "default_desert_sand.png", 1)
+mobs:register_spawn("mobs_m:beetle", {"default:desert_sand",}, 5, 0, 7000, 0, 11000)
 
 local all_colours = {
 	{"black",      "Black",      "#000000b0"},
