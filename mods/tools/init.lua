@@ -57,3 +57,12 @@ minetest.register_tool("tools:sword_crystal", {
 	sound = {breaks = "default_tool_breaks"},
 })
 
+minetest.register_craftitem("tools:gameboy", {
+	description = "GameBoy",
+	inventory_image = "tools_gameboy.png",
+})
+
+
+
+
+
