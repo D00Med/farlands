@@ -153,7 +153,7 @@ mobs:register_mob("mobs_m:mammoth", {
 	hp_min = 50,
 	hp_max = 60,
 	armor = 100,
-	collisionbox = {-1.1, 0, -1.1, 1.1, 2.1, 1.1},
+	collisionbox = {-1.6, 0, -1.6, 1.6, 3.3, 1.6},
 	visual = "mesh",
 	mesh = "mammoth.b3d",
 	textures = {
@@ -213,12 +213,12 @@ mobs:register_mob("mobs_m:elephant", {
 	hp_min = 50,
 	hp_max = 550,
 	armor = 100,
-	collisionbox = {-1.6, 0, -1.6, 1.6, 3.3, 1.6},
 	visual = "mesh",
 	mesh = "elephant.b3d",
 	textures = {
 		{"mobs_elephant.png"},
 	},
+	collisionbox = {-1.1, 0, -1.1, 1.1, 2.1, 1.1},
 	blood_texture = "mobs_blood.png",
 	makes_footstep_sound = true,
 	walk_velocity = 1,
