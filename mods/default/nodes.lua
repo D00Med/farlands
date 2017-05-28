@@ -947,7 +947,7 @@ minetest.register_node("default:stone_with_iron", {
 })
 
 minetest.register_node("default:steelblock", {
-	description = "Steel Block",
+	description = "Iron Block",
 	tiles = {"default_steel_block.png"},
 	is_ground_content = false,
 	groups = {cracky = 1, level = 2},
@@ -1982,7 +1982,7 @@ register_sign("wood", "Wooden", {
 	groups = {choppy = 2, attached_node = 1, flammable = 2, oddly_breakable_by_hand = 3}
 })
 
-register_sign("steel", "Steel", {
+register_sign("steel", "Iron", {
 	sounds = default.node_sound_metal_defaults(),
 	groups = {cracky = 2, attached_node = 1}
 })
@@ -2011,7 +2011,7 @@ minetest.register_node("default:ladder_wood", {
 })
 
 minetest.register_node("default:ladder_steel", {
-	description = "Steel Ladder",
+	description = "Iron Ladder",
 	drawtype = "signlike",
 	tiles = {"default_ladder_steel.png"},
 	inventory_image = "default_ladder_steel.png",
