@@ -1,10 +1,13 @@
+local fighting_players = {}
+local musics = {}
+
 local animation = {
-	idle    = {{x =   1, y =  20},  5},
-	walk_s  = {{x =  21, y =  30}, 10},
-	walk    = {{x =  31, y =  70}, 10},
-	walk_e  = {{x =  71, y =  80}, 10},
-	jump    = {{x =  81, y = 120}, 10},
-	punch   = {{x = 121, y = 160}, 20},
+	idle    = {{x =   1, y =  20}, 10},
+	walk_s  = {{x =  21, y =  30}, 30},
+	walk    = {{x =  31, y =  70}, 30},
+	walk_e  = {{x =  71, y =  80}, 30},
+	jump    = {{x =  81, y = 120}, 20},
+	punch   = {{x = 121, y = 160}, 30},
 	grab    = {{x = 161, y = 180}, 10},
 	throw   = {{x = 181, y = 210}, 20},
 	throw_e = {{x = 211, y = 220}, 10},
@@ -79,14 +82,36 @@ local function die(self)
 			--~ })
 		--~ end
 	--~ end
+
+	-- Stop music:
+	for player_name, obj in pairs(fighting_players) do
+		if obj == self.object then
+			minetest.sound_stop(musics[player_name])
+			musics[player_name] = nil
+			fighting_players[player_name] = nil
+			minetest.sound_play("bosses_farlands_win", {
+				to_player = player_name,
+				gain = 1.0,
+			})
+		end
+	end
 end
 
-local function get_attacked(self, puncher, time_from_last_punch, tool_capabilities, dir)
-	self.hp = self.hp - 10
-	minetest.chat_send_all(self.hp)
-	if self.hp <= 0 then
-		die(self)
+-- Should look for collidable nodes.
+local function is_node_bellow(pos, r)
+	pos = vector.new(pos)
+	pos.y = pos.y - 1
+	for x = -r, r do
+		for z = -r, r do
+			local p = vector.new(pos)
+			p = vector.add(pos, {x=x,y=0,z=z})
+			local node = minetest.get_node(vector.round(p))
+			if node.name ~= "air" then
+				return true
+			end
+		end
 	end
+	return false
 end
 
 minetest.register_entity("bosses_farlands:zombie_brute", {
@@ -112,13 +137,112 @@ minetest.register_entity("bosses_farlands:zombie_brute", {
 			local s = minetest.deserialize(staticdata)
 			self.hp = s.hp
 		end
+		self.wanted_vel = vector.new(0, 0, 0)
+		self.status = "idle"
+		self.walked_time = 0
 		self.object:set_armor_groups({fleshy = 100, immortal = 1})
 		apply_gravity(self.object)
 		set_anim(self.object, "idle")
 	end,
-	--~ on_step = function(self, dtime)
-	--~ end,
-	on_punch = get_attacked,
+
+	on_step = function(self, dtime)
+		local pos = self.object:get_pos()
+		local vel = vector.subtract(self.object:get_velocity(), self.wanted_vel)
+		local v = vector.length(vel) -- Speed.
+
+		-- Friction:
+		if v ~= 0 then
+			local pn = 1
+			if v < 0 then
+				v = -v
+				pn = -1
+			end
+			-- Air fricion:
+			v = v - dtime * 0.5 * v^2
+			-- Ground friction:
+			if vel.y == 0 and is_node_bellow(pos, 1) then
+				v = v - dtime
+				v = math.floor(v*5)/5
+			else
+				v = math.floor(v*100)/100
+			end
+			v = math.max(v, 0) * pn
+		end
+		vel = vector.multiply(vector.normalize(vel), v)
+
+		-- Go for target:
+		if self.target then
+			local target_pos = self.target:get_pos()
+			if (self.status == "idle" or self.status == "walk") and
+					vector.distance(pos, target_pos) <= 1.5 then
+				set_anim(self.object, "punch", false)
+				self.status = "wait"
+				self.wait_time_end = os.time() + 2
+				self.wanted_vel = vector.new(0, 0, 0)
+				self.walked_time = 0
+			elseif self.status == "walk" then
+				local dir = vector.direction(pos, target_pos)
+				self.object:set_yaw(minetest.dir_to_yaw(dir))
+				if self.walked_time >= 10 and vector.distance(pos, target_pos) <= 8 then
+					minetest.chat_send_all("I would throw a rock now, but I can't yet.")
+					set_anim(self.object, "idle")
+					self.wanted_vel = vector.new(0, 0, 0)
+					self.status = "wait"
+					self.wait_time_end = os.time() + 5
+					self.walked_time = 0
+				else
+					self.wanted_vel = dir
+					self.walked_time = self.walked_time + dtime
+				end
+			elseif self.status == "idle" then
+				self.status = "walk"
+				set_anim(self.object, "walk")
+			elseif self.status == "wait" and self.wait_time_end <= os.time() then
+				if not self.after_walk then
+					self.status = "idle"
+					set_anim(self.object, "idle")
+				end
+			end
+		end
+
+		self.object:set_velocity(vector.add(vel, self.wanted_vel))
+	end,
+
+	on_punch = function(self, puncher, time_from_last_punch, tool_capabilities, dir)
+		if not puncher:is_player() then
+			return
+		end
+		local vel = self.object:get_velocity()
+		local knockback = 3
+		local damage = 10
+		self.target = puncher
+		local player_name = puncher:get_player_name()
+		if not fighting_players[player_name] then
+			musics[player_name] = minetest.sound_play("bosses_farlands_music", {
+				to_player = player_name,
+				gain = 1.0,
+				loop = true,
+			})
+		end
+		fighting_players[player_name] = self.object
+		minetest.sound_play("default_punch", {
+			gain = 3,
+			object = self.object,
+			max_hear_distance = 15,
+		})
+		self.hp = self.hp - damage
+		if dir then
+			dir.y = dir.y + 1
+			dir = vector.normalize(dir)
+			vel = vector.add(vel, vector.multiply(dir, knockback))
+		end
+		minetest.chat_send_all(self.hp)
+		if self.hp <= 0 then
+			die(self)
+		end
+		self.object:set_velocity(vel)
+	end,
+
 	on_rightclick = function(self, clicker)
 		set_anim(self.object, "grab", false)
 		local stone
@@ -150,6 +274,7 @@ minetest.register_entity("bosses_farlands:zombie_brute", {
 			set_anim(self.object, "idle", true)
 		end)
 	end,
+
 	get_staticdata = function(self)
 		return minetest.serialize({hp = self.hp})
 	end,
