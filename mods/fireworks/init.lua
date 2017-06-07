@@ -4,9 +4,9 @@ minetest.register_entity("fireworks:firework_"..number.."_rocket", {
 	visual = "mesh",
 	mesh = "firework_rocket.b3d",
 	textures = {"firework_rocket.png"},
-	--collisionbox = {-0.2, -0.5, -0.2, 0.2, 0.5, 0.2},
+	collisionbox = {-0.2, 0, -0.2, 0.2, 0.5, 0.2},
 	visual_size = {x=4, y=4},
-	physical = false,
+	physical = true,
 	on_activate = function(self)
 		minetest.after(3, function()
 			local pos = self.object:get_pos()
@@ -34,8 +34,8 @@ minetest.register_entity("fireworks:firework_"..number.."_rocket", {
 			if shape == "shower" then
 			minetest.add_particle({
 				pos = {x=pos.x, y=pos.y, z=pos.z},
-				velocity = {x=math.random(-2,2), y=3, z=math.random(-2,2)},
-				acceleration = {x=math.random(-2,2), y=-4, z=math.random(-2,2)},
+				velocity = {x=math.random(-2,2), y=math.random(5,9), z=math.random(-2,2)},
+				acceleration = {x=math.random(-2,2), y=-12, z=math.random(-2,2)},
 				expirationtime = 2,
 				size = 8,
 				collisiondetection = false,
@@ -48,7 +48,7 @@ minetest.register_entity("fireworks:firework_"..number.."_rocket", {
 			elseif shape == "scatter" then
 			minetest.add_particle({
 				pos = {x=pos.x, y=pos.y, z=pos.z},
-				velocity = {x=math.random(-2,2), y=0, z=math.random(-2,2)},
+				velocity = {x=math.random(-2,2), y=math.random(-3,3), z=math.random(-2,2)},
 				acceleration = {x=math.random(-2,2), y=math.random(-2,2), z=math.random(-2,2)},
 				expirationtime = 2,
 				size = 10,
@@ -72,9 +72,9 @@ minetest.register_entity("fireworks:firework_"..number.."_rocket", {
 	visual = "mesh",
 	mesh = "firework_rocket.b3d",
 	textures = {"firework_rocket.png"},
-	--collisionbox = {-0.2, -0.5, -0.2, 0.2, 0.5, 0.2},
+	collisionbox = {-0.2, 0, -0.2, 0.2, 0.5, 0.2},
 	visual_size = {x=3.5, y=3.5},
-	physical = false,
+	physical = true,
 	on_activate = function(self)
 		minetest.after(3, function()
 			local pos = self.object:get_pos()
@@ -161,6 +161,9 @@ minetest.register_tool("fireworks:gun", {
 			minetest.after(i/10, function()
 			local pos = rocket.object:get_pos()
 			local velo = rocket.object:getvelocity()
+			if pos == nil or velo == nil then
+			return item
+			end
 			minetest.add_particle({
 				pos = {x=pos.x, y=pos.y, z=pos.z},
 				velocity = {x=-velo.x*2, y=-velo.y*2, z=-velo.x*2},
