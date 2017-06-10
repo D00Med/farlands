@@ -21,6 +21,9 @@ local function set_anim(obj, anim, loop)
 	local a = animation[anim]
 	obj:set_animation(a[1], a[2] or 0, a[3] or 0, loop)
 end
+local function anim_time(anim)
+	return (animation[anim][1].y - animation[anim][1].x) / animation[anim][2]
+end
 
 local gravity = tonumber(minetest.settings:get("movement_gravity"))
 local function apply_gravity(obj)
@@ -114,6 +117,57 @@ local function is_node_bellow(pos, r)
 	return false
 end
 
+local function wait(self, t, after)
+	self.status = "wait"
+	self.wanted_vel = vector.new(0, 0, 0)
+	if after then
+		minetest.after(t, after)
+	else
+		minetest.after(t, function()
+			set_anim(self.object, "idle")
+			minetest.after(0.1, function()
+				self.status = "idle"
+			end)
+		end)
+	end
+end
+
+local function throw(self, pos, yaw)
+	self.walked_time = 0
+	set_anim(self.object, "grab", false)
+	wait(self, anim_time("grab"), function()
+		local rock = minetest.add_entity(pos, "bosses_farlands:cube_projectile")
+		rock:set_attach(self.object, "rock_l", {x=0,y=0,z=0}, {x=0,y=0,z=0})
+		local node_pos = vector.round(vector.add(pos, minetest.yaw_to_dir(yaw)))
+		rock:set_properties({
+			visual_size = {x = 0.2, y = 0.2},
+			textures = minetest.registered_nodes[minetest.get_node(node_pos).name].tiles,
+		})
+		minetest.remove_node(node_pos)
+		if self.target then
+			yaw = minetest.dir_to_yaw(vector.direction(pos, self.target:get_pos()))
+			self.object:set_yaw(yaw)
+		end
+		set_anim(self.object, "throw", false)
+		wait(self, anim_time("throw"), function()
+			if self.target then
+				yaw = minetest.dir_to_yaw(vector.direction(pos, self.target:get_pos()))
+				self.object:set_yaw(yaw)
+			end
+			rock:set_detach()
+			local rock_pos = rock:get_pos()
+			rock_pos.y = rock_pos.y + 2
+			rock:set_pos(rock_pos)
+			rock:set_properties({visual_size = {x = 1, y = 1}})
+			rock:set_velocity(vector.multiply(minetest.yaw_to_dir(yaw), 10))
+			rock:set_yaw(yaw)
+			apply_gravity(rock)
+			set_anim(self.object, "throw_e", false)
+			wait(self, anim_time("throw_e"))
+		end)
+	end)
+end
+
 minetest.register_entity("bosses_farlands:zombie_brute", {
 	hp_max = 1,
 	physical = true,
@@ -147,6 +201,7 @@ minetest.register_entity("bosses_farlands:zombie_brute", {
 
 	on_step = function(self, dtime)
 		local pos = self.object:get_pos()
+		local yaw = self.object:get_yaw()
 		local vel = vector.subtract(self.object:get_velocity(), self.wanted_vel)
 		local v = vector.length(vel) -- Speed.
 
@@ -176,20 +231,17 @@ minetest.register_entity("bosses_farlands:zombie_brute", {
 			if (self.status == "idle" or self.status == "walk") and
 					vector.distance(pos, target_pos) <= 1.5 then
 				set_anim(self.object, "punch", false)
-				self.status = "wait"
-				self.wait_time_end = os.time() + 2
-				self.wanted_vel = vector.new(0, 0, 0)
+				wait(self, anim_time("punch"))
 				self.walked_time = 0
+				yaw = minetest.dir_to_yaw(vector.direction(pos, target_pos))
+				self.object:set_yaw(yaw)
 			elseif self.status == "walk" then
 				local dir = vector.direction(pos, target_pos)
 				self.object:set_yaw(minetest.dir_to_yaw(dir))
+				yaw = minetest.dir_to_yaw(vector.direction(pos, target_pos))
+				self.object:set_yaw(yaw)
 				if self.walked_time >= 10 and vector.distance(pos, target_pos) <= 8 then
-					minetest.chat_send_all("I would throw a rock now, but I can't yet.")
-					set_anim(self.object, "idle")
-					self.wanted_vel = vector.new(0, 0, 0)
-					self.status = "wait"
-					self.wait_time_end = os.time() + 5
-					self.walked_time = 0
+					throw(self, pos, yaw)
 				else
 					self.wanted_vel = dir
 					self.walked_time = self.walked_time + dtime
@@ -197,11 +249,13 @@ minetest.register_entity("bosses_farlands:zombie_brute", {
 			elseif self.status == "idle" then
 				self.status = "walk"
 				set_anim(self.object, "walk")
-			elseif self.status == "wait" and self.wait_time_end <= os.time() then
-				if not self.after_walk then
-					self.status = "idle"
-					set_anim(self.object, "idle")
-				end
+			--~ elseif self.status == "wait" and self.wait_time_end <= os.time() then
+				--~ if not self.after_wait then
+					--~ self.status = "idle"
+					--~ set_anim(self.object, "idle")
+				--~ else
+					--~ self.after_wait()
+				--~ end
 			end
 		end
 
@@ -241,38 +295,6 @@ minetest.register_entity("bosses_farlands:zombie_brute", {
 			die(self)
 		end
 		self.object:set_velocity(vel)
-	end,
-
-	on_rightclick = function(self, clicker)
-		set_anim(self.object, "grab", false)
-		local stone
-		minetest.after(5, function()
-			local pos = self.object:get_pos()
-			stone = minetest.add_entity(pos, "bosses_farlands:cube_projectile")
-			stone:set_attach(self.object, "rock_l", {x=0,y=1,z=0}, {x=0,y=0,z=0})
-			local node_pos = vector.round(vector.add(pos, minetest.yaw_to_dir(self.object:get_yaw())))
-			stone:set_properties({
-				visual_size = {x = 0.2, y = 0.2},
-				textures = minetest.registered_nodes[minetest.get_node(node_pos).name].tiles,
-			})
-			minetest.remove_node(node_pos)
-			set_anim(self.object, "throw", false)
-		end)
-		minetest.after(10, function()
-			stone:set_detach()
-			local stone_pos = stone:get_pos()
-			stone_pos.y = stone_pos.y + 2
-			stone:set_pos(stone_pos)
-			stone:set_properties({visual_size = {x = 1, y = 1},})
-			local yaw = self.object:get_yaw()
-			stone:set_velocity(vector.multiply(minetest.yaw_to_dir(yaw), 10))
-			apply_gravity(stone)
-			stone:set_yaw(yaw)
-			set_anim(self.object, "throw_e", false)
-		end)
-		minetest.after(15, function()
-			set_anim(self.object, "idle", true)
-		end)
 	end,
 
 	get_staticdata = function(self)
