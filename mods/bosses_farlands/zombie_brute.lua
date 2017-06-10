@@ -42,16 +42,28 @@ minetest.register_entity("bosses_farlands:cube_projectile", {
 	textures = {}, -- +Y, -Y, +X, -X, +Z, -Z
 
 	on_activate = function(self, staticdata, dtime_s)
-		--~ if staticdata == "" then
-			--~ self.object:remove()
-			--~ return
-		--~ end
-		--~ self.textures = staticdata
-		--~ self.object:set_properties({textures = self.textures})
+		if staticdata == "" then
+			self.object:remove()
+			return
+		end
+		self.node = minetest.deserialize(staticdata)
+		self.object:set_properties({textures = minetest.registered_nodes[self.node.name].tiles})
 		apply_gravity(self.object)
 	end,
-	--~ on_step = function(self, dtime)
-	--~ end,
+	on_step = function(self, dtime)
+		local v = self.object:get_velocity()
+		local pos = self.object:get_pos()
+		if self.flying and (v.x == 0 or v.y == 0 or v.z == 0) then
+			--~ tnt.boom(vector.round(pos),	{
+				--~ damage_radius = 2,
+				--~ radius = 1,
+				--~ ignore_protection=true
+			--~ })
+			print(dump(self))
+			minetest.set_node(vector.round(pos), self.node)
+			self.object:remove()
+		end
+	end,
 	--~ on_punch = function(self, puncher, time_from_last_punch, tool_capabilities, dir)
 	--~ end,
 	--~ on_rightclick = function(self, clicker)
@@ -136,13 +148,11 @@ local function throw(self, pos, yaw)
 	self.walked_time = 0
 	set_anim(self.object, "grab", false)
 	wait(self, anim_time("grab"), function()
-		local rock = minetest.add_entity(pos, "bosses_farlands:cube_projectile")
-		rock:set_attach(self.object, "rock_l", {x=0,y=0,z=0}, {x=0,y=0,z=0})
 		local node_pos = vector.round(vector.add(pos, minetest.yaw_to_dir(yaw)))
-		rock:set_properties({
-			visual_size = {x = 0.2, y = 0.2},
-			textures = minetest.registered_nodes[minetest.get_node(node_pos).name].tiles,
-		})
+		local rock = minetest.add_entity(node_pos, "bosses_farlands:cube_projectile",
+				minetest.serialize(minetest.get_node(node_pos)))
+		rock:set_attach(self.object, "rock_l", {x=0,y=0,z=0}, {x=0,y=0,z=0})
+		rock:set_properties({visual_size = {x = 0.2, y = 0.2}})
 		minetest.remove_node(node_pos)
 		if self.target then
 			yaw = minetest.dir_to_yaw(vector.direction(pos, self.target:get_pos()))
@@ -162,6 +172,7 @@ local function throw(self, pos, yaw)
 			rock:set_velocity(vector.multiply(minetest.yaw_to_dir(yaw), 10))
 			rock:set_yaw(yaw)
 			apply_gravity(rock)
+			rock:get_luaentity().flying = true
 			set_anim(self.object, "throw_e", false)
 			wait(self, anim_time("throw_e"))
 		end)
@@ -249,13 +260,6 @@ minetest.register_entity("bosses_farlands:zombie_brute", {
 			elseif self.status == "idle" then
 				self.status = "walk"
 				set_anim(self.object, "walk")
-			--~ elseif self.status == "wait" and self.wait_time_end <= os.time() then
-				--~ if not self.after_wait then
-					--~ self.status = "idle"
-					--~ set_anim(self.object, "idle")
-				--~ else
-					--~ self.after_wait()
-				--~ end
 			end
 		end
 
