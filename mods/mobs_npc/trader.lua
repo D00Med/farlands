@@ -1,6 +1,30 @@
 
 local S = mobs.intllib
 
+mobs.travelling_merchant = {
+	items = {
+		--{item for sale, price, chance of appearing in trader's inventory}
+		{"default:apple 10", "default:gold_ingot 2", 10},
+		{"farming:bread 10", "default:gold_ingot 4", 5},
+		{"default:clay 10", "default:gold_ingot 2", 12},
+		{"default:brick 10", "default:gold_ingot 4", 17},
+		{"default:glass 10", "default:gold_ingot 4", 17},
+		{"default:obsidian 10", "default:gold_ingot 15", 50},
+		{"default:diamond 1", "default:gold_ingot 5", 40},
+		{"farming:wheat 10", "default:gold_ingot 2", 17},
+		{"default:tree 5", "default:gold_ingot 4", 20},
+		{"default:stone 10", "default:gold_ingot 8", 17},
+		{"default:desert_stone 10", "default:gold_ingot 8", 27},
+		{"default:sapling 1", "default:gold_ingot 1", 7},
+		{"default:pick_steel 1", "default:gold_ingot 2", 7},
+		{"default:sword_steel 1", "default:gold_ingot 2", 17},
+		{"default:shovel_steel 1", "default:gold_ingot 1", 17},
+	},
+	names = {
+		"James", "John", "Bill", "Tom", "David", "Ian", "Thomas", "Steven", "Eric", "Jack", "Frank", "Peter", "Adam", "	Carl", "Joe", "Bruce", "Philip", "Steve" 
+	}
+}
+
 mobs.human = {
 	items = {
 		--{item for sale, price, chance of appearing in trader's inventory}
@@ -24,6 +48,63 @@ mobs.human = {
 		"James", "John", "Bill", "Tom", "David", "Ian", "Thomas", "Steven", "Eric", "Jack", "Frank", "Peter", "Adam", "	Carl", "Joe", "Bruce", "Philip", "Steve" 
 	}
 }
+
+mobs:register_mob("mobs_npc:travelling_merchant", {
+	type = "npc",
+	passive = false,
+	damage = 3,
+	attack_type = "dogfight",
+	attacks_monsters = true,
+	pathfinding = false,
+	hp_min = 10,
+	hp_max = 20,
+	armor = 100,
+	collisionbox = {-0.5,0,-0.5, 0.5,1,0.5},
+	visual = "mesh",
+	mesh = "travelling_merchant.b3d",
+	textures = {
+		{"mobs_travelling_merchant.png"},
+	},
+	makes_footstep_sound = true,
+	sounds = {},
+	walk_velocity = 2,
+	run_velocity = 3,
+	jump = 1,
+	drops = {},
+	water_damage = 2,
+	lava_damage = 4,
+	light_damage = 0,
+	follow = {"default:diamond"},
+	view_range = 15,
+	owner = "",
+	order = "stand",
+	fear_height = 3,
+	animation = {
+		speed_normal = 15,
+		speed_run = 20,
+		stand_start = 1,
+		stand_end = 30,
+		walk_start = 35,
+		walk_end = 55,
+		run_start = 35,
+		run_end = 55,
+		punch_start = 35,
+		punch_end = 55,
+	},
+	on_rightclick = function(self, clicker)
+		mobs_trader(self, clicker, entity, mobs.travelling_merchant)
+	end,
+})
+
+mobs:register_egg("mobs_npc:travelling_merchant", S("Travelling Merchant"), "default_chest_front.png", 1)
+
+mobs:spawn({
+	name = "mobs_npc:travelling_merchant",
+	nodes = {"default:dirt_with_grass"},
+	min_light = 7,
+	chance = 20000,
+	min_height = 0,
+})
 
 -- Trader ( same as NPC but with right-click shop )
 
