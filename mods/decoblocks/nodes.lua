@@ -235,7 +235,7 @@ minetest.register_node("decoblocks:Ancient_vase_sand", {
 })
 
 chest_items = {
-	{"default:gold_ingot", 20},
+	{"default:gold_ingot", 3},
 }
 
 minetest.register_node("decoblocks:chest", {
@@ -253,7 +253,7 @@ minetest.register_node("decoblocks:chest", {
 		local rarity = row[2]
 		if math.random(1,rarity) == 1 then
 			meta:set_string("item", item)
-			else
+		else
 			meta:set_string("item", "default:steel_ingot 3")
 		end
 		end
@@ -276,7 +276,8 @@ minetest.register_node("decoblocks:chest", {
 				local rarity = row[2]
 				if math.random(1,rarity) == 1 then
 					meta:set_string("item", item)
-					else
+					return
+				else
 					meta:set_string("item", "default:steel_ingot 3")
 				end
 				end

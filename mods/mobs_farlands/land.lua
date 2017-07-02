@@ -21,7 +21,7 @@ mobs:register_mob("mobs_m:mimic", {
 	hp_min = 10,
 	hp_max = 27,
 	armor = 90,
-	collisionbox = {-0.5, 0, -0.5, 0.5, 1, 0.5},
+	collisionbox = {-0.5, -0.05, -0.5, 0.5, 1, 0.5},
 	visual = "mesh",
 	mesh = "mimic.b3d",
 	textures = {
@@ -93,7 +93,7 @@ mobs:register_mob("mobs_m:mimic2", {
 	hp_min = 10,
 	hp_max = 27,
 	armor = 90,
-	collisionbox = {-0.5, 0, -0.5, 0.5, 1, 0.5},
+	collisionbox = {-0.5, -0.05, -0.5, 0.5, 1, 0.5},
 	visual = "mesh",
 	mesh = "mimic.b3d",
 	textures = {
