@@ -174,7 +174,7 @@ minetest.register_tool("default:shovel_steel", {
 minetest.register_tool("default:shovel_gold", {
 	description = "Golden Shovel",
 	inventory_image = "default_tool_goldshovel.png",
-	wield_image = "default_tool_bronzeshovel.png^[transformR90",
+	wield_image = "default_tool_goldshovel.png^[transformR90",
 	tool_capabilities = {
 		full_punch_interval = 1.1,
 		max_drop_level=1,

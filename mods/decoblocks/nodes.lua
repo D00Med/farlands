@@ -105,6 +105,13 @@ minetest.register_node("decoblocks:old_stone_tiles_with_dirt", {
 	sounds = default.node_sound_stone_defaults(),
 })
 
+minetest.register_node("decoblocks:moss_old_stone_tiles", {
+	description = "Mossy Old Stone Tiles",
+	tiles = {"decoblocks_mossy_old_stone_tiles.png"},
+	groups = {cracky = 3, stone = 2},
+	sounds = default.node_sound_stone_defaults(),
+})
+
 minetest.register_node("decoblocks:moss_stonebrick", {
 	description = "Mossy Stone Brick",
 	paramtype2 = "facedir",
@@ -724,6 +731,13 @@ minetest.register_node("decoblocks:altar", {
 	inventory_image = "decoblocks_skull_item.png",
 	groups = {choppy = 1, oddly_breakable_by_hand = 1},
 	sounds = default.node_sound_wood_defaults()
+})
+
+minetest.register_node("decoblocks:anvil", {
+	description = "Anvil",
+	tiles = {"decoblocks_anvil.png"},
+	groups = {cracky = 1},
+	sounds = default.node_sound_metal_defaults(),
 })
 
 minetest.register_node("decoblocks:gold_brick", {
