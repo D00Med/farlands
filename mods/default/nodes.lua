@@ -1134,9 +1134,13 @@ minetest.register_node("default:diamondblock", {
 
 minetest.register_node("default:cactus", {
 	description = "Cactus",
-	tiles = {"default_cactus_top.png", "default_cactus_top.png",
-		"default_cactus_side.png"},
+	drawtype = "mesh",
+	mesh = "cactus.b3d",
 	paramtype2 = "facedir",
+	tiles = {
+		"default_cactus.png",
+	},
+	visual_scale = 0.5,
 	groups = {choppy = 3},
 	sounds = default.node_sound_wood_defaults(),
 	on_place = minetest.rotate_node,
