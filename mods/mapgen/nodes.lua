@@ -58,6 +58,22 @@ mapgen.register_shrub("shrub2", "Deciduous Forest Shrub", "2")
 
 --nodes
 
+minetest.register_node("mapgen:dungeon_spawner", {
+	description = "Dungeon Spawner",
+	tiles = {"mapgen_dungeon_spawner.png"},
+	groups = {cracky=1,},
+	sounds = default.node_sound_stone_defaults(),
+	on_rightclick = function(pos, node, clicker)
+		local check_pos = pos
+		check_pos.y = check_pos.y-1
+		local node_below = minetest.get_node(check_pos)
+		if node_below == "default:dirt_with_junglegrass" then
+		elseif node_below == "default:desert_sand" then
+		end
+		minetest.chat_send_player(clicker:get_player_name(), "This node is unfinished")
+	end,	
+})
+
 --plants (PLNT01)
 
 minetest.register_node("mapgen:red_ground_flower", {
@@ -166,6 +182,14 @@ minetest.register_node("mapgen:willow_leaves", {
 	tiles = {
 		"mapgen_willow_leaves.png",
 	},
+	drop = {
+		max_items = 1,
+		items = {
+			{items = {"default:willow_sapling",},
+				rarity = 20,},
+			{items = {"mapgen:willow_leaves",}},
+		},
+	},
 	groups = {snappy = 1, oddly_breakable_by_hand = 1, flammable = 1, dig_immediate = 1, leaves = 1, leafdecay = 3},
 	sounds = default.node_sound_leaves_defaults()
 })
@@ -198,6 +222,14 @@ minetest.register_node("mapgen:baobab_leaves", {
 	paramtype = "light",
 	tiles = {
 		"mapgen_baobab_leaves.png",
+	},
+	drop = {
+		max_items = 1,
+		items = {
+			{items = {"default:baobab_sapling",},
+				rarity = 20,},
+			{items = {"mapgen:baobab_leaves",}},
+		},
 	},
 	groups = {snappy = 1, oddly_breakable_by_hand = 1, flammable = 1, dig_immediate = 1, leaves = 1, leafdecay = 3},
 	sounds = default.node_sound_leaves_defaults()
@@ -241,6 +273,14 @@ minetest.register_node("mapgen:yellow_ipe_leaves", {
 	paramtype = "light",
 	tiles = {
 		"mapgen_yellow_ipe_leaves.png",
+	},
+	drop = {
+		max_items = 1,
+		items = {
+			{items = {"default:ipe_sapling",},
+				rarity = 20,},
+			{items = {"mapgen:yellow_ipe_leaves",}},
+		},
 	},
 	groups = {snappy = 1, oddly_breakable_by_hand = 1, flammable = 1, dig_immediate = 1, leaves = 1, leafdecay = 3},
 	sounds = default.node_sound_leaves_defaults()
@@ -423,6 +463,14 @@ minetest.register_node("mapgen:palm_leaves", {
 	paramtype = "light",
 	tiles = {
 		"mapgen_palmleaves.png",
+	},
+	drop = {
+		max_items = 1,
+		items = {
+			{items = {"default:palmtree_sapling",},
+				rarity = 20,},
+			{items = {"mapgen:palm_leaves",}},
+		},
 	},
 	groups = {snappy = 1, oddly_breakable_by_hand = 1, flammable = 1, dig_immediate = 1, leaves = 1, leafdecay = 3},
 	sounds = default.node_sound_leaves_defaults()
@@ -726,6 +774,14 @@ minetest.register_node("mapgen:bamboo_leaves", {
 	selection_box = {
 		type = "fixed",
 		fixed = {-0.4, -0.4, -0.4, 0.4, 0.4, 0.4}
+	},
+	drop = {
+		max_items = 1,
+		items = {
+			{items = {"default:bamboo_sapling",},
+				rarity = 20,},
+			{items = {"mapgen:bamboo_leaves",}},
+		},
 	},
 })
 
@@ -1904,7 +1960,7 @@ minetest.register_abm({
 	interval = 5,
 	chance = 1,
 	action = function(pos, node)
-		if minetest.get_timeofday() <= 0.6 and minetest.get_timeofday() >= 0.2 then
+		if minetest.get_timeofday() <= 0.6 and minetest.get_timeofday() >= 0.2 and pos.y >= -20 then
 		return 
 		end
 		minetest.add_particle({
@@ -1928,7 +1984,7 @@ minetest.register_abm({
 	interval = 5,
 	chance = 1,
 	action = function(pos, node)
-		if minetest.get_timeofday() <= 0.6 and minetest.get_timeofday() >= 0.2 then
+		if minetest.get_timeofday() <= 0.6 and minetest.get_timeofday() >= 0.2 and pos.y >= -20  then
 		return 
 		end
 		local dir = minetest.facedir_to_dir(node.param2)
