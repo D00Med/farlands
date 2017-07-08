@@ -56,6 +56,23 @@ mapgen.register_fern("fern2", "Broad Leaf Fern", "2")
 mapgen.register_shrub("shrub", "Hog Peanut", "1")
 mapgen.register_shrub("shrub2", "Deciduous Forest Shrub", "2")
 
+--overrides
+
+minetest.override_item("default:cactus", {
+	drawtype = "mesh",
+	mesh = "cactus.b3d",
+	paramtype = "light",
+	visual_scale = 0.5,
+	selection_box = {
+	type = "fixed",
+	fixed = {-0.4, -0.5, -0.4, 0.4, 0.5, 0.4},
+	},
+	collision_box = {
+	type = "fixed",
+	fixed = {-0.4, -0.5, -0.4, 0.4, 0.5, 0.4},
+	},
+})
+
 --nodes
 
 minetest.register_node("mapgen:dungeon_spawner", {
