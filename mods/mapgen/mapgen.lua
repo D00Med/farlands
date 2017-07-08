@@ -2035,28 +2035,28 @@ minetest.register_decoration({
 })
 minetest.register_decoration({
 	deco_type = "simple",
-	place_on = {"default:dirt_with_dry_grass"},
+	place_on = {"default:dirt_with_dry_grass", "default:desert_sand"},
 	sidelen = 6,
 	fill_ratio = 0.002,
-	biomes = {"savanna"},
+	biomes = {"savanna", "desert"},
 	decoration = "mapgen:dead_grass_3",
 	height = 1,
 })
 minetest.register_decoration({
 	deco_type = "simple",
-	place_on = {"default:dirt_with_dry_grass"},
+	place_on = {"default:dirt_with_dry_grass", "default:desert_sand"},
 	sidelen = 6,
 	fill_ratio = 0.002,
-	biomes = {"savanna"},
+	biomes = {"savanna", "desert"},
 	decoration = "mapgen:dead_grass_4",
 	height = 1,
 })
 minetest.register_decoration({
 	deco_type = "simple",
-	place_on = {"default:dirt_with_dry_grass"},
+	place_on = {"default:dirt_with_dry_grass", "default:desert_sand"},
 	sidelen = 6,
 	fill_ratio = 0.002,
-	biomes = {"savanna"},
+	biomes = {"savanna", "desert"},
 	decoration = "mapgen:dead_grass_5",
 	height = 1,
 })
@@ -2220,7 +2220,7 @@ minetest.register_decoration({
 	})
 
 	-- Large cactus
-
+--[[
 	minetest.register_decoration({
 		deco_type = "schematic",
 		place_on = {"default:desert_sand"},
@@ -2239,7 +2239,7 @@ minetest.register_decoration({
 		schematic = minetest.get_modpath("default") .. "/schematics/large_cactus.mts",
 		flags = "place_center_x",
 		rotation = "random",
-	})
+	})]]
 
 	-- Cactus
 
@@ -2623,6 +2623,46 @@ minetest.register_decoration({
 		y_min = 2,
 		y_max = 31000,
 		decoration = "default:dry_shrub",
+	})
+	
+	--small cacti
+	
+		minetest.register_decoration({
+		deco_type = "simple",
+		place_on = {"default:desert_sand",
+			"default:sand",},
+		sidelen = 16,
+		noise_params = {
+			offset = 0,
+			scale = 0.02,
+			spread = {x = 200, y = 200, z = 200},
+			seed = 329,
+			octaves = 3,
+			persist = 0.6
+		},
+		biomes = {"desert", "sandstone_desert",},
+		y_min = 2,
+		y_max = 31000,
+		decoration = "mapgen:small_cactus",
+	})
+	
+			minetest.register_decoration({
+		deco_type = "simple",
+		place_on = {"default:desert_sand",
+			"default:sand",},
+		sidelen = 16,
+		noise_params = {
+			offset = 0,
+			scale = 0.02,
+			spread = {x = 200, y = 200, z = 200},
+			seed = 329,
+			octaves = 3,
+			persist = 0.6
+		},
+		biomes = {"desert", "sandstone_desert",},
+		y_min = 2,
+		y_max = 31000,
+		decoration = "mapgen:small_cactus1",
 	})
 
 	-- Coral reef
