@@ -144,9 +144,10 @@ function beds.register_bed(name, def)
 	})
 
 	minetest.register_alias(name, name .. "_bottom")
-
+	if not def.craftless then
 	minetest.register_craft({
 		output = name,
 		recipe = def.recipe
 	})
+	end
 end

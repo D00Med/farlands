@@ -194,7 +194,7 @@ minetest.register_node("mapgen:willow_leaves", {
 	sounds = default.node_sound_leaves_defaults()
 })
 
-minetest.register_node("mapgen:willow_wood_Planks", {
+minetest.register_node("mapgen:willow_wood", {
 	description = "Willow Wood Planks",
 	tiles = {
 		"mapgen_willow_wood.png",
@@ -235,7 +235,7 @@ minetest.register_node("mapgen:baobab_leaves", {
 	sounds = default.node_sound_leaves_defaults()
 })
 
-minetest.register_node("mapgen:baobab_wood_Planks", {
+minetest.register_node("mapgen:baobab_wood", {
 	description = "Baobab wood Planks",
 	tiles = {
 		"mapgen_baobab_wood.png",
@@ -286,7 +286,7 @@ minetest.register_node("mapgen:yellow_ipe_leaves", {
 	sounds = default.node_sound_leaves_defaults()
 })
 
-minetest.register_node("mapgen:yellow_ipe_planks", {
+minetest.register_node("mapgen:yellow_ipe_wood", {
 	description = "Yellow Ipe Planks",
 	tiles = {
 		"mapgen_yellow_ipe_wood.png",
@@ -751,14 +751,6 @@ minetest.register_node("mapgen:bamboo", {
 		}
 	},
 	walkable = true,
-})
-
-minetest.register_craft( {
-	output = "decoblocks:bamboo_block 4",
-	recipe = {
-		{ "mapgen:bamboo", "mapgen:bamboo",},
-		{ "mapgen:bamboo", "mapgen:bamboo",}
-	}
 })
 
 minetest.register_node("mapgen:bamboo_leaves", {
@@ -2004,11 +1996,6 @@ minetest.register_abm({
 	end
 })
 
-
---crafting
-
-
-
 --code taken from default
 
 --License of source code
@@ -2144,21 +2131,6 @@ minetest.register_node("mapgen:tin_ore", {
 	groups = {cracky=1},
 	drop = "mapgen:tin_lump",
 	sounds = default.node_sound_stone_defaults()
-})
-
-minetest.register_craft({
-	type = "cooking",
-	output = "mapgen:tin_ingot",
-	recipe = "mapgen:tin_lump",
-})
-
-minetest.register_craft({
-	output = 'mapgen:tin',
-	recipe = {
-		{'mapgen:tin_ingot', 'mapgen:tin_ingot', 'mapgen:tin_ingot'},
-		{'mapgen:tin_ingot', 'mapgen:tin_ingot', 'mapgen:tin_ingot'},
-		{'mapgen:tin_ingot', 'mapgen:tin_ingot', 'mapgen:tin_ingot'},
-	}
 })
 
 minetest.register_node("mapgen:big_mushroom_stem", {

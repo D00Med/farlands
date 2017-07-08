@@ -206,6 +206,14 @@ bucket.register_liquid(
 	"Lava Bucket"
 )
 
+bucket.register_liquid(
+	"mapgen:dirty_water_source",
+	"mapgen:dirty_water_flowing",
+	"bucket:bucket_dirty_water",
+	"bucket_dirty_water.png",
+	"Dirty Water Bucket"
+)
+
 minetest.register_craft({
 	type = "fuel",
 	recipe = "bucket:bucket_lava",

@@ -43,7 +43,7 @@ local function rotate_torch(pos)
 		local n = minetest.get_node(pos)
 		if n ~= nil then
 			if n.name == "mines:dummy" then
-				minetest.set_node(pos, {name="decoblocks:lantern_wall",param2=1})
+				minetest.set_node(pos, {name="decoblocks:lantern_wall",param2=2})
 			end
 		end
 	end)
