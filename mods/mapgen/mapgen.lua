@@ -91,6 +91,27 @@
 		biomes = {"taiga", "snowy_grassland", "grassland", "coniferous_forest",
 			"deciduous_forest", "savanna", "rainforest"}
 	})
+	
+		minetest.register_ore({
+		ore_type        = "blob",
+		ore             = "default:dirt",
+		wherein         = {"default:stone"},
+		clust_scarcity  = 8 * 8 * 8,
+		clust_size      = 2,
+		y_min           = -31000,
+		y_max           = -31,
+		noise_threshold = 0.0,
+		noise_params    = {
+			offset = 0.4,
+			scale = 0.2,
+			spread = {x = 5, y = 5, z = 5},
+			seed = 17676,
+			octaves = 1,
+			persist = 0.0
+		},
+		biomes = {"taiga", "snowy_grassland", "grassland", "coniferous_forest",
+			"deciduous_forest", "savanna", "rainforest"}
+	})
 
 	-- Gravel
 
