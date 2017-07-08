@@ -94,7 +94,7 @@
 	
 		minetest.register_ore({
 		ore_type        = "blob",
-		ore             = "default:dirt",
+		ore             = "mapgen:coarse_dirt",
 		wherein         = {"default:stone"},
 		clust_scarcity  = 8 * 8 * 8,
 		clust_size      = 2,
