@@ -457,7 +457,7 @@ minetest.register_node("mapgen:palm_tree", {
 minetest.register_node("mapgen:palm_wood", {
 	description = "Palm Wood Planks",
 	tiles = {
-		"mapgen_palmtree_wood.png",
+		"mapgen_palm_wood.png",
 	},
 	groups = {choppy = 1, flammable = 1, oddly_breakable_by_hand=1, wood=1},
 	sounds = default.node_sound_wood_defaults()
