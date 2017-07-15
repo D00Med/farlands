@@ -735,9 +735,9 @@ minetest.register_node("decoblocks:stucco", {
 minetest.register_node("decoblocks:altar", {
 	description = "Altar",
 	drawtype = "mesh",
-	mesh = "old_skeleton.obj",
+	mesh = "decoblocks_altar.obj",
 	tiles = {
-		"old_skeleton.png",
+		"decoblocks_altar.png",
 	},
 	visual_scale = 0.5,
 	wield_image = "decoblocks_skull_item.png",
@@ -746,11 +746,11 @@ minetest.register_node("decoblocks:altar", {
 	paramtype2 = "facedir",
 	selection_box = {
 		type = "fixed",
-		fixed = {-0.3, -0.5, -0.3, 0.3, 0.0, 0.3}
+		fixed = {-0.3, -0.5, -0.3, 0.3, 0.5, 0.3}
 	},
 	collision_box = {
 		type = "fixed",
-		fixed = {-0.3, -0.5, -0.3, 0.3, 0.0, 0.3}
+		fixed = {-0.3, -0.5, -0.3, 0.3, -0.3, 0.3}
 	},
 	inventory_image = "decoblocks_skull_item.png",
 	groups = {choppy = 1, oddly_breakable_by_hand = 1},
