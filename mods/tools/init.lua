@@ -5,8 +5,6 @@ minetest.register_globalstep(function()
 		local item = player:get_wielded_item():get_name()
 		if item == "default:torch" or item == "decoblocks:lantern" then
 			local pos = player:getpos()
-			local item = player:get_wielded_item()
-			item:add_wear(2000)
 			pos.y = pos.y+1.2
 			if minetest.get_node(pos).name == "air" then
 				minetest.set_node(pos, {name="tools:light"})
@@ -19,7 +17,6 @@ minetest.register_globalstep(function()
 			end
 		end
 	end
-	return item
 end)
 
 minetest.register_node("tools:light", {
@@ -43,8 +40,31 @@ minetest.register_craftitem("tools:watering_can", {
 	description = "Watering Can",
 	inventory_image = "tools_watering_can.png",
 	liquids_pointable = true,
+	range = 4,
 	on_use = function(item, placer, pointed_thing)
+	if pointed_thing.under == nil then return end
+	local dir = placer:get_look_dir()
+	local pos1 = placer:getpos()
 	local pos = pointed_thing.under
+	for i=1,10 do
+		minetest.add_particle({
+			pos = {x=pos1.x+math.random(-5,5)/10, y=pos1.y+0.5, z=pos1.z+math.random(-5,5)/10},
+			velocity = {x=pos.x-pos1.x, y=1, z=pos.z-pos1.z},
+			acceleration = {x=0, y=-4, z=0},
+			expirationtime = 1,
+			size = 8,
+			collisiondetection = false,
+			collisionremoval = true,
+			vertical = true,
+			texture = "tools_water_spray.png",
+		})
+	end
+	
+	local node = minetest.get_node(pos)
+	if node.name == "mapgen:dry_dirt" then
+		minetest.set_node(pos, {name="default:dirt"})
+	end
+	
 	pos.y = pos.y+1
 	local mg_name = minetest.get_mapgen_setting("mg_name")
 	local node = minetest.get_node(pos)

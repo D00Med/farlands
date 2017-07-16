@@ -1532,7 +1532,7 @@ end
 		biomes = {"coniferous_forest_tall"},
 		y_min = 1,
 		y_max = 31000,
-		schematic = minetest.get_modpath("mapgen") .. "/schematics/rocks/s_stone1.mts",
+		schematic = minetest.get_modpath("mapgen") .. "/schematics/rocks/savanna_rock1.mts",
 		flags = "place_center_x, place_center_z",
 	})	
 		minetest.register_decoration({
@@ -1550,7 +1550,7 @@ end
 		biomes = {"coniferous_forest_tall"},
 		y_min = 1,
 		y_max = 31000,
-		schematic = minetest.get_modpath("mapgen") .. "/schematics/rocks/s_stone2.mts",
+		schematic = minetest.get_modpath("mapgen") .. "/schematics/rocks/savanna_rock2.mts",
 		flags = "place_center_x, place_center_z",
 	})	
 		minetest.register_decoration({
@@ -1568,7 +1568,7 @@ end
 		biomes = {"coniferous_forest_tall"},
 		y_min = 1,
 		y_max = 31000,
-		schematic = minetest.get_modpath("mapgen") .. "/schematics/rocks/s_stone3.mts",
+		schematic = minetest.get_modpath("mapgen") .. "/schematics/rocks/savanna_rock3.mts",
 		flags = "place_center_x, place_center_z",
 	})	
 	
@@ -1587,7 +1587,7 @@ end
 		biomes = {"deciduous_forest2", "grassland"},
 		y_min = 1,
 		y_max = 31000,
-		schematic = minetest.get_modpath("mapgen") .. "/schematics/rocks/stone1.mts",
+		schematic = minetest.get_modpath("mapgen") .. "/schematics/rocks/rock1.mts",
 		flags = "place_center_x, place_center_z",
 	})	
 		minetest.register_decoration({
@@ -1605,7 +1605,7 @@ end
 		biomes = {"deciduous_forest2", "grassland"},
 		y_min = 1,
 		y_max = 31000,
-		schematic = minetest.get_modpath("mapgen") .. "/schematics/rocks/stone2.mts",
+		schematic = minetest.get_modpath("mapgen") .. "/schematics/rocks/rock2.mts",
 		flags = "place_center_x, place_center_z",
 	})	
 		minetest.register_decoration({
@@ -1623,7 +1623,62 @@ end
 		biomes = {"deciduous_forest2", "grassland"},
 		y_min = 1,
 		y_max = 31000,
-		schematic = minetest.get_modpath("mapgen") .. "/schematics/rocks/stone3.mts",
+		schematic = minetest.get_modpath("mapgen") .. "/schematics/rocks/rock3.mts",
+		flags = "place_center_x, place_center_z",
+	})	
+	
+			minetest.register_decoration({
+		deco_type = "schematic",
+		place_on = {"default:desert_sand"},
+		sidelen = 16,
+		noise_params = {
+			offset = 0.0005,
+			scale = 0.0005,
+			spread = {x = 250, y = 250, z = 250},
+			seed = 2,
+			octaves = 3,
+			persist = 0.66
+		},
+		biomes = {"desert",},
+		y_min = 1,
+		y_max = 31000,
+		schematic = minetest.get_modpath("mapgen") .. "/schematics/rocks/desert_rock1.mts",
+		flags = "place_center_x, place_center_z",
+	})	
+		minetest.register_decoration({
+		deco_type = "schematic",
+		place_on = {"default:desert_sand"},
+		sidelen = 16,
+		noise_params = {
+			offset = 0.0005,
+			scale = 0.0005,
+			spread = {x = 250, y = 250, z = 250},
+			seed = 2,
+			octaves = 3,
+			persist = 0.66
+		},
+		biomes = {"desert",},
+		y_min = 1,
+		y_max = 31000,
+		schematic = minetest.get_modpath("mapgen") .. "/schematics/rocks/desert_rock2.mts",
+		flags = "place_center_x, place_center_z",
+	})	
+		minetest.register_decoration({
+		deco_type = "schematic",
+		place_on = {"default:desert_sand"},
+		sidelen = 16,
+		noise_params = {
+			offset = 0.0005,
+			scale = 0.0005,
+			spread = {x = 250, y = 250, z = 250},
+			seed = 2,
+			octaves = 3,
+			persist = 0.66
+		},
+		biomes = {"desert",},
+		y_min = 1,
+		y_max = 31000,
+		schematic = minetest.get_modpath("mapgen") .. "/schematics/rocks/desert_rock3.mts",
 		flags = "place_center_x, place_center_z",
 	})	
 	

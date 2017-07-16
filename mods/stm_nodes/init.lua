@@ -1,4 +1,30 @@
 
+minetest.register_node("stm_nodes:silo", {
+	description = "Grain Silo",
+	tiles = {
+		"stm_nodes_silo.png",
+	},
+	drawtype = "mesh",
+	mesh = "silo.obj",
+	paramtype = "light",
+	selection_box = {
+		type = "fixed",
+		fixed = {
+			{-0.5, -0.5, -0.5, 1.5, 2.8, 1.5},
+		}
+	},
+	collision_box = {
+		type = "fixed",
+		fixed = {
+			{-0.5, -0.5, -0.5, 1.5, 2.8, 1.5}, 
+		}
+	},
+	groups = {cracky = 1},
+	sounds = default.node_sound_metal_defaults(),
+	on_rightclick = function(pos, node, clicker, itemstack)
+	end
+})
+
 minetest.register_node("stm_nodes:reactor", {
 	description = "Reactor (for testing)",
 	tiles = {

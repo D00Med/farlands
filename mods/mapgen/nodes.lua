@@ -772,17 +772,22 @@ minetest.register_node("mapgen:bamboo", {
 
 minetest.register_node("mapgen:bamboo_leaves", {
 	description = "Bamboo Leaves",
-	drawtype = "firelike",
+	drawtype = "allfaces",
 	tiles = {"mapgen_bamboo_leaves.png"},
 	paramtype = "light",
 	is_ground_content = false,
 	sunlight_propagates = false,
 	groups = {snappy=1, flammable=1, oddly_breakable_by_hand=1, leafdecay=4, leaves=1},
 	sounds = default.node_sound_leaves_defaults(),
-	walkable = false,
 	selection_box = {
 		type = "fixed",
 		fixed = {-0.4, -0.4, -0.4, 0.4, 0.4, 0.4}
+	},
+	collision_box = {
+		type = "fixed",
+		fixed = {
+			{-0.1875, -0.5, -0.1875, 0.1875, 0.5, 0.1875},
+		}
 	},
 	drop = {
 		max_items = 1,
@@ -1997,8 +2002,16 @@ minetest.register_abm({
 		return 
 		end
 		local dir = minetest.facedir_to_dir(node.param2)
+		local particle_pos = {x=pos.x-0.22*dir.z*1.2, y=pos.y+0.1, z=pos.z-0.18*dir.x*1.2}
+		if dir.x == 0 and dir.z == 0 then
+		particle_pos = {x=pos.x, y=pos.y+0.1, z=pos.z+0.2}
+		elseif dir.x == -1 and dir.z == 0 then
+		particle_pos = {x=pos.x-0.15, y=pos.y+0.1, z=pos.z}
+		elseif dir.x == 0 and dir.z == -1 then
+		particle_pos = {x=pos.x+0.15, y=pos.y+0.1, z=pos.z}
+		end
 		minetest.add_particle({
-			pos = {x=pos.x-0.25*dir.z, y=pos.y+0.1, z=pos.z-0.25*dir.x},
+			pos = particle_pos,
 			velocity = {x=0, y=0, z=0},
 			acceleration = {x=0, y=0, z=0},
 			expirationtime = 5,

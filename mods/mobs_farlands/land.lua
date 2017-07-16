@@ -179,8 +179,8 @@ mobs:register_mob("mobs_m:mammoth", {
 		{name = "mobs:meat_raw", chance = 2, min = 5, max = 6},
 	},
 	animation = {
-		speed_normal = 16,
-		speed_run = 19,
+		speed_normal = 15,
+		speed_run = 17,
 		walk_start = 45,
 		walk_end = 65,
 		stand_start = 20,
@@ -239,8 +239,8 @@ mobs:register_mob("mobs_m:elephant", {
 		{name = "mobs:meat_raw", chance = 2, min = 3, max = 4},
 	},
 	animation = {
-		speed_normal = 16,
-		speed_run = 19,
+		speed_normal = 14,
+		speed_run = 16,
 		walk_start = 25,
 		walk_end = 45,
 		stand_start = 1,
@@ -792,7 +792,7 @@ mobs:register_mob("mobs_m:beetle", {
 	textures = {
 		{"mobs_beetle.png"},
 	},
-	blood_texture = "mobs_rotten_blood.png",
+	blood_texture = "mobs_blood.png",
 	makes_footstep_sound = true,
 	walk_velocity = 1,
 	run_velocity = 1.5,
@@ -1037,8 +1037,8 @@ mobs:register_mob("mobs_m:badger", {
 	follow = {"mobs:meat_raw"},
 	view_range = 7,
 	animation = {
-		speed_normal = 20,
-		speed_run = 25,
+		speed_normal = 22,
+		speed_run = 26,
 		walk_start = 25,
 		walk_end = 45,
 		stand_start = 75,
