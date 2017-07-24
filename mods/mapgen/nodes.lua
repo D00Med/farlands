@@ -1458,7 +1458,7 @@ minetest.register_node("mapgen:dead_grass_5", {
 --underwater (WATR01)
 
 minetest.register_node("mapgen:big_coral", {
-	description = "Big Red Coral",
+	description = "Big Pink Coral",
 	drawtype = "plantlike",
 	visual_scale = 2,
 	tiles = {"mapgen_big_coral.png"},
@@ -1478,9 +1478,9 @@ minetest.register_node("mapgen:big_coral", {
 })
 
 minetest.register_node("mapgen:red_coral", {
-	description = "Red Coral",
+	description = "Pink Coral",
 	drawtype = "plantlike",
-	tiles = {"mapgen_red_coral.png"},
+	tiles = {"mapgen_pink_coral.png"},
 	paramtype = "light",
 	is_ground_content = false,
 	buildable_to = true, 
