@@ -2929,3 +2929,8 @@ minetest.register_on_generated(function(minp, maxp)
 		end
 	end
 end)
+
+--fruit
+if minetest.get_modpath("fruit") then
+fruit.register_ores()
+end
