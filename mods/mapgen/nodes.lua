@@ -1486,7 +1486,7 @@ minetest.register_node("mapgen:red_coral", {
 	buildable_to = true, 
 	sunlight_propagates = true,
 	waving = 1,
-	inventory_image = "mapgen_red_coral.png",
+	inventory_image = "mapgen_pink_coral.png",
 	groups = {snappy=3, flammable=1, attatched_node=1, sea=1},
 	sounds = default.node_sound_leaves_defaults(),
 	selection_box = {

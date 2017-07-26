@@ -57,3 +57,10 @@ minetest.register_craft( {
 		{ "mapgen:palm_tree",},
 	}
 })
+
+minetest.register_craft( {
+	output = "mapgen:coconut_open 2",
+	recipe = {
+		{ "mapgen:coconut",},
+	}
+})
