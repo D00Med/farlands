@@ -96,7 +96,7 @@ minetest.register_node("decoblocks:bamboo_block", {
 minetest.register_node("decoblocks:bamboo_planks", {
 	description = "Bamboo Wood Planks",
 	tiles = {"decoblocks_bamboo_planks.png"},
-	groups = {cracky = 3, stone = 2},
+	groups = {choppy = 3, oddly_breakable_by_hand = 2, flammable = 3, wood = 1},
 	sounds = default.node_sound_stone_defaults(),
 })
 

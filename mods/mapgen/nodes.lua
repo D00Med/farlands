@@ -1703,14 +1703,22 @@ minetest.register_node("mapgen:limestone", {
 minetest.register_node("mapgen:savanna_cobblestone_stone", {
 	description = "Savanna Cobblestone",
 	tiles = {"mapgen_savanna_cobblestone_stone.png"},
-	groups = {cracky = 2},
+	groups = {cracky = 3, stone = 1},
 	sounds = default.node_sound_stone_defaults()
 })
 
 minetest.register_node("mapgen:savanna_coal", {
-	description = "Savanna Coal",
+	description = "Savanna Stone With Coal",
 	tiles = {"mapgen_savannah_coal.png"},
-	groups = {cracky = 2, ore=1},
+	groups = {cracky = 3, stone = 1, ore=1},
+	drop = 'default:coal_lump',
+	sounds = default.node_sound_stone_defaults()
+})
+
+minetest.register_node("mapgen:savanna_iron", {
+	description = "Savanna Stone With Iron",
+	tiles = {"mapgen_savannah_iron.png"},
+	groups = {cracky = 2, stone = 1, ore=1},
 	drop = 'default:coal_lump',
 	sounds = default.node_sound_stone_defaults()
 })
@@ -1718,7 +1726,7 @@ minetest.register_node("mapgen:savanna_coal", {
 minetest.register_node("mapgen:savanna_stone", {
 	description = "Savannah Stone",
 	tiles = {"mapgen_savannah_stone.png"},
-	groups = {cracky = 2, stone=1},
+	groups = {cracky = 3, stone=1},
 	drop = 'mapgen:savanna_cobblestone_stone',
 	sounds = default.node_sound_stone_defaults()
 })

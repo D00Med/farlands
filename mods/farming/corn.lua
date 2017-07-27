@@ -13,7 +13,7 @@ minetest.register_craftitem("farming:corn", {
 minetest.register_node("farming:corn_1", {
 	drawtype = "plantlike",
 	tiles = {"farming_corn_1.png"},
-	visual_scale = 1.4,
+	visual_scale = 2,
 	paramtype = "light",
 	sunlight_propagates = true,
 	waving = 1,
@@ -31,7 +31,7 @@ minetest.register_node("farming:corn_1", {
 minetest.register_node("farming:corn_2", {
 	drawtype = "plantlike",
 	tiles = {"farming_corn_2.png"},
-	visual_scale = 1.4,
+	visual_scale = 2,
 	paramtype = "light",
 	sunlight_propagates = true,
 	waving = 1,
@@ -49,7 +49,7 @@ minetest.register_node("farming:corn_2", {
 minetest.register_node("farming:corn_3", {
 	drawtype = "plantlike",
 	tiles = {"farming_corn_3.png"},
-	visual_scale = 1.4,
+	visual_scale = 2,
 	paramtype = "light",
 	waving = 1,
 	sunlight_propagates = true,
@@ -67,7 +67,7 @@ minetest.register_node("farming:corn_3", {
 minetest.register_node("farming:corn_4", {
 	drawtype = "plantlike",
 	tiles = {"farming_corn_4.png"},
-	visual_scale = 1.4,
+	visual_scale = 2,
 	paramtype = "light",
 	waving = 1,
 	sunlight_propagates = true,
@@ -91,7 +91,7 @@ minetest.register_node("farming:corn_4", {
 minetest.register_node("farming:corn_5", {
 	drawtype = "plantlike",
 	tiles = {"farming_corn_5.png^[colorize:brown:50"},
-	visual_scale = 1.45,
+	visual_scale = 2,
 	paramtype = "light",
 	waving = 1,
 	drop = "",

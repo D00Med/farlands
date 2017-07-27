@@ -38,9 +38,16 @@ minetest.register_craft( {
 })
 
 minetest.register_craft( {
-	output = "mapgen:bamboo_wood 4",
+	output = "decoblocks:bamboo_planks 4",
 	recipe = {
 		{ "mapgen:bamboo",},
+	}
+})
+
+minetest.register_craft( {
+	output = "decoblocks:bamboo_planks 4",
+	recipe = {
+		{ "mapgen:bamboo_with_leaves",},
 	}
 })
 
