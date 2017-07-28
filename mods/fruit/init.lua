@@ -6,7 +6,7 @@ minetest.register_node("fruit:leaves_with_mango", {
 		"default_jungleleaves.png^fruit_mango_leaves.png",
 	},
 	paramtype = "light",
-	groups = {snappy=1, oddly_breakeable_by_hand=1, not_in_creative_inventory=1},
+	groups = {snappy=1, oddly_breakable_by_hand=1, not_in_creative_inventory=1},
 	drop = "default:jungleleaves",
 	on_destruct = function(pos)
 		minetest.add_item(pos, "fruit:mango")
@@ -21,7 +21,7 @@ minetest.register_node("fruit:leaves_with_berry", {
 		"default_leaves_simple.png^fruit_berry_leaves.png",
 	},
 	paramtype = "light",
-	groups = {snappy=1, oddly_breakeable_by_hand=1, not_in_creative_inventory=1},
+	groups = {snappy=1, oddly_breakable_by_hand=1, not_in_creative_inventory=1},
 	drop = "default:bush_leaves",
 	on_destruct = function(pos)
 		minetest.add_item(pos, "fruit:berry")
@@ -36,7 +36,7 @@ minetest.register_node("fruit:leaves_with_pear", {
 		"default_leaves.png^fruit_pear_leaves.png",
 	},
 	paramtype = "light",
-	groups = {snappy=1, oddly_breakeable_by_hand=1, not_in_creative_inventory=1},
+	groups = {snappy=1, oddly_breakable_by_hand=1, not_in_creative_inventory=1},
 	drop = "default:leaves",
 	on_destruct = function(pos)
 		minetest.add_item(pos, "fruit:pear")
@@ -51,7 +51,7 @@ minetest.register_node("fruit:leaves_with_plum", {
 		"default_leaves.png^fruit_plum_leaves.png",
 	},
 	paramtype = "light",
-	groups = {snappy=1, oddly_breakeable_by_hand=1, not_in_creative_inventory=1},
+	groups = {snappy=1, oddly_breakable_by_hand=1, not_in_creative_inventory=1},
 	drop = "default:leaves",
 	on_destruct = function(pos)
 		minetest.add_item(pos, "fruit:plum")
@@ -66,7 +66,7 @@ minetest.register_node("fruit:leaves_with_peach", {
 		"default_leaves.png^fruit_peach_leaves.png",
 	},
 	paramtype = "light",
-	groups = {snappy=1, oddly_breakeable_by_hand=1, not_in_creative_inventory=1},
+	groups = {snappy=1, oddly_breakable_by_hand=1, not_in_creative_inventory=1},
 	drop = "default:leaves",
 	on_destruct = function(pos)
 		minetest.add_item(pos, "fruit:peach")
@@ -81,7 +81,7 @@ minetest.register_node("fruit:leaves_with_orange", {
 		"default_acacia_leaves.png^fruit_orange_leaves.png",
 	},
 	paramtype = "light",
-	groups = {snappy=1, oddly_breakeable_by_hand=1, not_in_creative_inventory=1},
+	groups = {snappy=1, oddly_breakable_by_hand=1, not_in_creative_inventory=1},
 	drop = "default:acacia_leaves",
 	on_destruct = function(pos)
 		minetest.add_item(pos, "fruit:orange")

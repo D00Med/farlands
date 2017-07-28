@@ -132,6 +132,76 @@ minetest.register_node("decoblocks:moss_stonebrick", {
 	sounds = default.node_sound_stone_defaults(),
 })
 
+minetest.register_node("decoblocks:pillar2_base", {
+	description = "Stone Pillar Base",
+	tiles = {
+		"default_stone.png",
+	},
+	drawtype = "nodebox",
+	paramtype = "light",
+	paramtype2 = "facedir",
+	groups = {cracky=1},
+	node_box = {
+		type = "fixed",
+		fixed = {
+			{-0.25, -0.5, -0.375, 0.25, 0.5, 0.375}, -- NodeBox1
+			{-0.375, -0.5, -0.25, 0.375, 0.5, 0.25}, -- NodeBox2
+			{0.125, -0.5, -0.5, 0.5, -0.1875, -0.125}, -- NodeBox3
+			{0.125, -0.5, 0.125, 0.5, -0.1875, 0.5}, -- NodeBox4
+			{-0.5, -0.5, 0.125, -0.125, -0.1875, 0.5}, -- NodeBox5
+			{-0.5, -0.5, -0.5, -0.125, -0.1875, -0.125}, -- NodeBox6
+			{-0.4375, -0.5, -0.4375, 0.4375, -0.375, 0.4375}, -- NodeBox7
+		}
+	},
+	on_place = minetest.rotate_node
+})
+
+minetest.register_node("decoblocks:pillar2", {
+	description = "Stone Pillar",
+	tiles = {
+		"default_stone.png",
+	},
+	drawtype = "nodebox",
+	paramtype = "light",
+	groups = {cracky=1},
+	node_box = {
+		type = "fixed",
+		fixed = {
+			{-0.25, -0.5, -0.375, 0.25, 0.5, 0.375}, -- NodeBox1
+			{-0.375, -0.5, -0.25, 0.375, 0.5, 0.25}, -- NodeBox2
+		}
+	}
+})
+
+minetest.register_node("decoblocks:quartz_arch", {
+	tiles = {
+		"default_wood.png",
+		"default_wood.png",
+		"default_wood.png",
+		"default_wood.png",
+		"default_wood.png",
+		"default_wood.png"
+	},
+	drawtype = "nodebox",
+	paramtype = "light",
+	node_box = {
+		type = "fixed",
+		fixed = {
+			{-0.5, 0.4375, -0.5, 0.5, 0.5, 0.5}, -- NodeBox1
+			{-0.5, -0.5, 0.4375, 0.5, 0.5, 0.5}, -- NodeBox2
+			{-0.5, -0.3125, 0.375, 0.5, 0.4375, 0.4375}, -- NodeBox3
+			{-0.5, 0.375, -0.3125, 0.5, 0.4375, 0.375}, -- NodeBox4
+			{-0.5, -0.125, 0.3125, 0.5, 0.375, 0.375}, -- NodeBox5
+			{-0.5, 0.3125, -0.125, 0.5, 0.375, 0.3125}, -- NodeBox6
+			{-0.5, 0, 0.25, 0.5, 0.3125, 0.3125}, -- NodeBox7
+			{-0.5, 0.25, 0, 0.5, 0.3125, 0.25}, -- NodeBox8
+			{-0.5, 0.0625, 0.1875, 0.5, 0.25, 0.25}, -- NodeBox9
+			{-0.5, 0.1875, 0.0625, 0.5, 0.25, 0.1875}, -- NodeBox10
+			{-0.5, 0.125, 0.125, 0.5, 0.1875, 0.1875}, -- NodeBox11
+		}
+	}
+})
+
 minetest.register_node("decoblocks:scarecrow", {
 	description = "Scarecrow",
 	drawtype = "mesh",
