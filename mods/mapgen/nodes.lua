@@ -1719,7 +1719,7 @@ minetest.register_node("mapgen:savanna_iron", {
 	description = "Savanna Stone With Iron",
 	tiles = {"mapgen_savannah_iron.png"},
 	groups = {cracky = 2, stone = 1, ore=1},
-	drop = 'default:coal_lump',
+	drop = 'default:iron_lump',
 	sounds = default.node_sound_stone_defaults()
 })
 
@@ -2166,7 +2166,7 @@ minetest.register_node("mapgen:tin_ore", {
 	tiles = {
 	"default_stone.png^mapgen_tin_ore.png",
 	},
-	groups = {cracky=1},
+	groups = {cracky=2},
 	drop = "mapgen:tin_lump",
 	sounds = default.node_sound_stone_defaults()
 })
