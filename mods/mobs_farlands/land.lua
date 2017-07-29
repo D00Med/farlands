@@ -537,7 +537,7 @@ mobs:register_mob("mobs_m:zombie", {
 
 
 mobs:register_egg("mobs_m:zombie", "Zombie", "default_dirt.png", 1)
-mobs:register_spawn("mobs_m:zombie", {"default:dirt_with_grass",}, 5, 0, 7000, 0, 11000)
+mobs:register_spawn("mobs_m:zombie", {"default:dirt_with_grass", "default:desert_sand", "default:dirt_with_leafy_grass", "default:dirt_with_dry_grass"}, 5, 0, 7000, 0, 11000, true)
 
 mobs:register_mob("mobs_m:zombie_brute", {
 	type = "monster",
