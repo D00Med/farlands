@@ -173,17 +173,14 @@ minetest.register_node("decoblocks:pillar2", {
 	}
 })
 
-minetest.register_node("decoblocks:quartz_arch", {
+minetest.register_node("decoblocks:marble_arch", {
+	description = "Large Marble Arch",
 	tiles = {
-		"default_wood.png",
-		"default_wood.png",
-		"default_wood.png",
-		"default_wood.png",
-		"default_wood.png",
-		"default_wood.png"
+		"mapgen_marble.png",
 	},
 	drawtype = "nodebox",
 	paramtype = "light",
+	paramtype2 = "facedir",
 	node_box = {
 		type = "fixed",
 		fixed = {
@@ -199,7 +196,36 @@ minetest.register_node("decoblocks:quartz_arch", {
 			{-0.5, 0.1875, 0.0625, 0.5, 0.25, 0.1875}, -- NodeBox10
 			{-0.5, 0.125, 0.125, 0.5, 0.1875, 0.1875}, -- NodeBox11
 		}
-	}
+	},
+	groups = {cracky=1},
+})
+
+minetest.register_node("decoblocks:marble_arch_small", {
+	description = "Small Marble Arch",
+	tiles = {
+		"mapgen_marble.png",
+	},
+	drawtype = "nodebox",
+	paramtype = "light",
+	paramtype2 = "facedir",
+	node_box = {
+		type = "fixed",
+		fixed = {
+			{0.0625, 0.4375, -0.5, 0.5, 0.5, 0.5}, -- NodeBox1
+			{-0.5, 0.4375, -0.5, -0.0625, 0.5, 0.5}, -- NodeBox2
+			{-0.5, 0.375, -0.5, -0.125, 0.4375, 0.5}, -- NodeBox10
+			{0.125, 0.375, -0.5, 0.5, 0.4375, 0.5}, -- NodeBox11
+			{-0.5, 0.3125, -0.5, -0.25, 0.375, 0.5}, -- NodeBox12
+			{0.25, 0.3125, -0.5, 0.5, 0.375, 0.5}, -- NodeBox13
+			{-0.5, 0.25, -0.5, -0.3125, 0.3125, 0.5}, -- NodeBox14
+			{0.3125, 0.25, -0.5, 0.5, 0.3125, 0.5}, -- NodeBox15
+			{-0.5, 0.125, -0.5, -0.375, 0.25, 0.5}, -- NodeBox16
+			{0.375, 0.125, -0.5, 0.5, 0.25, 0.5}, -- NodeBox17
+			{-0.5, -0.5, -0.5, -0.4375, 0.125, 0.5}, -- NodeBox18
+			{0.4375, -0.5, -0.5, 0.5, 0.125, 0.5}, -- NodeBox19
+		}
+	},
+	groups = {cracky=1},
 })
 
 minetest.register_node("decoblocks:scarecrow", {

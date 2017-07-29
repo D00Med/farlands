@@ -1700,6 +1700,13 @@ minetest.register_node("mapgen:limestone", {
 	sounds = default.node_sound_stone_defaults()
 })
 
+minetest.register_node("mapgen:marble", {
+	description = "Marble",
+	tiles = {"mapgen_marble.png"},
+	groups = {cracky = 2},
+	sounds = default.node_sound_stone_defaults()
+})
+
 minetest.register_node("mapgen:savanna_cobblestone_stone", {
 	description = "Savanna Cobblestone",
 	tiles = {"mapgen_savanna_cobblestone_stone.png"},

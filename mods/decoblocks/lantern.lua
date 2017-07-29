@@ -136,8 +136,17 @@ minetest.register_abm({
 		return 
 		end
 		local dir = minetest.facedir_to_dir(node.param2)
+		--minetest.chat_send_all(dir.x.." z:"..dir.z)
+		local particle_pos = {x=pos.x-0.22*dir.z*1.2, y=pos.y-0.1, z=pos.z-0.25*dir.x*1.2}
+		if dir.x == 0 and dir.z == 0 then
+		particle_pos = {x=pos.x, y=pos.y-0.1, z=pos.z+0.25}
+		elseif dir.x == -1 and dir.z == 0 then
+		particle_pos = {x=pos.x-0.25, y=pos.y-0.1, z=pos.z}
+		elseif dir.x == 0 and dir.z == -1 then
+		particle_pos = {x=pos.x+0.25, y=pos.y-0.1, z=pos.z}
+		end
 		minetest.add_particle({
-			pos = {x=pos.x-0.35*dir.z, y=pos.y-0.1, z=pos.z-0.35*dir.x},
+			pos = particle_pos,
 			velocity = {x=0, y=0, z=0},
 			acceleration = {x=0, y=0, z=0},
 			expirationtime = 5,
