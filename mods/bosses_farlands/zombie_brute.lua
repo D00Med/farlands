@@ -135,17 +135,10 @@ end
 
 local function wait(self, t, after)
 	self.status = "wait"
+	self.wait_timer = 0
+	self.wait_end = t
+	self.after_wait = after
 	self.wanted_vel = vector.new(0, 0, 0)
-	if after then
-		minetest.after(t, after)
-	else
-		minetest.after(t, function()
-			set_anim(self.object, "idle")
-			minetest.after(0.1, function()
-				self.status = "idle"
-			end)
-		end)
-	end
 end
 
 local function throw(self, pos, yaw)
@@ -277,6 +270,16 @@ minetest.register_entity("bosses_farlands:zombie_brute", {
 			elseif self.status == "idle" then
 				self.status = "walk"
 				set_anim(self.object, "walk")
+			elseif self.status == "wait" then
+				self.wait_timer = self.wait_timer + dtime
+				if self.wait_timer >= self.wait_end then
+					self.status = "idle"
+					if self.after_wait then
+						self.after_wait(self)
+					else
+						set_anim(self.object, "idle")
+					end
+				end
 			end
 		end
 
