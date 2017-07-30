@@ -67,12 +67,12 @@ minetest.register_entity("bosses_farlands:cube_projectile", {
 		if v.x ~= 0 and v.y ~= 0 and v.z ~= 0 then
 			return
 		end
-		--~ tnt.boom(vector.round(pos),	{
-			--~ damage_radius = 2,
-			--~ radius = 1,
-			--~ ignore_protection=true
-		--~ })
-		minetest.set_node(vector.round(self.object:get_pos()), self.node)
+		local pos = vector.round(self.object:get_pos())
+		tnt.boom(vector.round(pos),	{
+			damage_radius = 3,
+			radius = 1
+		})
+		minetest.set_node(pos, self.node)
 		self.object:remove()
 	end,
 })
@@ -253,6 +253,7 @@ minetest.register_entity("bosses_farlands:zombie_brute", {
 				self.walked_time = 0
 				yaw = minetest.dir_to_yaw(vector.direction(pos, target_pos))
 				self.object:set_yaw(yaw)
+				self.target:set_hp(self.target:get_hp()-3)
 			elseif self.status == "walk" then
 				local dir = vector.direction(pos, target_pos)
 				self.object:set_yaw(minetest.dir_to_yaw(dir))
