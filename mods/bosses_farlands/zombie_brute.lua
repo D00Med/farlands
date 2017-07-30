@@ -46,6 +46,11 @@ minetest.register_entity("bosses_farlands:cube_projectile", {
 		self.node = minetest.deserialize(staticdata)
 		local tiles = table.copy(minetest.registered_nodes[self.node.name].tiles or {"unknown_node.png"})
 		local tiles_count = #tiles
+		for i = 1, tiles_count do
+			if type(tiles[i]) == "table" then
+				tiles[i] = tiles[i].name
+			end
+		end
 		if tiles_count < 6 then
 			for i = tiles_count+1, 6 do
 				tiles[i] = tiles[tiles_count]
@@ -55,26 +60,21 @@ minetest.register_entity("bosses_farlands:cube_projectile", {
 		apply_gravity(self.object)
 	end,
 	on_step = function(self, dtime)
-		local v = self.object:get_velocity()
-		local pos = self.object:get_pos()
-		if self.flying and (v.x == 0 or v.y == 0 or v.z == 0) then
-			--~ tnt.boom(vector.round(pos),	{
-				--~ damage_radius = 2,
-				--~ radius = 1,
-				--~ ignore_protection=true
-			--~ })
-			print(dump(self))
-			minetest.set_node(vector.round(pos), self.node)
-			self.object:remove()
+		if not self.flying then
+			return
 		end
+		local v = self.object:get_velocity()
+		if v.x ~= 0 and v.y ~= 0 and v.z ~= 0 then
+			return
+		end
+		--~ tnt.boom(vector.round(pos),	{
+			--~ damage_radius = 2,
+			--~ radius = 1,
+			--~ ignore_protection=true
+		--~ })
+		minetest.set_node(vector.round(self.object:get_pos()), self.node)
+		self.object:remove()
 	end,
-	--~ on_punch = function(self, puncher, time_from_last_punch, tool_capabilities, dir)
-	--~ end,
-	--~ on_rightclick = function(self, clicker)
-	--~ end,
-	--~ get_staticdata = function(self)
-		--~ return self.textures
-	--~ end,
 })
 
 local function die(self)
@@ -149,10 +149,19 @@ local function wait(self, t, after)
 end
 
 local function throw(self, pos, yaw)
+	local node_pos = vector.round(vector.add(pos, minetest.yaw_to_dir(yaw)))
+	local node_def = minetest.registered_nodes[minetest.get_node(node_pos).name]
+	if node_def.drawtype ~= "normal" or minetest.get_node_timer(node_pos):is_started() then
+		return false
+	end
+	local meta_table = minetest.get_meta(node_pos):to_table()
+	if meta_table and ((meta_table.fields and #meta_table.fields > 0) or
+			(meta_table.inventory and #meta_table.inventory > 0)) then
+		return false
+	end
 	self.walked_time = 0
 	set_anim(self.object, "grab", false)
 	wait(self, anim_time("grab"), function()
-		local node_pos = vector.round(vector.add(pos, minetest.yaw_to_dir(yaw)))
 		local rock = minetest.add_entity(node_pos, "bosses_farlands:cube_projectile",
 				minetest.serialize(minetest.get_node(node_pos)))
 		rock:set_attach(self.object, "rock_l", {x=0,y=0,z=0}, {x=0,y=0,z=0})
@@ -181,6 +190,7 @@ local function throw(self, pos, yaw)
 			wait(self, anim_time("throw_e"))
 		end)
 	end)
+	return true
 end
 
 minetest.register_entity("bosses_farlands:zombie_brute", {
@@ -256,7 +266,10 @@ minetest.register_entity("bosses_farlands:zombie_brute", {
 				yaw = minetest.dir_to_yaw(vector.direction(pos, target_pos))
 				self.object:set_yaw(yaw)
 				if self.walked_time >= 10 and vector.distance(pos, target_pos) <= 8 then
-					throw(self, pos, yaw)
+					if not throw(self, pos, yaw) then
+						-- Do some other attack.
+						self.walked_time = 0
+					end
 				else
 					self.wanted_vel = dir
 					self.walked_time = self.walked_time + dtime
