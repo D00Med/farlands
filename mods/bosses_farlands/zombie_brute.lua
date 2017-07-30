@@ -15,9 +15,7 @@ local animation = {
 	run     = {{x =   0, y =   0},  0},
 }
 local function set_anim(obj, anim, loop)
-	if loop == nil then
-		loop = true
-	end
+	loop = loop ~= false
 	local a = animation[anim]
 	obj:set_animation(a[1], a[2] or 0, a[3] or 0, loop)
 end
@@ -25,7 +23,7 @@ local function anim_time(anim)
 	return (animation[anim][1].y - animation[anim][1].x) / animation[anim][2]
 end
 
-local gravity = tonumber(minetest.settings:get("movement_gravity"))
+local gravity = tonumber(minetest.settings:get("movement_gravity")) or 9.81
 local function apply_gravity(obj)
 	local acc = obj:get_acceleration()
 	acc.y = acc.y - gravity
@@ -40,14 +38,20 @@ minetest.register_entity("bosses_farlands:cube_projectile", {
 	visual = "cube",
 	visual_size = {x = 1, y = 1},
 	textures = {}, -- +Y, -Y, +X, -X, +Z, -Z
-
 	on_activate = function(self, staticdata, dtime_s)
 		if staticdata == "" then
 			self.object:remove()
 			return
 		end
 		self.node = minetest.deserialize(staticdata)
-		self.object:set_properties({textures = minetest.registered_nodes[self.node.name].tiles})
+		local tiles = table.copy(minetest.registered_nodes[self.node.name].tiles or {"unknown_node.png"})
+		local tiles_count = #tiles
+		if tiles_count < 6 then
+			for i = tiles_count+1, 6 do
+				tiles[i] = tiles[tiles_count]
+			end
+		end
+		self.object:set_properties({textures = tiles})
 		apply_gravity(self.object)
 	end,
 	on_step = function(self, dtime)
