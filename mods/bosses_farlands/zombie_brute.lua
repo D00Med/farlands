@@ -209,7 +209,7 @@ minetest.register_entity("bosses_farlands:zombie_brute", {
 
 	on_activate = function(self, staticdata, dtime_s)
 		if staticdata == "" then
-			self.hp = 80
+			self.hp = 800
 		else
 			local s = minetest.deserialize(staticdata)
 			self.hp = s.hp
@@ -297,8 +297,11 @@ minetest.register_entity("bosses_farlands:zombie_brute", {
 			return
 		end
 		local vel = self.object:get_velocity()
-		local knockback = 3
-		local damage = 10
+		local damage = tool_capabilities.damage_groups.fleshy or 0
+		--~ print(dump(tool_capabilities))
+		damage = damage * math.min(time_from_last_punch / tool_capabilities.full_punch_interval, 1)
+		local knockback = math.floor(damage/3)
+		damage = math.floor(damage)
 		self.hp = self.hp - damage
 		self.target = puncher
 		local player_name = puncher:get_player_name()
@@ -324,14 +327,14 @@ minetest.register_entity("bosses_farlands:zombie_brute", {
 					position = {x=0.2, y=0.1},
 					name = "farlands_bosses_zombie_brute_health",
 					text = "bosses_farlands_health.png",
-					number = self.hp*2,
+					number = self.hp/5,
 					direction = 0,
 					offset = {x=10, y=5},
 					size = {x=10, y=50},
 				}),
 			}
 		else
-			puncher:hud_change(hud_ids[player_name][2], "number", self.hp*2)
+			puncher:hud_change(hud_ids[player_name][2], "number", self.hp/5)
 		end
 		fighting_players[player_name] = self.object
 		minetest.sound_play("default_punch", {
