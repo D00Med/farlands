@@ -1,5 +1,6 @@
 local fighting_players = {}
 local musics = {}
+local hud_ids = {}
 
 local animation = {
 	idle    = {{x =   1, y =  20}, 10},
@@ -102,7 +103,7 @@ local function die(self)
 		--~ end
 	--~ end
 
-	-- Stop music:
+	-- Stop music and remove hud:
 	for player_name, obj in pairs(fighting_players) do
 		if obj == self.object then
 			minetest.sound_stop(musics[player_name])
@@ -112,6 +113,10 @@ local function die(self)
 				to_player = player_name,
 				gain = 1.0,
 			})
+			local player = minetest.get_player_by_name(player_name)
+			player:hud_remove(hud_ids[player_name][1])
+			player:hud_remove(hud_ids[player_name][2])
+			hud_ids[player_name] = nil
 		end
 	end
 end
@@ -294,6 +299,7 @@ minetest.register_entity("bosses_farlands:zombie_brute", {
 		local vel = self.object:get_velocity()
 		local knockback = 3
 		local damage = 10
+		self.hp = self.hp - damage
 		self.target = puncher
 		local player_name = puncher:get_player_name()
 		if not fighting_players[player_name] then
@@ -302,6 +308,30 @@ minetest.register_entity("bosses_farlands:zombie_brute", {
 				gain = 1.0,
 				loop = true,
 			})
+			hud_ids[player_name] = {
+				puncher:hud_add({
+					hud_elem_type = "image",
+					position = {x=0.2, y=0.1},
+					name = "farlands_bosses_zombie_brute_health_bg",
+					scale = {x=5, y=5},
+					text = "bosses_farlands_health_bg.png",
+					direction = 0,
+					alignment = {x=1, y=1},
+					offset = {x=0, y=0},
+				}),
+				puncher:hud_add({
+					hud_elem_type = "statbar",
+					position = {x=0.2, y=0.1},
+					name = "farlands_bosses_zombie_brute_health",
+					text = "bosses_farlands_health.png",
+					number = self.hp*2,
+					direction = 0,
+					offset = {x=10, y=5},
+					size = {x=10, y=50},
+				}),
+			}
+		else
+			puncher:hud_change(hud_ids[player_name][2], "number", self.hp*2)
 		end
 		fighting_players[player_name] = self.object
 		minetest.sound_play("default_punch", {
@@ -309,7 +339,6 @@ minetest.register_entity("bosses_farlands:zombie_brute", {
 			object = self.object,
 			max_hear_distance = 15,
 		})
-		self.hp = self.hp - damage
 		if dir then
 			dir.y = dir.y + 1
 			dir = vector.normalize(dir)
