@@ -14,6 +14,7 @@ local animation = {
 	throw_e = {{x = 211, y = 220}, 10},
 	box     = {{x =   0, y =   0},  0},
 	run     = {{x =   0, y =   0},  0},
+	dash    = {{x = 220, y = 239}, 25},
 }
 local function set_anim(obj, anim, loop)
 	loop = loop ~= false
@@ -28,6 +29,11 @@ local gravity = tonumber(minetest.settings:get("movement_gravity")) or 9.81
 local function apply_gravity(obj)
 	local acc = obj:get_acceleration()
 	acc.y = acc.y - gravity
+	obj:set_acceleration(acc)
+end
+local function take_gravity(obj)
+	local acc = obj:get_acceleration()
+	acc.y = acc.y + gravity
 	obj:set_acceleration(acc)
 end
 
@@ -58,7 +64,6 @@ minetest.register_entity("bosses_farlands:cube_projectile", {
 			end
 		end
 		self.object:set_properties({textures = tiles})
-		apply_gravity(self.object)
 	end,
 	on_step = function(self, dtime)
 		if not self.flying then
@@ -191,6 +196,16 @@ local function throw(self, pos, yaw)
 	return true
 end
 
+local function dash(self, dir)
+	self.walked_time = 0
+	self.wanted_vel = vector.new()
+	set_anim(self.object, "dash", false)
+	self.dash_startvel = vector.multiply(dir, 2)
+	self.object:set_velocity(self.dash_startvel)
+	self.status = "dash"
+	take_gravity(self.object)
+end
+
 minetest.register_entity("bosses_farlands:zombie_brute", {
 	hp_max = 1,
 	physical = true,
@@ -223,6 +238,24 @@ minetest.register_entity("bosses_farlands:zombie_brute", {
 	end,
 
 	on_step = function(self, dtime)
+		if self.status == "dash" then
+			local v = self.object:get_velocity()
+			if not ((v.x == 0 and self.dash_startvel.x ~= 0) or
+					(v.y == 0 and self.dash_startvel.y ~= 0) or
+					(v.z == 0 and self.dash_startvel.z ~= 0)) then
+				return
+			end
+			self.object:set_velocity(vector.new())
+			local boom_pos = vector.normalize(self.dash_startvel)
+			boom_pos = vector.add(boom_pos, self.object:get_pos())
+			boom_pos = vector.round(boom_pos)
+			tnt.boom(boom_pos, {damage_radius = 4, radius = 2})
+			self.dash_startvel = nil
+			self.status = "idle"
+			set_anim(self.object, "idle")
+			apply_gravity(self.object)
+			return
+		end
 		local pos = self.object:get_pos()
 		local yaw = self.object:get_yaw()
 		local vel = vector.subtract(self.object:get_velocity(), self.wanted_vel)
@@ -266,8 +299,8 @@ minetest.register_entity("bosses_farlands:zombie_brute", {
 				self.object:set_yaw(yaw)
 				if self.walked_time >= 10 and vector.distance(pos, target_pos) <= 8 then
 					if not throw(self, pos, yaw) then
-						-- Do some other attack.
-						self.walked_time = 0
+						dash(self, dir)
+						return
 					end
 				else
 					self.wanted_vel = dir
@@ -296,6 +329,10 @@ minetest.register_entity("bosses_farlands:zombie_brute", {
 		if not puncher:is_player() then
 			return
 		end
+		--~ if puncher:get_player_control().aux1 then
+			--~ die(self)
+			--~ return
+		--~ end
 		local vel = self.object:get_velocity()
 		local damage = tool_capabilities.damage_groups.fleshy or 0
 		--~ print(dump(tool_capabilities))
