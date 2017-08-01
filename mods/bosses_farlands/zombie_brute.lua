@@ -355,10 +355,10 @@ minetest.register_entity("bosses_farlands:zombie_brute", {
 		if not puncher:is_player() then
 			return
 		end
-		if puncher:get_player_control().aux1 then
-			die(self)
-			return
-		end
+		--~ if puncher:get_player_control().aux1 then
+			--~ die(self)
+			--~ return
+		--~ end
 		local vel = self.object:get_velocity()
 		local damage = tool_capabilities.damage_groups.fleshy or 0
 		--~ print(dump(tool_capabilities))
