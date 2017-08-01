@@ -7,7 +7,7 @@ local animation = {
 	walk_s  = {{x =  21, y =  30}, 30},
 	walk    = {{x =  31, y =  70}, 30},
 	walk_e  = {{x =  71, y =  80}, 30},
-	jump    = {{x =  81, y = 120}, 20},
+	jump    = {{x =  81, y = 120}, 40},
 	punch   = {{x = 121, y = 160}, 30},
 	grab    = {{x = 161, y = 180}, 10},
 	throw   = {{x = 181, y = 210}, 20},
@@ -198,6 +198,7 @@ end
 
 local function dash(self, dir)
 	self.walked_time = 0
+	self.dashed_time = 0
 	self.wanted_vel = vector.new()
 	set_anim(self.object, "dash", false)
 	self.dash_startvel = vector.multiply(dir, 2)
@@ -239,6 +240,16 @@ minetest.register_entity("bosses_farlands:zombie_brute", {
 
 	on_step = function(self, dtime)
 		if self.status == "dash" then
+			self.dashed_time = self.dashed_time + dtime
+			if self.dashed_time >= 2 then
+				self.object:set_velocity(vector.new())
+				self.dashed_time = nil
+				self.status = "idle"
+				set_anim(self.object, "idle")
+				self.dash_startvel = nil
+				apply_gravity(self.object)
+				return
+			end
 			local v = self.object:get_velocity()
 			if not ((v.x == 0 and self.dash_startvel.x ~= 0) or
 					(v.y == 0 and self.dash_startvel.y ~= 0) or
@@ -254,6 +265,7 @@ minetest.register_entity("bosses_farlands:zombie_brute", {
 			self.status = "idle"
 			set_anim(self.object, "idle")
 			apply_gravity(self.object)
+			self.dashed_time = nil
 			return
 		end
 		local pos = self.object:get_pos()
@@ -294,8 +306,7 @@ minetest.register_entity("bosses_farlands:zombie_brute", {
 				self.target:set_hp(self.target:get_hp()-3)
 			elseif self.status == "walk" then
 				local dir = vector.direction(pos, target_pos)
-				self.object:set_yaw(minetest.dir_to_yaw(dir))
-				yaw = minetest.dir_to_yaw(vector.direction(pos, target_pos))
+				yaw = minetest.dir_to_yaw(dir)
 				self.object:set_yaw(yaw)
 				if self.walked_time >= 10 and vector.distance(pos, target_pos) <= 8 then
 					if not throw(self, pos, yaw) then
@@ -303,8 +314,23 @@ minetest.register_entity("bosses_farlands:zombie_brute", {
 						return
 					end
 				else
+					if self.last_pos then
+						local isway = vector.distance(pos, self.last_pos)
+						local shouldway = vector.length(self.wanted_vel) * dtime
+						if isway < shouldway - 0.2 then
+							self.last_pos = nil
+							set_anim(self.object, "jump", false)
+							vel.y = vel.y + gravity
+							wait(self, 1.2, function(self)
+								self.wanted_vel = vector.new()
+								self.status = "idle"
+								set_anim(self.object, "idle")
+							end)
+						end
+					end
 					self.wanted_vel = dir
 					self.walked_time = self.walked_time + dtime
+					self.last_pos = pos
 				end
 			elseif self.status == "idle" then
 				self.status = "walk"
@@ -329,10 +355,10 @@ minetest.register_entity("bosses_farlands:zombie_brute", {
 		if not puncher:is_player() then
 			return
 		end
-		--~ if puncher:get_player_control().aux1 then
-			--~ die(self)
-			--~ return
-		--~ end
+		if puncher:get_player_control().aux1 then
+			die(self)
+			return
+		end
 		local vel = self.object:get_velocity()
 		local damage = tool_capabilities.damage_groups.fleshy or 0
 		--~ print(dump(tool_capabilities))
