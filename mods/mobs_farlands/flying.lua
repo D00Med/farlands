@@ -48,7 +48,7 @@ mobs:register_mob("mobs_m:smallbird", {
 	},
 })
 
-mobs:register_spawn("mobs_m:smallbird", {"default:leaves",}, 20, 10, 70000, 2, 11000)
+mobs:register_spawn("mobs_m:smallbird", {"default:leaves",}, 20, 10, 70000, 6, 11000)
 
 mobs:register_egg("mobs_m:smallbird", "Small Bird", "wool_cyan.png", 1)
 
@@ -214,4 +214,4 @@ mobs:register_mob("mobs_m:wasp", {
 
 
 mobs:register_egg("mobs_m:wasp", "Wasp", "default_obsidian.png", 1)
-	mobs:register_spawn("mobs_m:wasp", {"default:dirt_with_grass"}, 20, 10, 32000, 2, 31000)
+	mobs:register_spawn("mobs_m:wasp", {"default:dirt_with_grass"}, 20, 10, 32000, 20, 31000)

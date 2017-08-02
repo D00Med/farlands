@@ -46,7 +46,7 @@ mobs:register_mob("mobs_m:smallfish", {
 	},
 })
 
-mobs:register_spawn("mobs_m:smallfish", {"default:water_source",}, 20, 10, 15000, 2, 11000)
+mobs:register_spawn("mobs_m:smallfish", {"default:water_source",}, 20, 10, 15000, 20, 11000)
 
 mobs:register_egg("mobs_m:smallfish", "Small Fish", "default_water.png", 1)
 
@@ -235,7 +235,7 @@ mobs:register_mob("mobs_m:riverfish", {
 	},
 })
 
-mobs:register_spawn("mobs_m:riverfish", {"default:river_water_source",}, 20, 10, 15000, 2, 11000)
+mobs:register_spawn("mobs_m:riverfish", {"default:river_water_source",}, 20, 10, 15000, 20, 11000)
 
 mobs:register_egg("mobs_m:riverfish", "River Fish", "default_dirt.png", 1)
 
@@ -288,7 +288,7 @@ mobs:register_mob("mobs_m:pirana", {
 	},
 })
 
-mobs:register_spawn("mobs_m:pirana", {"default:river_water_source",}, 20, 10, 15000, 2, 11000)
+mobs:register_spawn("mobs_m:pirana", {"default:river_water_source",}, 20, 10, 15000, 20, 11000)
 
 mobs:register_egg("mobs_m:pirana", "Pirana", "default_dirt.png", 1)
 
@@ -400,7 +400,7 @@ mobs:register_mob("mobs_m:whale", {
 
 
 mobs:register_egg("mobs_m:whale", "Whale", "default_water.png", 1)
-	mobs:register_spawn("mobs_m:whale", {"default:water_source"}, 20, 10, 15000, -20, 1000)
+	mobs:register_spawn("mobs_m:whale", {"default:water_source"}, 20, 10, 15000, 20, 1000)
 
 minetest.register_craftitem("mobs_m:smallfish_raw", {
 	description = "Small Raw Fish",

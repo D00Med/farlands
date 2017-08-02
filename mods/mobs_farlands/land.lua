@@ -263,7 +263,7 @@ mobs:register_mob("mobs_m:elephant", {
 
 
 mobs:register_egg("mobs_m:elephant", "Elephant", "default_stone.png", 1)
-mobs:register_spawn("mobs_m:elephant", {"default:dirt_with_dry_grass",}, 20, 10, 7000, 0, 11000)
+mobs:register_spawn("mobs_m:elephant", {"default:dirt_with_dry_grass",}, 20, 10, 7000, 20, 11000)
 
 mobs:register_mob("mobs_m:horse", {
 	type = "animal",
@@ -339,7 +339,7 @@ mobs:register_mob("mobs_m:horse", {
 
 
 mobs:register_egg("mobs_m:horse", "Horse", "default_dirt.png", 1)
-mobs:register_spawn("mobs_m:horse", {"default:dirt_with_grass",}, 20, 10, 7000, 0, 11000)
+mobs:register_spawn("mobs_m:horse", {"default:dirt_with_grass",}, 20, 10, 7000, 20, 11000)
 
 mobs:register_mob("mobs_m:quagga", {
 	type = "animal",
@@ -415,7 +415,7 @@ mobs:register_mob("mobs_m:quagga", {
 
 
 mobs:register_egg("mobs_m:quagga", "Quagga", "wool_orange.png", 1)
---mobs:register_spawn("mobs_m:quagga", {"default:dirt_with_grass",}, 5, 0, 7000, 0, 11000)
+--mobs:register_spawn("mobs_m:quagga", {"default:dirt_with_grass",}, 5, 0, 7000, 20, 11000)
 
 mobs:register_mob("mobs_m:zebra", {
 	type = "animal",
@@ -491,7 +491,7 @@ mobs:register_mob("mobs_m:zebra", {
 
 
 mobs:register_egg("mobs_m:zebra", "Zebra", "default_obsidian.png", 1)
-mobs:register_spawn("mobs_m:zebra", {"default:dirt_with_dry_grass",}, 20, 10, 7000, 0, 11000)
+mobs:register_spawn("mobs_m:zebra", {"default:dirt_with_dry_grass",}, 20, 7, 7000, 220, 11000)
 
 mobs:register_mob("mobs_m:zombie", {
 	type = "monster",
@@ -537,7 +537,7 @@ mobs:register_mob("mobs_m:zombie", {
 
 
 mobs:register_egg("mobs_m:zombie", "Zombie", "default_dirt.png", 1)
-mobs:register_spawn("mobs_m:zombie", {"default:dirt_with_grass", "default:desert_sand", "default:dirt_with_leafy_grass", "default:dirt_with_dry_grass"}, 5, 0, 7000, 0, 11000, true)
+mobs:register_spawn("mobs_m:zombie", {"default:dirt_with_grass", "default:desert_sand", "default:dirt_with_leafy_grass", "default:dirt_with_dry_grass"}, 5, 0, 7000, 20, 11000, true)
 
 mobs:register_mob("mobs_m:zombie_brute", {
 	type = "monster",
@@ -591,7 +591,7 @@ mobs:register_mob("mobs_m:zombie_brute", {
 
 
 mobs:register_egg("mobs_m:zombie_brute", "Zombie Brute (boss)", "default_dirt.png", 1)
---mobs:register_spawn("mobs_m:zombie_brute", {"default:dirt_with_grass",}, 5, 0, 7000, 0, 11000)
+--mobs:register_spawn("mobs_m:zombie_brute", {"default:dirt_with_grass",}, 5, 0, 7000, 20, 11000)
 
 mobs:register_arrow("mobs_m:stone", {
    visual = "cube",
@@ -685,7 +685,7 @@ mobs:register_mob("mobs_m:witch", {
 
 
 mobs:register_egg("mobs_m:witch", "Witch", "wool_violet.png", 1)
-mobs:register_spawn("mobs_m:witch", {"mapgen:dirt_with_swamp_grass",}, 5, 0, 7000, 0, 11000)
+mobs:register_spawn("mobs_m:witch", {"mapgen:dirt_with_swamp_grass",}, 5, 0, 7000, 20, 11000)
 
 mobs:register_arrow("mobs_m:lightning", {
    visual = "sprite",
@@ -783,7 +783,7 @@ mobs:register_mob("mobs_m:bear", {
 })
 
 mobs:register_egg("mobs_m:bear", "Brown Bear", "default_dirt.png", 1)
-mobs:register_spawn("mobs_m:bear", {"mapgen:dirt_with_leafy_grass",}, 5, 0, 7000, 0, 11000)
+mobs:register_spawn("mobs_m:bear", {"mapgen:dirt_with_leafy_grass",}, 5, 0, 7000, 20, 11000)
 
 mobs:register_mob("mobs_m:swamp_lurker", {
 	type = "monster",
@@ -829,7 +829,7 @@ mobs:register_mob("mobs_m:swamp_lurker", {
 })
 
 mobs:register_egg("mobs_m:swamp_lurker", "Swamp Lurker", "default_dirt.png", 1)
-mobs:register_spawn("mobs_m:swamp_lurker", {"default:dirt_with_swamp_grass",}, 5, 0, 7000, 0, 11000)
+mobs:register_spawn("mobs_m:swamp_lurker", {"default:dirt_with_swamp_grass",}, 5, 0, 7000, 20, 11000)
 
 mobs:register_mob("mobs_m:beetle", {
 	type = "monster",
@@ -875,7 +875,7 @@ mobs:register_mob("mobs_m:beetle", {
 
 
 mobs:register_egg("mobs_m:beetle", "Giant Beetle", "default_desert_sand.png", 1)
-mobs:register_spawn("mobs_m:beetle", {"default:desert_sand",}, 5, 0, 7000, 0, 11000)
+mobs:register_spawn("mobs_m:beetle", {"default:desert_sand",}, 5, 0, 7000, 20, 11000)
 
 local all_colours = {
 	{"black",      "Black",      "#000000b0"},
@@ -1056,7 +1056,14 @@ for _, col in pairs(all_colours) do
 end
 
 
-mobs:register_spawn("mobs_m:sheep_white", {"default:dirt_with_grass",}, 20, 10, 7000, 0, 11000)
+mobs:spawn({
+	name = "mobs_m:sheep_white",
+	nodes = {"default:dirt_with_grass", "ethereal:bamboo_dirt"},
+	min_light = 10,
+	chance = 8000,
+	min_height = 0,
+	day_toggle = true,
+})
 
 mobs:register_mob("mobs_m:badger", {
 	type = "animal",
@@ -1113,7 +1120,7 @@ mobs:register_mob("mobs_m:badger", {
 
 
 mobs:register_egg("mobs_m:badger", "Badger", "default_obsidian.png", 1)
-mobs:register_spawn("mobs_m:badger", {"mapgen:dirt_with_leafy_grass",}, 20, 10, 7000, 0, 11000)
+mobs:register_spawn("mobs_m:badger", {"mapgen:dirt_with_leafy_grass",}, 20, 10, 7000, 20, 11000)
 
 
 
@@ -1195,7 +1202,6 @@ mobs:spawn({
 	nodes = {"default:dirt_with_grass", "ethereal:bamboo_dirt"},
 	min_light = 10,
 	chance = 15000,
-	active_object_count = 2,
 	min_height = 0,
 	day_toggle = true,
 })
