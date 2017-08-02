@@ -113,3 +113,10 @@ minetest.register_craft({
 		{"mobs:leather", "default:steel_ingot", "mobs:leather"},
 	}
 })
+
+-- raw zombie meat
+minetest.register_craftitem("mobs:zombie_flesh", {
+	description = S("Raw Meat"),
+	inventory_image = "mobs_zombie_flesh.png",
+	on_use = minetest.item_eat(1),
+})

@@ -519,7 +519,7 @@ mobs:register_mob("mobs_m:zombie", {
 	fall_damage = 1,
 	view_range = 5,
 	drops = {
-		{name = "mobs:zombie_flesh_raw", chance = 2, min = 1, max = 2},
+		{name = "mobs:zombie_flesh", chance = 2, min = 1, max = 2},
 	},
 	animation = {
 		speed_normal = 27,
@@ -542,8 +542,8 @@ mobs:register_spawn("mobs_m:zombie", {"default:dirt_with_grass", "default:desert
 mobs:register_mob("mobs_m:zombie_brute", {
 	type = "monster",
 	passive = false,
-	reach = 2.5,
-	damage = 2,
+	reach = 4,
+	damage = 4,
 	attack_type = "dogshoot",
    shoot_interval = 3,
 	dogshoot_switch = 2,
@@ -587,6 +587,15 @@ mobs:register_mob("mobs_m:zombie_brute", {
 		shoot_start = 75,
 		shoot_end = 95,
 	},
+})
+
+minetest.register_craft({
+	output = 'mobs_m:zombie_brute',
+	recipe = {
+		{'mobs:zombie_flesh', 'mobs:zombie_flesh', 'mobs:zombie_flesh'},
+		{'mobs:zombie_flesh', 'mobs:zombie_flesh', 'mobs:zombie_flesh'},
+		{'mobs:zombie_flesh', 'mobs:zombie_flesh', 'mobs:zombie_flesh'},
+	}
 })
 
 
