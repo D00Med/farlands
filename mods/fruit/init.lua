@@ -14,6 +14,31 @@ minetest.register_node("fruit:leaves_with_mango", {
 	sounds = default.node_sound_leaves_defaults()
 })
 
+minetest.register_node("fruit:cactus_fruit", {
+	description = "Cactus Fruit",
+	drawtype = "plantlike",
+	tiles = {
+		"fruit_cactus.png",
+	},
+	paramtype = "light",
+	groups = {fleshy=1, oddly_breakable_by_hand=1,},
+	inventory_image = "fruit_cactus_inv.png",
+	sounds = default.node_sound_leaves_defaults(),
+	selection_box = {
+		type = "fixed",
+		fixed = {
+			{-0.3, -0.4, -0.3, 0.3, -0.5, 0.3}, 
+		}
+	},
+	collision_box = {
+		type = "fixed",
+		fixed = {
+			{-0.3, -0.4, -0.3, 0.3, -0.5, 0.3}, 
+		}
+	},
+	on_use = minetest.item_eat(2)
+})
+
 minetest.register_node("fruit:leaves_with_berry", {
 	description = "Leaves with Berry",
 	drawtype = "allfaces",
@@ -88,6 +113,7 @@ minetest.register_node("fruit:leaves_with_orange", {
 	end,
 	sounds = default.node_sound_leaves_defaults()
 })
+
 
 minetest.register_craftitem("fruit:pear", {
 	description = "Pear",
@@ -242,3 +268,15 @@ function fruit.register_ores()
 		},
 	})
 end
+
+
+minetest.register_abm({
+	nodenames = {"default:cactus",},
+	interval = 30,
+	chance = 50,
+	action = function(pos, node)
+		if minetest.get_node({x=pos.x, y=pos.y+1, z=pos.z}).name == "air" then
+			minetest.set_node({x=pos.x, y=pos.y+1, z=pos.z}, {name="fruit:cactus_fruit"})
+		end
+	end,
+})

@@ -251,7 +251,7 @@ minetest.register_craft({
 minetest.register_craft({
 	output = 'witchcraft:bottle_eyes',
 	recipe = {
-		{'default:bucket_water'},
+		{'buckets:bucket_water'},
 		{'vessels:drinking_glass'},
 	}
 })

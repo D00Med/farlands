@@ -279,7 +279,7 @@ default.register_fence("mapgen:fence_baobab", {
 	texture = "mapgen_baobab_fence.png",
 	inventory_image = "default_fence_overlay.png^mapgen_baobab_fence.png^default_fence_overlay.png^[makealpha:255,126,126",
 	wield_image = "default_fence_overlay.png^mapgen_baobab_fence.png^default_fence_overlay.png^[makealpha:255,126,126",
-	material = "mapgen:baobab_wood_planks",
+	material = "mapgen:baobab_wood",
 	groups = {choppy = 2, oddly_breakable_by_hand = 2, flammable = 2},
 	sounds = default.node_sound_wood_defaults()
 })
@@ -330,7 +330,7 @@ default.register_fence("mapgen:fence_yellow_ipe", {
 	texture = "mapgen_yellow_ipe_fence.png",
 	inventory_image = "default_fence_overlay.png^mapgen_yellow_ipe_fence.png^default_fence_overlay.png^[makealpha:255,126,126",
 	wield_image = "default_fence_overlay.png^mapgen_yellow_ipe_fence.png^default_fence_overlay.png^[makealpha:255,126,126",
-	material = "mapgen:yellow_ipe_planks",
+	material = "mapgen:yellow_ipe",
 	groups = {choppy = 2, oddly_breakable_by_hand = 2, flammable = 2},
 	sounds = default.node_sound_wood_defaults()
 })
@@ -468,7 +468,7 @@ default.register_fence("mapgen:fence_palm_wood", {
 	texture = "mapgen_palm_fence.png",
 	inventory_image = "default_fence_overlay.png^mapgen_palm_fence.png^default_fence_overlay.png^[makealpha:255,126,126",
 	wield_image = "default_fence_overlay.png^mapgen_palm_fence.png^default_fence_overlay.png^[makealpha:255,126,126",
-	material = "mapgen:baobab_wood_planks",
+	material = "mapgen:baobab_wood",
 	groups = {choppy = 2, oddly_breakable_by_hand = 2, flammable = 2},
 	sounds = default.node_sound_wood_defaults()
 

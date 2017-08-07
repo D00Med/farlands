@@ -792,7 +792,7 @@ mobs:register_mob("mobs_m:bear", {
 })
 
 mobs:register_egg("mobs_m:bear", "Brown Bear", "default_dirt.png", 1)
-mobs:register_spawn("mobs_m:bear", {"mapgen:dirt_with_leafy_grass",}, 5, 0, 7000, 20, 11000)
+mobs:register_spawn("mobs_m:bear", {"mapgen:dirt_with_leafy_grass", "default:dirt_with_snow"}, 5, 0, 7000, 20, 11000)
 
 mobs:register_mob("mobs_m:swamp_lurker", {
 	type = "monster",

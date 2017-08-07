@@ -20,8 +20,8 @@ local npc_make_home = function(self, dtime)
 		pos.y = pos.y + 0.5
 			
 		local beds = minetest.find_node_near(pos, 5, {"beds:bed_bottom", "beds:bed", "beds:bed_yellow_bottom", "beds:bed_brown_bottom", "beds:bed_magenta_bottom", "beds:bed_blue_bottom", "beds:bed_orange_bottom", "beds:bed_cyan_bottom", "beds:bed_pink_bottom", "beds:bed_black_bottom", "beds:bed_white_bottom", "beds:bed_darkgrey_bottom", "beds:bed_grey_bottom", "beds:bed_green_bottom", "beds:bed_purple_bottom", "beds:bed_darkgreen_bottom"})
-		local light_sources = minetest.find_node_near(pos, 5, {"default:torch", "default:torch_wall", "default:torch_floor", "default:torch_ceiling", "mese_lamp"})
-		local doors = minetest.find_node_near(pos, 5, {"doors:door_wood_a", "doors:door_glass_a", "doors:door_obsidian_glass_a"})
+		local light_sources = minetest.find_node_near(pos, 5, {"default:torch", "default:torch_wall", "default:torch_floor", "default:torch_ceiling", "decoblocks:lantern", "decoblocks:lantern_wall", "mese_lamp"})
+		local doors = minetest.find_node_near(pos, 5, {"group:door", "doors:door_wood_a", "doors:door_glass_a", "doors:door_obsidian_glass_a"})
 		local is_owned = minetest.find_node_near(pos, 5, {"villages:colony_deed", "villages:hobo_deed",})
 		local node_below = minetest.get_node({x=pos.x, y=pos.y-1.5, z=pos.z}).name
 		local good_floor = minetest.get_item_group(node_below, "crumbly")

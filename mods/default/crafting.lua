@@ -117,7 +117,7 @@ minetest.register_craft({
 		{'', 'group:stick', ''},
 	}
 })
-
+--[[
 minetest.register_craft({
 	output = 'default:pick_mese',
 	recipe = {
@@ -125,7 +125,7 @@ minetest.register_craft({
 		{'', 'group:stick', ''},
 		{'', 'group:stick', ''},
 	}
-})
+})]]
 
 minetest.register_craft({
 	output = 'default:pick_diamond',
@@ -171,7 +171,7 @@ minetest.register_craft({
 		{'group:stick'},
 	}
 })
-
+--[[
 minetest.register_craft({
 	output = 'default:shovel_mese',
 	recipe = {
@@ -179,7 +179,7 @@ minetest.register_craft({
 		{'group:stick'},
 		{'group:stick'},
 	}
-})
+})]]
 
 minetest.register_craft({
 	output = 'default:shovel_diamond',
@@ -225,7 +225,7 @@ minetest.register_craft({
 		{'', 'group:stick'},
 	}
 })
-
+--[[
 minetest.register_craft({
 	output = 'default:axe_mese',
 	recipe = {
@@ -233,7 +233,7 @@ minetest.register_craft({
 		{'default:mese_crystal', 'group:stick'},
 		{'', 'group:stick'},
 	}
-})
+})]]
 
 minetest.register_craft({
 	output = 'default:axe_diamond',
@@ -279,7 +279,7 @@ minetest.register_craft({
 		{'group:stick', ''},
 	}
 })
-
+--[[
 minetest.register_craft({
 	output = 'default:axe_mese',
 	recipe = {
@@ -287,7 +287,7 @@ minetest.register_craft({
 		{'group:stick', 'default:mese_crystal'},
 		{'group:stick', ''},
 	}
-})
+})]]
 
 minetest.register_craft({
 	output = 'default:axe_diamond',
@@ -333,7 +333,7 @@ minetest.register_craft({
 		{'group:stick'},
 	}
 })
-
+--[[
 minetest.register_craft({
 	output = 'default:sword_mese',
 	recipe = {
@@ -341,7 +341,7 @@ minetest.register_craft({
 		{'default:mese_crystal'},
 		{'group:stick'},
 	}
-})
+})]]
 
 minetest.register_craft({
 	output = 'default:sword_diamond',
@@ -681,7 +681,7 @@ minetest.register_craft({
 		{'default:steel_ingot', '', 'default:steel_ingot'},
 	}
 })
-
+--[[
 minetest.register_craft({
 	output = 'default:mese',
 	recipe = {
@@ -729,7 +729,7 @@ minetest.register_craft({
 		{"default:mese_crystal", "default:mese_crystal", "default:mese_crystal"},
 		{"", "group:wood", ""},
 	}
-})
+})]]
 
 minetest.register_craft({
 	output = 'default:obsidian_shard 9',
