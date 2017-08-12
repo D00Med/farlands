@@ -202,7 +202,7 @@ mobs:register_mob("mobs_m:mammoth", {
 })
 
 
-mobs:register_egg("mobs_m:mammoth", "Mammoth", "default_dirt.png", 1)
+mobs:register_egg("mobs_m:mammoth", "Mammoth", "decoblocks_mammoth_wool.png", 1)
 
 mobs:register_mob("mobs_m:elephant", {
 	type = "animal",
@@ -536,7 +536,7 @@ mobs:register_mob("mobs_m:zombie", {
 })
 
 
-mobs:register_egg("mobs_m:zombie", "Zombie", "default_dirt.png", 1)
+mobs:register_egg("mobs_m:zombie", "Zombie", "wool_dark_green.png", 1)
 mobs:register_spawn("mobs_m:zombie", {"default:dirt_with_grass", "default:desert_sand", "default:dirt_with_leafy_grass", "default:dirt_with_dry_grass"}, 5, 0, 7000, 20, 11000, true)
 
 mobs:register_mob("mobs_m:zombie_brute", {
@@ -587,15 +587,6 @@ mobs:register_mob("mobs_m:zombie_brute", {
 		shoot_start = 75,
 		shoot_end = 95,
 	},
-})
-
-minetest.register_craft({
-	output = 'mobs_m:zombie_brute',
-	recipe = {
-		{'mobs:zombie_flesh', 'mobs:zombie_flesh', 'mobs:zombie_flesh'},
-		{'mobs:zombie_flesh', 'mobs:zombie_flesh', 'mobs:zombie_flesh'},
-		{'mobs:zombie_flesh', 'mobs:zombie_flesh', 'mobs:zombie_flesh'},
-	}
 })
 
 
@@ -791,7 +782,7 @@ mobs:register_mob("mobs_m:bear", {
 	},
 })
 
-mobs:register_egg("mobs_m:bear", "Brown Bear", "default_dirt.png", 1)
+mobs:register_egg("mobs_m:bear", "Brown Bear", "decoblocks_mammoth_wool.png", 1)
 mobs:register_spawn("mobs_m:bear", {"mapgen:dirt_with_leafy_grass",}, 5, 0, 7000, 20, 11000)
 
 mobs:register_mob("mobs_m:swamp_lurker", {
@@ -1215,7 +1206,7 @@ mobs:spawn({
 	day_toggle = true,
 })
 
-mobs:register_egg("mobs_m:chicken", "Chicken", "mobs_chicken_inv.png", 0)
+mobs:register_egg("mobs_m:chicken", "Chicken", "wool_brown.png", 1)
 
 -- compatibility
 mobs:alias_mob("mobs_animal:chicken", "mobs_m:chicken")

@@ -75,9 +75,17 @@ minetest.register_craft({
 })
 
 minetest.register_craft({
-	output = 'default:torch 4',
+	output = 'default:torch 3',
 	recipe = {
 		{'default:coal_lump'},
+		{'group:stick'},
+	}
+})
+
+minetest.register_craft({
+	output = 'default:torch 1',
+	recipe = {
+		{'default:charcoal'},
 		{'group:stick'},
 	}
 })
@@ -836,6 +844,12 @@ minetest.register_craft({
 	type = "cooking",
 	output = "default:obsidian_glass",
 	recipe = "default:obsidian_shard",
+})
+
+minetest.register_craft({
+	type = "cooking",
+	output = "default:charcoal",
+	recipe = "group:wood",
 })
 
 minetest.register_craft({

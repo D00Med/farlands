@@ -220,7 +220,6 @@ minetest.register_craftitem("boats:boat", {
 	description = "Boat",
 	inventory_image = "boat_item.png",
 	wield_image = "boat_item.png",
-	wield_scale = {x = 2, y = 2, z = 1},
 	liquids_pointable = true,
 	groups = {flammable = 2},
 

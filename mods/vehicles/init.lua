@@ -67,14 +67,3 @@ minetest.register_entity("vehicles:boat", {
 		})
 	end,
 })
-
-vehicles.register_spawner("vehicles:boat", "Boat", "vehicles_boat_item.png", true)
-
-minetest.register_craft({
-	output = 'vehicles:airballoon',
-	recipe = {
-		{'wool:white', 'wool:white', 'wool:white'},
-		{'default:stick', 'default:copper_ingot', 'default:stick'},
-		{'', 'group:wood', ''},
-	}
-})
