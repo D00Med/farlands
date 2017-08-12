@@ -1141,6 +1141,9 @@ mobs:register_mob("mobs_m:chicken", {
 	textures = {
 		{"mobs_chicken.png"},
 	},
+	child_texture = {
+		{"mobs_chicken.png"},
+	},
 	makes_footstep_sound = true,
 	sounds = {
 		random = "mobs_chicken",
@@ -1253,7 +1256,7 @@ mobs:register_arrow("mobs_m:egg_entity", {
 			local ent2 = mob:get_luaentity()
 
 			mob:set_properties({
-				textures = ent2.texture[1],
+				textures = ent2.child_texture[1],
 				visual_size = {
 					x = ent2.base_size.x / 2,
 					y = ent2.base_size.y / 2
