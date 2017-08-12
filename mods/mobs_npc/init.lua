@@ -91,3 +91,12 @@ minetest.register_abm({
 		minetest.add_entity({x=pos.x+math.random(-5,5), y=pos.y+0.5, z=pos.z+math.random(-5,5)}, "mobs_npc:npc")
 	end
 })
+
+minetest.register_craft({
+	output = 'mobs_npc:beacon',
+	recipe = {
+		{'', 'default:glass', ''},
+		{'default:glass', 'default:diamond', 'default:glass'},
+		{'', 'default:glass', ''},
+	}
+})

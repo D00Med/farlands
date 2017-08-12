@@ -78,7 +78,7 @@ minetest.register_node("doors:hidden", {
 	buildable_to = false,
 	floodable = false,
 	drop = "",
-	groups = {not_in_creative_inventory = 1},
+	groups = {door=1, not_in_creative_inventory = 1},
 	on_blast = function() end,
 	tiles = {"doors_blank.png"},
 	-- 1px transparent block inside door hinge near node top.
@@ -441,7 +441,7 @@ doors.register("door_wood", {
 		tiles = {{ name = "doors_door_wood.png", backface_culling = true }},
 		description = "Oak Wood Door",
 		inventory_image = "doors_item_wood.png",
-		groups = {choppy = 2, oddly_breakable_by_hand = 2, flammable = 2},
+		groups = {door=1, choppy = 2, oddly_breakable_by_hand = 2, flammable = 2},
 		recipe = {
 			{"default:wood", "default:wood"},
 			{"default:wood", "default:wood"},
@@ -453,7 +453,7 @@ doors.register("door_jungle_wood", {
 		tiles = {{ name = "doors_jungle_wood_door.png", backface_culling = true }},
 		description = "Jungle Wood Door",
 		inventory_image = "doors_jungle_wood_door_item.png",
-		groups = {choppy = 2, oddly_breakable_by_hand = 2, flammable = 2},
+		groups = {door=1, choppy = 2, oddly_breakable_by_hand = 2, flammable = 2},
 		recipe = {
 			{"default:junglewood", "default:junglewood"},
 			{"default:junglewood", "default:junglewood"},
@@ -465,7 +465,7 @@ doors.register("door_pine_wood", {
 		tiles = {{ name = "doors_pine_wood_door.png", backface_culling = true }},
 		description = "Pine Wood Door",
 		inventory_image = "doors_pine_wood_door_item.png",
-		groups = {choppy = 2, oddly_breakable_by_hand = 2, flammable = 2},
+		groups = {door=1, choppy = 2, oddly_breakable_by_hand = 2, flammable = 2},
 		recipe = {
 			{"default:pine_wood", "default:pine_wood"},
 			{"default:pine_wood", "default:pine_wood"},
@@ -477,7 +477,7 @@ doors.register("door_acacia_wood", {
 		tiles = {{ name = "doors_acacia_wood_door.png", backface_culling = true }},
 		description = "Acacia Wood Door",
 		inventory_image = "doors_acacia_wood_door_item.png",
-		groups = {choppy = 2, oddly_breakable_by_hand = 2, flammable = 2},
+		groups = {door=1, choppy = 2, oddly_breakable_by_hand = 2, flammable = 2},
 		recipe = {
 			{"default:acacia_wood", "default:acacia_wood"},
 			{"default:acacia_wood", "default:acacia_wood"},
@@ -489,7 +489,7 @@ doors.register("door_aspen_wood", {
 		tiles = {{ name = "doors_aspen_wood_door.png", backface_culling = true }},
 		description = "Aspen Wood Door",
 		inventory_image = "doors_aspen_wood_door_item.png",
-		groups = {choppy = 2, oddly_breakable_by_hand = 2, flammable = 2},
+		groups = {door=1, choppy = 2, oddly_breakable_by_hand = 2, flammable = 2},
 		recipe = {
 			{"default:aspen_wood", "default:aspen_wood"},
 			{"default:aspen_wood", "default:aspen_wood"},
@@ -501,11 +501,11 @@ doors.register("door_willow_wood", {
 		tiles = {{ name = "doors_willow_wood_door.png", backface_culling = true }},
 		description = "Willow Wood Door",
 		inventory_image = "doors_willow_wood_door_item.png",
-		groups = {choppy = 2, oddly_breakable_by_hand = 2, flammable = 2},
+		groups = {door=1, choppy = 2, oddly_breakable_by_hand = 2, flammable = 2},
 		recipe = {
-			{"mapgen:willow_wood_Planks", "mapgen:willow_wood_Planks"},
-			{"mapgen:willow_wood_Planks", "mapgen:willow_wood_Planks"},
-			{"mapgen:willow_wood_Planks", "mapgen:willow_wood_Planks"},
+			{"mapgen:willow_wood", "mapgen:willow_wood"},
+			{"mapgen:willow_wood", "mapgen:willow_wood"},
+			{"mapgen:willow_wood", "mapgen:willow_wood"},
 		}
 })
 
@@ -513,11 +513,11 @@ doors.register("door_baobab_wood", {
 		tiles = {{ name = "doors_baobab_wood_door.png", backface_culling = true }},
 		description = "Baobab Wood Door",
 		inventory_image = "doors_baobab_wood_door_item.png",
-		groups = {choppy = 2, oddly_breakable_by_hand = 2, flammable = 2},
+		groups = {door=1, choppy = 2, oddly_breakable_by_hand = 2, flammable = 2},
 		recipe = {
-			{"mapgen:baobab_wood_Planks", "mapgen:baobab_wood_Planks"},
-			{"mapgen:baobab_wood_Planks", "mapgen:baobab_wood_Planks"},
-			{"mapgen:baobab_wood_Planks", "mapgen:baobab_wood_Planks"},
+			{"mapgen:baobab_wood", "mapgen:baobab_wood"},
+			{"mapgen:baobab_wood", "mapgen:baobab_wood"},
+			{"mapgen:baobab_wood", "mapgen:baobab_wood"},
 		}
 })
 
@@ -525,11 +525,11 @@ doors.register("door_yellow_ipewood", {
 		tiles = {{ name = "doors_yellow_ipe_wood_door.png", backface_culling = true }},
 		description = "Yellow Ipe Wood Door",
 		inventory_image = "doors_yellow_ipe_wood_door_item.png",
-		groups = {choppy = 2, oddly_breakable_by_hand = 2, flammable = 2},
+		groups = {door=1, choppy = 2, oddly_breakable_by_hand = 2, flammable = 2},
 		recipe = {
-			{"mapgen:yellow_ipe_planks", "mapgen:yellow_ipe_planks"},
-			{"mapgen:yellow_ipe_planks", "mapgen:yellow_ipe_planks"},
-			{"mapgen:yellow_ipe_planks", "mapgen:yellow_ipe_planks"},
+			{"mapgen:yellow_ipe_wood", "mapgen:yellow_ipe_wood"},
+			{"mapgen:yellow_ipe_wood", "mapgen:yellow_ipe_wood"},
+			{"mapgen:yellow_ipe_wood", "mapgen:yellow_ipe_wood"},
 		}
 })
 
@@ -537,7 +537,7 @@ doors.register("door_palm_wood", {
 		tiles = {{ name = "doors_palm_wood_door.png", backface_culling = true }},
 		description = "Palm Wood Door",
 		inventory_image = "doors_palm_wood_door_item.png",
-		groups = {choppy = 2, oddly_breakable_by_hand = 2, flammable = 2},
+		groups = {door=1, choppy = 2, oddly_breakable_by_hand = 2, flammable = 2},
 		recipe = {
 			{"mapgen:palm_wood", "mapgen:palm_wood"},
 			{"mapgen:palm_wood", "mapgen:palm_wood"},
@@ -549,7 +549,7 @@ doors.register("door_copper", {
 		tiles = {{ name = "doors_door_copper.png", backface_culling = true }},
 		description = "Copper Door",
 		inventory_image = "doors_item_copper.png",
-		groups = {choppy = 2, oddly_breakable_by_hand = 2, flammable = 2},
+		groups = {door=1, choppy = 2, oddly_breakable_by_hand = 2, flammable = 2},
 		recipe = {
 			{"default:copper_ingot", "default:copper_ingot"},
 			{"default:copper_ingot", "default:copper_ingot"},
@@ -561,7 +561,7 @@ doors.register("door_bamboo", {
 		tiles = {{ name = "doors_door_bamboo.png", backface_culling = true }},
 		description = "Bamboo Door",
 		inventory_image = "doors_item_bamboo.png",
-		groups = {choppy = 2, oddly_breakable_by_hand = 2, flammable = 2},
+		groups = {door=1, choppy = 2, oddly_breakable_by_hand = 2, flammable = 2},
 		recipe = {
 			{"mapgen:bamboo", "mapgen:bamboo"},
 			{"mapgen:bamboo", "mapgen:bamboo"},
@@ -574,7 +574,7 @@ doors.register("door_steel", {
 		description = "Steel Door",
 		inventory_image = "doors_item_steel.png",
 		protected = true,
-		groups = {cracky = 1, level = 2},
+		groups = {door=1, cracky = 1, level = 2},
 		sounds = default.node_sound_metal_defaults(),
 		sound_open = "doors_steel_door_open",
 		sound_close = "doors_steel_door_close",
@@ -589,7 +589,7 @@ doors.register("door_glass", {
 		tiles = {"doors_door_glass.png"},
 		description = "Glass Door",
 		inventory_image = "doors_item_glass.png",
-		groups = {cracky=3, oddly_breakable_by_hand=3},
+		groups = {door=1, cracky=3, oddly_breakable_by_hand=3},
 		sounds = default.node_sound_glass_defaults(),
 		sound_open = "doors_glass_door_open",
 		sound_close = "doors_glass_door_close",
@@ -604,7 +604,7 @@ doors.register("door_obsidian_glass", {
 		tiles = {"doors_door_obsidian_glass.png"},
 		description = "Obsidian Glass Door",
 		inventory_image = "doors_item_obsidian_glass.png",
-		groups = {cracky=3},
+		groups = {door=1, cracky=3},
 		sounds = default.node_sound_glass_defaults(),
 		sound_open = "doors_glass_door_open",
 		sound_close = "doors_glass_door_close",
@@ -797,7 +797,7 @@ doors.register_trapdoor("doors:trapdoor", {
 	wield_image = "doors_trapdoor.png",
 	tile_front = "doors_trapdoor.png",
 	tile_side = "doors_trapdoor_side.png",
-	groups = {choppy = 2, oddly_breakable_by_hand = 2, flammable = 2, door = 1},
+	groups = {door=1, choppy = 2, oddly_breakable_by_hand = 2, flammable = 2, door = 1},
 })
 
 doors.register_trapdoor("doors:trapdoor_steel", {
@@ -810,7 +810,7 @@ doors.register_trapdoor("doors:trapdoor_steel", {
 	sounds = default.node_sound_metal_defaults(),
 	sound_open = "doors_steel_door_open",
 	sound_close = "doors_steel_door_close",
-	groups = {cracky = 1, level = 2, door = 1},
+	groups = {door=1, cracky = 1, level = 2, door = 1},
 })
 
 minetest.register_craft({
@@ -901,42 +901,42 @@ doors.register_fencegate("doors:gate_wood", {
 	description = "Wooden Fence Gate",
 	texture = "default_wood.png",
 	material = "default:wood",
-	groups = {choppy = 2, oddly_breakable_by_hand = 2, flammable = 2}
+	groups = {door=1, choppy = 2, oddly_breakable_by_hand = 2, flammable = 2}
 })
 
 doors.register_fencegate("doors:gate_acacia_wood", {
 	description = "Acacia Fence Gate",
 	texture = "default_acacia_wood.png",
 	material = "default:acacia_wood",
-	groups = {choppy = 2, oddly_breakable_by_hand = 2, flammable = 2}
+	groups = {door=1, choppy = 2, oddly_breakable_by_hand = 2, flammable = 2}
 })
 
 doors.register_fencegate("doors:gate_junglewood", {
 	description = "Junglewood Fence Gate",
 	texture = "default_junglewood.png",
 	material = "default:junglewood",
-	groups = {choppy = 2, oddly_breakable_by_hand = 2, flammable = 2}
+	groups = {door=1, choppy = 2, oddly_breakable_by_hand = 2, flammable = 2}
 })
 
 doors.register_fencegate("doors:gate_pine_wood", {
 	description = "Pine Fence Gate",
 	texture = "default_pine_wood.png",
 	material = "default:pine_wood",
-	groups = {choppy = 3, oddly_breakable_by_hand = 2, flammable = 3}
+	groups = {door=1, choppy = 3, oddly_breakable_by_hand = 2, flammable = 3}
 })
 
 doors.register_fencegate("doors:gate_aspen_wood", {
 	description = "Aspen Fence Gate",
 	texture = "default_aspen_wood.png",
 	material = "default:aspen_wood",
-	groups = {choppy = 3, oddly_breakable_by_hand = 2, flammable = 3}
+	groups = {door=1, choppy = 3, oddly_breakable_by_hand = 2, flammable = 3}
 })
 
 doors.register_fencegate("doors:gate_bamboo", {
 	description = "Bamboo Fence Gate",
 	texture = "decoblocks_bamboo.png",
 	material = "decoblocks:bamboo_block",
-	groups = {choppy = 3, oddly_breakable_by_hand = 2, flammable = 3}
+	groups = {door=1, choppy = 3, oddly_breakable_by_hand = 2, flammable = 3}
 })
 
 ----fuels----

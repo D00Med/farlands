@@ -476,7 +476,7 @@
 	})
 
 	-- Mese crystal
-
+--[[
 	minetest.register_ore({
 		ore_type       = "scatter",
 		ore            = "default:stone_with_mese",
@@ -509,7 +509,7 @@
 		y_min          = -31000,
 		y_max          = -256,
 	})
-
+]]
 	-- Diamond
 
 	minetest.register_ore({
@@ -546,7 +546,7 @@
 	})
 
 	-- Mese block
-
+--[[
 	minetest.register_ore({
 		ore_type       = "scatter",
 		ore            = "default:mese",
@@ -568,6 +568,7 @@
 		y_min          = -31000,
 		y_max          = -1024,
 	})
+	]]
 	
 	--fossils
 	
