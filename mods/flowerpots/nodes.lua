@@ -41,6 +41,7 @@ local cubes = {
 	{"baobab_leaves", "mapgen:baobab_leaves", "Baobab Leaves"},
 	{"yellow_ipe_leaves", "mapgen:yellow_ipe_leaves", "Yellow Ipe Leaves"},
 	{"palm_leaves", "mapgen:palm_leaves", "Palm Leaves"},
+	{"bamboo_leaves", "mapgen:bamboo_leaves", "Bamboo Leaves"},
 
 }
 
