@@ -306,39 +306,249 @@ minetest.register_tool("fireworks:gun", {
 	end
 })
 
-minetest.register_craftitem("fireworks:firework_1", {
+local function firework_launch(pos, number)
+minetest.remove_node(pos)
+local obj =  minetest.env:add_entity({x=pos.x, y=pos.y, z=pos.z}, "fireworks:firework_"..number.."_rocket")
+			minetest.sound_play("firework_whistle", {pos = pos, gain = 0.2, max_hear_distance = 15})
+			obj:setvelocity({x=0, y=15, z=0})
+			obj:setacceleration({x=0, y=2, z=0})
+			local rocket = obj:get_luaentity()
+			for i=1,23 do
+			minetest.after(i/9, function()
+			local pos = rocket.object:get_pos()
+			local velo = rocket.object:getvelocity()
+			if pos == nil or velo == nil then
+			return
+			end
+			minetest.add_particle({
+				pos = {x=pos.x, y=pos.y, z=pos.z},
+				velocity = {x=-velo.x*2, y=-velo.y*2, z=-velo.x*2},
+				acceleration = {x=math.random(-0.5,0.5), y=-1, z=math.random(-0.5,0.5)},
+				expirationtime = 3,
+				size = 8,
+				collisiondetection = true,
+				collisionremoval = true,
+				vertical = false,
+				texture = "firework_rocket_spark.png",
+				animation = {type = "vertical_frames", aspect_w = 15, aspect_h = 15, length = 1.00},
+				glow = 9
+			})
+			end)
+		end
+end
+
+minetest.register_node("fireworks:firework_1", {
 	description = "Red Firework",
 	inventory_image = "firework_rocket_item.png",
+	drawtype = "mesh",
+	mesh = "firework_rocket2.b3d",
+	tiles = {"firework_rocket.png"},
+	paramtype = "light",
+	collision_box = {
+	type = "fixed",
+	fixed = {{-0.2, -0.5, -0.2, 0.2, 0.5, 0.2}},
+	},
+	selection_box = {
+	type = "fixed",
+	fixed = {{-0.2, -0.5, -0.2, 0.2, 0.5, 0.2}},
+	},
+	groups = {snappy=1, oddly_breakable_by_hand=1, dig_immediate=3},
+	color = {r=255,g=100,b=100},
+	on_rightclick = function(pos, node, clicker)
+		if clicker:get_wielded_item():get_name() == "fire:flint_and_steel" then
+		firework_launch(pos, "1")
+		end
+	end
 })
-minetest.register_craftitem("fireworks:firework_2", {
+
+minetest.register_node("fireworks:firework_2", {
 	description = "Green Firework",
 	inventory_image = "firework_rocket_item.png",
+	drawtype = "mesh",
+	mesh = "firework_rocket2.b3d",
+	tiles = {"firework_rocket.png"},
+	paramtype = "light",
+	collision_box = {
+	type = "fixed",
+	fixed = {{-0.2, -0.5, -0.2, 0.2, 0.5, 0.2}},
+	},
+	selection_box = {
+	type = "fixed",
+	fixed = {{-0.2, -0.5, -0.2, 0.2, 0.5, 0.2}},
+	},
+	groups = {snappy=1, oddly_breakable_by_hand=1, dig_immediate=3},
+	color = {r=100,g=255,b=100},
+	on_rightclick = function(pos, node, clicker)
+		if clicker:get_wielded_item():get_name() == "fire:flint_and_steel" then
+		firework_launch(pos, "1")
+		end
+	end
 })
-minetest.register_craftitem("fireworks:firework_3", {
+
+minetest.register_node("fireworks:firework_3", {
 	description = "Blue Firework",
 	inventory_image = "firework_rocket_item.png",
+	drawtype = "mesh",
+	mesh = "firework_rocket2.b3d",
+	tiles = {"firework_rocket.png"},
+	paramtype = "light",
+	collision_box = {
+	type = "fixed",
+	fixed = {{-0.2, -0.5, -0.2, 0.2, 0.5, 0.2}},
+	},
+	selection_box = {
+	type = "fixed",
+	fixed = {{-0.2, -0.5, -0.2, 0.2, 0.5, 0.2}},
+	},
+	groups = {snappy=1, oddly_breakable_by_hand=1, dig_immediate=3},
+	color = {r=100,g=100,b=255},
+	on_rightclick = function(pos, node, clicker)
+		if clicker:get_wielded_item():get_name() == "fire:flint_and_steel" then
+		firework_launch(pos, "1")
+		end
+	end
 })
-minetest.register_craftitem("fireworks:firework_4", {
+
+minetest.register_node("fireworks:firework_4", {
 	description = "Purple Firework",
 	inventory_image = "firework_rocket_item.png",
+	drawtype = "mesh",
+	mesh = "firework_rocket2.b3d",
+	tiles = {"firework_rocket.png"},
+	paramtype = "light",
+	collision_box = {
+	type = "fixed",
+	fixed = {{-0.2, -0.5, -0.2, 0.2, 0.5, 0.2}},
+	},
+	selection_box = {
+	type = "fixed",
+	fixed = {{-0.2, -0.5, -0.2, 0.2, 0.5, 0.2}},
+	},
+	groups = {snappy=1, oddly_breakable_by_hand=1, dig_immediate=3},
+	color = {r=255,g=80,b=255},
+	on_rightclick = function(pos, node, clicker)
+		if clicker:get_wielded_item():get_name() == "fire:flint_and_steel" then
+		firework_launch(pos, "1")
+		end
+	end
 })
-minetest.register_craftitem("fireworks:firework_5", {
+
+minetest.register_node("fireworks:firework_5", {
 	description = "Smile Firework",
 	inventory_image = "firework_rocket_item.png",
+	drawtype = "mesh",
+	mesh = "firework_rocket2.b3d",
+	tiles = {"firework_rocket.png"},
+	paramtype = "light",
+	collision_box = {
+	type = "fixed",
+	fixed = {{-0.2, -0.5, -0.2, 0.2, 0.5, 0.2}},
+	},
+	selection_box = {
+	type = "fixed",
+	fixed = {{-0.2, -0.5, -0.2, 0.2, 0.5, 0.2}},
+	},
+	groups = {snappy=1, oddly_breakable_by_hand=1, dig_immediate=3},
+	color = {r=225,g=225,b=100},
+	on_rightclick = function(pos, node, clicker)
+		if clicker:get_wielded_item():get_name() == "fire:flint_and_steel" then
+		firework_launch(pos, "1")
+		end
+	end
 })
-minetest.register_craftitem("fireworks:firework_6", {
+
+minetest.register_node("fireworks:firework_6", {
 	description = "Red Trail Firework",
 	inventory_image = "firework_rocket_item.png",
+	drawtype = "mesh",
+	mesh = "firework_rocket2.b3d",
+	tiles = {"firework_rocket.png"},
+	paramtype = "light",
+	collision_box = {
+	type = "fixed",
+	fixed = {{-0.2, -0.5, -0.2, 0.2, 0.5, 0.2}},
+	},
+	selection_box = {
+	type = "fixed",
+	fixed = {{-0.2, -0.5, -0.2, 0.2, 0.5, 0.2}},
+	},
+	groups = {snappy=1, oddly_breakable_by_hand=1, dig_immediate=3},
+	color = {r=255,g=100,b=100},
+	on_rightclick = function(pos, node, clicker)
+		if clicker:get_wielded_item():get_name() == "fire:flint_and_steel" then
+		firework_launch(pos, "1")
+		end
+	end
 })
-minetest.register_craftitem("fireworks:firework_7", {
+
+minetest.register_node("fireworks:firework_7", {
 	description = "Green Trail Firework",
 	inventory_image = "firework_rocket_item.png",
+	drawtype = "mesh",
+	mesh = "firework_rocket2.b3d",
+	tiles = {"firework_rocket.png"},
+	paramtype = "light",
+	collision_box = {
+	type = "fixed",
+	fixed = {{-0.2, -0.5, -0.2, 0.2, 0.5, 0.2}},
+	},
+	selection_box = {
+	type = "fixed",
+	fixed = {{-0.2, -0.5, -0.2, 0.2, 0.5, 0.2}},
+	},
+	groups = {snappy=1, oddly_breakable_by_hand=1, dig_immediate=3},
+	color = {r=100,g=255,b=100},
+	on_rightclick = function(pos, node, clicker)
+		if clicker:get_wielded_item():get_name() == "fire:flint_and_steel" then
+		firework_launch(pos, "1")
+		end
+	end
 })
-minetest.register_craftitem("fireworks:firework_8", {
+
+minetest.register_node("fireworks:firework_8", {
 	description = "Blue Trail Firework",
 	inventory_image = "firework_rocket_item.png",
+	drawtype = "mesh",
+	mesh = "firework_rocket2.b3d",
+	tiles = {"firework_rocket.png"},
+	paramtype = "light",
+	collision_box = {
+	type = "fixed",
+	fixed = {{-0.2, -0.5, -0.2, 0.2, 0.5, 0.2}},
+	},
+	selection_box = {
+	type = "fixed",
+	fixed = {{-0.2, -0.5, -0.2, 0.2, 0.5, 0.2}},
+	},
+	groups = {snappy=1, oddly_breakable_by_hand=1, dig_immediate=3},
+	color = {r=100,g=100,b=255},
+	on_rightclick = function(pos, node, clicker)
+		if clicker:get_wielded_item():get_name() == "fire:flint_and_steel" then
+		firework_launch(pos, "1")
+		end
+	end
 })
-minetest.register_craftitem("fireworks:firework_9", {
+
+minetest.register_node("fireworks:firework_9", {
 	description = "Purple Trail Firework",
 	inventory_image = "firework_rocket_item.png",
+	drawtype = "mesh",
+	mesh = "firework_rocket2.b3d",
+	tiles = {"firework_rocket.png"},
+	paramtype = "light",
+	collision_box = {
+	type = "fixed",
+	fixed = {{-0.2, -0.5, -0.2, 0.2, 0.5, 0.2}},
+	},
+	selection_box = {
+	type = "fixed",
+	fixed = {{-0.2, -0.5, -0.2, 0.2, 0.5, 0.2}},
+	},
+	groups = {snappy=1, oddly_breakable_by_hand=1, dig_immediate=3},
+	color = {r=255,g=80,b=255},
+	on_rightclick = function(pos, node, clicker)
+		if clicker:get_wielded_item():get_name() == "fire:flint_and_steel" then
+		firework_launch(pos, "1")
+		end
+	end
 })
