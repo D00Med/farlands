@@ -865,7 +865,23 @@ minetest.register_node("decoblocks:altar", {
 
 minetest.register_node("decoblocks:anvil", {
 	description = "Anvil",
-	tiles = {"decoblocks_anvil.png"},
+	drawtype = "mesh",
+	mesh = "anvil.obj",
+	paramtype2 = "facedir",
+tiles = {
+		"decoblocks_anvil.png",
+	},
+	visual_scale = 0.5,
+	wield_scale = {x=1.0, y=1.0, z=1.0},
+	paramtype = "light",
+	selection_box = {
+		type = "fixed",
+		fixed = {-0.3, -0.5, -0.3, 0.3, 1, 0.3}
+	},
+	collision_box = {
+		type = "fixed",
+		fixed = {-0.3, -0.1, -0.3, 0.3, 1, 0.3}
+	},
 	groups = {cracky = 1},
 	sounds = default.node_sound_metal_defaults(),
 })
