@@ -39,7 +39,8 @@ minetest.register_craftitem("farming:wheat", {
 
 minetest.register_node("farming:straw", {
 	description = "Straw",
-	tiles = {"farming_straw.png"},
+	tiles = {"farming_straw_top.png", "farming_straw.png"},
+	paramtype2 = "facedir",
 	is_ground_content = false,
 	groups = {snappy = 3, flammable = 4},
 	sounds = default.node_sound_leaves_defaults(),

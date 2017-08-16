@@ -88,7 +88,6 @@ minetest.register_node("decoblocks:bamboo_block", {
 	"decoblocks_bamboo.png",
 	},
 	groups = {choppy = 1, oddly_breakable_by_hand = 2, wood=1},
-	paramtype2 = "facedir",
 	sounds = default.node_sound_wood_defaults(),
 	on_place = minetest.rotate_node
 })
