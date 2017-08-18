@@ -14,6 +14,22 @@ minetest.register_node("fruit:leaves_with_mango", {
 	sounds = default.node_sound_leaves_defaults()
 })
 
+minetest.register_node("fruit:leaves_with_apple", {
+	description = "Leaves with Apple",
+	drawtype = "allfaces",
+	tiles = {
+		"default_leaves.png^fruit_apple_leaves.png",
+	},
+	paramtype = "light",
+	groups = {snappy=1, oddly_breakable_by_hand=1, not_in_creative_inventory=1},
+	drop = "default:leaves",
+	on_destruct = function(pos)
+		minetest.add_item(pos, "default:apple")
+	end,
+	sounds = default.node_sound_leaves_defaults()
+})
+
+
 minetest.register_node("fruit:cactus_fruit", {
 	description = "Cactus Fruit",
 	drawtype = "plantlike",
@@ -214,6 +230,26 @@ function fruit.register_ores()
 	minetest.register_ore({
 		ore_type       = "scatter",
 		ore            = "fruit:leaves_with_peach",
+		wherein        = "default:leaves",
+		clust_scarcity = 15 * 15 * 15,
+		clust_num_ores = 6,
+		clust_size     = 4,
+		y_min          = 0,
+		y_max          = 31000,
+		noise_params    = {
+			offset = 0.5,
+			scale = 1,
+			spread = {x = 5, y = 5, z = 5},
+			seed = 766,
+			octaves = 1,
+			persist = 0.0
+		},
+	})
+	
+	
+	minetest.register_ore({
+		ore_type       = "scatter",
+		ore            = "fruit:leaves_with_apple",
 		wherein        = "default:leaves",
 		clust_scarcity = 15 * 15 * 15,
 		clust_num_ores = 6,

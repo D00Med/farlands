@@ -93,6 +93,93 @@ minetest.register_node("mapgen:dungeon_spawner", {
 
 --plants (PLNT01)
 
+minetest.register_node("mapgen:waterlily", {
+	description = "Waterlily (no flower)",
+	drawtype = "mesh",
+	mesh = "waterlily.b3d",
+	paramtype = "light",
+	paramtype2 = "facedir",
+	visual_scale = 0.5,
+	tiles = {"mapgen_waterlily_noflower.png",},
+	inventory_image = "flowers_waterlily.png",
+	wield_image = "flowers_waterlily.png",
+	liquids_pointable = true,
+	walkable = false,
+	buildable_to = true,
+	sunlight_propagates = true,
+	floodable = true,
+	groups = {snappy = 3, flower = 1, flammable = 1},
+	sounds = default.node_sound_leaves_defaults(),
+	node_placement_prediction = "",
+	selection_box = {
+		type = "fixed",
+		fixed = {-7 / 16, -0.5, -7 / 16, 7 / 16, -15 / 32, 7 / 16}
+	},
+
+	on_place = function(itemstack, placer, pointed_thing)
+		local pos = pointed_thing.above
+		local node = minetest.get_node(pointed_thing.under).name
+		local def = minetest.registered_nodes[node]
+		local player_name = placer:get_player_name()
+
+		if def and def.liquidtype == "source" and
+				minetest.get_item_group(node, "water") > 0 then
+			if not minetest.is_protected(pos, player_name) then
+				if math.random(1,2) == 1 then
+				minetest.set_node(pos, {name = "mapgen:waterlily",
+					param2 = math.random(0, 3)})
+				else
+				minetest.set_node(pos, {name = "flowers:waterlily",
+					param2 = math.random(0, 3)})
+				end
+				if not minetest.setting_getbool("creative_mode") then
+					itemstack:take_item()
+				end
+			else
+				minetest.chat_send_player(player_name, "Node is protected")
+				minetest.record_protection_violation(pos, player_name)
+			end
+		end
+
+		return itemstack
+	end
+})
+
+minetest.override_item("flowers:waterlily", {
+	drawtype = "mesh",
+	tiles = {"mapgen_waterlily.png"},
+	mesh = "waterlily.b3d",
+	paramtype = "light",
+	visual_scale = 0.5,
+	on_place = function(itemstack, placer, pointed_thing)
+		local pos = pointed_thing.above
+		local node = minetest.get_node(pointed_thing.under).name
+		local def = minetest.registered_nodes[node]
+		local player_name = placer:get_player_name()
+
+		if def and def.liquidtype == "source" and
+				minetest.get_item_group(node, "water") > 0 then
+			if not minetest.is_protected(pos, player_name) then
+				if math.random(1,2) == 1 then
+				minetest.set_node(pos, {name = "mapgen:waterlily",
+					param2 = math.random(0, 3)})
+				else
+				minetest.set_node(pos, {name = "flowers:waterlily",
+					param2 = math.random(0, 3)})
+				end
+				if not minetest.setting_getbool("creative_mode") then
+					itemstack:take_item()
+				end
+			else
+				minetest.chat_send_player(player_name, "Node is protected")
+				minetest.record_protection_violation(pos, player_name)
+			end
+		end
+
+		return itemstack
+	end
+})
+
 minetest.register_node("mapgen:red_ground_flower", {
 	description = "Red Ground flower",
 	drawtype = "nodebox",
