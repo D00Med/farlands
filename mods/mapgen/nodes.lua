@@ -642,8 +642,7 @@ minetest.register_node("mapgen:palm_leaves_coconut", {
 	},
 	groups = {snappy = 1, oddly_breakable_by_hand = 1, flammable = 1, dig_immediate = 1, leaves = 1, leafdecay = 3},
 	sounds = default.node_sound_leaves_defaults(),
-	on_rightclick = function(pos, node)
-		minetest.env:set_node(pos, {name="mapgen:palm_leaves"})
+	on_destruct = function(pos, oldnode)
 		minetest.env:add_item(pos, "mapgen:coconut")
 	end,
 })

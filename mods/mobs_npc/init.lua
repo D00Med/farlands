@@ -89,6 +89,8 @@ minetest.register_abm({
 	chance = 25,
 	action = function(pos, node)
 		minetest.add_entity({x=pos.x+math.random(-5,5), y=pos.y+0.5, z=pos.z+math.random(-5,5)}, "mobs_npc:npc")
+		local position = minetest.pos_to_string(pos, 0)
+		minetest.chat_send_all("And npc spawned at:"..position)
 	end
 })
 

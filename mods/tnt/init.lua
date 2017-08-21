@@ -298,10 +298,13 @@ end
 function tnt.burn(pos, nodename)
 	local name = nodename or minetest.get_node(pos).name
 	local group = minetest.get_item_group(name, "tnt")
+	local group2 = minetest.get_item_group(name, "firework")
 	if group > 0 then
 		minetest.sound_play("tnt_ignite", {pos = pos})
 		minetest.set_node(pos, {name = name .. "_burning"})
 		minetest.get_node_timer(pos):start(1)
+	elseif group2 > 0 then
+		firework_launch(pos, name)
 	elseif name == "tnt:gunpowder" then
 		minetest.set_node(pos, {name = "tnt:gunpowder_burning"})
 	end

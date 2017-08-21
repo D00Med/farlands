@@ -41,7 +41,8 @@ local npc_make_home = function(self, dtime)
 			elseif minetest.get_node({x=pos1.x, y=pos1.y, z=pos1.z+1}).name ~= "air" then
 			minetest.set_node({x=pos1.x, y=pos1.y, z=pos1.z}, {name="villages:colony_deed", param2=4})
 			end
-			minetest.chat_send_all("NPC home set!")
+			local position = minetest.pos_to_string(pos, 0)
+			minetest.chat_send_all("An NPC found a home at:"..position)
 		end
 end
 local npc_go_home = function(self, dtime)

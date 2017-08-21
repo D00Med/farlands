@@ -306,9 +306,9 @@ minetest.register_tool("fireworks:gun", {
 	end
 })
 
-local function firework_launch(pos, number)
+function firework_launch(pos, name)
 minetest.remove_node(pos)
-local obj =  minetest.env:add_entity({x=pos.x, y=pos.y, z=pos.z}, "fireworks:firework_"..number.."_rocket")
+local obj =  minetest.env:add_entity({x=pos.x, y=pos.y, z=pos.z}, name.."_rocket")
 			minetest.sound_play("firework_whistle", {pos = pos, gain = 0.2, max_hear_distance = 15})
 			obj:setvelocity({x=0, y=15, z=0})
 			obj:setacceleration({x=0, y=2, z=0})
@@ -352,11 +352,11 @@ minetest.register_node("fireworks:firework_1", {
 	type = "fixed",
 	fixed = {{-0.2, -0.5, -0.2, 0.2, 0.5, 0.2}},
 	},
-	groups = {snappy=1, oddly_breakable_by_hand=1, dig_immediate=3},
+	groups = {snappy=1, oddly_breakable_by_hand=1, dig_immediate=3, firework=1},
 	color = {r=255,g=100,b=100},
 	on_rightclick = function(pos, node, clicker)
 		if clicker:get_wielded_item():get_name() == "fire:flint_and_steel" then
-		firework_launch(pos, "1")
+		firework_launch(pos, "fireworks:firework_1")
 		end
 	end
 })
@@ -376,11 +376,11 @@ minetest.register_node("fireworks:firework_2", {
 	type = "fixed",
 	fixed = {{-0.2, -0.5, -0.2, 0.2, 0.5, 0.2}},
 	},
-	groups = {snappy=1, oddly_breakable_by_hand=1, dig_immediate=3},
+	groups = {snappy=1, oddly_breakable_by_hand=1, dig_immediate=3, firework=1},
 	color = {r=100,g=255,b=100},
 	on_rightclick = function(pos, node, clicker)
 		if clicker:get_wielded_item():get_name() == "fire:flint_and_steel" then
-		firework_launch(pos, "1")
+		firework_launch(pos, "fireworks:firework_2")
 		end
 	end
 })
@@ -400,11 +400,11 @@ minetest.register_node("fireworks:firework_3", {
 	type = "fixed",
 	fixed = {{-0.2, -0.5, -0.2, 0.2, 0.5, 0.2}},
 	},
-	groups = {snappy=1, oddly_breakable_by_hand=1, dig_immediate=3},
+	groups = {snappy=1, oddly_breakable_by_hand=1, dig_immediate=3, firework=1},
 	color = {r=100,g=100,b=255},
 	on_rightclick = function(pos, node, clicker)
 		if clicker:get_wielded_item():get_name() == "fire:flint_and_steel" then
-		firework_launch(pos, "1")
+		firework_launch(pos, "fireworks:firework_3")
 		end
 	end
 })
@@ -424,11 +424,11 @@ minetest.register_node("fireworks:firework_4", {
 	type = "fixed",
 	fixed = {{-0.2, -0.5, -0.2, 0.2, 0.5, 0.2}},
 	},
-	groups = {snappy=1, oddly_breakable_by_hand=1, dig_immediate=3},
+	groups = {snappy=1, oddly_breakable_by_hand=1, dig_immediate=3, firework=1},
 	color = {r=255,g=80,b=255},
 	on_rightclick = function(pos, node, clicker)
 		if clicker:get_wielded_item():get_name() == "fire:flint_and_steel" then
-		firework_launch(pos, "1")
+		firework_launch(pos, "fireworks:firework_4")
 		end
 	end
 })
@@ -448,11 +448,11 @@ minetest.register_node("fireworks:firework_5", {
 	type = "fixed",
 	fixed = {{-0.2, -0.5, -0.2, 0.2, 0.5, 0.2}},
 	},
-	groups = {snappy=1, oddly_breakable_by_hand=1, dig_immediate=3},
+	groups = {snappy=1, oddly_breakable_by_hand=1, dig_immediate=3, firework=1},
 	color = {r=225,g=225,b=100},
 	on_rightclick = function(pos, node, clicker)
 		if clicker:get_wielded_item():get_name() == "fire:flint_and_steel" then
-		firework_launch(pos, "1")
+		firework_launch(pos, "fireworks:firework_5")
 		end
 	end
 })
@@ -472,11 +472,11 @@ minetest.register_node("fireworks:firework_6", {
 	type = "fixed",
 	fixed = {{-0.2, -0.5, -0.2, 0.2, 0.5, 0.2}},
 	},
-	groups = {snappy=1, oddly_breakable_by_hand=1, dig_immediate=3},
+	groups = {snappy=1, oddly_breakable_by_hand=1, dig_immediate=3, firework=1},
 	color = {r=255,g=100,b=100},
 	on_rightclick = function(pos, node, clicker)
 		if clicker:get_wielded_item():get_name() == "fire:flint_and_steel" then
-		firework_launch(pos, "1")
+		firework_launch(pos, "fireworks:firework_6")
 		end
 	end
 })
@@ -496,11 +496,11 @@ minetest.register_node("fireworks:firework_7", {
 	type = "fixed",
 	fixed = {{-0.2, -0.5, -0.2, 0.2, 0.5, 0.2}},
 	},
-	groups = {snappy=1, oddly_breakable_by_hand=1, dig_immediate=3},
+	groups = {snappy=1, oddly_breakable_by_hand=1, dig_immediate=3, firework=1},
 	color = {r=100,g=255,b=100},
 	on_rightclick = function(pos, node, clicker)
 		if clicker:get_wielded_item():get_name() == "fire:flint_and_steel" then
-		firework_launch(pos, "1")
+		firework_launch(pos, "fireworks:firework_7")
 		end
 	end
 })
@@ -520,11 +520,11 @@ minetest.register_node("fireworks:firework_8", {
 	type = "fixed",
 	fixed = {{-0.2, -0.5, -0.2, 0.2, 0.5, 0.2}},
 	},
-	groups = {snappy=1, oddly_breakable_by_hand=1, dig_immediate=3},
+	groups = {snappy=1, oddly_breakable_by_hand=1, dig_immediate=3, firework=1},
 	color = {r=100,g=100,b=255},
 	on_rightclick = function(pos, node, clicker)
 		if clicker:get_wielded_item():get_name() == "fire:flint_and_steel" then
-		firework_launch(pos, "1")
+		firework_launch(pos, "fireworks:firework_8")
 		end
 	end
 })
@@ -544,11 +544,11 @@ minetest.register_node("fireworks:firework_9", {
 	type = "fixed",
 	fixed = {{-0.2, -0.5, -0.2, 0.2, 0.5, 0.2}},
 	},
-	groups = {snappy=1, oddly_breakable_by_hand=1, dig_immediate=3},
+	groups = {snappy=1, oddly_breakable_by_hand=1, dig_immediate=3, firework=1},
 	color = {r=255,g=80,b=255},
 	on_rightclick = function(pos, node, clicker)
 		if clicker:get_wielded_item():get_name() == "fire:flint_and_steel" then
-		firework_launch(pos, "1")
+		firework_launch(pos, "fireworks:firework_9")
 		end
 	end
 })
