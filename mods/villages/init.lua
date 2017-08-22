@@ -1,3 +1,4 @@
+--Nodes
 
 minetest.register_node("villages:colony_deed", {
 	description = "Villager Colony Deed",
@@ -60,3 +61,64 @@ minetest.register_abm({
 	end
 })
 ]]
+
+--village generation
+
+local function get_positions(pos)
+	local positions = {
+		{{x=pos.x+11, y=pos.y, z=pos.z+11}},
+		{{x=pos.x+11, y=pos.y, z=pos.z+32}},
+		{{x=pos.x+11, y=pos.y, z=pos.z+53}},
+		{{x=pos.x+11, y=pos.y, z=pos.z+74}},
+		{{x=pos.x-10, y=pos.y, z=pos.z+11}},
+		{{x=pos.x-10, y=pos.y, z=pos.z+32}},
+		{{x=pos.x-10, y=pos.y, z=pos.z+53}},
+		{{x=pos.x-10, y=pos.y, z=pos.z+74}},
+	}
+	return positions
+end
+
+local function find_ground(pos)
+	local pos2 = pos
+	local pos = pos
+	local node = minetest.get_node(pos).name
+	if minetest.get_item_group(node, "cracky") > 0 or minetest.get_item_group(node, "crumbly") > 0 then
+	return pos
+	end
+	for i=-10,20 do
+		pos2.y = pos2.y-i
+		local node = minetest.get_node(pos).name
+		if minetest.get_item_group(node, "cracky") > 0 or minetest.get_item_group(node, "crumbly") > 0 then
+		pos.y = pos2.y
+		return pos
+		end
+	end
+end
+
+local village_rarity = 10
+
+minetest.register_on_generated(function(minp, maxp)
+	if maxp.y > 3000 or maxp.y < -50 then
+		return
+	end
+	if math.random(1, village_rarity) == 1 then
+	local surface = minetest.find_nodes_in_area(minp, maxp,
+		{"default:dirt_with_grass", "mapgen:dirt_with_leafygrass", "mapgen:dirt_with_junglegrass", "mapgen:dirt_with_swampgrass", "default:dirt_with_dry_grass", "default:dirt_with_snow"})
+	for n = 1, #surface do
+		if math.random(1, village_rarity*1000) == 1 then
+			local pos = {x=surface[n].x, y=surface[n].y, z=surface[n].z}
+			local positions = get_positions(pos)
+			for _, position in ipairs(positions) do
+			local number = math.random(1,7)
+			local test_pos = position[1]
+			local place_pos = find_ground(test_pos)
+			if place_pos == nil then 
+			minetest.chat_send_all("didn't work :]")
+			return end
+				local node = minetest.get_node(place_pos).name
+				minetest.place_schematic(place_pos, minetest.get_modpath("villages").."/schematics/structure_"..number..".mts", random, {["default:dirt_with_grass"] = node}, true)
+			end
+		end
+		end
+	end
+end)
