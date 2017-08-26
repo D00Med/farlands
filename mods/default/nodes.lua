@@ -568,7 +568,7 @@ minetest.register_node("default:ice", {
 --
 
 minetest.register_node("default:tree", {
-	description = "Tree",
+	description = "Oak Tree",
 	tiles = {"default_tree_top.png", "default_tree_top.png", "default_tree.png"},
 	paramtype2 = "facedir",
 	is_ground_content = false,
@@ -579,7 +579,7 @@ minetest.register_node("default:tree", {
 })
 
 minetest.register_node("default:wood", {
-	description = "Wooden Planks",
+	description = "Oak Wood Planks",
 	paramtype2 = "facedir",
 	place_param2 = 0,
 	tiles = {"default_wood.png"},
