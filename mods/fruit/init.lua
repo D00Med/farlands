@@ -51,6 +51,7 @@ minetest.register_node("fruit:cactus_fruit", {
 	paramtype = "light",
 	groups = {fleshy=1, oddly_breakable_by_hand=1,},
 	inventory_image = "fruit_cactus_inv.png",
+	wield_image = "fruit_cactus_inv.png",
 	sounds = default.node_sound_leaves_defaults(),
 	selection_box = {
 		type = "fixed",

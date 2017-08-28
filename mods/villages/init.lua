@@ -74,31 +74,35 @@ local function get_positions(pos)
 		{{x=pos.x-10, y=pos.y, z=pos.z+32}},
 		{{x=pos.x-10, y=pos.y, z=pos.z+53}},
 		{{x=pos.x-10, y=pos.y, z=pos.z+74}},
+		{{x=pos.x-32, y=pos.y, z=pos.z+11}},
+		{{x=pos.x-32, y=pos.y, z=pos.z+32}},
+		{{x=pos.x-32, y=pos.y, z=pos.z+53}},
+		{{x=pos.x-32, y=pos.y, z=pos.z+74}},
 	}
 	return positions
 end
 
 local function find_ground(pos)
-	local pos2 = pos
-	local pos = pos
 	local node = minetest.get_node(pos).name
-	if minetest.get_item_group(node, "cracky") > 0 or minetest.get_item_group(node, "crumbly") > 0 then
-	return pos
-	end
-	for i=-10,20 do
-		pos2.y = pos2.y-i
-		local node = minetest.get_node(pos).name
+	for i=-20,30 do
+		local pos2 = pos
+		pos2.y = pos.y+i
+		local node = minetest.get_node(pos2).name
+		local node2 = minetest.get_node({x=pos2.x, y=pos2.y+1, z=pos2.z}).name
 		if minetest.get_item_group(node, "cracky") > 0 or minetest.get_item_group(node, "crumbly") > 0 then
-		pos.y = pos2.y
-		return pos
+			if minetest.get_item_group(node2, "cracky") <= 0 and minetest.get_item_group(node2, "crumbly") <= 0 then
+			pos.y = pos2.y
+			minetest.chat_send_all(minetest.pos_to_string(pos, 0))
+			return pos
+			end
 		end
 	end
 end
 
-local village_rarity = 10
+local village_rarity = 1
 
 minetest.register_on_generated(function(minp, maxp)
-	if maxp.y > 3000 or maxp.y < -50 then
+	if maxp.y > 8000 or maxp.y < -20 then
 		return
 	end
 	if math.random(1, village_rarity) == 1 then

@@ -102,7 +102,7 @@ mobs:spawn({
 	name = "mobs_npc:travelling_merchant",
 	nodes = {"default:dirt_with_grass"},
 	min_light = 7,
-	chance = 20000,
+	chance = 80000,
 	min_height = 0,
 })
 
