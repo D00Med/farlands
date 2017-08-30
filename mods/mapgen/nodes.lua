@@ -2196,7 +2196,7 @@ minetest.register_node("mapgen:dirty_water_flowing", {
 				type = "vertical_frames",
 				aspect_w = 16,
 				aspect_h = 16,
-				length = 0.8,
+				length = 2.0,
 			},
 		},
 		{
@@ -2206,7 +2206,7 @@ minetest.register_node("mapgen:dirty_water_flowing", {
 				type = "vertical_frames",
 				aspect_w = 16,
 				aspect_h = 16,
-				length = 0.8,
+				length = 2.0,
 			},
 		},
 	},
