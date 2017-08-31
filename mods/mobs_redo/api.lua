@@ -360,7 +360,7 @@ local item_drop = function(self, cooked)
 					z = random(-10, 10) / 9,
 				})
 			else
-			--	obj:remove() -- item does not exist
+				obj:remove() -- item does not exist
 			end
 		end
 	end
@@ -580,7 +580,7 @@ local do_env_damage = function(self)
 		and (nodef.groups.lava
 		or self.standing_in == "fire:basic_flame"
 		or self.standing_in == "fire:permanent_flame") then
-			self.burning = true
+	self.burning = true
 
 			self.health = self.health - self.lava_damage
 
@@ -2904,7 +2904,6 @@ function mobs:register_arrow(name, def)
 		automatic_face_movement_dir = def.rotate
 			and (def.rotate - (pi / 180)) or false,
 
-		on_activate = def.on_activate or nil,
 		on_step = def.on_step or function(self, dtime)
 
 			self.timer = self.timer + 1

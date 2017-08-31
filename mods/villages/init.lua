@@ -82,17 +82,29 @@ local function get_positions(pos)
 	return positions
 end
 
+local function clear_area(pos)
+	local pos1 = {x=pos.x-38, y=pos.y+40, z=pos.z-10}
+	local pos2 = {x=pos.x+16, y=pos.y-5, z=pos.z+80}
+	local tree = minetest.find_nodes_in_area(pos1, pos2,
+		{"group:tree", "group:leaves", "default:pine_needles", "default:pine_tree"})
+	for n = 1, #tree do
+		local pos3 = {x=tree[n].x, y=tree[n].y, z=tree[n].z}
+		minetest.remove_node(pos3)
+		minetest.chat_send_all("Node removed")
+	end
+end
+
 local function find_ground(pos)
 	local node = minetest.get_node(pos).name
 	for i=-20,30 do
 		local pos2 = pos
 		pos2.y = pos.y+i
 		local node = minetest.get_node(pos2).name
-		local node2 = minetest.get_node({x=pos2.x, y=pos2.y+1, z=pos2.z}).name
+		local node2 = minetest.get_node({x=pos2.x, y=pos2.y+2, z=pos2.z}).name
 		if minetest.get_item_group(node, "cracky") > 0 or minetest.get_item_group(node, "crumbly") > 0 then
 			if minetest.get_item_group(node2, "cracky") <= 0 and minetest.get_item_group(node2, "crumbly") <= 0 then
 			pos.y = pos2.y
-			minetest.chat_send_all(minetest.pos_to_string(pos, 0))
+			--minetest.chat_send_all(minetest.pos_to_string(pos, 0))
 			return pos
 			end
 		end
@@ -106,23 +118,38 @@ minetest.register_on_generated(function(minp, maxp)
 		return
 	end
 	if math.random(1, village_rarity) == 1 then
-	local surface = minetest.find_nodes_in_area(minp, maxp,
+	local surface = minetest.find_nodes_in_area_under_air(minp, maxp,
 		{"default:dirt_with_grass", "mapgen:dirt_with_leafygrass", "mapgen:dirt_with_junglegrass", "mapgen:dirt_with_swampgrass", "default:dirt_with_dry_grass", "default:dirt_with_snow"})
 	for n = 1, #surface do
 		if math.random(1, village_rarity*1000) == 1 then
 			local pos = {x=surface[n].x, y=surface[n].y, z=surface[n].z}
+			clear_area(pos)
 			local positions = get_positions(pos)
 			for _, position in ipairs(positions) do
 			local number = math.random(1,7)
 			local test_pos = position[1]
 			local place_pos = find_ground(test_pos)
 			if place_pos == nil then 
-			minetest.chat_send_all("didn't work :]")
 			return end
 				local node = minetest.get_node(place_pos).name
-				minetest.place_schematic(place_pos, minetest.get_modpath("villages").."/schematics/structure_"..number..".mts", random, {["default:dirt_with_grass"] = node}, true)
+				minetest.place_schematic(place_pos, minetest.get_modpath("villages").."/schematics/structure_"..number..".mts", random, {["default:dirt_with_grass"] = node, ["farming:corn_5"] = "farming:corn_4"}, true)
 			end
 		end
 		end
 	end
 end)
+
+minetest.register_craftitem("villages:builder_tool", {
+	description = "Village Building Tool",
+	inventory_image = "villages_spanner.png",
+	groups = {not_in_creative_inventory=1},
+	on_use = function(itemstack, user, pointed_thing)
+		if pointed_thing.under == nil then
+		return end
+		if minetest.get_node(pointed_thing.under) ~= nil then
+			local place_pos = pointed_thing.under
+			local node = minetest.get_node(pointed_thing.under).name
+			minetest.place_schematic(place_pos, minetest.get_modpath("villages").."/schematics/structure_4.mts", random, {["default:dirt_with_grass"] = node, ["farming:corn_5"] = "farming:corn_4"}, true)
+		end
+	end,
+})
