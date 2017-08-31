@@ -1,17 +1,20 @@
 local function check_for_mobs(pos, self)
 	local objs = minetest.get_objects_inside_radius(pos, 2)
+	local own_name = self.object:get_luaentity().name
 	for i = 1, #objs do
 		local obj = objs[i]
 		local luaent = obj:get_luaentity()
 		if not obj:is_player() and
 				luaent and
-				luaent.name ~= self.object:get_luaentity().name and
+				luaent.name ~= own_name and
 				luaent.name ~= "__builtin:item" then
 			obj:punch(self.object, 1.0, {
 				full_punch_interval=2.0,
 				damage_groups={fleshy=1},
 			}, nil)
 			self.object:setvelocity(vector.multiply(self.object:getvelocity(), -1))
+			self.timeout = self.timer
+			break
 		end
 	end
 end
@@ -41,12 +44,20 @@ local function register_clawshot(def)
 		on_activate = function(self, staticdata)
 			if staticdata == "delete" then
 				self.object:remove()
+				return
 			end
+			self.timer = 0
+			self.timeout = def.timeout
 		end,
 		get_staticdata = function(self)
 			return "delete"
 		end,
-		on_step = function(self)
+		on_step = function(self, dtime)
+			self.timer = self.timer + dtime
+			if self.timer >= self.timeout*2 then
+				self.object:remove()
+				return
+			end
 			local pos = self.object:getpos()
 			check_for_mobs(pos, self)
 
@@ -110,9 +121,6 @@ local function register_clawshot(def)
 			local dir = placer:get_look_dir()
 			local obj = minetest.add_entity(vector.add(vector.add(placer:get_pos(), dir), {x=0,y=1.4,z=0}),
 					"clawshot:"..def.name.."_claw")
-			minetest.after(def.timeout*2, function()
-				obj:remove()
-			end)
 			obj:set_velocity(vector.multiply(dir, def.speed))
 			obj:set_yaw(placer:get_look_horizontal())
 			--~ obj:set_bone_position("", {x=0,y=0,z=0}, dir) --TODO
