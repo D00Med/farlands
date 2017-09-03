@@ -3,7 +3,7 @@ local stuff_string = minetest.setting_get("initial_stuff") or
 		"default:torch 99,default:cobble 99"
 
 give_initial_stuff = {
-	items = {}
+	items = {"craftguide:book", "villages:book"}
 }
 
 function give_initial_stuff.give(player)

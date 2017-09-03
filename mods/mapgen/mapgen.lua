@@ -1761,8 +1761,8 @@ end
 		place_on = {"default:dirt_with_grass"},
 		sidelen = 16,
 		noise_params = {
-			offset = 0.036,
-			scale = 0.022,
+			offset = 0.025,
+			scale = 0.010,
 			spread = {x = 250, y = 250, z = 250},
 			seed = 2,
 			octaves = 3,
@@ -1771,7 +1771,26 @@ end
 		biomes = {"deciduous_forest",},
 		y_min = 1,
 		y_max = 31000,
-		schematic = minetest.get_modpath("default") .. "/schematics/apple_tree.mts",
+		schematic = minetest.get_modpath("mapgen") .. "/schematics/oak.mts",
+		flags = "place_center_x, place_center_z",
+	})
+	
+			minetest.register_decoration({
+		deco_type = "schematic",
+		place_on = {"default:dirt_with_grass"},
+		sidelen = 16,
+		noise_params = {
+			offset = 0.025,
+			scale = 0.010,
+			spread = {x = 250, y = 250, z = 250},
+			seed = 2,
+			octaves = 3,
+			persist = 0.66
+		},
+		biomes = {"deciduous_forest",},
+		y_min = 1,
+		y_max = 31000,
+		schematic = minetest.get_modpath("mapgen") .. "/schematics/oak_s.mts",
 		flags = "place_center_x, place_center_z",
 	})
 

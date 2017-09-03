@@ -83,15 +83,16 @@ local function get_positions(pos)
 end
 
 local function clear_area(pos)
-	local pos1 = {x=pos.x-38, y=pos.y+40, z=pos.z-10}
-	local pos2 = {x=pos.x+16, y=pos.y-5, z=pos.z+80}
-	local tree = minetest.find_nodes_in_area(pos1, pos2,
-		{"group:tree", "group:leaves", "default:pine_needles", "default:pine_tree"})
-	for n = 1, #tree do
-		local pos3 = {x=tree[n].x, y=tree[n].y, z=tree[n].z}
+	local pos = pos
+	local pos1 = {x=pos.x-38, y=pos.y+80, z=pos.z-10}
+	local pos2 = {x=pos.x+16, y=pos.y-15, z=pos.z+80}
+	local nodes = minetest.find_nodes_in_area(pos1, pos2, {"group:tree", "group:leaves", "default:pine_needles", "default:pine_tree"})
+	for n = 1, #nodes do
+		local pos3 = {x=nodes[n].x, y=nodes[n].y, z=nodes[n].z}
 		minetest.remove_node(pos3)
-		minetest.chat_send_all("Node removed")
+		--minetest.chat_send_all("Node removed")
 	end
+	return true
 end
 
 local function find_ground(pos)
@@ -123,7 +124,6 @@ minetest.register_on_generated(function(minp, maxp)
 	for n = 1, #surface do
 		if math.random(1, village_rarity*1000) == 1 then
 			local pos = {x=surface[n].x, y=surface[n].y, z=surface[n].z}
-			clear_area(pos)
 			local positions = get_positions(pos)
 			for _, position in ipairs(positions) do
 			local number = math.random(1,7)
@@ -153,3 +153,23 @@ minetest.register_craftitem("villages:builder_tool", {
 		end
 	end,
 })
+
+minetest.register_craftitem("villages:book", {
+	description = "Village Building Book",
+	inventory_image = "villages_book.png",
+	on_use = function(itemstack, user, pointed_thing)
+		local formspec = "size[10,8]"..
+		"background[-0.6,-0.65;11.5,10.4;villages_book_gui.png^villages_book_room.png]"..
+		"image_button[9,7;1,1;villages_book_button.png;btn;Next;false;false;villages_book_button2.png]";
+		minetest.show_formspec(user:get_player_name(), "villages:book_f", formspec);
+	end,
+})
+
+minetest.register_on_player_receive_fields(function(player, form, field)
+	if form == "villages:book_f" then
+		local formspec = "size[10,8]"..
+		"background[-0.6,-0.65;11.5,10.4;villages_book_gui.png^villages_book_beacon.png]";
+		--"image_button[9,7;1,1;villages_book_button.png;btn;Next;false;false;villages_book_button2.png]";
+		minetest.show_formspec(player:get_player_name(), "villages:book_f2", formspec);
+	end
+end)

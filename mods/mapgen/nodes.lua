@@ -829,16 +829,6 @@ minetest.register_node("mapgen:bamboo_leaves", {
 	sunlight_propagates = false,
 	groups = {snappy=1, flammable=1, oddly_breakable_by_hand=1, leafdecay=4, leaves=1},
 	sounds = default.node_sound_leaves_defaults(),
-	selection_box = {
-		type = "fixed",
-		fixed = {-0.4, -0.4, -0.4, 0.4, 0.4, 0.4}
-	},
-	collision_box = {
-		type = "fixed",
-		fixed = {
-			{-0.1875, -0.5, -0.1875, 0.1875, 0.5, 0.1875},
-		}
-	},
 	drop = {
 		max_items = 1,
 		items = {
@@ -877,7 +867,6 @@ minetest.register_node("mapgen:bamboo_with_leaves", {
 	sunlight_propagates = false,
 	groups = {choppy=1, flammable=1, oddly_breakable_by_hand=1, tree=1, leaves=1},
 	sounds = default.node_sound_wood_defaults(),
-	walkable = false,
 	drawtype = "nodebox",
 	paramtype = "light",
 	node_box = {

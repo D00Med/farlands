@@ -267,7 +267,7 @@ mobs:register_spawn("mobs_m:elephant", {"default:dirt_with_dry_grass",}, 20, 10,
 
 mobs:register_mob("mobs_m:horse", {
 	type = "animal",
-	passive = true,
+	passive = false,
 	hp_min = 50,
 	hp_max = 60,
 	armor = 120,
@@ -339,11 +339,11 @@ mobs:register_mob("mobs_m:horse", {
 
 
 mobs:register_egg("mobs_m:horse", "Horse", "default_dirt.png", 1)
-mobs:register_spawn("mobs_m:horse", {"default:dirt_with_grass",}, 20, 10, 7000, 20, 11000)
+mobs:register_spawn("mobs_m:horse", {"default:dirt_with_grass",}, 20, 10, 20000, 20, 11000)
 
 mobs:register_mob("mobs_m:quagga", {
 	type = "animal",
-	passive = true,
+	passive = false,
 	hp_min = 50,
 	hp_max = 60,
 	armor = 120,
@@ -419,7 +419,7 @@ mobs:register_egg("mobs_m:quagga", "Quagga", "wool_orange.png", 1)
 
 mobs:register_mob("mobs_m:zebra", {
 	type = "animal",
-	passive = true,
+	passive = false,
 	hp_min = 50,
 	hp_max = 60,
 	armor = 120,
@@ -1060,7 +1060,7 @@ mobs:spawn({
 	name = "mobs_m:sheep_white",
 	nodes = {"default:dirt_with_grass", "ethereal:bamboo_dirt"},
 	min_light = 10,
-	chance = 8000,
+	chance = 7000,
 	min_height = 0,
 	day_toggle = true,
 })
@@ -1204,7 +1204,7 @@ mobs:spawn({
 	name = "mobs_m:chicken",
 	nodes = {"default:dirt_with_grass", "ethereal:bamboo_dirt"},
 	min_light = 10,
-	chance = 15000,
+	chance = 7000,
 	min_height = 0,
 	day_toggle = true,
 })
