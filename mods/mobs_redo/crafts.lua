@@ -21,14 +21,14 @@ minetest.register_craftitem("mobs:leather", {
 
 -- raw meat
 minetest.register_craftitem("mobs:meat_raw", {
-	description = S("Raw Meat"),
+	description = S("Raw Meat Cube"),
 	inventory_image = "mobs_meat_raw.png",
 	on_use = minetest.item_eat(3),
 })
 
 -- cooked meat
 minetest.register_craftitem("mobs:meat", {
-	description = S("Meat"),
+	description = S("Cooked Meat Cube"),
 	inventory_image = "mobs_meat.png",
 	on_use = minetest.item_eat(8),
 })
