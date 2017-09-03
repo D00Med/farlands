@@ -361,6 +361,8 @@ minetest.register_node("mapgen:baobab_tree", {
 	on_place = minetest.rotate_node
 })
 
+-- fence code from minetest_game, see default mod's license.txt
+
 default.register_fence("mapgen:fence_baobab", {
 	description = "Baobab Fence",
 	texture = "mapgen_baobab_fence.png",
@@ -1699,7 +1701,7 @@ minetest.register_node("mapgen:stone_with_sea_grass", {
 	tiles = {"mapgen_sea_grass.png", "default_stone.png",
 	{name = "default_stone.png^mapgen_sea_grass_side.png",
 	tileable_vertical = false}},
-	groups = {crumbly = 3, soil = 1, spreading_dirt_type = 1},
+	groups = {crumbly = 3,},
 	drop = 'mapgen:seagrass_1',
 	sounds = default.node_sound_stone_defaults()
 })

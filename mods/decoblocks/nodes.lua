@@ -5,6 +5,8 @@ minetest.register_node("decoblocks:bamboo_fence", {
 		"decoblocks_bamboo_fence_top.png",
 		"decoblocks_bamboo_fence.png",
 	},
+	inventory_image = "default_fence_overlay.png^decoblocks_bamboo.png^default_fence_overlay.png^[makealpha:255,126,126",
+	wield_image = "default_fence_overlay.png^decoblocks_bamboo.png^default_fence_overlay.png^[makealpha:255,126,126",
 	drawtype = "nodebox",
 	paramtype = "light",
 	connects_to = {"group:fence", "group:wood", "group:choppy", "group:stone"},

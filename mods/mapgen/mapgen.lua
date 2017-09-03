@@ -1,4 +1,6 @@
 
+	local seaplants = false
+
 	minetest.clear_registered_ores()
 	-- Blob ores
 	-- These first to avoid other ores in blobs
@@ -10,7 +12,7 @@
 		ore             = "mapgen:stone_with_sea_grass",
 		wherein         = {"default:sand"},
 		clust_scarcity  = 16 * 16 * 16,
-		clust_size      = 5,
+		clust_size      = 8,
 		y_min           = -15,
 		y_max           = 0,
 		noise_threshold = 0.0,
@@ -2791,6 +2793,7 @@ minetest.register_decoration({
 	y_min = 1,
 	y_max = 31000,
 	schematic = minetest.get_modpath("mapgen").."/schematics/palmtree.mts",
+	replacements = {["mapgen:palm_leaves_coconut"] = "fruit:palm_leaves_coconut"},
 	flags = "place_center_x, place_center_z",
 })
 
@@ -2828,6 +2831,7 @@ minetest.register_on_generated(function(minp, maxp)
 	end
 end)
 
+if seaplants then
 minetest.register_on_generated(function(minp, maxp)
 	if maxp.y < -100 or maxp.y > 100 then
 		return
@@ -2874,6 +2878,7 @@ minetest.register_on_generated(function(minp, maxp)
 		end
 	end
 end)
+end
 
 minetest.register_on_generated(function(minp, maxp)
 	if maxp.y < -1000 or maxp.y > 10 then
