@@ -160,7 +160,7 @@ minetest.register_craftitem("villages:book", {
 	on_use = function(itemstack, user, pointed_thing)
 		local formspec = "size[10,8]"..
 		"background[-0.6,-0.65;11.5,10.4;villages_book_gui.png^villages_book_room.png]"..
-		"image_button[9,7;1,1;villages_book_button.png;btn;Next;false;false;villages_book_button2.png]";
+		"image_button[9,7;1,1;villages_book_button.png;btn;;false;false;villages_book_button2.png]";
 		minetest.show_formspec(user:get_player_name(), "villages:book_f", formspec);
 	end,
 })
@@ -168,8 +168,17 @@ minetest.register_craftitem("villages:book", {
 minetest.register_on_player_receive_fields(function(player, form, field)
 	if form == "villages:book_f" then
 		local formspec = "size[10,8]"..
-		"background[-0.6,-0.65;11.5,10.4;villages_book_gui.png^villages_book_beacon.png]";
-		--"image_button[9,7;1,1;villages_book_button.png;btn;Next;false;false;villages_book_button2.png]";
+		"background[-0.6,-0.65;11.5,10.4;villages_book_gui.png^villages_book_beacon.png]"..
+		"image_button[0.1,7;1,1;villages_book_buttonfx.png;btn2;;false;false;villages_book_button2fx.png";
 		minetest.show_formspec(player:get_player_name(), "villages:book_f2", formspec);
+	end
+end)
+
+minetest.register_on_player_receive_fields(function(player, form, field)
+	if form == "villages:book_f2" then
+		local formspec = "size[10,8]"..
+		"background[-0.6,-0.65;11.5,10.4;villages_book_gui.png^villages_book_room.png]"..
+		"image_button[9,7;1,1;villages_book_button.png;btn;;false;false;villages_book_button2.png]";
+		minetest.show_formspec(player:get_player_name(), "villages:book_f", formspec);
 	end
 end)
