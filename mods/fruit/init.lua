@@ -269,6 +269,25 @@ function fruit.register_ores()
 	
 	minetest.register_ore({
 		ore_type       = "scatter",
+		ore            = "fruit:palm_leaves_coconut",
+		wherein        = "mapgen:palm_leaves",
+		clust_scarcity = 5 * 5 * 5,
+		clust_num_ores = 4,
+		clust_size     = 4,
+		y_min          = 0,
+		y_max          = 31000,
+		noise_params    = {
+			offset = 0.5,
+			scale = 1,
+			spread = {x = 5, y = 5, z = 5},
+			seed = 766,
+			octaves = 1,
+			persist = 0.0
+		},
+	})
+	
+	minetest.register_ore({
+		ore_type       = "scatter",
 		ore            = "fruit:leaves_with_berry",
 		wherein        = "default:bush_leaves",
 		clust_scarcity = 10 * 10 * 10,

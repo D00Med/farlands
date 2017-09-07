@@ -2398,7 +2398,7 @@ minetest.register_decoration({
 --pineapple
 minetest.register_decoration({
 	deco_type = "simple",
-	place_on = {"default:dirt_with_junglegrass"},
+	place_on = {"default:dirt_with_junglegrass", "default:dirt_with_grass"},
 	sidelen = 16,
 	fill_ratio = 0.01,
 	biomes = {"rainforest", "sandstone_desert"},
@@ -2412,7 +2412,7 @@ minetest.register_decoration({
 	deco_type = "simple",
 	place_on = "mapgen:dirt_with_leafygrass",
 	sidelen = 16,
-	fill_ratio = 0.2,
+	fill_ratio = 0.05,
 	biomes = {"coniferous_forest_tall",},
 	decoration = "mapgen:shrub",
 	height = 1,
@@ -2489,7 +2489,7 @@ minetest.register_decoration({
 	deco_type = "simple",
 	place_on = "mapgen:dirt_with_junglegrass",
 	sidelen = 16,
-	fill_ratio = 0.03,
+	fill_ratio = 0.02,
 	biomes = {"rainforest",},
 	decoration = "mapgen:fern",
 	height = 1,
@@ -2499,7 +2499,7 @@ minetest.register_decoration({
 	deco_type = "simple",
 	place_on = "mapgen:dirt_with_junglegrass",
 	sidelen = 16,
-	fill_ratio = 0.03,
+	fill_ratio = 0.02,
 	biomes = {"rainforest",},
 	decoration = "mapgen:fern2",
 	height = 1,
@@ -2509,7 +2509,7 @@ minetest.register_decoration({
 	deco_type = "simple",
 	place_on = "mapgen:dirt_with_junglegrass",
 	sidelen = 16,
-	fill_ratio = 0.02,
+	fill_ratio = 0.01,
 	biomes = {"rainforest",},
 	decoration = "mapgen:dicksonia",
 	height = 1,
@@ -2793,7 +2793,7 @@ minetest.register_decoration({
 	y_min = 1,
 	y_max = 31000,
 	schematic = minetest.get_modpath("mapgen").."/schematics/palmtree.mts",
-	replacements = {["mapgen:palm_leaves_coconut"] = "fruit:palm_leaves_coconut"},
+	replacements = {["mapgen:palm_leaves_coconut"] = "mapgen:palm_leaves"},
 	flags = "place_center_x, place_center_z",
 })
 

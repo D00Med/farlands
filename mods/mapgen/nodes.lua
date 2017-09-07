@@ -1209,7 +1209,14 @@ minetest.register_node("mapgen:swamp_grass_5", {
 minetest.register_node("mapgen:vine", {
 	description = "Vine",
 	drawtype = "nodebox",
-	tiles = {"mapgen_vine.png"},
+	tiles = {
+	"mapgen_trans.png",
+	"mapgen_trans.png",
+	"mapgen_trans.png",
+	"mapgen_trans.png",
+	"mapgen_vine.png",
+	"mapgen_vine.png",
+	},
 	inventory_image = "mapgen_vine.png",
 	paramtype = "light",
 	paramtype2 = "facedir",
@@ -1219,7 +1226,7 @@ minetest.register_node("mapgen:vine", {
 	drop = "mapgen:vine",
 	node_box = {
 		type = "fixed",
-		fixed = {{-0.5, -0.5, 0.5, 0.5, 0.5, 0.4}}
+		fixed = {{-0.5, -0.5, 0.5, 0.5, 0.5, 0.48}}
 	},
 	groups = {cracky=3, dig_immediate=3, oddly_breakeable_by_hand=1},
 })

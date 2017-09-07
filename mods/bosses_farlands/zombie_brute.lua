@@ -377,9 +377,9 @@ minetest.register_entity("bosses_farlands:zombie_brute", {
 			hud_ids[player_name] = {
 				puncher:hud_add({
 					hud_elem_type = "image",
-					position = {x=0.2, y=0.1},
+					position = {x=0.05, y=0.0},
 					name = "farlands_bosses_zombie_brute_health_bg",
-					scale = {x=5, y=5},
+					scale = {x=4.4, y=3.7},
 					text = "bosses_farlands_health_bg.png",
 					direction = 0,
 					alignment = {x=1, y=1},
@@ -387,13 +387,13 @@ minetest.register_entity("bosses_farlands:zombie_brute", {
 				}),
 				puncher:hud_add({
 					hud_elem_type = "statbar",
-					position = {x=0.2, y=0.1},
+					position = {x=0.05, y=0.0},
 					name = "farlands_bosses_zombie_brute_health",
 					text = "bosses_farlands_health.png",
 					number = self.hp/5,
 					direction = 0,
 					offset = {x=10, y=5},
-					size = {x=10, y=50},
+					size = {x=12, y=50},
 				}),
 			}
 		else
@@ -424,5 +424,14 @@ minetest.register_entity("bosses_farlands:zombie_brute", {
 
 bosses_farlands.register_egg("bosses_farlands:zombie_brute_egg", "bosses_farlands:zombie_brute", {
 	description = "Zombie Brute (boss)",
-	inventory_image = "mobs_chicken_egg.png^(default_dirt.png^[mask:mobs_chicken_egg_overlay.png)",
+	inventory_image = "bosses_farlands_zspawner.png",
+})
+
+minetest.register_craft({
+	output = "bosses_farlands:zombie_brute_egg",
+	recipe = {
+		{"",           "default:steel_ingot",    ""},
+		{"default:steel_ingot", "mapgen:crystal_shard", "default:steel_ingot"},
+		{"",           "default:steel_ingot",    ""}
+	}
 })

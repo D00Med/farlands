@@ -590,7 +590,7 @@ mobs:register_mob("mobs_m:zombie_brute", {
 })
 
 
-mobs:register_egg("mobs_m:zombie_brute", "Zombie Brute (boss)", "default_dirt.png", 1)
+--mobs:register_egg("mobs_m:zombie_brute", "Zombie Brute (boss)", "default_dirt.png", 1)
 --mobs:register_spawn("mobs_m:zombie_brute", {"default:dirt_with_grass",}, 5, 0, 7000, 20, 11000)
 
 mobs:register_arrow("mobs_m:stone", {
