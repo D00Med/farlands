@@ -847,7 +847,6 @@ minetest.register_node("decoblocks:altar", {
 		"decoblocks_altar.png",
 	},
 	visual_scale = 0.5,
-	wield_image = "decoblocks_skull_item.png",
 	wield_scale = {x=1.0, y=1.0, z=1.0},
 	paramtype = "light",
 	paramtype2 = "facedir",
@@ -859,7 +858,6 @@ minetest.register_node("decoblocks:altar", {
 		type = "fixed",
 		fixed = {-0.3, -0.5, -0.3, 0.3, -0.3, 0.3}
 	},
-	inventory_image = "decoblocks_skull_item.png",
 	groups = {choppy = 1, oddly_breakable_by_hand = 1},
 	sounds = default.node_sound_wood_defaults()
 })
