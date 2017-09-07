@@ -281,11 +281,11 @@ minetest.register_node("mapgen:statue", {
 
 minetest.register_node("mapgen:willow_leaves", {
 	description = "Willow Leaves",
-	drawtype = "allfaces",
+	drawtype = "allfaces_optional",
+	tiles = {"mapgen_willow_leaves.png",},
+	special_tiles = {"mapgen_willow_leaves_simple.png",},
+	waving = 2,
 	paramtype = "light",
-	tiles = {
-		"mapgen_willow_leaves.png",
-	},
 	drop = {
 		max_items = 1,
 		items = {
@@ -322,11 +322,11 @@ minetest.register_node("mapgen:willow_tree", {
 
 minetest.register_node("mapgen:baobab_leaves", {
 	description = "Baobab Leaves",
-	drawtype = "allfaces",
+	drawtype = "allfaces_optional",
+	tiles = {"mapgen_baobab_leaves.png",},
+	special_tiles = {"mapgen_baobab_leaves_simple.png",},
+	waving = 2,
 	paramtype = "light",
-	tiles = {
-		"mapgen_baobab_leaves.png",
-	},
 	drop = {
 		max_items = 1,
 		items = {
@@ -375,11 +375,11 @@ default.register_fence("mapgen:fence_baobab", {
 
 minetest.register_node("mapgen:yellow_ipe_leaves", {
 	description = "Yellow Ipe Leaves",
-	drawtype = "allfaces",
+	drawtype = "allfaces_optional",
+	tiles = {"mapgen_yellow_ipe_leaves.png",},
+	special_tiles = {"mapgen_yellow_ipe_leaves_simple.png",},
+	waving = 2,
 	paramtype = "light",
-	tiles = {
-		"mapgen_yellow_ipe_leaves.png",
-	},
 	drop = {
 		max_items = 1,
 		items = {
@@ -565,11 +565,11 @@ default.register_fence("mapgen:fence_palm_wood", {
 
 minetest.register_node("mapgen:palm_leaves", {
 	description = "Palm Leaves",
-	drawtype = "allfaces",
+	drawtype = "allfaces_optional",
+	tiles = {"mapgen_palmleaves.png",},
+	special_tiles = {"mapgen_palmleaves_simple.png",},
+	waving = 2,
 	paramtype = "light",
-	tiles = {
-		"mapgen_palmleaves.png",
-	},
 	drop = {
 		max_items = 1,
 		items = {
