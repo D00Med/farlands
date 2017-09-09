@@ -54,8 +54,6 @@ end
 
 minetest.register_on_joinplayer(function(player)
 	local inv = player:get_inventory()
-	--inv:set_size("craft", 4)
-	--inv:set_width("craft", 2)
 end)
 
 armor = {
@@ -64,7 +62,7 @@ armor = {
 	physics = {"jump","speed","gravity"},
 	formspec = "size[8,8.5]image[2,0.75;2,4;armor_preview]"
 		.."list[current_player;main;0,4.5;8,4;]"
-		.."list[current_player;craft;4,1;2,2;]"
+		.."list[current_player;craft;4,1;3,3;]"
 		.."list[current_player;craftpreview;7,2;1,1;]"
 		.."listring[current_player;main]"
 		.."listring[current_player;craft]",
