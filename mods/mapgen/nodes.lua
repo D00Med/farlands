@@ -439,7 +439,7 @@ minetest.register_node("mapgen:dry_dirt", {
 })
 
 minetest.register_node("mapgen:dirt_with_junglegrass", {
-	description = "Jungle Grass",
+	description = "Dirt with Jungle Grass",
 	tiles = {"mapgen_jungle_grass.png", "default_dirt.png", "default_dirt.png^mapgen_jungle_grass_side.png"},
 	groups = {crumbly = 1, oddly_breakable_by_hand = 1},
 	sounds = default.node_sound_dirt_defaults()
@@ -1424,7 +1424,7 @@ minetest.register_node("mapgen:dead_grass_1", {
 	is_ground_content = false,
 	buildable_to = true, 
 	sunlight_propagates = true,
-	inventory_image = "mapgen_jungle_grass_1.png",
+	inventory_image = "mapgen_dead_grass_1.png",
 	groups = {snappy=3, flammable=1, attatched_node=1, flora=1, not_in_creative_inventory=1},
 	sounds = default.node_sound_leaves_defaults(),
 	selection_box = {
@@ -1432,6 +1432,7 @@ minetest.register_node("mapgen:dead_grass_1", {
 		fixed = {-0.5, -0.5, -0.5, 0.5, 0, 0.5}
 	},
 	walkable = false,
+	drop = "drop:dead_grass_5",
 })
 
 minetest.register_node("mapgen:dead_grass_2", {
@@ -1442,7 +1443,7 @@ minetest.register_node("mapgen:dead_grass_2", {
 	is_ground_content = false,
 	buildable_to = true, 
 	sunlight_propagates = true,
-	inventory_image = "mapgen_jungle_grass_2.png",
+	inventory_image = "mapgen_dead_grass_2.png",
 	groups = {snappy=3, flammable=1, attatched_node=1, flora=1, not_in_creative_inventory=1},
 	sounds = default.node_sound_leaves_defaults(),
 	selection_box = {
@@ -1450,6 +1451,7 @@ minetest.register_node("mapgen:dead_grass_2", {
 		fixed = {-0.5, -0.5, -0.5, 0.5, 0, 0.5}
 	},
 	walkable = false,
+	drop = "drop:dead_grass_5",
 })
 
 minetest.register_node("mapgen:dead_grass_3", {
@@ -1460,7 +1462,7 @@ minetest.register_node("mapgen:dead_grass_3", {
 	is_ground_content = false,
 	buildable_to = true, 
 	sunlight_propagates = true,
-	inventory_image = "mapgen_jungle_grass_3.png",
+	inventory_image = "mapgen_dead_grass_3.png",
 	groups = {snappy=3, flammable=1, attatched_node=1, flora=1, not_in_creative_inventory=1},
 	sounds = default.node_sound_leaves_defaults(),
 	selection_box = {
@@ -1468,6 +1470,7 @@ minetest.register_node("mapgen:dead_grass_3", {
 		fixed = {-0.5, -0.5, -0.5, 0.5, 0, 0.5}
 	},
 	walkable = false,
+	drop = "drop:dead_grass_5",
 })
 
 minetest.register_node("mapgen:dead_grass_4", {
@@ -1478,7 +1481,7 @@ minetest.register_node("mapgen:dead_grass_4", {
 	is_ground_content = false,
 	buildable_to = true, 
 	sunlight_propagates = true,
-	inventory_image = "mapgen_jungle_grass_4.png",
+	inventory_image = "mapgen_dead_grass_4.png",
 	groups = {snappy=3, flammable=1, attatched_node=1, flora=1, not_in_creative_inventory=1},
 	sounds = default.node_sound_leaves_defaults(),
 	selection_box = {
@@ -1486,6 +1489,7 @@ minetest.register_node("mapgen:dead_grass_4", {
 		fixed = {-0.5, -0.5, -0.5, 0.5, 0, 0.5}
 	},
 	walkable = false,
+	drop = "drop:dead_grass_5",
 })
 
 minetest.register_node("mapgen:dead_grass_5", {
