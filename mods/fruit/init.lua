@@ -8,7 +8,7 @@ minetest.register_node("fruit:leaves_with_mango", {
 	special_tiles = {"default_jungleleaves_simple.png^fruit_mango_leaves.png"},
 	paramtype = "light",
 	waving = 1,
-	groups = {snappy=1, oddly_breakable_by_hand=1, not_in_creative_inventory=1, leaves = 1},
+	groups = {snappy=1, dig_immediate=3, oddly_breakable_by_hand=1, not_in_creative_inventory=1, leaves = 1},
 	drop = "default:jungleleaves",
 	on_destruct = function(pos)
 		minetest.add_item(pos, "fruit:mango")
@@ -24,7 +24,7 @@ minetest.override_item("default:apple", {
 	},
 	special_tiles = {"default_leaves_simple.png^fruit_apple_leaves.png"},
 	paramtype = "light",
-	groups = {snappy=1, oddly_breakable_by_hand=1, not_in_creative_inventory=1, leaves = 1},
+	groups = {snappy=1, dig_immediate=3, oddly_breakable_by_hand=1, not_in_creative_inventory=1, leaves = 1},
 	drop = "default:leaves",
 	waving = 1,
 	on_destruct = function(pos)
@@ -54,7 +54,7 @@ minetest.register_node("fruit:apple", {
 	inventory_image = "default_apple.png",
 	wield_image = "default_apple.png",
 	paramtype = "light",
-	groups = {snappy=1, oddly_breakable_by_hand=1},
+	groups = {snappy=1, dig_immediate=3, oddly_breakable_by_hand=1},
 	on_use = minetest.item_eat(2),
 	sounds = default.node_sound_leaves_defaults()
 })
@@ -67,7 +67,7 @@ minetest.register_node("fruit:cactus_fruit", {
 		"fruit_cactus.png",
 	},
 	paramtype = "light",
-	groups = {fleshy=1, oddly_breakable_by_hand=1,},
+	groups = {fleshy=1, dig_immediate=3, oddly_breakable_by_hand=1,},
 	inventory_image = "fruit_cactus_inv.png",
 	wield_image = "fruit_cactus_inv.png",
 	sounds = default.node_sound_leaves_defaults(),
@@ -94,7 +94,7 @@ minetest.register_node("fruit:leaves_with_berry", {
 	},
 	special_tiles = {"default_leaves_simple.png^fruit_berry_leaves.png"},
 	paramtype = "light",
-	groups = {snappy=1, oddly_breakable_by_hand=1, not_in_creative_inventory=1, leaves = 1},
+	groups = {snappy=1, oddly_breakable_by_hand=1, dig_immediate=3, not_in_creative_inventory=1, leaves = 1},
 	drop = "default:bush_leaves",
 	on_destruct = function(pos)
 		minetest.add_item(pos, "fruit:berry")
@@ -110,7 +110,7 @@ minetest.register_node("fruit:leaves_with_pear", {
 	},
 	special_tiles = {"default_leaves_simple.png^fruit_pear_leaves.png"},
 	paramtype = "light",
-	groups = {snappy=1, oddly_breakable_by_hand=1, not_in_creative_inventory=1, leaves = 1},
+	groups = {snappy=1, oddly_breakable_by_hand=1, dig_immediate=3, not_in_creative_inventory=1, leaves = 1},
 	drop = "default:leaves",
 	waving = 1,
 	on_destruct = function(pos)
@@ -128,7 +128,7 @@ minetest.register_node("fruit:leaves_with_plum", {
 	special_tiles = {"default_leaves_simple.png^fruit_plum_leaves.png"},
 	paramtype = "light",
 	waving = 1,
-	groups = {snappy=1, oddly_breakable_by_hand=1, not_in_creative_inventory=1, leaves = 1},
+	groups = {snappy=1, oddly_breakable_by_hand=1, dig_immediate=3, not_in_creative_inventory=1, leaves = 1},
 	drop = "default:leaves",
 	on_destruct = function(pos)
 		minetest.add_item(pos, "fruit:plum")
@@ -145,7 +145,7 @@ minetest.register_node("fruit:leaves_with_peach", {
 	special_tiles = {"default_leaves_simple.png^fruit_peach_leaves.png"},
 	paramtype = "light",
 	waving = 1,
-	groups = {snappy=1, oddly_breakable_by_hand=1, not_in_creative_inventory=1, leaves = 1},
+	groups = {snappy=1, oddly_breakable_by_hand=1, dig_immediate=3, not_in_creative_inventory=1, leaves = 1},
 	drop = "default:leaves",
 	on_destruct = function(pos)
 		minetest.add_item(pos, "fruit:peach")
@@ -162,7 +162,7 @@ minetest.register_node("fruit:leaves_with_orange", {
 	special_tiles = {"default_leaves_simple.png^fruit_orange_leaves.png"},
 	paramtype = "light",
 	waving = 1,
-	groups = {snappy=1, oddly_breakable_by_hand=1, not_in_creative_inventory=1, leaves = 1},
+	groups = {snappy=1, oddly_breakable_by_hand=1, dig_immediate=3, not_in_creative_inventory=1, leaves = 1},
 	drop = "default:acacia_leaves",
 	on_destruct = function(pos)
 		minetest.add_item(pos, "fruit:orange")
@@ -180,10 +180,10 @@ minetest.register_node("fruit:palm_leaves_coconut", {
 	},
 	special_tiles = {"fruit_palmleaves_coconut.png"},
 	waving = 1,
-	groups = {snappy = 1, oddly_breakable_by_hand = 1, flammable = 1, dig_immediate = 1, leaves = 1, leafdecay = 3,},
+	groups = {snappy = 1, oddly_breakable_by_hand = 1, dig_immediate=3, flammable = 1, dig_immediate = 1, leaves = 1, leafdecay = 3,},
 	sounds = default.node_sound_leaves_defaults(),
 	on_destruct = function(pos, oldnode)
-		minetest.env:add_item(pos, "fruit:coconut")
+		minetest.env:add_item(pos, "mapgen:palm_leaves")
 	end,
 })
 

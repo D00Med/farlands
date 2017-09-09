@@ -211,7 +211,7 @@ mobs:register_mob("mobs_m:elephant", {
 	damage = 5,
 	attack_type = "dogfight",
 	hp_min = 50,
-	hp_max = 550,
+	hp_max = 150,
 	armor = 100,
 	visual = "mesh",
 	mesh = "elephant.b3d",
@@ -491,16 +491,16 @@ mobs:register_mob("mobs_m:zebra", {
 
 
 mobs:register_egg("mobs_m:zebra", "Zebra", "default_obsidian.png", 1)
-mobs:register_spawn("mobs_m:zebra", {"default:dirt_with_dry_grass",}, 20, 7, 7000, 220, 11000)
+mobs:register_spawn("mobs_m:zebra", {"default:dirt_with_dry_grass",}, 20, 7, 5000, 220, 11000)
 
 mobs:register_mob("mobs_m:zombie", {
 	type = "monster",
 	passive = false,
 	reach = 2,
-	damage = 1,
+	damage = 2,
 	attack_type = "dogfight",
-	hp_min = 30,
-	hp_max = 40,
+	hp_min = 20,
+	hp_max = 30,
 	armor = 120,
 	collisionbox = {-0.35,-1.0,-0.35, 0.35,0.8,0.35},
 	visual = "mesh",
@@ -517,7 +517,7 @@ mobs:register_mob("mobs_m:zombie", {
 	lava_damage = 2,
 	light_damage = 2,
 	fall_damage = 1,
-	view_range = 5,
+	view_range = 15,
 	drops = {
 		{name = "mobs:zombie_flesh", chance = 2, min = 1, max = 2},
 	},

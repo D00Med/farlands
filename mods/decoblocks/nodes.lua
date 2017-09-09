@@ -94,14 +94,6 @@ minetest.register_node("decoblocks:bamboo_block", {
 	on_place = minetest.rotate_node
 })
 
-minetest.register_node("decoblocks:bamboo_planks", {
-	description = "Bamboo Wood Planks",
-	tiles = {"decoblocks_bamboo_planks.png"},
-	groups = {choppy = 3, oddly_breakable_by_hand = 2, flammable = 3, wood = 1},
-	sounds = default.node_sound_stone_defaults(),
-})
-
-
 minetest.register_node("decoblocks:old_stone_tiles", {
 	description = "Old Stone Tiles",
 	tiles = {"decoblocks_old_stone_tiles.png"},

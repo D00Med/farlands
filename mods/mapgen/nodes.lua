@@ -427,7 +427,7 @@ default.register_fence("mapgen:fence_yellow_ipe", {
 minetest.register_node("mapgen:coarse_dirt", {
 	description = "Coarse Dirt",
 	tiles = {"mapgen_coarse_dirt.png"},
-	groups = {crumbly = 1, oddly_breakable_by_hand = 1},
+	groups = {crumbly = 1, oddly_breakable_by_hand = 1, dig_immediate=3},
 	sounds = default.node_sound_dirt_defaults()
 })
 
@@ -892,6 +892,13 @@ minetest.register_node("mapgen:bamboo_with_leaves", {
 		}
 	},
 	drop = "mapgen:bamboo"
+})
+
+minetest.register_node("mapgen:bamboo_wood", {
+	description = "Bamboo Wood Planks",
+	tiles = {"mapgen_bamboo_planks.png"},
+	groups = {choppy = 3, oddly_breakable_by_hand = 2, flammable = 3, wood = 1},
+	sounds = default.node_sound_stone_defaults(),
 })
 
 minetest.register_node("mapgen:flame_lily", {

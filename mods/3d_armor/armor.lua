@@ -54,8 +54,8 @@ end
 
 minetest.register_on_joinplayer(function(player)
 	local inv = player:get_inventory()
-	inv:set_size("craft", 4)
-	inv:set_width("craft", 2)
+	--inv:set_size("craft", 4)
+	--inv:set_width("craft", 2)
 end)
 
 armor = {

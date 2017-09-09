@@ -155,10 +155,12 @@ function workbench.construct(pos)
 	workbench:set_formspec(meta, 1)
 end
 
-function workbench.fields(pos, _, fields)
+function workbench.fields(pos, _, fields, sender)
 	local meta = minetest.get_meta(pos)
 	if     fields.back    then workbench:set_formspec(meta, 1)
 	elseif fields.craft   then workbench:set_formspec(meta, 2)
+	--sender:get_inventory():set_width("craft", 3)
+	--sender:get_inventory():set_size("craft", 9)
 	elseif fields.storage then workbench:set_formspec(meta, 3) end
 end
 
