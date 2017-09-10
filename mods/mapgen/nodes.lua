@@ -1235,7 +1235,7 @@ minetest.register_node("mapgen:vine", {
 		type = "fixed",
 		fixed = {{-0.5, -0.5, 0.5, 0.5, 0.5, 0.48}}
 	},
-	groups = {cracky=3, dig_immediate=3, oddly_breakeable_by_hand=1},
+	groups = {cracky=3, oddly_breakable_by_hand=1},
 })
 
 minetest.register_node("mapgen:dirt_with_swampgrass", {
