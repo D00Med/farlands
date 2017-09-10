@@ -112,7 +112,7 @@ local function find_ground(pos)
 	end
 end
 
-local village_rarity = 12
+local village_rarity = 5
 
 minetest.register_on_generated(function(minp, maxp)
 	if maxp.y > 8000 or maxp.y < -20 then
