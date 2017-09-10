@@ -195,7 +195,7 @@ minetest.register_node("mapgen:red_ground_flower", {
 		}
 	},
 	buildable_to = true,
-	groups = {snappy = 1, oddly_breakable_by_hand = 1, flammable = 1, dig_immediate = 1, flower = 1},
+	groups = {snappy = 2, flammable = 1, dig_immediate = 1, flower = 1},
 	sounds = default.node_sound_leaves_defaults()
 })
 
@@ -214,7 +214,7 @@ minetest.register_node("mapgen:pink_ground_flower", {
 		}
 	},
 	buildable_to = true,
-	groups = {snappy = 1, oddly_breakable_by_hand = 1, flammable = 1, dig_immediate = 1, flower = 1},
+	groups = {snappy = 2, flammable = 1, dig_immediate = 1, flower = 1},
 	sounds = default.node_sound_leaves_defaults()
 })
 
@@ -233,7 +233,7 @@ minetest.register_node("mapgen:blue_ground_flower", {
 		}
 	},
 	buildable_to = true,
-	groups = {snappy = 1, oddly_breakable_by_hand = 1, flammable = 1, dig_immediate = 1, flower = 1},
+	groups = {snappy = 2, flammable = 1, dig_immediate = 1, flower = 1},
 	sounds = default.node_sound_leaves_defaults()
 })
 
@@ -294,7 +294,7 @@ minetest.register_node("mapgen:willow_leaves", {
 			{items = {"mapgen:willow_leaves",}},
 		},
 	},
-	groups = {snappy = 1, oddly_breakable_by_hand = 1, flammable = 1, dig_immediate = 1, leaves = 1, leafdecay = 3},
+	groups = {snappy = 2, flammable = 1, leaves = 1, leafdecay = 3},
 	sounds = default.node_sound_leaves_defaults()
 })
 
@@ -335,7 +335,7 @@ minetest.register_node("mapgen:baobab_leaves", {
 			{items = {"mapgen:baobab_leaves",}},
 		},
 	},
-	groups = {snappy = 1, oddly_breakable_by_hand = 1, flammable = 1, dig_immediate = 1, leaves = 1, leafdecay = 3},
+	groups = {snappy = 2, flammable = 1, leaves = 1, leafdecay = 3},
 	sounds = default.node_sound_leaves_defaults()
 })
 
@@ -388,7 +388,7 @@ minetest.register_node("mapgen:yellow_ipe_leaves", {
 			{items = {"mapgen:yellow_ipe_leaves",}},
 		},
 	},
-	groups = {snappy = 1, oddly_breakable_by_hand = 1, flammable = 1, dig_immediate = 1, leaves = 1, leafdecay = 3},
+	groups = {snappy = 2, flammable = 1, leaves = 1, leafdecay = 3},
 	sounds = default.node_sound_leaves_defaults()
 })
 
@@ -427,21 +427,21 @@ default.register_fence("mapgen:fence_yellow_ipe", {
 minetest.register_node("mapgen:coarse_dirt", {
 	description = "Coarse Dirt",
 	tiles = {"mapgen_coarse_dirt.png"},
-	groups = {crumbly = 1, oddly_breakable_by_hand = 1, dig_immediate=3},
+	groups = {crumbly = 3, dig_immediate=3},
 	sounds = default.node_sound_dirt_defaults()
 })
 
 minetest.register_node("mapgen:dry_dirt", {
 	description = "Dry Dirt",
 	tiles = {"mapgen_dry_dirt.png"},
-	groups = {crumbly = 1, oddly_breakable_by_hand = 1},
+	groups = {crumbly = 3},
 	sounds = default.node_sound_dirt_defaults()
 })
 
 minetest.register_node("mapgen:dirt_with_junglegrass", {
 	description = "Dirt with Jungle Grass",
 	tiles = {"mapgen_jungle_grass.png", "default_dirt.png", "default_dirt.png^mapgen_jungle_grass_side.png"},
-	groups = {crumbly = 1, oddly_breakable_by_hand = 1},
+	groups = {crumbly = 3,},
 	sounds = default.node_sound_dirt_defaults()
 })
 
@@ -578,7 +578,7 @@ minetest.register_node("mapgen:palm_leaves", {
 			{items = {"mapgen:palm_leaves",}},
 		},
 	},
-	groups = {snappy = 1, oddly_breakable_by_hand = 1, flammable = 1, dig_immediate = 1, leaves = 1, leafdecay = 3},
+	groups = {snappy = 2, flammable = 1, leaves = 1, leafdecay = 3},
 	sounds = default.node_sound_leaves_defaults()
 })
 
@@ -829,7 +829,7 @@ minetest.register_node("mapgen:bamboo_leaves", {
 	paramtype = "light",
 	is_ground_content = false,
 	sunlight_propagates = false,
-	groups = {snappy=1, flammable=1, oddly_breakable_by_hand=1, leafdecay=4, leaves=1},
+	groups = {snappy=3, flammable=1, leafdecay=4, leaves=1},
 	sounds = default.node_sound_leaves_defaults(),
 	drop = {
 		max_items = 1,
@@ -1241,14 +1241,14 @@ minetest.register_node("mapgen:vine", {
 minetest.register_node("mapgen:dirt_with_swampgrass", {
 	description = "Dirt With Swamp Grass",
 	tiles = {"mapgen_swamp_grass.png", "default_dirt.png", "default_dirt.png^mapgen_swamp_grass_side.png"},
-	groups = {crumbly = 1, oddly_breakable_by_hand = 1},
+	groups = {crumbly = 3,},
 	sounds = default.node_sound_dirt_defaults()
 })
 
 minetest.register_node("mapgen:dirt_with_leafygrass", {
 	description = "Dirt With Leaf Covered Grass",
 	tiles = {"mapgen_leafy_grass.png", "default_dirt.png", "default_dirt.png^mapgen_leafy_grass_side.png"},
-	groups = {crumbly = 1, oddly_breakable_by_hand = 1},
+	groups = {crumbly = 3,},
 	sounds = default.node_sound_dirt_defaults()
 })
 
