@@ -431,7 +431,7 @@ minetest.register_craft({
 	output = "bosses_farlands:zombie_brute_egg",
 	recipe = {
 		{"",           "default:steel_ingot",    ""},
-		{"default:steel_ingot", "mapgen:crystal_shard", "default:steel_ingot"},
+		{"default:steel_ingot", "mobs:zombie_flesh", "default:steel_ingot"},
 		{"",           "default:steel_ingot",    ""}
 	}
 })

@@ -2036,7 +2036,7 @@ minetest.register_abm({
 	end
 })
 
-minetest.register_craftitem("mapgen:crystal_item", {
+minetest.register_craftitem("mapgen:crystal_shard", {
 	description = "Crystal Shard",
 	inventory_image = "mapgen_crystal_item.png"
 })

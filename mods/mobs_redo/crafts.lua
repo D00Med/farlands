@@ -116,7 +116,7 @@ minetest.register_craft({
 
 -- raw zombie meat
 minetest.register_craftitem("mobs:zombie_flesh", {
-	description = S("Raw Meat"),
+	description = "Zombie Flesh",
 	inventory_image = "mobs_zombie_flesh.png",
 	on_use = minetest.item_eat(1),
 })
