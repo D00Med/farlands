@@ -194,7 +194,7 @@ function hud.remove_item(player, name)
 	end
 	local i_name = player:get_player_name().."_"..name
 	if hud_id[i_name] == nil then
-		throw_error("Given HUD element " .. dump(name) .. " does not exist")
+		--throw_error("Given HUD element " .. dump(name) .. " does not exist")
 		return false
 	end
 	player:hud_remove(hud_id[i_name].id)
