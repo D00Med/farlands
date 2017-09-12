@@ -17,7 +17,7 @@ https://www.gnu.org/licenses/old-licenses/lgpl-2.1.html
 
 
 -----------------------------------------------
-Licenses of media (textures and models)
+Licenses of media (textures, sounds, and models)
 
 CC-BY-SA 3.0 UNPORTED. Created by tobyplowy(aka toby109tt)
 

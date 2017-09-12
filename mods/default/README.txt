@@ -12,7 +12,7 @@ Authors of media (textures, models and sounds)
 Everything not listed in here:
 celeron55, Perttu Ahola <celeron55@gmail.com> (CC BY-SA 3.0)
 
-Cisoun's texture pack (CC BY-SA 3.0):
+toby109tt(aka tobyplowy)(CC BY-SA 3.0):
   default_jungletree.png
   default_lava.png
   default_leaves.png
@@ -21,69 +21,33 @@ Cisoun's texture pack (CC BY-SA 3.0):
   default_tree.png
   default_tree_top.png
   default_water.png
-
-Cisoun's conifers mod (CC BY-SA 3.0):
   default_pine_needles.png
-
-Originating from G4JC's Almost MC Texture Pack (CC BY-SA 3.0):
   default_torch.png
   default_torch_on_ceiling.png
   default_torch_on_floor.png
-
-VanessaE's animated torches (CC BY-SA 3.0):
   default_torch_animated.png
   default_torch_on_ceiling_animated.png
   default_torch_on_floor_animated.png
   default_torch_on_floor.png
-
-RealBadAngel's animated water (CC BY-SA 3.0):
   default_water_source_animated.png
   default_water_flowing_animated.png
-
-VanessaE (CC BY-SA 3.0):
   default_desert_sand.png
   default_desert_stone.png
   default_sand.png
-  default_mese_crystal.png
-  default_mese_crystal_fragment.png
-
-Calinou (CC BY-SA 3.0):
   default_brick.png
-  default_papyrus.png
   default_mineral_copper.png
   default_glass_detail.png
-
-MirceaKitsune (CC BY-SA 3.0):
-  character.x
-
-Jordach (CC BY-SA 3.0):
-  character.png
-
-PilzAdam (CC BY-SA 3.0):
+  default_mineral_gold.png
   default_jungleleaves.png
   default_junglesapling.png
-  default_obsidian_glass.png
-  default_obsidian_shard.png
-  default_mineral_gold.png
-
-jojoa1997 (CC BY-SA 3.0):
-  default_obsidian.png
-
-InfinityProject (CC BY-SA 3.0):
   default_mineral_diamond.png
-
-Splizard (CC BY-SA 3.0):
   default_pine_sapling.png
-
-Zeg9 (CC BY-SA 3.0):
   default_coal_block.png
   default_steel_block.png
   default_copper_block.png
   default_bronze_block.png
   default_gold_block.png
-
-paramat (CC BY-SA 3.0):
-  wieldhand.png -- Copied from character.png by Jordach (CC BY-SA 3.0)
+  wieldhand.png 
   default_pinetree.png
   default_pinetree_top.png
   default_pinewood.png
@@ -113,21 +77,8 @@ paramat (CC BY-SA 3.0):
   default_dry_grass_*.png
   default_grass.png
   default_grass_side.png
-  default_mese_block.png
   default_silver_sand.png
-
-brunob.santos (CC BY-SA 4.0):
   default_desert_cobble.png
-
-BlockMen (CC BY-SA 3.0):
-  default_wood.png
-  default_clay_brick.png
-  default_iron_ingot.png
-  default_gold_ingot.png
-  default_tool_steelsword.png
-  default_diamond.png
-  default_book.png
-  default_tool_*.png
   default_lava_source_animated.png
   default_lava_flowing_animated.png
   default_stick.png
@@ -135,32 +86,26 @@ BlockMen (CC BY-SA 3.0):
   default_chest_lock.png
   default_chest_side.png
   default_chest_top.png
-  default_mineral_mese.png
-  default_meselamp.png
+  default_wood.png
+  default_clay_brick.png
+  default_iron_ingot.png
+  default_gold_ingot.png
+  default_tool_steelsword.png
+  default_diamond.png
+  default_book.png
   bubble.png
-  gui_*.png
-
-Wuzzy (CC BY-SA 3.0):
-  default_bookshelf_slot.png (based on default_book.png)
-
-sofar (CC BY-SA 3.0):
-  default_book_written.png, based on default_book.png
+  default_bookshelf_slot.png
+  default_book_written.png
   default_aspen_sapling
   default_aspen_leaves
   default_aspen_tree
-  default_aspen_tree_top, derived from default_pine_tree_top (by paramat)
-  default_aspen_wood, derived from default_pine_wood (by paramat)
-  default_gravel.png -- Derived from Gambit's PixelBOX texture pack light gravel
-
-Neuromancer (CC BY-SA 2.0):
-  default_cobble.png, based on texture by Brane praefect
-  default_mossycobble.png, based on texture by Brane praefect
-
-Neuromancer (CC BY-SA 3.0):
+  default_aspen_tree_top
+  default_aspen_wood
+  default_gravel.png 
+  default_cobble.png
+  default_mossycobble.png
   default_dirt.png
   default_furnace_*.png
-
-Gambit (CC BY-SA 3.0):
   default_bronze_ingot.png
   default_copper_ingot.png
   default_copper_lump.png
@@ -177,14 +122,29 @@ Gambit (CC BY-SA 3.0):
   default_snow.png
   default_snow_side.png
   default_snowball.png
+  default_ice.png
+  heart.png
+
+Calinou (CC BY-SA 3.0):
+  default_papyrus.png
+
+MirceaKitsune (CC BY-SA 3.0):
+  character.x
+
+PilzAdam (CC BY-SA 3.0):
+  default_obsidian_glass.png
+  default_obsidian_shard.png
+  
+jojoa1997 (CC BY-SA 3.0):
+  default_obsidian.png
+
+BlockMen (CC BY-SA 3.0):
+  default_tool_mese_*.png
+  gui_*.png
+
+Gambit (CC BY-SA 3.0):
   default_key.png
   default_key_skeleton.png
-
-asl97 (CC BY-SA 3.0):
-  default_ice.png
-
-KevDoy (CC BY-SA 3.0)
-  heart.png
 
 Pithydon (CC BY-SA 3.0)
   default_coral_brown.png
