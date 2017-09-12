@@ -11,5 +11,9 @@ http://www.freesound.org/people/LittleRobotSoundFactory/sounds/270402/
 Licensed under Creative Commons: By Attribution 3.0 License
 https://creativecommons.org/licenses/by/3.0/
 
-the rest:
-CC-BY-SA 3.0 UNPORTED. Created by toby109tt(aka tobyplowy), changed a little bit by DS-minetest
+textures and modles:
+CC-BY-SA 3.0 UNPORTED. Created by tobyplowy(aka toby109tt)
+
+and model animation:
+
+by DS-minetest (thanks for the help dude)

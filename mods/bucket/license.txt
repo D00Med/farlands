@@ -1,4 +1,4 @@
-License of source code
+﻿License of source code
 ----------------------
 
 GNU Lesser General Public License, version 2.1
@@ -19,8 +19,7 @@ https://www.gnu.org/licenses/old-licenses/lgpl-2.1.html
 Licenses of media (textures)
 ----------------------------
 
-Attribution-ShareAlike 3.0 Unported (CC BY-SA 3.0)
-Copyright (C) 2015-2016 ElementW
+CC-BY-SA 3.0 UNPORTED. Created by tobyplowy(aka toby109tt)
 
 You are free to:
 Share — copy and redistribute the material in any medium or format.
