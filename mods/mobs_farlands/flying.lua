@@ -174,7 +174,7 @@ mobs:register_mob("mobs_m:wasp", {
 	damage = 1,
 	attack_type = "dogfight",
 	hp_min = 2,
-	hp_max = 5,
+	hp_max = 3,
 	armor = 100,
 	collisionbox = {-0.1, -0, -0.1, 0.1, 0.5, 0.1},
 	fly = true,

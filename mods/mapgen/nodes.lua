@@ -17,7 +17,7 @@ minetest.register_node("mapgen:"..name, {
 	paramtype2 = "degrotate",
 	walkable = false,
 	buildable_to = true,
-	groups = {snappy = 1, oddly_breakable_by_hand = 1, flora = 1, flammable = 1},
+	groups = {snappy = 3, oddly_breakable_by_hand = 1, flora = 1, flammable = 1},
 	sounds = default.node_sound_leaves_defaults()
 })
 end
@@ -43,7 +43,7 @@ minetest.register_node("mapgen:"..name, {
 	visual_scale = 0.5,
 	walkable = false,
 	buildable_to = true,
-	groups = {snappy = 1, oddly_breakable_by_hand = 1, flora = 1, flammable = 1},
+	groups = {snappy = 3, oddly_breakable_by_hand = 1, flora = 1, flammable = 1},
 	sounds = default.node_sound_leaves_defaults()
 })
 end
@@ -647,8 +647,8 @@ minetest.register_node("mapgen:moss", {
 		}
 	},
 	buildable_to = true,
-	groups = {snappy = 1, oddly_breakable_by_hand=1, dig_immediate=3},
-	sounds = default.node_sound_defaults()
+	groups = {snappy = 3, oddly_breakable_by_hand=1, dig_immediate=3},
+	sounds = default.node_sound_leaves_defaults(),
 })
 
 --plantlike (PLNT02)
@@ -848,7 +848,7 @@ minetest.register_node("mapgen:bush", {
 	paramtype = "light",
 	is_ground_content = false,
 	sunlight_propagates = false,
-	groups = {snappy=1, flammable=1, oddly_breakable_by_hand=1, leaves=1},
+	groups = {snappy=3, flammable=1, oddly_breakable_by_hand=1, leaves=1},
 	visual_scale = 1.2,
 	sounds = default.node_sound_leaves_defaults(),
 	walkable = false,
