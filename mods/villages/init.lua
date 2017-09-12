@@ -125,6 +125,7 @@ minetest.register_on_generated(function(minp, maxp)
 		if math.random(1, village_rarity*1000) == 1 then
 			local pos = {x=surface[n].x, y=surface[n].y, z=surface[n].z}
 			local positions = get_positions(pos)
+			minetest.set_node(pos, {name="mobs_npc:beacon"})
 			for _, position in ipairs(positions) do
 			local number = math.random(1,7)
 			local test_pos = position[1]
