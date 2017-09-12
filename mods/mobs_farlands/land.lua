@@ -207,9 +207,9 @@ mobs:register_egg("mobs_m:mammoth", "Mammoth", "decoblocks_mammoth_wool.png", 1)
 mobs:register_mob("mobs_m:elephant", {
 	type = "animal",
 	passive = false,
+	attack_type = "dogfight",
 	reach = 3,
 	damage = 5,
-	attack_type = "dogfight",
 	hp_min = 50,
 	hp_max = 150,
 	armor = 100,

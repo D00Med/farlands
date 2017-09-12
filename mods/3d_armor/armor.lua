@@ -52,10 +52,6 @@ if not minetest.get_modpath("ethereal") then
 	ARMOR_MATERIALS.crystal = nil
 end
 
-minetest.register_on_joinplayer(function(player)
-	local inv = player:get_inventory()
-end)
-
 armor = {
 	timer = 0,
 	elements = {"head", "torso", "legs", "feet"},
