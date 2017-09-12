@@ -19,3 +19,12 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
+
+
+License for Textures, Models and Sounds
+---------------------------------------
+Original textures, sounds - see above
+
+mobs_chicken_egg.png, mob_spawner.png, mobs_leather.png, mobs_meat.png, mobs_meat_raw.png, mobs_nametag.png, mobs_rotten_blood.png, mobs_zombie_flesh.png -
+CC-BY-SA 3.0 UNPORTED. Created by tobyplowy(aka toby109tt)
+

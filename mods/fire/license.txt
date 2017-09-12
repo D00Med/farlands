@@ -17,6 +17,8 @@ https://www.gnu.org/licenses/old-licenses/lgpl-2.1.html
 
 Licenses of media (textures and sounds)
 ---------------------------------------
+All textures by toby109tt(aka tobyplowy) (CC BY-SA 3.0)
+
 
 Attribution-ShareAlike 3.0 Unported (CC BY-SA 3.0)
 Copyright (C) 2012-2016 Perttu Ahola (celeron55) <celeron55@gmail.com>

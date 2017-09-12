@@ -2,7 +2,7 @@
 License for Code
 ----------------
 
-Copyright (C) 2017 D00Med <heiselong@gmx.com>
+Copyright (C) 2017 D00Med <heiselong@gmx.com> and toby109tt(aka tobyplowy)
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU Lesser General Public License as published by
@@ -21,4 +21,5 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 License for Textures, Models and Sounds
 ---------------------------------------
 
-CC-BY-SA 3.0 UNPORTED. Created by tobyplowy(aka toby109tt) and D00Med
+CC-BY-SA 3.0 UNPORTED. Created by D00Med (mapgen_crystal*.png, mapgen_banana_plant.png, mapgen_lantana.png, mapgen_creeper.png, mapgen_spray.png,
+ mapgen_glow.png, mapgen_bamboo_small.png, mapgen_bamboo_leaves.png, mapgen_jungletree.png) tobyplowy(aka toby109tt) (all others)

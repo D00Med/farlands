@@ -2,7 +2,7 @@
 License for Code
 ----------------
 
-Copyright (C) 2017 D00Med <heiselong@gmx.com> and toby109tt(aka tobyplowy)
+Copyright (C) 2017 D00Med <heiselong@gmx.com>
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU Lesser General Public License as published by
@@ -21,7 +21,4 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 License for Textures, Models and Sounds
 ---------------------------------------
 
-CC-BY-SA 3.0 UNPORTED. Created by toby109tt(aka tobyplowy)
-
-firework.ogg - unknown author, "public domain", http://soundbible.com/1582-Bomb-Drop.html
-firework_pop_*.ogg - by Osama Bin Laden, CC-BY 3.0, http://soundbible.com/1789-Loud-Bang.html
+CC-BY-SA 3.0 UNPORTED. Created by tobyplowy(aka toby109tt)(villages_book.png, villages_deed.png, villages_hobo_deed.png, villages_spanner.png) and D00Med

@@ -19,10 +19,9 @@ You should have received a copy of the GNU Lesser General Public License along
 with this program; if not, write to the Free Software Foundation, Inc.,
 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
-License for Textures, Models
+
+License for Textures, Models and Sounds
 ---------------------------------------
-all textures and models (but vehicles_explosion.png is made by D00med) are made by tobyplowy(aka toby109tt) give credit if used (CC BY-SA 3.0)
 
-
-
+CC-BY-SA 3.0 UNPORTED. Created by tobyplowy(aka toby109tt) and D00Med (vehicles_explosion.png, vehicles_splash.png)
 
