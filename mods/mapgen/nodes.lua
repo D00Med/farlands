@@ -195,7 +195,7 @@ minetest.register_node("mapgen:red_ground_flower", {
 		}
 	},
 	buildable_to = true,
-	groups = {snappy = 2, flammable = 1, dig_immediate = 1, flower = 1},
+	groups = {snappy = 3, flammable = 1, dig_immediate = 1, flower = 1},
 	sounds = default.node_sound_leaves_defaults()
 })
 
@@ -214,7 +214,7 @@ minetest.register_node("mapgen:pink_ground_flower", {
 		}
 	},
 	buildable_to = true,
-	groups = {snappy = 2, flammable = 1, dig_immediate = 1, flower = 1},
+	groups = {snappy = 3, flammable = 1, dig_immediate = 1, flower = 1},
 	sounds = default.node_sound_leaves_defaults()
 })
 
@@ -233,7 +233,7 @@ minetest.register_node("mapgen:blue_ground_flower", {
 		}
 	},
 	buildable_to = true,
-	groups = {snappy = 2, flammable = 1, dig_immediate = 1, flower = 1},
+	groups = {snappy = 3, flammable = 1, dig_immediate = 1, flower = 1},
 	sounds = default.node_sound_leaves_defaults()
 })
 
@@ -294,7 +294,7 @@ minetest.register_node("mapgen:willow_leaves", {
 			{items = {"mapgen:willow_leaves",}},
 		},
 	},
-	groups = {snappy = 2, flammable = 1, leaves = 1, leafdecay = 3},
+	groups = {snappy = 3, flammable = 1, leaves = 1, leafdecay = 1},
 	sounds = default.node_sound_leaves_defaults()
 })
 
@@ -335,7 +335,7 @@ minetest.register_node("mapgen:baobab_leaves", {
 			{items = {"mapgen:baobab_leaves",}},
 		},
 	},
-	groups = {snappy = 2, flammable = 1, leaves = 1, leafdecay = 3},
+	groups = {snappy = 3, flammable = 1, leaves = 1, leafdecay = 1},
 	sounds = default.node_sound_leaves_defaults()
 })
 
@@ -388,7 +388,7 @@ minetest.register_node("mapgen:yellow_ipe_leaves", {
 			{items = {"mapgen:yellow_ipe_leaves",}},
 		},
 	},
-	groups = {snappy = 2, flammable = 1, leaves = 1, leafdecay = 3},
+	groups = {snappy = 3, flammable = 1, leaves = 1, leafdecay = 1},
 	sounds = default.node_sound_leaves_defaults()
 })
 
@@ -578,7 +578,7 @@ minetest.register_node("mapgen:palm_leaves", {
 			{items = {"mapgen:palm_leaves",}},
 		},
 	},
-	groups = {snappy = 2, flammable = 1, leaves = 1, leafdecay = 3},
+	groups = {snappy = 3, flammable = 1, leaves = 1, leafdecay = 1},
 	sounds = default.node_sound_leaves_defaults()
 })
 
