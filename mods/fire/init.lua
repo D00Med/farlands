@@ -29,6 +29,12 @@ minetest.register_node("fire:basic_flame", {
 	buildable_to = true,
 	sunlight_propagates = true,
 	damage_per_second = 4,
+	on_rightclick = function(pos, node, clicker, itemstack)
+		if itemstack:get_name() == "mobs:meat_raw" then
+		itemstack:take_item()
+		minetest.add_item(pos, "mobs:meat")
+		end
+	end,
 	groups = {igniter = 2, dig_immediate = 3, not_in_creative_inventory = 1},
 	on_timer = function(pos)
 		local f = minetest.find_node_near(pos, 1, {"group:flammable"})

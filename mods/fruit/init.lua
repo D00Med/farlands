@@ -13,6 +13,11 @@ minetest.register_node("fruit:leaves_with_mango", {
 	on_destruct = function(pos)
 		minetest.add_item(pos, "fruit:mango")
 	end,
+	on_rightclick = function(pos)
+	minetest.set_node(pos, {name="default:jungleleaves"})
+	pos.y = pos.y-0.5
+	--minetest.add_item(pos, "fruit:mango")
+	end,
 	sounds = default.node_sound_leaves_defaults()
 })
 
@@ -42,6 +47,11 @@ minetest.override_item("default:apple", {
 			{-0.5, -0.5, -0.5, 0.5, 0.5, 0.5}, 
 		}
 	},
+	on_rightclick = function(pos)
+	minetest.set_node(pos, {name="default:leaves"})
+	pos.y = pos.y-0.5
+	--minetest.add_item(pos, "fruit:apple")
+	end,
 	sounds = default.node_sound_leaves_defaults()
 })
 
@@ -99,6 +109,10 @@ minetest.register_node("fruit:leaves_with_berry", {
 	on_destruct = function(pos)
 		minetest.add_item(pos, "fruit:berry")
 	end,
+	on_rightclick = function(pos)
+	minetest.set_node(pos, {name="default:bush_leaves"})
+	--minetest.add_item(pos, "fruit:berry")
+	end,
 	sounds = default.node_sound_leaves_defaults()
 })
 
@@ -115,6 +129,11 @@ minetest.register_node("fruit:leaves_with_pear", {
 	waving = 1,
 	on_destruct = function(pos)
 		minetest.add_item(pos, "fruit:pear")
+	end,
+	on_rightclick = function(pos)
+	minetest.set_node(pos, {name="default:leaves"})
+	pos.y = pos.y-0.5
+	--minetest.add_item(pos, "fruit:pear")
 	end,
 	sounds = default.node_sound_leaves_defaults()
 })
@@ -133,6 +152,11 @@ minetest.register_node("fruit:leaves_with_plum", {
 	on_destruct = function(pos)
 		minetest.add_item(pos, "fruit:plum")
 	end,
+	on_rightclick = function(pos)
+	minetest.set_node(pos, {name="default:leaves"})
+	pos.y = pos.y-0.5
+	--minetest.add_item(pos, "fruit:plum")
+	end,
 	sounds = default.node_sound_leaves_defaults()
 })
 
@@ -149,6 +173,11 @@ minetest.register_node("fruit:leaves_with_peach", {
 	drop = "default:leaves",
 	on_destruct = function(pos)
 		minetest.add_item(pos, "fruit:peach")
+	end,
+	on_rightclick = function(pos)
+	minetest.set_node(pos, {name="default:leaves"})
+	pos.y = pos.y-0.5
+	--minetest.add_item(pos, "fruit:peach")
 	end,
 	sounds = default.node_sound_leaves_defaults()
 })
@@ -167,6 +196,11 @@ minetest.register_node("fruit:leaves_with_orange", {
 	on_destruct = function(pos)
 		minetest.add_item(pos, "fruit:orange")
 	end,
+	on_rightclick = function(pos)
+	minetest.set_node(pos, {name="default:acacia_leaves"})
+	pos.y = pos.y-0.5
+	--minetest.add_item(pos, "fruit:orange")
+	end,
 	sounds = default.node_sound_leaves_defaults()
 })
 
@@ -184,6 +218,11 @@ minetest.register_node("fruit:palm_leaves_coconut", {
 	sounds = default.node_sound_leaves_defaults(),
 	on_destruct = function(pos, oldnode)
 		minetest.env:add_item(pos, "mapgen:palm_leaves")
+	end,
+	on_rightclick = function(pos)
+	minetest.set_node(pos, {name="default:palm_leaves"})
+	pos.y = pos.y-0.5
+	--minetest.add_item(pos, "fruit:coconut")
 	end,
 })
 
