@@ -912,7 +912,7 @@ for _, col in pairs(all_colours) do
 			{"mobs_sheep_base.png^mobs_sheep_"..col[1]..".png"},
 		},
 		gotten_texture = {"mobs_sheep_shaved.png"},
-		gotten_mesh = "mobs_sheep_shaved.b3d",
+		gotten_mesh = "mobs_sheep.b3d",
 		makes_footstep_sound = true,
 		sounds = {
 			random = "mobs_sheep",

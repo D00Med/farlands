@@ -33,9 +33,9 @@ carts:register_rail("carts:powerrail", {
 minetest.register_craft({
 	output = "carts:powerrail 8",
 	recipe = {
-		{"default:steel_ingot", "default:mese_crystal_fragment", "default:steel_ingot"},
+		{"default:steel_ingot", "mapgen:crystal_shard", "default:steel_ingot"},
 		{"default:steel_ingot", "group:stick", "default:steel_ingot"},
-		{"default:steel_ingot", "default:mese_crystal_fragment", "default:steel_ingot"},
+		{"default:steel_ingot", "mapgen:crystal_shard", "default:steel_ingot"},
 	}
 })
 

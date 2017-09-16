@@ -468,7 +468,7 @@ minetest.register_craft({
 	output = "default:bronze_ingot 9",
 	recipe = {
 		{"default:copper_ingot", "default:copper_ingot", "default:copper_ingot"},
-		{"default:copper_ingot", "default:tin_ingot", "default:copper_ingot"},
+		{"default:copper_ingot", "mapgen:tin_ingot", "default:copper_ingot"},
 		{"default:copper_ingot", "default:copper_ingot", "default:copper_ingot"},
 	}
 })
