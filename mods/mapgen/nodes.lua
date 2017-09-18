@@ -1936,6 +1936,19 @@ minetest.register_node("mapgen:stalagmite2", {
 
 --crystals
 
+minetest.register_node("mapgen:crystal_block", {
+	description = "Crystal stone",
+	tiles = {{
+		name = "mapgen_crystal_stone.png",
+		animation = {type = "vertical_frames", aspect_w = 16, aspect_h = 16, length = 1.00},
+	}},
+	drawtype = "nodebox",
+	paramtype = "light",
+	light_source = 7,
+	groups = {cracky=2, dig_immediate=3, flammable=1},
+	sounds = default.node_sound_glass_defaults()	
+})
+
 minetest.register_node("mapgen:crystal_small", {
 	description = "Small Crystal",
 	tiles = {{
