@@ -220,7 +220,7 @@ minetest.register_node("fruit:palm_leaves_coconut", {
 		minetest.env:add_item(pos, "mapgen:palm_leaves")
 	end,
 	on_rightclick = function(pos)
-	minetest.set_node(pos, {name="default:palm_leaves"})
+	minetest.set_node(pos, {name="mapgen:palm_leaves"})
 	pos.y = pos.y-0.5
 	--minetest.add_item(pos, "fruit:coconut")
 	end,
