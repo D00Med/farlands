@@ -192,9 +192,9 @@ xpanes.register_pane("lattice", {
 	sounds = default.node_sound_glass_defaults(),
 	groups = {snappy=2, cracky=3, oddly_breakable_by_hand=3},
 	recipe = {
-		{"default:stick", "default:stick", "default:stick"},
-		{"default:stick", "default:stick", "default:stick"},
-		{"default:stick", "default:stick", "default:stick"}
+		{"default:stick", "", "default:stick"},
+		{"", "default:stick", ""},
+		{"default:stick", "", "default:stick"}
 	}
 })
 
