@@ -1181,3 +1181,9 @@ minetest.register_node("decoblocks:sandstone_pillar_base", {
 	},
 	on_place = minetest.rotate_node
 })
+
+minetest.register_node("decoblocks:snow_bricks", {
+	description = "Snow Bricks",
+	tiles = {"decoblocks_snow_bricks.png"},
+	groups = {crumbly = 3, puts_out_fire = 1, cools_lava = 1, snowy = 1},
+})
