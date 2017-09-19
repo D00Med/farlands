@@ -28,13 +28,13 @@ local ids = {
 }
 
 local chest_stuff = {
-	{name="default:apple", max = 3},
+	{name="fruit:apple", max = 3},
 	{name="farming:bread", max = 3},
 	{name="default:steel_ingot", max = 2},
 	{name="default:gold_ingot", max = 2},
 	{name="default:diamond", max = 1},
 	{name="default:pick_steel", max = 1},
-	{name="default:pick_diamond", max = 1}
+	{name="default:pick_bronze", max = 1}
 
 }
 
