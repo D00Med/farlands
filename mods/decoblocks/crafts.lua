@@ -47,3 +47,11 @@ minetest.register_craft({
 		{'default:gold_ingot', 'default:gold_ingot'},
 	}
 })
+
+minetest.register_craft({
+	output = 'decoblocks:snow_bricks 4',
+	recipe = {
+		{'default:snowblock', 'default:snowblock'},
+		{'default:snowblock', 'default:snowblock'},
+	}
+})
