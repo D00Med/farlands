@@ -1187,3 +1187,51 @@ minetest.register_node("decoblocks:snow_bricks", {
 	tiles = {"decoblocks_snow_bricks.png"},
 	groups = {crumbly = 3, puts_out_fire = 1, cools_lava = 1, snowy = 1},
 })
+
+
+minetest.register_node("decoblocks:bear_rug", {
+	description = "Bear Rug",
+	drawtype = "mesh",
+	paramtype2 = "facedir",
+	mesh = "bear_rug.obj",
+	tiles = {
+		"mobs_bear.png",
+	},
+	visual_scale = 0.5,
+	wield_scale = {x=0.5, y=0.5, z=0.5},
+	paramtype = "light",
+	selection_box = {
+		type = "fixed",
+		fixed = {-0.5, -0.5, -0.5, 0.5, -0.4, 0.5}
+	},
+	collision_box = {
+		type = "fixed",
+		fixed = {-0.5, -0.5, -0.5, 0.5, 0.-49, 0.5}
+	},
+	groups = {cracky = 2, oddly_breakable_by_hand = 1},
+	sounds = default.node_sound_stone_defaults(),
+})
+
+
+minetest.register_node("decoblocks:polar_bear_rug", {
+	description = "Polar Bear Rug",
+	drawtype = "mesh",
+	paramtype2 = "facedir",
+	mesh = "bear_rug.obj",
+	tiles = {
+		"mobs_polar_bear.png",
+	},
+	visual_scale = 0.5,
+	wield_scale = {x=0.5, y=0.5, z=0.5},
+	paramtype = "light",
+	selection_box = {
+		type = "fixed",
+		fixed = {-0.5, -0.5, -0.5, 0.5, -0.4, 0.5}
+	},
+	collision_box = {
+		type = "fixed",
+		fixed = {-0.5, -0.5, -0.5, 0.5, 0.-49, 0.5}
+	},
+	groups = {cracky = 2, oddly_breakable_by_hand = 1},
+	sounds = default.node_sound_stone_defaults(),
+})
