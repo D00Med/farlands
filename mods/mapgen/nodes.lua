@@ -919,6 +919,24 @@ minetest.register_node("mapgen:flame_lily", {
 	walkable = false,
 })
 
+minetest.register_node("mapgen:frozen_rose", {
+	description = "Frozen Rose",
+	drawtype = "plantlike",
+	tiles = {"mapgen_frozen_rose.png"},
+	paramtype = "light",
+	is_ground_content = false,
+	buildable_to = true, 
+	sunlight_propagates = true,
+	inventory_image = "mapgen_frozen_rose.png",
+	groups = {snappy=3, flammable=1, attatched_node=1, flora=1},
+	sounds = default.node_sound_leaves_defaults(),
+	selection_box = {
+		type = "fixed",
+		fixed = {-0.3, -0.5, -0.3, 0.3, 0, 0.3}
+	},
+	walkable = false,
+})
+
 minetest.register_node("mapgen:jungle_grass_1", {
 	description = "Jungle Grass",
 	drawtype = "plantlike",

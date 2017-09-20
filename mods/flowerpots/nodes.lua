@@ -25,6 +25,7 @@ local flowers = {
 	{"junglesapling", "default:junglesapling", "Jungle Sapling"},
 	{"pine_sapling", "default:pine_sapling", "Pine Sapling"},
 	{"junglegrass", "default:junglegrass", "junglegrass"},
+	{"frozen_rose", "mapgen:frozen_rose", "Frozen Rose"},
 
 }
 
