@@ -585,6 +585,21 @@ doors.register("door_steel", {
 		}
 })
 
+doors.register("door_ice", {
+		tiles = {{name = "doors_door_ice.png", backface_culling = true}},
+		description = "ice Door",
+		inventory_image = "doors_item_ice.png",
+		groups = {door=1, cracky=3, oddly_breakable_by_hand=3},
+		sounds = default.node_sound_glass_defaults(),
+		sound_open = "doors_glass_door_open",
+		sound_close = "doors_glass_door_close",
+		recipe = {
+			{"default:ice", "default:ice"},
+			{"default:ice", "default:ice"},
+			{"default:ice", "default:ice"},
+		}
+})
+
 doors.register("door_glass", {
 		tiles = {"doors_door_glass.png"},
 		description = "Glass Door",
