@@ -800,7 +800,7 @@ minetest.register_node("decoblocks:bone_pillar", {
 
 minetest.register_node("decoblocks:framed_glass", {
 	description = "Glass With Wooden Frame",
-	drawtype = "glasslike_framed",
+	drawtype = "glasslike_framed_optional",
 	tiles = {"decoblocks_framed_glass.png", "decoblocks_framed_glass_detail.png"},
 	paramtype = "light",
 	sunlight_propagates = true,
