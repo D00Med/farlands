@@ -66,16 +66,16 @@ minetest.register_craft( {
 })
 
 minetest.register_craft( {
-	output = "mapgen:coconut",
+	output = "fruit:coconut",
 	recipe = {
-		{ "mapgen:palm_leaves_coconut",},
+		{ "fruit:palm_leaves_coconut",},
 	}
 })
 
 minetest.register_craft( {
-	output = "mapgen:coconut_open 2",
+	output = "fruit:coconut_open 2",
 	recipe = {
-		{ "mapgen:coconut",},
+		{ "fruit:coconut",},
 	}
 })
 
