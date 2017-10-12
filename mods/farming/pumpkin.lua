@@ -165,7 +165,7 @@ minetest.register_node("farming:pumpkin_block", {
 })
 
 minetest.register_craft({
-	output = "default:pumpkin_5 1",
+	output = "farming:pumpkin_5 1",
 	recipe = {
 		{"farming:pumpkin", "farming:pumpkin", "farming:pumpkin"},
 		{"farming:pumpkin", "farming:pumpkin", "farming:pumpkin"},
