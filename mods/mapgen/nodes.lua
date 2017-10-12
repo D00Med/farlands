@@ -824,8 +824,9 @@ minetest.register_node("mapgen:bamboo", {
 
 minetest.register_node("mapgen:bamboo_leaves", {
 	description = "Bamboo Leaves",
-	drawtype = "allfaces",
+	drawtype = "allfaces_optional",
 	tiles = {"mapgen_bamboo_leaves.png"},
+	waving = 1,
 	paramtype = "light",
 	is_ground_content = false,
 	sunlight_propagates = false,
