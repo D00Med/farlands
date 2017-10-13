@@ -165,7 +165,14 @@ minetest.register_node("farming:melon_block", {
 })
 
 minetest.register_craft({
-	output = "default:melon_5 1",
+	output = "farming:melon 9",
+	recipe = {
+		{"farming:melon_block"},
+	}
+})
+
+minetest.register_craft({
+	output = "farming:melon_block",
 	recipe = {
 		{"farming:melon", "farming:melon", "farming:melon"},
 		{"farming:melon", "farming:melon", "farming:melon"},

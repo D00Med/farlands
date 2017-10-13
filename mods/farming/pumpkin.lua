@@ -165,11 +165,19 @@ minetest.register_node("farming:pumpkin_block", {
 })
 
 minetest.register_craft({
-	output = "default:pumpkin_5 1",
+	output = "farming:pumpkin_block",
 	recipe = {
 		{"farming:pumpkin", "farming:pumpkin", "farming:pumpkin"},
 		{"farming:pumpkin", "farming:pumpkin", "farming:pumpkin"},
 		{"farming:pumpkin", "farming:pumpkin",  "farming:pumpkin"}
+	}
+})
+
+minetest.register_craft({
+	output = "farming:pumpkin 9",
+	recipe = {
+		{"farming:pumpkin_block"},
+
 	}
 })
 
@@ -339,7 +347,7 @@ minetest.register_node("farming:cut_pumpkin_5", {
 	},
 	drop = {
 		items = {
-			{items = {'farming:pumpkin'}, rarity = 1},
+			{items = {'farming:pumpkin_block'}, rarity = 1},
 		}
 	},
 	groups = {snappy=3, flammable=2, plant=1, attached_node=1, not_in_creative_inventory=1},
