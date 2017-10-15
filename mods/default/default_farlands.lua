@@ -262,3 +262,53 @@ minetest.register_node("default:big_pine_sapling", {
 		return itemstack
 	end,
 })
+
+default.register_chest("bamboo_chest", {
+	description = "Bamboo Chest",
+	tiles = {
+		"default_bamboo_chest_top.png",
+		"default_bamboo_chest_top.png",
+		"default_bamboo_chest_side.png",
+		"default_bamboo_chest_side.png",
+		"default_bamboo_chest_front.png",
+		"default_chest_inside.png"
+	},
+	sounds = default.node_sound_wood_defaults(),
+	sound_open = "default_chest_open",
+	sound_close = "default_chest_close",
+	groups = {choppy = 2, oddly_breakable_by_hand = 2},
+})
+
+default.register_chest("ice_chest", {
+	description = "Ice Chest",
+	tiles = {
+		"default_ice_chest_top.png",
+		"default_ice_chest_top.png",
+		"default_ice_chest_side.png",
+		"default_ice_chest_side.png",
+		"default_ice_chest_front.png",
+		"default_chest_inside.png"
+	},
+	sounds = default.node_sound_glass_defaults(),
+	sound_open = "default_chest_open",
+	sound_close = "default_chest_close",
+	groups = {choppy = 2, oddly_breakable_by_hand = 2},
+})
+
+minetest.register_craft({
+	output = 'default:bamboo_chest',
+	recipe = {
+		{'mapgen:bamboo', 'mapgen:bamboo', 'mapgen:bamboo'},
+		{'mapgen:bamboo', '', 'mapgen:bamboo'},
+		{'mapgen:bamboo', 'mapgen:bamboo', 'mapgen:bamboo'},
+	}
+})
+
+minetest.register_craft({
+	output = 'default:ice_chest',
+	recipe = {
+		{'default:ice', 'default:ice', 'default:ice'},
+		{'default:ice', '', 'default:ice'},
+		{'default:ice', 'default:ice', 'default:ice'},
+	}
+})

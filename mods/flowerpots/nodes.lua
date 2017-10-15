@@ -18,6 +18,7 @@ local flowers = {
 	{"small_cactus_1", "mapgen:small_cactus_1", "Small Cactus1"},
 	{"oxeye_daisy", "mapgen:oxeye_daisy", "Oxeye Daisy"},
 	{"dead_grass", "mapgen:dead_grass_5", "Dead Grass"},
+	{"frozen_grass", "mapgen:snow_grass_5", "Frozen Grass"},
 	{"jungle_grass", "mapgen:jungle_grass_5", "Jungle Grass"},
 	{"sapling", "default:sapling", "Sapling"},
 	{"acacia_sapling", "default:acacia_sapling", "Acacia Sapling"},
@@ -26,6 +27,14 @@ local flowers = {
 	{"pine_sapling", "default:pine_sapling", "Pine Sapling"},
 	{"junglegrass", "default:junglegrass", "junglegrass"},
 	{"frozen_rose", "mapgen:frozen_rose", "Frozen Rose"},
+	{"pansy_purple", "flowers_plus:pansy_purple", "Purple Pansy"},
+	{"pansy_blue", "flowers_plus:pansy_blue", "Blue Pansy"},
+	{"petunia_blue", "flowers_plus:petunia_blue", "Blue Petunia"},
+	{"petunia_pink", "flowers_plus:petunia_pink", "Pink Petunia"},
+	{"petunia_white", "flowers_plus:petunia_white", "White Petunia"},
+	{"lobelia", "flowers_plus:lobelia", "Lobelia"},
+	{"foxglove", "flowers_plus:foxglove", "Foxglove", {"flowerpots_foxglove.png"}},
+	{"foxglove_purple", "flowers_plus:foxglove_purple", "Purple Foxglove", {"flowerpots_foxglove_p.png"}},
 
 }
 
@@ -104,6 +113,7 @@ local flower = row[1]
 local flower_node = row[2]
 local desc = row[3]
 local texture = minetest.registered_nodes[flower_node]["tiles"]
+if row[4] ~= nil then texture = row[4] end
 minetest.register_node("flowerpots:flower_pot_"..flower, {
 	description = "Flower Pot With "..desc.."",
 	drawtype = "mesh",
