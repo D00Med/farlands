@@ -1,4 +1,4 @@
-local function register_plant(name, min, max, spawnby, num)
+local function register_plant(name, y_min, y_max, spawnby, num)
 	minetest.register_decoration({
 		deco_type = "simple",
 		place_on = {"default:dirt_with_grass", "mapgen:dirt_with_leafy_grass",},
@@ -11,8 +11,8 @@ local function register_plant(name, min, max, spawnby, num)
 			octaves = 3,
 			persist = 0.6
 		},
-		y_min = min,
-		y_max = max,
+		y_min = y_min,
+		y_max = y_max,
 		decoration = "farming:" .. name,
 		spawn_by = spawnby,
 		num_spawn_by = num,

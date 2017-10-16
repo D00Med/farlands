@@ -144,7 +144,7 @@ end
 
 -- Growth Logic
 
-local STAGE_LENGTH_AVG = 160.0
+local STAGE_LENGTH_AVG = 320.0
 local STAGE_LENGTH_DEV = STAGE_LENGTH_AVG / 6
 local MIN_LIGHT = 13
 local MAX_LIGHT = 1000
@@ -268,9 +268,12 @@ local function set_growing(pos, stages_left)
 	local timer = minetest.get_node_timer(pos)
 	if stages_left > 0 then
 		if not timer:is_started() then
-			local stage_length = statistics.normal(STAGE_LENGTH_AVG, STAGE_LENGTH_DEV)
-			stage_length = clamp(stage_length, 0.5 * STAGE_LENGTH_AVG, 3.0 * STAGE_LENGTH_AVG)
-			timer:set(stage_length, -0.5 * math.random() * STAGE_LENGTH_AVG)
+			--local stage_length = statistics.normal(STAGE_LENGTH_AVG, STAGE_LENGTH_DEV)
+			--stage_length = clamp(stage_length, 0.5 * STAGE_LENGTH_AVG, 3.0 * STAGE_LENGTH_AVG)
+			--local grow_time = -0.5 * math.random() * STAGE_LENGTH_AVG
+			--timer:set(stage_length, grow_time)
+			timer:start(math.random(STAGE_LENGTH_AVG - (STAGE_LENGTH_AVG * 0.15),
+						STAGE_LENGTH_AVG + (STAGE_LENGTH_AVG * 0.15)))
 		end
 	elseif timer:is_started() then
 		timer:stop()
@@ -328,6 +331,11 @@ function farming.plant_growth_timer(pos, elapsed, node_name)
 
 	local max_growth = #stages.stages_left
 	if max_growth <= 0 then return false end
+
+	local mature = minetest.registered_nodes[node_name].mature
+	if mature and math.random(100) < 95 then
+		return true
+	end
 
 	if stages.plant_name == "farming:cocoa" then
 		if not minetest.find_node_near(pos, 1, { "default:jungletree", "moretrees:jungletree_leaves_green" }) then
@@ -442,7 +450,7 @@ function farming.place_seed(itemstack, placer, pointed_thing, plantname)
 
 	-- can I replace above node, and am I pointing at soil
 	if not minetest.registered_nodes[above.name].buildable_to
-	or minetest.get_item_group(under.name, "soil") < 2 
+	or minetest.get_item_group(under.name, "soil") < 2
 	-- avoid multiple seed placement bug
 	or minetest.get_item_group(above.name, "plant") ~= 0 then
 		return
@@ -484,7 +492,6 @@ farming.register_plant = function(name, def)
 	if not def.steps then
 		return nil
 	end
-
 	-- Register seed
 	minetest.register_node(":" .. mname .. ":seed_" .. pname, {
 		description = def.description,
@@ -519,7 +526,7 @@ farming.register_plant = function(name, def)
 				{items = {mname .. ":seed_" .. pname}, rarity = 18 - i * 2},
 			}
 		}
-		
+
 		local g = {snappy = 3, flammable = 2, plant = 1, not_in_creative_inventory = 1, attached_node = 1, growing = 1}
 		-- Last step doesn't need growing=1 so Abm never has to check these
 		if i == def.steps then

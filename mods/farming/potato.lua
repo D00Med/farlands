@@ -82,6 +82,7 @@ minetest.register_node("farming:potato_4", {
 		not_in_creative_inventory = 1, growing = 1
 	},
 	sounds = default.node_sound_leaves_defaults(),
+	mature = true,
 })
 
 minetest.register_node("farming:potato_5", {
