@@ -14,3 +14,20 @@ minetest.register_craft({
 		{"compactblocks:default_leaves"},
 	}
 })
+
+minetest.register_craft({
+	output = 'compactblocks:meat_block',
+	recipe = {
+		{'mobs:meat_raw', 'mobs:meat_raw', 'mobs:meat_raw'},
+		{'mobs:meat_raw', 'mobs:meat_raw', 'mobs:meat_raw'},
+		{'mobs:meat_raw', 'mobs:meat_raw', 'mobs:meat_raw'},
+	}
+})
+
+minetest.register_craft({
+	output = 'mobs:meat_raw 9',
+	recipe = {
+		{'compactblocks:meat_block'},
+	}
+})
+

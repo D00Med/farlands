@@ -4,3 +4,15 @@ minetest.register_node("compactblocks:default_leaves", {
 	groups = {cracky = 3, stone = 2},
 	sounds = default.node_sound_stone_defaults(),
 })
+
+minetest.register_node("compactblocks:meat_block", {
+	description = "Meat Block",
+	tiles = {
+	"compactblocks_meat_block.png",
+	},
+	groups = {cracky = 3, stone = 2},
+	sounds = default.node_sound_stone_defaults(),
+})
+
+
+
