@@ -87,8 +87,10 @@ local function lay_down(player, pos, bed_pos, state, skip)
 		local yaw, param2 = get_look_yaw(bed_pos)
 		player:set_look_horizontal(yaw)
 		local dir = minetest.facedir_to_dir(param2)
-		local p = {x = bed_pos.x + dir.x / 2, y = bed_pos.y, z = bed_pos.z + dir.z / 2}
+		local p = {x = bed_pos.x + dir.x / 2, y = bed_pos.y + 0.5, z = bed_pos.z + dir.z / 2}
+		print(dump(player:get_physics_override()))
 		player:set_physics_override(0, 0, 0)
+		print(dump(player:get_physics_override()))
 		player:setpos(p)
 		default.player_attached[name] = true
 		hud_flags.wielditem = false
