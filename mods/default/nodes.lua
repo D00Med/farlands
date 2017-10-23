@@ -108,6 +108,7 @@ default:steelblock
 default:stone_with_copper
 default:copperblock
 
+default:stone_with_tin
 default:tinblock
 
 default:bronzeblock
@@ -568,7 +569,7 @@ minetest.register_node("default:ice", {
 --
 
 minetest.register_node("default:tree", {
-	description = "Oak Tree",
+	description = "Tree",
 	tiles = {"default_tree_top.png", "default_tree_top.png", "default_tree.png"},
 	paramtype2 = "facedir",
 	is_ground_content = false,
@@ -579,7 +580,7 @@ minetest.register_node("default:tree", {
 })
 
 minetest.register_node("default:wood", {
-	description = "Oak Wood Planks",
+	description = "Wooden Planks",
 	paramtype2 = "facedir",
 	place_param2 = 0,
 	tiles = {"default_wood.png"},
@@ -589,7 +590,7 @@ minetest.register_node("default:wood", {
 })
 
 minetest.register_node("default:sapling", {
-	description = "Oak Sapling",
+	description = "Sapling",
 	drawtype = "plantlike",
 	tiles = {"default_sapling.png"},
 	inventory_image = "default_sapling.png",
@@ -625,7 +626,7 @@ minetest.register_node("default:sapling", {
 })
 
 minetest.register_node("default:leaves", {
-	description = "Oak Leaves",
+	description = "Leaves",
 	drawtype = "allfaces_optional",
 	waving = 1,
 	tiles = {"default_leaves.png"},
@@ -1049,6 +1050,24 @@ minetest.register_node("default:copperblock", {
 	sounds = default.node_sound_metal_defaults(),
 })
 
+
+minetest.register_node("default:stone_with_tin", {
+	description = "Tin Ore",
+	tiles = {"default_stone.png^default_mineral_tin.png"},
+	groups = {cracky = 2},
+	drop = "default:tin_lump",
+	sounds = default.node_sound_stone_defaults(),
+})
+
+minetest.register_node("default:tinblock", {
+	description = "Tin Block",
+	tiles = {"default_tin_block.png"},
+	is_ground_content = false,
+	groups = {cracky = 1, level = 2},
+	sounds = default.node_sound_metal_defaults(),
+})
+
+
 minetest.register_node("default:bronzeblock", {
 	description = "Bronze Block",
 	tiles = {"default_bronze_block.png"},
@@ -1057,7 +1076,7 @@ minetest.register_node("default:bronzeblock", {
 	sounds = default.node_sound_metal_defaults(),
 })
 
---[[
+
 minetest.register_node("default:stone_with_mese", {
 	description = "Mese Ore",
 	tiles = {"default_stone.png^default_mineral_mese.png"},
@@ -1074,7 +1093,7 @@ minetest.register_node("default:mese", {
 	sounds = default.node_sound_stone_defaults(),
 	light_source = 3,
 })
-]]
+
 
 minetest.register_node("default:stone_with_gold", {
 	description = "Gold Ore",
@@ -1115,13 +1134,9 @@ minetest.register_node("default:diamondblock", {
 
 minetest.register_node("default:cactus", {
 	description = "Cactus",
-	drawtype = "mesh",
-	mesh = "cactus.b3d",
+	tiles = {"default_cactus_top.png", "default_cactus_top.png",
+		"default_cactus_side.png"},
 	paramtype2 = "facedir",
-	tiles = {
-		"default_cactus.png",
-	},
-	visual_scale = 0.5,
 	groups = {choppy = 3},
 	sounds = default.node_sound_wood_defaults(),
 	on_place = minetest.rotate_node,
@@ -1524,7 +1539,7 @@ minetest.register_node("default:water_flowing", {
 				type = "vertical_frames",
 				aspect_w = 16,
 				aspect_h = 16,
-				length = 2.0,
+				length = 0.8,
 			},
 		},
 		{
@@ -1534,7 +1549,7 @@ minetest.register_node("default:water_flowing", {
 				type = "vertical_frames",
 				aspect_w = 16,
 				aspect_h = 16,
-				length = 2.0,
+				length = 0.8,
 			},
 		},
 	},
@@ -1617,7 +1632,7 @@ minetest.register_node("default:river_water_flowing", {
 				type = "vertical_frames",
 				aspect_w = 16,
 				aspect_h = 16,
-				length = 2.0,
+				length = 0.8,
 			},
 		},
 		{
@@ -1627,7 +1642,7 @@ minetest.register_node("default:river_water_flowing", {
 				type = "vertical_frames",
 				aspect_w = 16,
 				aspect_h = 16,
-				length = 2.0,
+				length = 0.8,
 			},
 		},
 	},
@@ -2313,7 +2328,7 @@ minetest.register_node("default:brick", {
 	sounds = default.node_sound_stone_defaults(),
 })
 
---[[
+
 minetest.register_node("default:meselamp", {
 	description = "Mese Lamp",
 	drawtype = "glasslike",
@@ -2346,7 +2361,6 @@ minetest.register_node("default:mese_post_light", {
 	groups = {choppy = 2, oddly_breakable_by_hand = 2, flammable = 2},
 	sounds = default.node_sound_wood_defaults(),
 })
-]]
 
 --
 -- Misc

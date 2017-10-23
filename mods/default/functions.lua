@@ -374,6 +374,7 @@ function default.register_leafdecay(def)
 	for _, v in pairs(def.leaves) do
 		minetest.override_item(v, {
 			on_timer = function(pos)
+			print("on_timer")
 				leafdecay_on_timer(pos, def)
 			end,
 		})

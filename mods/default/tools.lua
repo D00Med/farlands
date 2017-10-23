@@ -45,7 +45,7 @@ minetest.register_tool("default:pick_stone", {
 		groupcaps={
 			cracky = {times={[2]=2.0, [3]=1.00}, uses=20, maxlevel=1},
 		},
-		damage_groups = {fleshy=2.5},
+		damage_groups = {fleshy=3},
 	},
 	sound = {breaks = "default_tool_breaks"},
 })
@@ -59,25 +59,10 @@ minetest.register_tool("default:pick_steel", {
 		groupcaps={
 			cracky = {times={[1]=4.00, [2]=1.60, [3]=0.80}, uses=20, maxlevel=2},
 		},
-		damage_groups = {fleshy=3},
+		damage_groups = {fleshy=4},
 	},
 	sound = {breaks = "default_tool_breaks"},
 })
-
-minetest.register_tool("default:pick_gold", {
-	description = "Golden Pickaxe",
-	inventory_image = "default_tool_goldpick.png",
-	tool_capabilities = {
-		full_punch_interval = 1.0,
-		max_drop_level=1,
-		groupcaps={
-			cracky = {times={[1]=4.00, [2]=1.60, [3]=0.80}, uses=30, maxlevel=2},
-		},
-		damage_groups = {fleshy=3.5},
-	},
-	sound = {breaks = "default_tool_breaks"},
-})
-
 
 minetest.register_tool("default:pick_bronze", {
 	description = "Bronze Pickaxe",
@@ -88,11 +73,11 @@ minetest.register_tool("default:pick_bronze", {
 		groupcaps={
 			cracky = {times={[1]=4.00, [2]=1.60, [3]=0.80}, uses=30, maxlevel=2},
 		},
-		damage_groups = {fleshy=3.5},
+		damage_groups = {fleshy=4},
 	},
 	sound = {breaks = "default_tool_breaks"},
 })
---[[
+
 minetest.register_tool("default:pick_mese", {
 	description = "Mese Pickaxe",
 	inventory_image = "default_tool_mesepick.png",
@@ -105,7 +90,7 @@ minetest.register_tool("default:pick_mese", {
 		damage_groups = {fleshy=5},
 	},
 	sound = {breaks = "default_tool_breaks"},
-})]]
+})
 
 minetest.register_tool("default:pick_diamond", {
 	description = "Diamond Pickaxe",
@@ -116,7 +101,7 @@ minetest.register_tool("default:pick_diamond", {
 		groupcaps={
 			cracky = {times={[1]=2.0, [2]=1.0, [3]=0.50}, uses=30, maxlevel=3},
 		},
-		damage_groups = {fleshy=4.5},
+		damage_groups = {fleshy=5},
 	},
 	sound = {breaks = "default_tool_breaks"},
 })
@@ -171,21 +156,6 @@ minetest.register_tool("default:shovel_steel", {
 	sound = {breaks = "default_tool_breaks"},
 })
 
-minetest.register_tool("default:shovel_gold", {
-	description = "Golden Shovel",
-	inventory_image = "default_tool_goldshovel.png",
-	wield_image = "default_tool_goldshovel.png^[transformR90",
-	tool_capabilities = {
-		full_punch_interval = 1.1,
-		max_drop_level=1,
-		groupcaps={
-			crumbly = {times={[1]=1.50, [2]=0.90, [3]=0.40}, uses=40, maxlevel=2},
-		},
-		damage_groups = {fleshy=3},
-	},
-	sound = {breaks = "default_tool_breaks"},
-})
-
 minetest.register_tool("default:shovel_bronze", {
 	description = "Bronze Shovel",
 	inventory_image = "default_tool_bronzeshovel.png",
@@ -200,7 +170,7 @@ minetest.register_tool("default:shovel_bronze", {
 	},
 	sound = {breaks = "default_tool_breaks"},
 })
---[[
+
 minetest.register_tool("default:shovel_mese", {
 	description = "Mese Shovel",
 	inventory_image = "default_tool_meseshovel.png",
@@ -214,7 +184,7 @@ minetest.register_tool("default:shovel_mese", {
 		damage_groups = {fleshy=4},
 	},
 	sound = {breaks = "default_tool_breaks"},
-})]]
+})
 
 minetest.register_tool("default:shovel_diamond", {
 	description = "Diamond Shovel",
@@ -259,7 +229,7 @@ minetest.register_tool("default:axe_stone", {
 		groupcaps={
 			choppy={times={[1]=3.00, [2]=2.00, [3]=1.30}, uses=20, maxlevel=1},
 		},
-		damage_groups = {fleshy=2.5},
+		damage_groups = {fleshy=3},
 	},
 	sound = {breaks = "default_tool_breaks"},
 })
@@ -272,20 +242,6 @@ minetest.register_tool("default:axe_steel", {
 		max_drop_level=1,
 		groupcaps={
 			choppy={times={[1]=2.50, [2]=1.40, [3]=1.00}, uses=20, maxlevel=2},
-		},
-		damage_groups = {fleshy=3},
-	},
-	sound = {breaks = "default_tool_breaks"},
-})
-
-minetest.register_tool("default:axe_gold", {
-	description = "Golden Axe",
-	inventory_image = "default_tool_goldaxe.png",
-	tool_capabilities = {
-		full_punch_interval = 1.0,
-		max_drop_level=1,
-		groupcaps={
-			choppy={times={[1]=2.50, [2]=1.40, [3]=1.00}, uses=30, maxlevel=2},
 		},
 		damage_groups = {fleshy=4},
 	},
@@ -305,7 +261,7 @@ minetest.register_tool("default:axe_bronze", {
 	},
 	sound = {breaks = "default_tool_breaks"},
 })
---[[
+
 minetest.register_tool("default:axe_mese", {
 	description = "Mese Axe",
 	inventory_image = "default_tool_meseaxe.png",
@@ -315,10 +271,10 @@ minetest.register_tool("default:axe_mese", {
 		groupcaps={
 			choppy={times={[1]=2.20, [2]=1.00, [3]=0.60}, uses=20, maxlevel=3},
 		},
-		damage_groups = {fleshy=4},
+		damage_groups = {fleshy=6},
 	},
 	sound = {breaks = "default_tool_breaks"},
-})]]
+})
 
 minetest.register_tool("default:axe_diamond", {
 	description = "Diamond Axe",
@@ -329,7 +285,7 @@ minetest.register_tool("default:axe_diamond", {
 		groupcaps={
 			choppy={times={[1]=2.10, [2]=0.90, [3]=0.50}, uses=30, maxlevel=2},
 		},
-		damage_groups = {fleshy=5},
+		damage_groups = {fleshy=7},
 	},
 	sound = {breaks = "default_tool_breaks"},
 })
@@ -362,7 +318,7 @@ minetest.register_tool("default:sword_stone", {
 		groupcaps={
 			snappy={times={[2]=1.4, [3]=0.40}, uses=20, maxlevel=1},
 		},
-		damage_groups = {fleshy=3},
+		damage_groups = {fleshy=4},
 	},
 	sound = {breaks = "default_tool_breaks"},
 })
@@ -376,21 +332,7 @@ minetest.register_tool("default:sword_steel", {
 		groupcaps={
 			snappy={times={[1]=2.5, [2]=1.20, [3]=0.35}, uses=30, maxlevel=2},
 		},
-		damage_groups = {fleshy=4},
-	},
-	sound = {breaks = "default_tool_breaks"},
-})
-
-minetest.register_tool("default:sword_gold", {
-	description = "Golden Sword",
-	inventory_image = "default_tool_goldsword.png",
-	tool_capabilities = {
-		full_punch_interval = 0.8,
-		max_drop_level=1,
-		groupcaps={
-			snappy={times={[1]=2.5, [2]=1.20, [3]=0.35}, uses=40, maxlevel=2},
-		},
-		damage_groups = {fleshy=4},
+		damage_groups = {fleshy=6},
 	},
 	sound = {breaks = "default_tool_breaks"},
 })
@@ -404,11 +346,11 @@ minetest.register_tool("default:sword_bronze", {
 		groupcaps={
 			snappy={times={[1]=2.5, [2]=1.20, [3]=0.35}, uses=40, maxlevel=2},
 		},
-		damage_groups = {fleshy=5},
+		damage_groups = {fleshy=6},
 	},
 	sound = {breaks = "default_tool_breaks"},
 })
---[[
+
 minetest.register_tool("default:sword_mese", {
 	description = "Mese Sword",
 	inventory_image = "default_tool_mesesword.png",
@@ -418,10 +360,10 @@ minetest.register_tool("default:sword_mese", {
 		groupcaps={
 			snappy={times={[1]=2.0, [2]=1.00, [3]=0.35}, uses=30, maxlevel=3},
 		},
-		damage_groups = {fleshy=6},
+		damage_groups = {fleshy=7},
 	},
 	sound = {breaks = "default_tool_breaks"},
-})]]
+})
 
 minetest.register_tool("default:sword_diamond", {
 	description = "Diamond Sword",
@@ -432,50 +374,9 @@ minetest.register_tool("default:sword_diamond", {
 		groupcaps={
 			snappy={times={[1]=1.90, [2]=0.90, [3]=0.30}, uses=40, maxlevel=3},
 		},
-		damage_groups = {fleshy=6},
+		damage_groups = {fleshy=8},
 	},
 	sound = {breaks = "default_tool_breaks"},
-})
-
-minetest.register_tool("default:skeleton_key", {
-	description = "Skeleton Key",
-	inventory_image = "default_key_skeleton.png",
-	groups = {key = 1},
-	on_place = function(itemstack, placer, pointed_thing)
-		if pointed_thing.type ~= "node" then
-			return itemstack
-		end
-
-		local pos = pointed_thing.under
-		local node = minetest.get_node(pos)
-
-		if not node then
-			return itemstack
-		end
-
-		local on_skeleton_key_use = minetest.registered_nodes[node.name].on_skeleton_key_use
-		if on_skeleton_key_use then
-			-- make a new key secret in case the node callback needs it
-			local random = math.random
-			local newsecret = string.format(
-				"%04x%04x%04x%04x",
-				random(2^16) - 1, random(2^16) - 1,
-				random(2^16) - 1, random(2^16) - 1)
-
-			local secret, _, _ = on_skeleton_key_use(pos, placer, newsecret)
-
-			if secret then
-				-- finish and return the new key
-				itemstack:take_item()
-				itemstack:add_item("default:key")
-				itemstack:set_metadata(minetest.write_json({
-					secret = secret
-				}))
-				return itemstack
-			end
-		end
-		return nil
-	end
 })
 
 minetest.register_tool("default:key", {
@@ -484,12 +385,20 @@ minetest.register_tool("default:key", {
 	groups = {key = 1, not_in_creative_inventory = 1},
 	stack_max = 1,
 	on_place = function(itemstack, placer, pointed_thing)
+		local under = pointed_thing.under
+		local node = minetest.get_node(under)
+		local def = minetest.registered_nodes[node.name]
+		if def and def.on_rightclick and
+				not (placer and placer:get_player_control().sneak) then
+			return def.on_rightclick(under, node, placer, itemstack,
+				pointed_thing) or itemstack
+		end
 		if pointed_thing.type ~= "node" then
 			return itemstack
 		end
 
 		local pos = pointed_thing.under
-		local node = minetest.get_node(pos)
+		node = minetest.get_node(pos)
 
 		if not node or node.name == "ignore" then
 			return itemstack
