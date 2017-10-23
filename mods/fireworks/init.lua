@@ -29,7 +29,7 @@ minetest.register_entity("fireworks:dummy_entity", {
 				vertical = false,
 				texture = self.texture,
 				animation = {type = "vertical_frames", aspect_w = 8, aspect_h = 8, length = 1.00},
-				glow = 9
+				glow = 13
 			})
 			end
 		end)
@@ -65,7 +65,7 @@ minetest.register_entity("fireworks:firework_"..number.."_rocket", {
 				vertical = false,
 				texture = "firework_flare.png",
 				animation = {type = "vertical_frames", aspect_w = 64, aspect_h = 64, length = 1.00},
-				glow = 9
+				glow = 13
 			})
 			end
 			for i=1,100 do
@@ -81,7 +81,7 @@ minetest.register_entity("fireworks:firework_"..number.."_rocket", {
 				vertical = false,
 				texture = tex1,
 				animation = {type = "vertical_frames", aspect_w = 8, aspect_h = 8, length = 1.00},
-				glow = 9
+				glow = 13
 			})
 			elseif shape == "scatter" then
 			minetest.add_particle({
@@ -95,7 +95,7 @@ minetest.register_entity("fireworks:firework_"..number.."_rocket", {
 				vertical = false,
 				texture = tex1,
 				animation = {type = "vertical_frames", aspect_w = 8, aspect_h = 8, length = 1.00},
-				glow = 9
+				glow = 13
 			})
 			elseif shape == "scatter" then
 			minetest.add_particle({
@@ -109,7 +109,7 @@ minetest.register_entity("fireworks:firework_"..number.."_rocket", {
 				vertical = false,
 				texture = tex1,
 				animation = {type = "vertical_frames", aspect_w = 8, aspect_h = 8, length = 1.00},
-				glow = 9
+				glow = 13
 			})
 			end
 			end
@@ -147,7 +147,7 @@ minetest.register_entity("fireworks:firework_"..number.."_rocket", {
 				vertical = false,
 				texture = "firework_flare.png",
 				animation = {type = "vertical_frames", aspect_w = 64, aspect_h = 64, length = 1.00},
-				glow = 9
+				glow = 13
 			})
 			end
 			for i=1,100 do
@@ -174,7 +174,7 @@ minetest.register_entity("fireworks:firework_"..number.."_rocket", {
 				vertical = false,
 				texture = tex1,
 				animation = {type = "vertical_frames", aspect_w = 8, aspect_h = 8, length = 1.00},
-				glow = 9
+				glow = 13
 			})
 			end
 			end
@@ -212,7 +212,7 @@ minetest.register_entity("fireworks:firework_"..number.."_rocket", {
 				vertical = false,
 				texture = "firework_flare.png",
 				animation = {type = "vertical_frames", aspect_w = 64, aspect_h = 64, length = 1.00},
-				glow = 9
+				glow = 13
 			})
 			end
 			minetest.add_particle({
@@ -226,7 +226,7 @@ minetest.register_entity("fireworks:firework_"..number.."_rocket", {
 				vertical = false,
 				texture = tex1,
 				animation = {type = "vertical_frames", aspect_w = 64, aspect_h = 64, length = 1.00},
-				glow = 9
+				glow = 13
 			})
 			self.object:remove()
 		end)
@@ -298,7 +298,7 @@ minetest.register_tool("fireworks:gun", {
 				vertical = false,
 				texture = "firework_rocket_spark.png",
 				animation = {type = "vertical_frames", aspect_w = 15, aspect_h = 15, length = 1.00},
-				glow = 9
+				glow = 13
 			})
 			end)
 		end
@@ -331,7 +331,7 @@ local obj =  minetest.env:add_entity({x=pos.x, y=pos.y, z=pos.z}, name.."_rocket
 				vertical = false,
 				texture = "firework_rocket_spark.png",
 				animation = {type = "vertical_frames", aspect_w = 15, aspect_h = 15, length = 1.00},
-				glow = 9
+				glow = 13
 			})
 			end)
 		end
