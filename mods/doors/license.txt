@@ -1,4 +1,4 @@
-﻿License of source code
+License of source code
 ----------------------
 
 The MIT License (MIT)
@@ -29,13 +29,6 @@ https://opensource.org/licenses/MIT
 
 Licenses of media (textures, models and sounds)
 -----------------------------------------------
-
-Copyright (C) 2017 tobyplowy(aka toby109tt)
-doors_acacia_wood_door.png, doors_aspen_wood_door.png, doors_door_bamboo.png, doors_boabab_wood_door.png,
-doors_door_glass.png, doors_door_copper.png, doors_door_wood.png, doors_jungle_wood_door.png, doors_pine_wood_door.png,
-doors_willow_wood_door.png, doors_palm_wood_door.png, doors_yellow_ipe_wood_door.png, doors_trapdoor.png, doors_door_steel.png.
-& edits of *_item.png, doors_item_*.png
-
 
 Attribution-ShareAlike 3.0 Unported (CC BY-SA 3.0)
 Copyright (C) 2011-2016 Fernando Zapata

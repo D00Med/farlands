@@ -6,6 +6,15 @@ local _doors = {}
 _doors.registered_doors = {}
 _doors.registered_trapdoors = {}
 
+local function replace_old_owner_information(pos)
+	local meta = minetest.get_meta(pos)
+	local owner = meta:get_string("doors_owner")
+	if owner and owner ~= "" then
+		meta:set_string("owner", owner)
+		meta:set_string("doors_owner", "")
+	end
+end
+
 -- returns an object to a door object or nil
 function doors.get(pos)
 	local node_name = minetest.get_node(pos).name
@@ -78,11 +87,11 @@ minetest.register_node("doors:hidden", {
 	buildable_to = false,
 	floodable = false,
 	drop = "",
-	groups = {door=1, not_in_creative_inventory = 1},
+	groups = {not_in_creative_inventory = 1},
 	on_blast = function() end,
 	tiles = {"doors_blank.png"},
 	-- 1px transparent block inside door hinge near node top.
-	nodebox = {
+	node_box = {
 		type = "fixed",
 		fixed = {-15/32, 13/32, -15/32, -13/32, 1/2, -13/32},
 	},
@@ -139,22 +148,10 @@ function _doors.door_toggle(pos, node, clicker)
 		state = tonumber(state)
 	end
 
-	if clicker and not minetest.check_player_privs(clicker, "protection_bypass") then
-		-- is player wielding the right key?
-		local item = clicker:get_wielded_item()
-		local owner = meta:get_string("doors_owner")
-		if item:get_name() == "default:key" then
-			local key_meta = minetest.parse_json(item:get_metadata())
-			local secret = meta:get_string("key_lock_secret")
-			if secret ~= key_meta.secret then
-				return false
-			end
+	replace_old_owner_information(pos)
 
-		elseif owner ~= "" then
-			if clicker:get_player_name() ~= owner then
-				return false
-			end
-		end
+	if clicker and not default.can_interact_with_node(clicker, pos) then
+		return false
 	end
 
 	-- until Lua-5.2 we have no bitwise operators :(
@@ -205,11 +202,13 @@ local function on_place_node(place_to, newnode,
 end
 
 local function can_dig_door(pos, digger)
-	local digger_name = digger and digger:get_player_name()
-	if digger_name and minetest.get_player_privs(digger_name).protection_bypass then
+	replace_old_owner_information(pos)
+	if default.can_interact_with_node(digger, pos) then
 		return true
+	else
+		minetest.record_protection_violation(pos, digger:get_player_name())
+		return false
 	end
-	return minetest.get_meta(pos):get_string("doors_owner") == digger_name
 end
 
 function doors.register(name, def)
@@ -255,6 +254,7 @@ function doors.register(name, def)
 	minetest.register_craftitem(":" .. name, {
 		description = def.description,
 		inventory_image = def.inventory_image,
+		groups = table.copy(def.groups),
 
 		on_place = function(itemstack, placer, pointed_thing)
 			local pos
@@ -265,7 +265,8 @@ function doors.register(name, def)
 
 			local node = minetest.get_node(pointed_thing.under)
 			local pdef = minetest.registered_nodes[node.name]
-			if pdef and pdef.on_rightclick then
+			if pdef and pdef.on_rightclick and
+					not placer:get_player_control().sneak then
 				return pdef.on_rightclick(pointed_thing.under,
 						node, placer, itemstack, pointed_thing)
 			end
@@ -323,13 +324,15 @@ function doors.register(name, def)
 			meta:set_int("state", state)
 
 			if def.protected then
-				meta:set_string("doors_owner", pn)
+				meta:set_string("owner", pn)
 				meta:set_string("infotext", "Owned by " .. pn)
 			end
 
-			if not minetest.setting_getbool("creative_mode") then
+			if not (creative and creative.is_enabled_for and creative.is_enabled_for(pn)) then
 				itemstack:take_item()
 			end
+
+			minetest.sound_play(def.sounds.place, {pos = pos})
 
 			on_place_node(pos, minetest.get_node(pos),
 				placer, node, itemstack, pointed_thing)
@@ -375,7 +378,9 @@ function doors.register(name, def)
 		minetest.remove_node({x = pos.x, y = pos.y + 1, z = pos.z})
 		minetest.check_for_falling({x = pos.x, y = pos.y + 1, z = pos.z})
 	end
-	def.on_rotate = false
+	def.on_rotate = function(pos, node, user, mode, new_param2)
+		return false
+	end
 
 	if def.protected then
 		def.can_dig = can_dig_door
@@ -385,8 +390,9 @@ function doors.register(name, def)
 			door:toggle(player)
 		end
 		def.on_skeleton_key_use = function(pos, player, newsecret)
+			replace_old_owner_information(pos)
 			local meta = minetest.get_meta(pos)
-			local owner = meta:get_string("doors_owner")
+			local owner = meta:get_string("owner")
 			local pname = player:get_player_name()
 
 			-- verify placer is owner of lockable door
@@ -439,133 +445,13 @@ end
 
 doors.register("door_wood", {
 		tiles = {{ name = "doors_door_wood.png", backface_culling = true }},
-		description = "Oak Wood Door",
+		description = "Wooden Door",
 		inventory_image = "doors_item_wood.png",
-		groups = {door=1, choppy = 2, oddly_breakable_by_hand = 2, flammable = 2},
+		groups = {choppy = 2, oddly_breakable_by_hand = 2, flammable = 2},
 		recipe = {
-			{"default:wood", "default:wood"},
-			{"default:wood", "default:wood"},
-			{"default:wood", "default:wood"},
-		}
-})
-
-doors.register("door_jungle_wood", {
-		tiles = {{ name = "doors_jungle_wood_door.png", backface_culling = true }},
-		description = "Jungle Wood Door",
-		inventory_image = "doors_jungle_wood_door_item.png",
-		groups = {door=1, choppy = 2, oddly_breakable_by_hand = 2, flammable = 2},
-		recipe = {
-			{"default:junglewood", "default:junglewood"},
-			{"default:junglewood", "default:junglewood"},
-			{"default:junglewood", "default:junglewood"},
-		}
-})
-
-doors.register("door_pine_wood", {
-		tiles = {{ name = "doors_pine_wood_door.png", backface_culling = true }},
-		description = "Pine Wood Door",
-		inventory_image = "doors_pine_wood_door_item.png",
-		groups = {door=1, choppy = 2, oddly_breakable_by_hand = 2, flammable = 2},
-		recipe = {
-			{"default:pine_wood", "default:pine_wood"},
-			{"default:pine_wood", "default:pine_wood"},
-			{"default:pine_wood", "default:pine_wood"},
-		}
-})
-
-doors.register("door_acacia_wood", {
-		tiles = {{ name = "doors_acacia_wood_door.png", backface_culling = true }},
-		description = "Acacia Wood Door",
-		inventory_image = "doors_acacia_wood_door_item.png",
-		groups = {door=1, choppy = 2, oddly_breakable_by_hand = 2, flammable = 2},
-		recipe = {
-			{"default:acacia_wood", "default:acacia_wood"},
-			{"default:acacia_wood", "default:acacia_wood"},
-			{"default:acacia_wood", "default:acacia_wood"},
-		}
-})
-
-doors.register("door_aspen_wood", {
-		tiles = {{ name = "doors_aspen_wood_door.png", backface_culling = true }},
-		description = "Aspen Wood Door",
-		inventory_image = "doors_aspen_wood_door_item.png",
-		groups = {door=1, choppy = 2, oddly_breakable_by_hand = 2, flammable = 2},
-		recipe = {
-			{"default:aspen_wood", "default:aspen_wood"},
-			{"default:aspen_wood", "default:aspen_wood"},
-			{"default:aspen_wood", "default:aspen_wood"},
-		}
-})
-
-doors.register("door_willow_wood", {
-		tiles = {{ name = "doors_willow_wood_door.png", backface_culling = true }},
-		description = "Willow Wood Door",
-		inventory_image = "doors_willow_wood_door_item.png",
-		groups = {door=1, choppy = 2, oddly_breakable_by_hand = 2, flammable = 2},
-		recipe = {
-			{"mapgen:willow_wood", "mapgen:willow_wood"},
-			{"mapgen:willow_wood", "mapgen:willow_wood"},
-			{"mapgen:willow_wood", "mapgen:willow_wood"},
-		}
-})
-
-doors.register("door_baobab_wood", {
-		tiles = {{ name = "doors_baobab_wood_door.png", backface_culling = true }},
-		description = "Baobab Wood Door",
-		inventory_image = "doors_baobab_wood_door_item.png",
-		groups = {door=1, choppy = 2, oddly_breakable_by_hand = 2, flammable = 2},
-		recipe = {
-			{"mapgen:baobab_wood", "mapgen:baobab_wood"},
-			{"mapgen:baobab_wood", "mapgen:baobab_wood"},
-			{"mapgen:baobab_wood", "mapgen:baobab_wood"},
-		}
-})
-
-doors.register("door_yellow_ipewood", {
-		tiles = {{ name = "doors_yellow_ipe_wood_door.png", backface_culling = true }},
-		description = "Yellow Ipe Wood Door",
-		inventory_image = "doors_yellow_ipe_wood_door_item.png",
-		groups = {door=1, choppy = 2, oddly_breakable_by_hand = 2, flammable = 2},
-		recipe = {
-			{"mapgen:yellow_ipe_wood", "mapgen:yellow_ipe_wood"},
-			{"mapgen:yellow_ipe_wood", "mapgen:yellow_ipe_wood"},
-			{"mapgen:yellow_ipe_wood", "mapgen:yellow_ipe_wood"},
-		}
-})
-
-doors.register("door_palm_wood", {
-		tiles = {{ name = "doors_palm_wood_door.png", backface_culling = true }},
-		description = "Palm Wood Door",
-		inventory_image = "doors_palm_wood_door_item.png",
-		groups = {door=1, choppy = 2, oddly_breakable_by_hand = 2, flammable = 2},
-		recipe = {
-			{"mapgen:palm_wood", "mapgen:palm_wood"},
-			{"mapgen:palm_wood", "mapgen:palm_wood"},
-			{"mapgen:palm_wood", "mapgen:palm_wood"},
-		}
-})
-
-doors.register("door_copper", {
-		tiles = {{ name = "doors_door_copper.png", backface_culling = true }},
-		description = "Copper Door",
-		inventory_image = "doors_item_copper.png",
-		groups = {door=1, choppy = 2, oddly_breakable_by_hand = 2, flammable = 2},
-		recipe = {
-			{"default:copper_ingot", "default:copper_ingot"},
-			{"default:copper_ingot", "default:copper_ingot"},
-			{"default:copper_ingot", "default:copper_ingot"},
-		}
-})
-
-doors.register("door_bamboo", {
-		tiles = {{ name = "doors_door_bamboo.png", backface_culling = true }},
-		description = "Bamboo Door",
-		inventory_image = "doors_item_bamboo.png",
-		groups = {door=1, choppy = 2, oddly_breakable_by_hand = 2, flammable = 2},
-		recipe = {
-			{"mapgen:bamboo", "mapgen:bamboo"},
-			{"mapgen:bamboo", "mapgen:bamboo"},
-			{"mapgen:bamboo", "mapgen:bamboo"},
+			{"group:wood", "group:wood"},
+			{"group:wood", "group:wood"},
+			{"group:wood", "group:wood"},
 		}
 })
 
@@ -574,7 +460,7 @@ doors.register("door_steel", {
 		description = "Steel Door",
 		inventory_image = "doors_item_steel.png",
 		protected = true,
-		groups = {door=1, cracky = 1, level = 2},
+		groups = {cracky = 1, level = 2},
 		sounds = default.node_sound_metal_defaults(),
 		sound_open = "doors_steel_door_open",
 		sound_close = "doors_steel_door_close",
@@ -585,26 +471,11 @@ doors.register("door_steel", {
 		}
 })
 
-doors.register("door_ice", {
-		tiles = {{name = "doors_door_ice.png", backface_culling = true}},
-		description = "ice Door",
-		inventory_image = "doors_item_ice.png",
-		groups = {door=1, cracky=3, oddly_breakable_by_hand=3},
-		sounds = default.node_sound_glass_defaults(),
-		sound_open = "doors_glass_door_open",
-		sound_close = "doors_glass_door_close",
-		recipe = {
-			{"default:ice", "default:ice"},
-			{"default:ice", "default:ice"},
-			{"default:ice", "default:ice"},
-		}
-})
-
 doors.register("door_glass", {
 		tiles = {"doors_door_glass.png"},
 		description = "Glass Door",
 		inventory_image = "doors_item_glass.png",
-		groups = {door=1, cracky=3, oddly_breakable_by_hand=3},
+		groups = {cracky=3, oddly_breakable_by_hand=3},
 		sounds = default.node_sound_glass_defaults(),
 		sound_open = "doors_glass_door_open",
 		sound_close = "doors_glass_door_close",
@@ -619,7 +490,7 @@ doors.register("door_obsidian_glass", {
 		tiles = {"doors_door_obsidian_glass.png"},
 		description = "Obsidian Glass Door",
 		inventory_image = "doors_item_obsidian_glass.png",
-		groups = {door=1, cracky=3},
+		groups = {cracky=3},
 		sounds = default.node_sound_glass_defaults(),
 		sound_open = "doors_glass_door_open",
 		sound_close = "doors_glass_door_close",
@@ -658,23 +529,11 @@ end
 
 function _doors.trapdoor_toggle(pos, node, clicker)
 	node = node or minetest.get_node(pos)
-	if clicker and not minetest.check_player_privs(clicker, "protection_bypass") then
-		-- is player wielding the right key?
-		local item = clicker:get_wielded_item()
-		local meta = minetest.get_meta(pos)
-		local owner = meta:get_string("doors_owner")
-		if item:get_name() == "default:key" then
-			local key_meta = minetest.parse_json(item:get_metadata())
-			local secret = meta:get_string("key_lock_secret")
-			if secret ~= key_meta.secret then
-				return false
-			end
 
-		elseif owner ~= "" then
-			if clicker:get_player_name() ~= owner then
-				return false
-			end
-		end
+	replace_old_owner_information(pos)
+
+	if clicker and not default.can_interact_with_node(clicker, pos) then
+		return false
 	end
 
 	local def = minetest.registered_nodes[node.name]
@@ -716,10 +575,10 @@ function doors.register_trapdoor(name, def)
 		def.after_place_node = function(pos, placer, itemstack, pointed_thing)
 			local pn = placer:get_player_name()
 			local meta = minetest.get_meta(pos)
-			meta:set_string("doors_owner", pn)
+			meta:set_string("owner", pn)
 			meta:set_string("infotext", "Owned by "..pn)
 
-			return minetest.setting_getbool("creative_mode")
+			return (creative and creative.is_enabled_for and creative.is_enabled_for(pn))
 		end
 
 		def.on_blast = function() end
@@ -728,8 +587,9 @@ function doors.register_trapdoor(name, def)
 			door:toggle(player)
 		end
 		def.on_skeleton_key_use = function(pos, player, newsecret)
+			replace_old_owner_information(pos)
 			local meta = minetest.get_meta(pos)
-			local owner = meta:get_string("doors_owner")
+			local owner = meta:get_string("owner")
 			local pname = player:get_player_name()
 
 			-- verify placer is owner of lockable door
@@ -812,7 +672,7 @@ doors.register_trapdoor("doors:trapdoor", {
 	wield_image = "doors_trapdoor.png",
 	tile_front = "doors_trapdoor.png",
 	tile_side = "doors_trapdoor_side.png",
-	groups = {door=1, choppy = 2, oddly_breakable_by_hand = 2, flammable = 2, door = 1},
+	groups = {choppy = 2, oddly_breakable_by_hand = 2, flammable = 2, door = 1},
 })
 
 doors.register_trapdoor("doors:trapdoor_steel", {
@@ -825,7 +685,7 @@ doors.register_trapdoor("doors:trapdoor_steel", {
 	sounds = default.node_sound_metal_defaults(),
 	sound_open = "doors_steel_door_open",
 	sound_close = "doors_steel_door_close",
-	groups = {door=1, cracky = 1, level = 2, door = 1},
+	groups = {cracky = 1, level = 2, door = 1},
 })
 
 minetest.register_craft({
@@ -916,43 +776,37 @@ doors.register_fencegate("doors:gate_wood", {
 	description = "Wooden Fence Gate",
 	texture = "default_wood.png",
 	material = "default:wood",
-	groups = {door=1, choppy = 2, oddly_breakable_by_hand = 2, flammable = 2}
+	groups = {choppy = 2, oddly_breakable_by_hand = 2, flammable = 2}
 })
 
 doors.register_fencegate("doors:gate_acacia_wood", {
 	description = "Acacia Fence Gate",
 	texture = "default_acacia_wood.png",
 	material = "default:acacia_wood",
-	groups = {door=1, choppy = 2, oddly_breakable_by_hand = 2, flammable = 2}
+	groups = {choppy = 2, oddly_breakable_by_hand = 2, flammable = 2}
 })
 
 doors.register_fencegate("doors:gate_junglewood", {
-	description = "Junglewood Fence Gate",
+	description = "Jungle Wood Fence Gate",
 	texture = "default_junglewood.png",
 	material = "default:junglewood",
-	groups = {door=1, choppy = 2, oddly_breakable_by_hand = 2, flammable = 2}
+	groups = {choppy = 2, oddly_breakable_by_hand = 2, flammable = 2}
 })
 
 doors.register_fencegate("doors:gate_pine_wood", {
 	description = "Pine Fence Gate",
 	texture = "default_pine_wood.png",
 	material = "default:pine_wood",
-	groups = {door=1, choppy = 3, oddly_breakable_by_hand = 2, flammable = 3}
+	groups = {choppy = 3, oddly_breakable_by_hand = 2, flammable = 3}
 })
 
 doors.register_fencegate("doors:gate_aspen_wood", {
 	description = "Aspen Fence Gate",
 	texture = "default_aspen_wood.png",
 	material = "default:aspen_wood",
-	groups = {door=1, choppy = 3, oddly_breakable_by_hand = 2, flammable = 3}
+	groups = {choppy = 3, oddly_breakable_by_hand = 2, flammable = 3}
 })
 
-doors.register_fencegate("doors:gate_bamboo", {
-	description = "Bamboo Fence Gate",
-	texture = "decoblocks_bamboo.png",
-	material = "decoblocks:bamboo_block",
-	groups = {door=1, choppy = 3, oddly_breakable_by_hand = 2, flammable = 3}
-})
 
 ----fuels----
 
