@@ -290,7 +290,7 @@ mobs:register_mob("mobs_m:pirana", {
 
 mobs:register_spawn("mobs_m:pirana", {"default:river_water_source",}, 20, 10, 15000, 20, 11000)
 
-mobs:register_egg("mobs_m:pirana", "Pirana", "wool_dark_grey.png", 1)
+mobs:register_egg("mobs_m:pirana", "Piranha", "wool_dark_grey.png", 1)
 
 mobs:register_mob("mobs_m:dearcmhara", {
 	type = "monster",
