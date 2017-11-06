@@ -300,24 +300,20 @@ mobs:register_mob("mobs_m:cow", {
 		{name = "mobs:leather", chance = 5, min = 1, max = 2},
 	},
 	animation = {
-		speed_normal = 16,
-		speed_run = 22,
-		walk_start = 39,
-		walk_end = 58,
+		speed_normal = 15,
+		speed_run = 18,
+		walk_start = 60,
+		walk_end = 80,
 		stand_start = 1,
-		stand_end = 29,
-		run_start = 39,
-		run_end = 58,
+		stand_end = 21,
+		run_start = 30,
+		run_end = 50,
 
 	},
 	on_rightclick = function(self, clicker)
 
 		if mobs:feed_tame(self, clicker, 8, true, true) then
 			return
-		end
-		
-		if clicker:get_wielded_item():get_name() == "buckets:bucket_empty" then
-		clicker:set_wielded_item("mobs:bucket_milk")
 		end
 		
 		if self.driver and clicker == self.driver then
@@ -327,6 +323,37 @@ mobs:register_mob("mobs_m:cow", {
 		end
 	
 		mobs:capture_mob(self, clicker, 0, 5, 50, false, nil)
+		
+		--milking code from mobs_animal by Tenplus1 (MIT) (see mobs_for detail)
+		if clicker:get_wielded_item():get_name() == "bucket:bucket_empty" then
+
+			--if self.gotten == true
+			if self.child == true then
+				return
+			end
+
+			if self.gotten == true then
+				minetest.chat_send_player(name,
+					"Cow already milked!")
+				return
+			end
+
+			local inv = clicker:get_inventory()
+
+			inv:remove_item("main", "bucket:bucket_empty")
+
+			if inv:room_for_item("main", {name = "mobs_m:bucket_milk"}) then
+				clicker:get_inventory():add_item("main", "mobs_m:bucket_milk")
+			else
+				local pos = self.object:getpos()
+				pos.y = pos.y + 0.5
+				minetest.add_item(pos, {name = "mobs_m:bucket_milk"})
+			end
+
+			self.gotten = true -- milked
+
+			return
+		end
 	end,
 	do_custom = function(self, dtime)
 	if self.driver then
@@ -1454,7 +1481,8 @@ minetest.register_craft({
 minetest.register_craftitem(":mobs:bucket_milk", {
 description = "Bucket of Milk",
 	inventory_image = "mobs_bucket_milk.png",
-	on_use = minetest.item_eat(3),
+	stack_max = 1,
+	on_use = minetest.item_eat(5, "bucket:bucket_empty"),
 })
 
 -- raw chicken
