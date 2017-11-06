@@ -1451,7 +1451,7 @@ minetest.register_node("mapgen:dead_grass_1", {
 		fixed = {-0.5, -0.5, -0.5, 0.5, 0, 0.5}
 	},
 	walkable = false,
-	drop = "drop:dead_grass_5",
+	drop = "mapgen:dead_grass_5",
 })
 
 minetest.register_node("mapgen:dead_grass_2", {
@@ -1470,7 +1470,7 @@ minetest.register_node("mapgen:dead_grass_2", {
 		fixed = {-0.5, -0.5, -0.5, 0.5, 0, 0.5}
 	},
 	walkable = false,
-	drop = "drop:dead_grass_5",
+	drop = "mapgen:dead_grass_5",
 })
 
 minetest.register_node("mapgen:dead_grass_3", {
@@ -1489,7 +1489,7 @@ minetest.register_node("mapgen:dead_grass_3", {
 		fixed = {-0.5, -0.5, -0.5, 0.5, 0, 0.5}
 	},
 	walkable = false,
-	drop = "drop:dead_grass_5",
+	drop = "mapgen:dead_grass_5",
 })
 
 minetest.register_node("mapgen:dead_grass_4", {
@@ -1508,7 +1508,7 @@ minetest.register_node("mapgen:dead_grass_4", {
 		fixed = {-0.5, -0.5, -0.5, 0.5, 0, 0.5}
 	},
 	walkable = false,
-	drop = "drop:dead_grass_5",
+	drop = "mapgen:dead_grass_5",
 })
 
 minetest.register_node("mapgen:dead_grass_5", {
