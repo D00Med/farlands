@@ -342,12 +342,12 @@ mobs:register_mob("mobs_m:cow", {
 
 			inv:remove_item("main", "bucket:bucket_empty")
 
-			if inv:room_for_item("main", {name = "mobs_m:bucket_milk"}) then
-				clicker:get_inventory():add_item("main", "mobs_m:bucket_milk")
+			if inv:room_for_item("main", {name = "mobs:bucket_milk"}) then
+				clicker:get_inventory():add_item("main", "mobs:bucket_milk")
 			else
 				local pos = self.object:getpos()
 				pos.y = pos.y + 0.5
-				minetest.add_item(pos, {name = "mobs_m:bucket_milk"})
+				minetest.add_item(pos, {name = "mobs:bucket_milk"})
 			end
 
 			self.gotten = true -- milked
@@ -1479,10 +1479,10 @@ minetest.register_craft({
 
 --milk
 minetest.register_craftitem(":mobs:bucket_milk", {
-description = "Bucket of Milk",
+	description = "Bucket of Milk",
 	inventory_image = "mobs_bucket_milk.png",
 	stack_max = 1,
-	on_use = minetest.item_eat(5, "bucket:bucket_empty"),
+	on_use = minetest.item_eat(5, 'bucket:bucket_empty'),
 })
 
 -- raw chicken
