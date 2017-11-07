@@ -35,7 +35,7 @@ local apply_weather = function(player, pos, weather_type)
 		if minetest.get_timeofday()*24000 >= 6000 and minetest.get_timeofday()*24000 <= 19000 then
 		player:set_sky({r=208, g=223, b=238}, "plain", nil, true)
 		end
-		for i=1,12 do
+		for i=1,24 do
 		minetest.add_particle({
 			pos = {x=pos.x+math.random(-10,10), y=pos.y+math.random(12,17), z=pos.z+math.random(-10,10)},
 			velocity = {x=math.random(-5,5)/10, y=math.random(-6,-4), z=math.random(-5,5)/10},
@@ -59,7 +59,7 @@ local apply_weather = function(player, pos, weather_type)
 		if minetest.get_timeofday()*24000 >= 6000 and minetest.get_timeofday()*24000 <= 19000 then
 		player:set_sky({r=177, g=177, b=177}, "plain", nil, true)
 		end
-		for i=1,12 do
+		for i=1,24 do
 		minetest.add_particle({
 			pos = {x=pos.x+math.random(-10,10), y=pos.y+math.random(12,17), z=pos.z+math.random(-10,10)},
 			velocity = {x=0, y=math.random(-20,-15), z=0},
@@ -77,7 +77,7 @@ local apply_weather = function(player, pos, weather_type)
 		if minetest.get_timeofday()*24000 >= 6000 and minetest.get_timeofday()*24000 <= 19000 then
 		player:set_sky({r=101, g=101, b=101}, "plain", nil, true)
 		end
-		for i=1,25 do
+		for i=1,48 do
 		minetest.add_particle({
 			pos = {x=pos.x+math.random(-10,10), y=pos.y+math.random(12,17), z=pos.z+math.random(-10,10)},
 			velocity = {x=0, y=math.random(-30,-25), z=0},
