@@ -158,6 +158,9 @@ minetest.register_globalstep(function(dtime)
 		--apply weather effect
 		if display_weather then
 			apply_weather(player, pos, weather.weather)
+			if minetest.get_timeofday()*24000 <= 6000 or minetest.get_timeofday()*24000 >= 19000 then
+				player:set_sky(nil, "regular", nil, true)
+			end
 		else
 			apply_weather(player, pos, "none")
 		end
