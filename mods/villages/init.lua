@@ -158,6 +158,7 @@ minetest.register_craftitem("villages:builder_tool", {
 minetest.register_craftitem("villages:book", {
 	description = "Village Building Book",
 	inventory_image = "villages_book.png",
+	groups = {book=1},
 	on_use = function(itemstack, user, pointed_thing)
 		local formspec = "size[10,8]"..
 		"background[-0.6,-0.65;11.5,10.4;villages_book_gui.png^villages_book_room.png]"..
