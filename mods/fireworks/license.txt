@@ -24,4 +24,4 @@ License for Textures, Models and Sounds
 CC BY-SA 3.0 UNPORTED. Created by toby109tt(aka tobyplowy)
 
 firework.ogg - unknown author, "public domain", https://soundbible.com/1582-Bomb-Drop.html
-firework_pop_*.ogg - by Osama Bin Laden, CC-BY 3.0, https://soundbible.com/1789-Loud-Bang.html
+firework_pop_*.ogg - by Osama Bin Laden, CC BY-SA 3.0, https://soundbible.com/1789-Loud-Bang.html
