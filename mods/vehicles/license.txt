@@ -23,5 +23,5 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 License for Textures, Models and Sounds
 ---------------------------------------
 
-CC-BY-SA 3.0 UNPORTED. Created by tobyplowy(aka toby109tt) and D00Med (vehicles_explosion.png, vehicles_splash.png)
+CC BY-SA 3.0 UNPORTED. Created by tobyplowy(aka toby109tt) and D00Med (vehicles_explosion.png, vehicles_splash.png)
 
