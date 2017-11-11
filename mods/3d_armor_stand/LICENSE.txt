@@ -12,11 +12,11 @@ License Textures:
 3d_armor_stand.png
 3d_armor_stand_locked.png
 
-(C) CC-BY-SA 3.0 UNPORTED. Created by tobyplowy(aka toby109tt)
+(C) CC BY-SA 3.0 UNPORTED. Created by tobyplowy(aka toby109tt)
 
 3d_armor_stand_feet.png
 3d_armor_stand_head.png
 3d_armor_stand_legs.png
 3d_armor_stand_torso.png
 
-(C) CC-BY-SA 3.0 UNPORTED. Created by tobyplowy(aka toby109tt)
+(C) CC BY-SA 3.0 UNPORTED. Created by tobyplowy(aka toby109tt)
