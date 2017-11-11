@@ -26,5 +26,5 @@ License for Textures, Models and Sounds
 Original textures, sounds - see above
 
 mobs_chicken_egg.png, mob_spawner.png, mobs_leather.png, mobs_meat.png, mobs_meat_raw.png, mobs_nametag.png, mobs_rotten_blood.png, mobs_zombie_flesh.png -
-CC-BY-SA 3.0 UNPORTED. Created by tobyplowy(aka toby109tt)
+CC BY-SA 3.0 UNPORTED. Created by tobyplowy(aka toby109tt)
 
