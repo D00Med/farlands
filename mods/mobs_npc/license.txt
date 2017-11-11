@@ -24,4 +24,4 @@ THE SOFTWARE.
 License for Textures, Models and Sounds
 ---------------------------------------
 
-CC-BY-SA 3.0 UNPORTED. Created by tobyplowy(aka toby109tt)(models, textures) and D00Med (beacon texture, animation)
+CC BY-SA 3.0 UNPORTED. Created by tobyplowy(aka toby109tt)(models, textures) and D00Med (beacon texture, animation)

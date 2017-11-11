@@ -21,4 +21,4 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 License for Textures, Models and Sounds
 ---------------------------------------
 
-CC-BY-SA 3.0 UNPORTED. Created by D00Med and toby109tt(aka tobyplowy)(fruit_berry_leaves.png, fruit_cactus_inv.png, fruit_coconut*.png, fruit_palmleaves_coconut.png)
+CC BY-SA 3.0 UNPORTED. Created by D00Med and toby109tt(aka tobyplowy)(fruit_berry_leaves.png, fruit_cactus_inv.png, fruit_coconut*.png, fruit_palmleaves_coconut.png)

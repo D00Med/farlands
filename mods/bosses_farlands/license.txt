@@ -4,7 +4,7 @@ License for Textures, Models
 bosses_farlands_music.ogg:
 8bit Dungeon Boss Kevin MacLeod (incompetech.com)
 Licensed under Creative Commons: By Attribution 3.0 License
-http://creativecommons.org/licenses/by/3.0/
+https://creativecommons.org/licenses/by/3.0/
 
 bosses_farlands_win.ogg:
 http://www.freesound.org/people/LittleRobotSoundFactory/sounds/270402/
@@ -12,7 +12,7 @@ Licensed under Creative Commons: By Attribution 3.0 License
 https://creativecommons.org/licenses/by/3.0/
 
 textures and modles:
-CC-BY-SA 3.0 UNPORTED. Created by tobyplowy(aka toby109tt)
+CC BY-SA 3.0 UNPORTED. Created by tobyplowy(aka toby109tt)
 
 and model animation:
 

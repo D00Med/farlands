@@ -21,4 +21,4 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 License for Textures, Models and Sounds
 ---------------------------------------
 
-CC-BY-SA 3.0 UNPORTED. Created by tobyplowy(aka toby109tt)(stm_nodes_boiler.png, stm_nodes_boiler_pipe.png, stm_nodes_boiler_top.ong) and D00Med
+CC BY-SA 3.0 UNPORTED. Created by tobyplowy(aka toby109tt)(stm_nodes_boiler.png, stm_nodes_boiler_pipe.png, stm_nodes_boiler_top.ong) and D00Med

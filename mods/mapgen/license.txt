@@ -21,5 +21,5 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 License for Textures, Models and Sounds
 ---------------------------------------
 
-CC-BY-SA 3.0 UNPORTED. Created by D00Med (mapgen_crystal*.png, mapgen_banana_plant.png, mapgen_lantana.png, mapgen_creeper.png, mapgen_spray.png,
+CC BY-SA 3.0 UNPORTED. Created by D00Med (mapgen_crystal*.png, mapgen_banana_plant.png, mapgen_lantana.png, mapgen_creeper.png, mapgen_spray.png,
  mapgen_glow.png, mapgen_bamboo_small.png, mapgen_bamboo_leaves.png, mapgen_jungletree.png) tobyplowy(aka toby109tt) (all others)
