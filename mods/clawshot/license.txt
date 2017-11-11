@@ -22,4 +22,4 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 License for Textures, Models
 ---------------------------------------
 
-CC-BY-SA 3.0 UNPORTED. Created by D00Med and tobyplowy(aka toby109tt)(colour edits)
+CC BY-SA 3.0 UNPORTED. Created by D00Med and tobyplowy(aka toby109tt)(colour edits)
