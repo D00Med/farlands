@@ -72,7 +72,7 @@ for your intended use. For example, other rights such as publicity, privacy, or 
 rights may limit how you use the material.
 
 For more details:
-http://creativecommons.org/licenses/by-sa/3.0/
+https://creativecommons.org/licenses/by-sa/3.0/
 
 -----------------------
 
@@ -105,7 +105,7 @@ for your intended use. For example, other rights such as publicity, privacy, or 
 rights may limit how you use the material.
 
 For more details:
-http://creativecommons.org/licenses/by-sa/4.0/
+https://creativecommons.org/licenses/by-sa/4.0/
 
 -----------------------
 
@@ -139,7 +139,7 @@ for your intended use. For example, other rights such as publicity, privacy, or 
 rights may limit how you use the material.
 
 For more details:
-http://creativecommons.org/licenses/by/3.0/
+https://creativecommons.org/licenses/by/3.0/
 
 -----------------------
 
