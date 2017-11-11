@@ -3,5 +3,5 @@
 
 License Source Code: (C) 2012-2017 Stuart Jones - LGPL v2.1
 
-License Textures: CC-BY-SA 3.0 UNPORTED. Created by tobyplowy(aka toby109tt)
+License Textures: CC BY-SA 3.0 UNPORTED. Created by tobyplowy(aka toby109tt)
 
