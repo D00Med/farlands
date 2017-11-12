@@ -28,7 +28,7 @@ https://opensource.org/licenses/MIT
 Licenses of media (textures and models)
 ----------------------------
 
-CC-BY-SA 3.0 UNPORTED. Created by tobyplowy(aka toby109tt)
+CC BY-SA 3.0 UNPORTED. Created by tobyplowy(aka toby109tt)
 
 You are free to:
 Share — copy and redistribute the material in any medium or format.
@@ -56,4 +56,4 @@ for your intended use. For example, other rights such as publicity, privacy, or 
 rights may limit how you use the material.
 
 For more details:
-http://creativecommons.org/licenses/by-sa/3.0/
+https://creativecommons.org/licenses/by-sa/3.0/

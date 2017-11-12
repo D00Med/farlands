@@ -20,4 +20,4 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 License for Textures, Models
 ---------------------------------------
 
-CC-BY-SA 3.0 UNPORTED. Created by toby109tt(aka tobyplowy)(ammonite, bear, beetle, bird, chicken, dearmhara, donkey, elephant, horse, mammoth, mimic, pirana, pterodactyl, quagga, swamp lurker, trilobite, velociraptor, witch, zebra, zombies) and D00Med (whale, wasp, sheep, riverfish, badger + animation)
+CC BY-SA 3.0 UNPORTED. Created by toby109tt(aka tobyplowy)(ammonite, bear, beetle, bird, chicken, dearmhara, donkey, elephant, horse, mammoth, mimic, pirana, pterodactyl, quagga, swamp lurker, trilobite, velociraptor, witch, zebra, zombies) and D00Med (whale, wasp, sheep, riverfish, badger + animation)

@@ -21,7 +21,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 License for Textures, Models and Sounds
 ---------------------------------------
 
-CC-BY-SA 3.0 UNPORTED. Created by D00Med and toby109tt(aka tobyplowy) (witchcraft_sun_over.png, witchcraft_moon_over.png, witchcraft_potion_*.png, witchcraft_pot_top.png, witchcraft_pot_side.png, witchcraft_pot_bottom.png, withcraft_red_candle*.png, witchcraft_pentagram.png
+CC BY-SA 3.0 UNPORTED. Created by D00Med and toby109tt(aka tobyplowy) (witchcraft_sun_over.png, witchcraft_moon_over.png, witchcraft_potion_*.png, witchcraft_pot_top.png, witchcraft_pot_side.png, witchcraft_pot_bottom.png, withcraft_red_candle*.png, witchcraft_pentagram.png
 
 All splash potion bottles derived from
 vessels_glass_bottle.png (by Authors)

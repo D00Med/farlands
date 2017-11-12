@@ -21,4 +21,4 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 License for Textures, Models and Sounds
 ---------------------------------------
 
-CC-BY-SA 3.0 UNPORTED. Created by tobyplowy(aka toby109tt)(villages_book.png, villages_deed.png, villages_hobo_deed.png, villages_spanner.png) and D00Med
+CC BY-SA 3.0 UNPORTED. Created by tobyplowy(aka toby109tt)(villages_book.png, villages_deed.png, villages_hobo_deed.png, villages_spanner.png) and D00Med

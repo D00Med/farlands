@@ -19,7 +19,7 @@ https://www.gnu.org/licenses/old-licenses/lgpl-2.1.html
 -----------------------------------------------
 Licenses of media (textures, sounds, and models)
 
-CC-BY-SA 3.0 UNPORTED. Created by tobyplowy(aka toby109tt)
+CC BY-SA 3.0 UNPORTED. Created by tobyplowy(aka toby109tt)
 
 -----------------------------------------------
 Licenses of sounds
@@ -75,7 +75,7 @@ for your intended use. For example, other rights such as publicity, privacy, or 
 rights may limit how you use the material.
 
 For more details:
-http://creativecommons.org/licenses/by-sa/3.0/
+https://creativecommons.org/licenses/by-sa/3.0/
 
 -----------------------
 
@@ -108,7 +108,7 @@ for your intended use. For example, other rights such as publicity, privacy, or 
 rights may limit how you use the material.
 
 For more details:
-http://creativecommons.org/licenses/by-sa/4.0/
+https://creativecommons.org/licenses/by-sa/4.0/
 
 -----------------------
 
@@ -142,7 +142,7 @@ for your intended use. For example, other rights such as publicity, privacy, or 
 rights may limit how you use the material.
 
 For more details:
-http://creativecommons.org/licenses/by-sa/2.0/
+https://creativecommons.org/licenses/by-sa/2.0/
 
 -----------------------
 
@@ -178,4 +178,4 @@ for your intended use. For example, other rights such as publicity, privacy, or 
 rights may limit how you use the material.
 
 For more details:
-http://creativecommons.org/licenses/by/3.0/
+https://creativecommons.org/licenses/by/3.0/

@@ -31,5 +31,5 @@ https://opensource.org/licenses/MIT
 
 Licenses of media
 -----------------
-carts_cart_moving.*.ogg - http://www.freesound.org/people/YleArkisto/sounds/253159/ - YleArkisto - CC- BY-3.0
-CC-BY-SA 3.0 UNPORTED. Created by tobyplowy(aka toby109tt)
+carts_cart_moving.*.ogg - http://www.freesound.org/people/YleArkisto/sounds/253159/ - YleArkisto - CC BY-SA 3.0
+CC BY-SA 3.0 UNPORTED. Created by tobyplowy(aka toby109tt)
