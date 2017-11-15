@@ -943,6 +943,52 @@ mobs:register_mob("mobs_m:swamp_lurker", {
 mobs:register_egg("mobs_m:swamp_lurker", "Swamp Lurker", "default_dirt.png", 1)
 mobs:register_spawn("mobs_m:swamp_lurker", {"default:dirt_with_swamp_grass",}, 5, 0, 7000, 20, 11000)
 
+mobs:register_mob("mobs_m:crabspider", {
+	type = "monster",
+	passive = false,
+	reach = 1,
+	damage = 1,
+	attack_type = "dogfight",
+	hp_min = 10,
+	hp_max = 20,
+	armor = 110,
+	collisionbox = {-0.35,0,-0.35, 0.35,0.8,0.35},
+	visual = "mesh",
+	mesh = "crabspider.b3d",
+	textures = {
+		{"mobs_crabspider.png"},
+	},
+	blood_texture = "mobs_blood.png",
+	makes_footstep_sound = true,
+	walk_velocity = 1.5,
+	run_velocity = 2,
+	jump = 1,
+	water_damage = 2,
+	lava_damage = 2,
+	light_damage = 0,
+	fall_damage = 1,
+	view_range = 17,
+	--drops = {
+	--	{name = "default:dirt", chance = 2, min = 1, max = 1},
+	--},
+	animation = {
+		normal_speed = 20,
+		run_speed = 25,
+		stand_start = 1,
+		stand_end = 13,
+		walk_start = 20,
+		walk_end = 40,
+		run_start = 20,
+		run_end = 40,
+		punch_start = 45,
+		punch_end = 65,
+	},
+})
+
+
+mobs:register_egg("mobs_m:crabspider", "Crab Spider", "default_obsidian.png", 1)
+mobs:register_spawn("mobs_m:crabspider", {"default:desert_sand", "default:silver_sand"}, 5, 0, 7000, 20, 11000)
+
 mobs:register_mob("mobs_m:beetle", {
 	type = "monster",
 	passive = false,
