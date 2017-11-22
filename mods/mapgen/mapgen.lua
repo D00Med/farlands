@@ -2418,30 +2418,7 @@ minetest.register_decoration({
 	height = 1,
 })
 
-	--purple allium
-	
-	
-minetest.register_decoration({
-	deco_type = "simple",
-	place_on = "mapgen:dirt_with_leafygrass",
-	sidelen = 16,
-	fill_ratio = 0.02,
-	biomes = {"coniferous_forest_tall",},
-	decoration = "mapgen:purple_allium",
-	height = 1,
-})
-
 --deciduous_forest2 stuff
-
-minetest.register_decoration({
-	deco_type = "simple",
-	place_on = "default:dirt_with_grass",
-	sidelen = 16,
-	fill_ratio = 0.05,
-	biomes = {"deciduous_forest2",},
-	decoration = "mapgen:lantana",
-	height = 1,
-})
 
 minetest.register_decoration({
 	deco_type = "simple",
@@ -2532,26 +2509,6 @@ minetest.register_decoration({
 	fill_ratio = 0.02,
 	biomes = {"rainforest",},
 	decoration = "mapgen:jungletree",
-	height = 1,
-})
-
-minetest.register_decoration({
-	deco_type = "simple",
-	place_on = "mapgen:dirt_with_junglegrass",
-	sidelen = 16,
-	fill_ratio = 0.02,
-	biomes = {"rainforest",},
-	decoration = "mapgen:flame_lily",
-	height = 1,
-})
-
-minetest.register_decoration({
-	deco_type = "simple",
-	place_on = "mapgen:dirt_with_swampgrass",
-	sidelen = 16,
-	fill_ratio = 0.02,
-	biomes = {"swamp",},
-	decoration = "mapgen:lavender_flower",
 	height = 1,
 })
 
@@ -2969,6 +2926,10 @@ end)
 --fruit
 if minetest.get_modpath("fruit") then
 fruit.register_ores()
+end
+
+if minetest.get_modpath("flowers_plus") then
+flowers_plus_decorations()
 end
 
 if minetest.get_mapgen_params().mgname == "v6" then
