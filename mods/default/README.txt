@@ -9,8 +9,6 @@ Various Minetest developers and contributors (LGPL 2.1)
 
 Authors of media (textures, models and sounds)
 ----------------------------------------------
-Everything not listed in here:
-celeron55, Perttu Ahola <celeron55@gmail.com> (CC BY-SA 3.0)
 
 toby109tt(aka tobyplowy)(CC BY-SA 3.0):
   default_jungletree.png
@@ -124,32 +122,11 @@ toby109tt(aka tobyplowy)(CC BY-SA 3.0):
   default_snowball.png
   default_ice.png
   heart.png
-
-Calinou (CC BY-SA 3.0):
-  default_papyrus.png
-
-MirceaKitsune (CC BY-SA 3.0):
-  character.x
-
-PilzAdam (CC BY-SA 3.0):
-  default_obsidian_glass.png
-  default_obsidian_shard.png
-  
-jojoa1997 (CC BY-SA 3.0):
-  default_obsidian.png
-
-BlockMen (CC BY-SA 3.0):
-  default_tool_mese_*.png
-  gui_*.png
-
-Gambit (CC BY-SA 3.0):
-  default_key.png
-  default_key_skeleton.png
-
-Pithydon (CC BY-SA 3.0)
-  default_coral_brown.png
-  default_coral_orange.png
-  default_coral_skeleton.png
+default_place_node_hard.1.ogg
+default_place_node_hard.2.ogg
+default_place_node_hard.3.ogg
+default_place_node_hard.4.ogg
+default_place_node_hard.5.ogg
 
 Ferk (CC0 1.0)
   default_item_smoke.png
@@ -184,10 +161,6 @@ Mito551 (sounds) (CC BY-SA 3.0):
   default_place_node.1.ogg
   default_place_node.2.ogg
   default_place_node.3.ogg
-  default_place_node_hard.1.ogg
-  default_place_node_hard.2.ogg
-  default_snow_footstep.1.ogg
-  default_snow_footstep.2.ogg
   default_hard_footstep.1.ogg
   default_hard_footstep.2.ogg
   default_hard_footstep.3.ogg

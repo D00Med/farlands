@@ -1246,6 +1246,25 @@ minetest.register_node("decoblocks:polar_bear_rug", {
 	sounds = default.node_sound_stone_defaults(),
 })
 
+minetest.register_node("decoblocks:rusty_steel_plating", {
+	description = "Rusty Plating",
+	tiles = {"decoblocks_rusty_steel_plating.png"},
+	groups = {cracky = 1, level = 2},
+	sounds = default.node_sound_metal_defaults(),
+})
+
+minetest.register_node("decoblocks:broken_glass", {
+	description = "Broken Glass",
+	drawtype = "glasslike_framed_optional",
+	tiles = {"decoblocks_broken_glass.png", "decoblocks_broken_glass_detail.png"},
+	paramtype = "light",
+	sunlight_propagates = true,
+	is_ground_content = false,
+	groups = {cracky = 3, oddly_breakable_by_hand = 3},
+	sounds = default.node_sound_glass_defaults(),
+})
+
+
 --stained glass
 
 local colours = {
