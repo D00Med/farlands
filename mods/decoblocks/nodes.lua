@@ -1246,7 +1246,6 @@ minetest.register_node("decoblocks:polar_bear_rug", {
 	sounds = default.node_sound_stone_defaults(),
 })
 
-<<<<<<< HEAD
 minetest.register_node("decoblocks:rusty_steel_plating", {
 	description = "Rusty Plating",
 	tiles = {"decoblocks_rusty_steel_plating.png"},
@@ -1265,8 +1264,6 @@ minetest.register_node("decoblocks:broken_glass", {
 	sounds = default.node_sound_glass_defaults(),
 })
 
-
-=======
 minetest.register_node("decoblocks:plank_walkway", {
 	description = "Wood Plank Walkway",
 	tiles = {
@@ -1290,7 +1287,6 @@ minetest.register_node("decoblocks:plank_walkway", {
 	groups = {choppy=1,}
 })
 
->>>>>>> origin/1.1
 --stained glass
 
 local colours = {
