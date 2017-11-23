@@ -1246,6 +1246,7 @@ minetest.register_node("decoblocks:polar_bear_rug", {
 	sounds = default.node_sound_stone_defaults(),
 })
 
+<<<<<<< HEAD
 minetest.register_node("decoblocks:rusty_steel_plating", {
 	description = "Rusty Plating",
 	tiles = {"decoblocks_rusty_steel_plating.png"},
@@ -1265,6 +1266,31 @@ minetest.register_node("decoblocks:broken_glass", {
 })
 
 
+=======
+minetest.register_node("decoblocks:plank_walkway", {
+	description = "Wood Plank Walkway",
+	tiles = {
+		"decoblocks_wood_planks.png",
+		"decoblocks_wood_planks.png",
+		"default_wood.png",
+	},
+	drawtype = "nodebox",
+	paramtype = "light",
+	paramtype2 = "facedir",
+	node_box = {
+		type = "fixed",
+		fixed = {
+			{-0.5, 0.4375, -0.5, -0.3125, 0.5, 0.5}, -- NodeBox1
+			{-0.25, 0.4375, -0.4375, -0.0625, 0.5, 0.5}, -- NodeBox2
+			{0, 0.4375, -0.5, 0.1875, 0.5, 0.5}, -- NodeBox3
+			{0.25, 0.4375, -0.375, 0.4375, 0.5, 0.5}, -- NodeBox4
+		}
+	},
+	sounds = default.node_sound_wood_defaults(),
+	groups = {choppy=1,}
+})
+
+>>>>>>> origin/1.1
 --stained glass
 
 local colours = {
@@ -1288,6 +1314,14 @@ local colours = {
 for _, row in ipairs(colours) do
 local colour = row[1]
 local desc = row[2]
+minetest.register_node("decoblocks:"..colour.."_glass", {
+	description = ""..desc.." Stained Glass",
+	drawtype = "glasslike",
+	tiles = {"decoblocks_"..colour.."_glass.png"},
+	use_texture_alpha = true,
+	sounds = default.node_sound_glass_defaults(),
+	groups = {cracky=1, oddly_breakable_by_hand=3, snappy=2}
+})
 xpanes.register_pane(""..colour.."_glass", {
 	description = ""..desc.." Stained Glass Pane",
 	textures = {"decoblocks_"..colour.."_glass.png","decoblocks_"..colour.."_glass.png","decoblocks_"..colour.."_glass.png"},
