@@ -148,6 +148,52 @@ minetest.register_node("stm_nodes:hopper", {
 	end
 })
 
+minetest.register_node("stm_nodes:chimney_cap", {
+	description = "Tin Chimney Cap",
+	tiles = {
+		"stm_nodes_chimney_cap.png",
+		"stm_nodes_chimney_top.png",
+		"stm_nodes_chimney_cap_side.png",
+	},
+	drawtype = "nodebox",
+	paramtype = "light",
+	node_box = {
+		type = "fixed",
+		fixed = {
+			{-0.3125, -0.125, -0.3125, 0.3125, 0, 0.3125}, -- NodeBox0
+			{-0.25, 0, -0.25, 0.25, 0.125, 0.25}, -- NodeBox1
+			{-0.0625, 0.1875, -0.0625, 0.0625, 0.5, 0.0625}, -- NodeBox2
+			{-0.1875, 0.125, -0.1875, 0.1875, 0.25, 0.1875}, -- NodeBox3
+			{-0.125, 0.25, -0.125, 0.125, 0.375, 0.125}, -- NodeBox4
+		}
+	},
+	sounds = default.node_sound_metal_defaults(),
+	groups = {cracky=1}
+})
+
+minetest.register_node("stm_nodes:chimney_cap2", {
+	description = "Copper Chimney Cap",
+	tiles = {
+		"stm_nodes_chimney_cap2.png",
+		"stm_nodes_chimney_top2.png",
+		"stm_nodes_chimney_cap_side2.png",
+	},
+	drawtype = "nodebox",
+	paramtype = "light",
+	node_box = {
+		type = "fixed",
+		fixed = {
+			{-0.3125, -0.125, -0.3125, 0.3125, 0, 0.3125}, -- NodeBox0
+			{-0.25, 0, -0.25, 0.25, 0.125, 0.25}, -- NodeBox1
+			{-0.0625, 0.1875, -0.0625, 0.0625, 0.5, 0.0625}, -- NodeBox2
+			{-0.1875, 0.125, -0.1875, 0.1875, 0.25, 0.1875}, -- NodeBox3
+			{-0.125, 0.25, -0.125, 0.125, 0.375, 0.125}, -- NodeBox4
+		}
+	},
+	sounds = default.node_sound_metal_defaults(),
+	groups = {cracky=1}
+})
+
 
 minetest.register_node("stm_nodes:chimney", {
 	description = "Tin Chimney",
@@ -223,6 +269,74 @@ minetest.register_abm({
 			})
 		end
 	end
+})
+
+minetest.register_node("stm_nodes:tin_roof", {
+	description = "Corrugated Tin Roof",
+	tiles = {
+		"stm_nodes_corrugated_tin.png",
+		"stm_nodes_corrugated_tin.png",
+		"stm_nodes_tin.png",
+	},
+	drawtype = "nodebox",
+	paramtype = "light",
+	paramtype2 = "facedir",
+	node_box = {
+		type = "fixed",
+		fixed = {
+			{-0.5, -0.5, -0.5, -0.375, -0.4375, 0.5}, -- NodeBox6
+			{-0.375, -0.4375, -0.5, -0.25, -0.375, 0.5}, -- NodeBox7
+			{-0.375, -0.4375, -0.5, -0.25, -0.375, 0.5}, -- NodeBox8
+			{-0.25, -0.5, -0.5, -0.125, -0.4375, 0.5}, -- NodeBox9
+			{-0.125, -0.4375, -0.5, 0, -0.375, 0.5}, -- NodeBox10
+			{0, -0.5, -0.5, 0.125, -0.4375, 0.5}, -- NodeBox11
+			{0.125, -0.4375, -0.5, 0.25, -0.375, 0.5}, -- NodeBox12
+			{0.25, -0.5, -0.5, 0.375, -0.4375, 0.5}, -- NodeBox13
+			{0.375, -0.4375, -0.5, 0.5, -0.375, 0.5}, -- NodeBox14
+		}
+	},
+	sounds = default.node_sound_metal_defaults(),
+	groups = {cracky=1},
+	on_place = minetest.rotate_node
+})
+
+minetest.register_node("stm_nodes:porthole", {
+	description = "Porthole",
+	tiles = {
+		"stm_nodes_block.png",
+		"stm_nodes_block.png",
+		"stm_nodes_block.png",
+		"stm_nodes_block.png",
+		"stm_nodes_porthole.png",
+		"stm_nodes_porthole.png"
+	},
+	drawtype = "nodebox",
+	paramtype = "light",
+	paramtype2 = "facedir",
+	node_box = {
+		type = "fixed",
+		fixed = {
+			{0.1875, -0.3125, 0.3125, 0.3125, 0.3125, 0.5}, -- NodeBox1
+			{-0.3125, -0.3125, 0.3125, -0.1875, 0.3125, 0.5}, -- NodeBox2
+			{-0.3125, 0.1875, 0.3125, 0.3125, 0.3125, 0.5}, -- NodeBox3
+			{-0.3125, -0.3125, 0.3125, 0.3125, -0.1875, 0.5}, -- NodeBox4
+			{-0.25, 0.3125, 0.3125, 0.25, 0.375, 0.5}, -- NodeBox5
+			{0.3125, -0.25, 0.3125, 0.375, 0.25, 0.5}, -- NodeBox6
+			{-0.375, -0.25, 0.3125, -0.3125, 0.25, 0.5}, -- NodeBox7
+			{-0.25, -0.375, 0.3125, 0.25, -0.3125, 0.5}, -- NodeBox8
+			{-0.1875, 0.125, 0.3125, -0.125, 0.1875, 0.5}, -- NodeBox9
+			{0.125, 0.125, 0.3125, 0.1875, 0.1875, 0.5}, -- NodeBox10
+			{-0.1875, -0.1875, 0.3125, -0.125, -0.125, 0.5}, -- NodeBox11
+			{0.125, -0.1875, 0.3125, 0.1875, -0.125, 0.5}, -- NodeBox12
+			{-0.5, -0.5, 0.5, -0.1875, 0.5, 0.5}, -- NodeBox14
+			{-0.5, 0.25, 0.5, 0.5, 0.5, 0.5}, -- NodeBox15
+			{0.25, -0.5, 0.5, 0.5, 0.5, 0.5}, -- NodeBox16
+			{-0.5, -0.5, 0.5, 0.5, -0.25, 0.5}, -- NodeBox17
+			{-0.1875, -0.1875, 0.375, 0.1875, 0.1875, 0.375}, -- NodeBox18
+		}
+	},
+	sounds = default.node_sound_metal_defaults,
+	groups = {cracky=1, snappy=1}
 })
 
 minetest.register_node("stm_nodes:tank", {

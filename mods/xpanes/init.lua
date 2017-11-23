@@ -126,6 +126,7 @@ function xpanes.register_pane(name, def)
 		sunlight_propagates = true,
 		description = def.description,
 		tiles = {def.textures[3], def.textures[3], def.textures[1]},
+		use_texture_alpha = true,
 		groups = groups,
 		drop = "xpanes:" .. name .. "_flat",
 		sounds = def.sounds,
