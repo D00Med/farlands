@@ -6,7 +6,7 @@ local paintings = {
 	{"small", "Small Painting (test)", "1X1"},
 	{"medium", "Medium Painting (test)", "1X2"},
 	{"large", "Large Painting (test)", "2X2"},
-	{"large", "monalisa (monalisa)", "2X2"},
+	{"monalisa", "Mona Lisa", "2X2"},
 }
 
 local small = {-0.5, -0.5, 0.4375, 0.5, 0.5, 0.5}
@@ -29,28 +29,6 @@ for _, row in ipairs(paintings) do
 	mesh = size..".obj",
 	tiles = {
 		"paintings_"..name..".png",
-	},
-	visual_scale = 0.5,
-	wield_scale = {x=0.5, y=0.5, z=0.5},
-	paramtype = "light",
-	paramtype2 = "facedir",
-	groups = {choppy=1},
-	selection_box = {
-		type = "fixed",
-		fixed = box
-	},
-	collision_box = {
-		type = "fixed",
-		fixed = box
-	},
-	sounds = default.node_sound_wood_defaults()
-})
-	minetest.register_node("paintings:monalisa", {
-	description = monalisa,
-	drawtype = "mesh",
-	mesh = "2X2.obj",
-	tiles = {
-		"paintings_monalisa.png",
 	},
 	visual_scale = 0.5,
 	wield_scale = {x=0.5, y=0.5, z=0.5},
