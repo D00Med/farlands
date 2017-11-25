@@ -7,7 +7,7 @@ local paintings = {
 	{"dragon", "Dragon Painting", "2X1"},
 	{"landscape", "Landscape Painting", "1X2"},
 	{"forest", "Forest Painting", "1X2"},
-	{"waterlilie", "Water Lilie Painting", "1X1"},
+	{"waterlilie", "Water Lily Painting", "1X1"},
 	{"cthulhu", "Cthulhu Painting", "2X2"},
 }
 
