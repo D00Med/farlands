@@ -1,16 +1,18 @@
 
 --texture format: paintings_[name].png, must be the same as the node name (NOT the description)
---sizes are: 1X1, 1X2, 2X2
+--sizes are: 1X1, 1X2 (wide), 2X1 (tall), 2X2
 local paintings = {
 	--{"name/texture", "description", "size"}
-	{"small", "Small Painting (test)", "1X1"},
-	{"medium", "Medium Painting (test)", "1X2"},
-	{"large", "Large Painting (test)", "2X2"},
 	{"monalisa", "Mona Lisa", "2X2"},
+	{"hummingbird", "Hummingbird Painting", "2X2"},
+	{"dragon", "Dragon Painting", "2X1"},
+	{"landscape", "Landscape Painting", "1X2"},
+	{"forest", "Forest Painting", "1X2"},
 }
 
 local small = {-0.5, -0.5, 0.4375, 0.5, 0.5, 0.5}
 local medium = {-1.5, -0.5, 0.4375, 0.5, 0.5, 0.5}
+local tall = {-0.5, -0.5, 0.4375, 0.5, 1.5, 0.5}
 local large = {-0.5, -0.5, 0.4375, 1.5, 1.5, 0.5}
 
 for _, row in ipairs(paintings) do
@@ -22,6 +24,8 @@ for _, row in ipairs(paintings) do
 	box = medium
 	elseif size == "2X2" then
 	box = large
+	elseif size == "2X1" then
+	box = tall
 	end
 	minetest.register_node("paintings:"..name, {
 	description = description,
