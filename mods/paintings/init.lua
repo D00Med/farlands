@@ -3,11 +3,12 @@
 --sizes are: 1X1, 1X2 (wide), 2X1 (tall), 2X2
 local paintings = {
 	--{"name/texture", "description", "size"}
-	{"monalisa", "Mona Lisa", "2X2"},
 	{"hummingbird", "Hummingbird Painting", "2X2"},
 	{"dragon", "Dragon Painting", "2X1"},
 	{"landscape", "Landscape Painting", "1X2"},
 	{"forest", "Forest Painting", "1X2"},
+	{"waterlilie", "Water Lilie Painting", "1X1"},
+	{"cthulhu", "Cthulhu Painting", "2X2"},
 }
 
 local small = {-0.5, -0.5, 0.4375, 0.5, 0.5, 0.5}
