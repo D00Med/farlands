@@ -1,0 +1,4 @@
+default
+doors
+stairs
+dungeon_loot
