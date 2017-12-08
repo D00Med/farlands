@@ -9,6 +9,7 @@ local paintings = {
 	{"forest", "Forest Painting", "1X2"},
 	{"waterlilie", "Water Lily Painting", "1X1"},
 	{"cthulhu", "Cthulhu Painting", "2X2"},
+	{"mistiriusgirl", "Mistirius Girl Painting", "1X2"},
 }
 
 local small = {-0.5, -0.5, 0.4375, 0.5, 0.5, 0.5}
