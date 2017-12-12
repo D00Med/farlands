@@ -21,6 +21,7 @@ for _, row in ipairs(paintings) do
 	local name = row[1]
 	local description = row[2]
 	local size = row[3]
+	local artist = row[4]
 	local box = small
 	if size == "1X2" then
 	box = medium
@@ -47,8 +48,30 @@ for _, row in ipairs(paintings) do
 	},
 	collision_box = {
 		type = "fixed",
-		fixed = box
+		fixed = {0,0,0,0,0,0}
 	},
+	on_construct = function(pos)
+	local meta = minetest.get_meta(pos)
+		meta:set_string("infotext", "Artist: "..artist)
+	end,
 	sounds = default.node_sound_wood_defaults()
 })
 end
+--[[
+minetest.register_node("paintings:easel", {
+	description = "Easel",
+	tiles = {"default_wood.png"},
+	paramtype = "light",
+	paramtype2 = "facedir",
+	groups = {choppy=1},
+	on_construct = function(pos)
+	local meta = minetest.get_meta(pos)
+		meta:set_string("infotext", "Painting Easel")
+		meta:set_string("formspec", easel_formspec)
+	end,
+	on_righclick = function(pos, node, clicker, itemstack)
+		
+	end,
+	sounds = default.node_sound_wood_defaults()
+})
+]]
