@@ -1,4 +1,5 @@
-
+--cables & pipes
+dofile(minetest.get_modpath("stm_nodes").."/power.lua")
 
 minetest.register_node("stm_nodes:cannon_stand", {
 	description = "Cannon Stand",
@@ -103,7 +104,7 @@ minetest.register_node("stm_nodes:reactor_active", {
 	paramtype = "light",
 	light_source = 10,
 	drop = "stm_nodes:reactor",
-	groups = {cracky = 1, electric = 1},
+	groups = {cracky = 1, electric = 1, power_source = 1},
 	sounds = default.node_sound_metal_defaults(),
 })
 
@@ -473,47 +474,6 @@ minetest.register_node("stm_nodes:stand2", {
 	sounds = default.node_sound_metal_defaults()
 })
 
-minetest.register_node("stm_nodes:pipe", {
-	description = "Pipe",
-	tiles = {
-		"stm_nodes_pipe_top.png",
-		"stm_nodes_pipe_top.png",
-		"stm_nodes_pipe.png",
-	},
-	paramtype2 = "facedir",
-	groups = {cracky = 1, ventilation = 1,},
-	on_place = minetest.rotate_node,
-	sounds = default.node_sound_metal_defaults()
-})
-
-minetest.register_node("stm_nodes:pipe_active", {
-	tiles = {
-		"stm_nodes_pipe_top.png",
-		"stm_nodes_pipe_top.png",
-		"stm_nodes_pipe.png",
-	},
-	paramtype2 = "facedir",
-	drop = "stm_nodes:pipe",
-	groups = {cracky=1, ventilation=1, pressure=1},
-	on_place = minetest.rotate_node,
-	sounds = default.node_sound_metal_defaults()
-})
-
-minetest.register_abm({
-	nodenames = {"stm_nodes:pipe"},
-	interval = 1,
-	chance = 1,
-	action = function(pos, node)
-		local steam_source = minetest.find_node_near(pos, 1, {
-			"default:furnace_active2",
-			"stm_nodes:reactor_active"
-		})
-		if steam_source then
-			minetest.set_node(pos, {name="stm_nodes:pipe_active", param2=node.param2})
-		end
-	end
-})
-
 minetest.register_abm({
 	nodenames = {"stm_nodes:boiler_output"},
 	interval = 1,
@@ -564,17 +524,6 @@ minetest.register_abm({
 		return 
 		end
 		steam_input = nextpos
-		end
-	end
-})
-
-minetest.register_abm({
-	nodenames = {"stm_nodes:pipe_active"},
-	interval = 5,
-	chance = 1,
-	action = function(pos, node)
-		if not minetest.find_node_near(pos, 1, {"stm_nodes:pipe_active"}) then
-		minetest.set_node(pos, {name = "stm_nodes:pipe", param2 = node.param2})
 		end
 	end
 })
