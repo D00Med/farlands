@@ -2116,7 +2116,7 @@ minetest.register_node("mapgen:big_mushroom_stem", {
 })
 
 minetest.register_node("mapgen:big_mushroom_red", {
-	description = "Big Mushroom Red",
+	description = "Big Red Mushroom",
 	tiles = {
 		"mapgen_big_mushroom_red.png",
 		"mapgen_big_mushroom_bottom.png",
@@ -2127,7 +2127,7 @@ minetest.register_node("mapgen:big_mushroom_red", {
 })
 
 minetest.register_node("mapgen:big_mushroom_brown", {
-	description = "Big Mushroom Brown",
+	description = "Big Brown Mushroom",
 	tiles = {
 		"mapgen_big_mushroom_brown.png",
 		"mapgen_big_mushroom_bottom.png",
