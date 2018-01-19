@@ -26,7 +26,7 @@ License for Textures, Models and Sounds
 CC-BY-SA 3.0 UNPORTED. Created by tobyplowy(aka toby109tt) and D00Med
 
 
-Based of Minetest game (license below)
+Based on Minetest game (license below)
 License of source code
 ----------------------
 Copyright (C) 2010-2012 celeron55, Perttu Ahola <celeron55@gmail.com>
