@@ -844,11 +844,11 @@ minetest.register_node("decoblocks:altar", {
 	paramtype2 = "facedir",
 	selection_box = {
 		type = "fixed",
-		fixed = {-0.3, -0.5, -0.3, 0.3, 0.5, 0.3}
+		fixed = {-0.31, -0.5, -0.33, 0.31, 0.6, 0.31}
 	},
 	collision_box = {
 		type = "fixed",
-		fixed = {-0.3, -0.5, -0.3, 0.3, -0.3, 0.3}
+		fixed = {-0.3, -0.5, -0.3, 0.3, 0.7, 0.3}
 	},
 	groups = {choppy = 1, oddly_breakable_by_hand = 1},
 	sounds = default.node_sound_wood_defaults()
