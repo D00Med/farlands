@@ -370,7 +370,7 @@ default.register_fence("mapgen:fence_yellow_ipe", {
 minetest.register_node("mapgen:coarse_dirt", {
 	description = "Coarse Dirt",
 	tiles = {"mapgen_coarse_dirt.png"},
-	groups = {crumbly = 3, dig_immediate=3},
+	groups = {crumbly = 3,},
 	sounds = default.node_sound_dirt_defaults()
 })
 
