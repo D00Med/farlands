@@ -399,7 +399,7 @@ minetest.register_node("mapgen:creeper", {
 		"mapgen_creeper.png",
 		"mapgen_creeper.png"
 	},
-	groups = {snappy=3, flammable=1, attatched_node=1, flora=1},
+	groups = {snappy=3, flammable=1, attached_node=1, flora=1},
 	sounds = default.node_sound_leaves_defaults(),
 	is_ground_content=true,
 	buildable_to = true, 
@@ -419,7 +419,7 @@ minetest.register_node("mapgen:cavefern1", {
 	tiles = {
 		"mapgen_cavefern.png",
 	},
-	groups = {snappy=3, flammable=1, attatched_node=1, flora=1},
+	groups = {snappy=3, flammable=1, attached_node=1, flora=1},
 	sounds = default.node_sound_leaves_defaults(),
 	is_ground_content=true,
 	buildable_to = true, 
@@ -439,7 +439,7 @@ minetest.register_node("mapgen:cavefern2", {
 	tiles = {
 		"mapgen_cavefern2.png",
 	},
-	groups = {snappy=3, flammable=1, attatched_node=1, flora=1},
+	groups = {snappy=3, flammable=1, attached_node=1, flora=1},
 	sounds = default.node_sound_leaves_defaults(),
 	is_ground_content=true,
 	buildable_to = true, 
@@ -587,7 +587,7 @@ minetest.register_node("mapgen:tallgrass", {
 	inventory_image = "mapgen_longgrass.png",
 	visual_scale = 2,
 	wield_scale = {x=0.5, y=0.5, z=0.5},
-	groups = {snappy=3, flammable=1, attatched_node=1, flora=1},
+	groups = {snappy=3, flammable=1, attached_node=1, flora=1},
 	sounds = default.node_sound_leaves_defaults(),
 	selection_box = {
 		type = "fixed",
@@ -607,7 +607,7 @@ minetest.register_node("mapgen:giantgrass", {
 	inventory_image = "mapgen_giantgrass.png",
 	visual_scale = 4,
 	wield_scale = {x=0.5, y=0.5, z=0.5},
-	groups = {snappy=3, flammable=1, attatched_node=1, flora=1},
+	groups = {snappy=3, flammable=1, attached_node=1, flora=1},
 	sounds = default.node_sound_leaves_defaults(),
 	selection_box = {
 		type = "fixed",
@@ -628,7 +628,7 @@ minetest.register_node("mapgen:bananaplant", {
 	inventory_image = "mapgen_banana_plant.png",
 	visual_scale = 2,
 	wield_scale = {x=0.5, y=0.5, z=0.5},
-	groups = {snappy=3, flammable=1, attatched_node=1, flora=1},
+	groups = {snappy=3, flammable=1, attached_node=1, flora=1},
 	sounds = default.node_sound_leaves_defaults(),
 	selection_box = {
 		type = "fixed",
@@ -648,7 +648,7 @@ minetest.register_node("mapgen:jungletree", {
 	inventory_image = "mapgen_jungletree.png",
 	visual_scale = 2,
 	wield_scale = {x=0.5, y=0.5, z=0.5},
-	groups = {snappy=3, flammable=1, attatched_node=1, flora=1},
+	groups = {snappy=3, flammable=1, attached_node=1, flora=1},
 	sounds = default.node_sound_leaves_defaults(),
 	selection_box = {
 		type = "fixed",
@@ -835,7 +835,7 @@ minetest.register_node("mapgen:jungle_grass_1", {
 	sunlight_propagates = true,
 	drop = "mapgen:jungle_grass_5",
 	inventory_image = "mapgen_jungle_grass_1.png",
-	groups = {snappy=3, flammable=1, attatched_node=1, flora=1, not_in_creative_inventory=1},
+	groups = {snappy=3, flammable=1, attached_node=1, flora=1, not_in_creative_inventory=1},
 	sounds = default.node_sound_leaves_defaults(),
 	selection_box = {
 		type = "fixed",
@@ -854,7 +854,7 @@ minetest.register_node("mapgen:jungle_grass_2", {
 	sunlight_propagates = true,
 	drop = "mapgen:jungle_grass_5",
 	inventory_image = "mapgen_jungle_grass_2.png",
-	groups = {snappy=3, flammable=1, attatched_node=1, flora=1, not_in_creative_inventory=1},
+	groups = {snappy=3, flammable=1, attached_node=1, flora=1, not_in_creative_inventory=1},
 	sounds = default.node_sound_leaves_defaults(),
 	selection_box = {
 		type = "fixed",
@@ -873,7 +873,7 @@ minetest.register_node("mapgen:jungle_grass_3", {
 	sunlight_propagates = true,
 	drop = "mapgen:jungle_grass_5",
 	inventory_image = "mapgen_jungle_grass_3.png",
-	groups = {snappy=3, flammable=1, attatched_node=1, flora=1, not_in_creative_inventory=1},
+	groups = {snappy=3, flammable=1, attached_node=1, flora=1, not_in_creative_inventory=1},
 	sounds = default.node_sound_leaves_defaults(),
 	selection_box = {
 		type = "fixed",
@@ -892,7 +892,7 @@ minetest.register_node("mapgen:jungle_grass_4", {
 	sunlight_propagates = true,
 	drop = "mapgen:jungle_grass_5",
 	inventory_image = "mapgen_jungle_grass_4.png",
-	groups = {snappy=3, flammable=1, attatched_node=1, flora=1, not_in_creative_inventory=1},
+	groups = {snappy=3, flammable=1, attached_node=1, flora=1, not_in_creative_inventory=1},
 	sounds = default.node_sound_leaves_defaults(),
 	selection_box = {
 		type = "fixed",
@@ -911,7 +911,7 @@ minetest.register_node("mapgen:jungle_grass_5", {
 	sunlight_propagates = true,
 	drop = "mapgen:jungle_grass_5",
 	inventory_image = "mapgen_jungle_grass_5.png",
-	groups = {snappy=3, flammable=1, attatched_node=1, flora=1},
+	groups = {snappy=3, flammable=1, attached_node=1, flora=1},
 	sounds = default.node_sound_leaves_defaults(),
 	selection_box = {
 		type = "fixed",
@@ -934,7 +934,7 @@ minetest.register_node("mapgen:snow_grass_1", {
 	sunlight_propagates = true,
 	drop = "mapgen:snow_grass_5",
 	inventory_image = "mapgen_snow_grass_1.png",
-	groups = {snappy=3, flammable=1, attatched_node=1, flora=1, not_in_creative_inventory=1},
+	groups = {snappy=3, flammable=1, attached_node=1, flora=1, not_in_creative_inventory=1},
 	sounds = default.node_sound_leaves_defaults(),
 	selection_box = {
 		type = "fixed",
@@ -953,7 +953,7 @@ minetest.register_node("mapgen:snow_grass_2", {
 	sunlight_propagates = true,
 	drop = "mapgen:snow_grass_5",
 	inventory_image = "mapgen_snow_grass_2.png",
-	groups = {snappy=3, flammable=1, attatched_node=1, flora=1, not_in_creative_inventory=1},
+	groups = {snappy=3, flammable=1, attached_node=1, flora=1, not_in_creative_inventory=1},
 	sounds = default.node_sound_leaves_defaults(),
 	selection_box = {
 		type = "fixed",
@@ -972,7 +972,7 @@ minetest.register_node("mapgen:snow_grass_3", {
 	sunlight_propagates = true,
 	drop = "mapgen:snow_grass_5",
 	inventory_image = "mapgen_snow_grass_3.png",
-	groups = {snappy=3, flammable=1, attatched_node=1, flora=1, not_in_creative_inventory=1},
+	groups = {snappy=3, flammable=1, attached_node=1, flora=1, not_in_creative_inventory=1},
 	sounds = default.node_sound_leaves_defaults(),
 	selection_box = {
 		type = "fixed",
@@ -991,7 +991,7 @@ minetest.register_node("mapgen:snow_grass_4", {
 	sunlight_propagates = true,
 	drop = "mapgen:snow_grass_5",
 	inventory_image = "mapgen_snow_grass_4.png",
-	groups = {snappy=3, flammable=1, attatched_node=1, flora=1, not_in_creative_inventory=1},
+	groups = {snappy=3, flammable=1, attached_node=1, flora=1, not_in_creative_inventory=1},
 	sounds = default.node_sound_leaves_defaults(),
 	selection_box = {
 		type = "fixed",
@@ -1010,7 +1010,7 @@ minetest.register_node("mapgen:snow_grass_5", {
 	sunlight_propagates = true,
 	drop = "mapgen:snow_grass_5",
 	inventory_image = "mapgen_snow_grass_5.png",
-	groups = {snappy=3, flammable=1, attatched_node=1, flora=1},
+	groups = {snappy=3, flammable=1, attached_node=1, flora=1},
 	sounds = default.node_sound_leaves_defaults(),
 	selection_box = {
 		type = "fixed",
@@ -1029,7 +1029,7 @@ minetest.register_node("mapgen:swamp_grass_1", {
 	sunlight_propagates = true,
 	drop = "mapgen:swamp_grass_5",
 	inventory_image = "mapgen_swamp_grass_1.png",
-	groups = {snappy=3, flammable=1, attatched_node=1, flora=1, not_in_creative_inventory=1},
+	groups = {snappy=3, flammable=1, attached_node=1, flora=1, not_in_creative_inventory=1},
 	sounds = default.node_sound_leaves_defaults(),
 	selection_box = {
 		type = "fixed",
@@ -1048,7 +1048,7 @@ minetest.register_node("mapgen:swamp_grass_2", {
 	sunlight_propagates = true,
 	drop = "mapgen:swamp_grass_5",
 	inventory_image = "mapgen_swamp_grass_2.png",
-	groups = {snappy=3, flammable=1, attatched_node=1, flora=1, not_in_creative_inventory=1},
+	groups = {snappy=3, flammable=1, attached_node=1, flora=1, not_in_creative_inventory=1},
 	sounds = default.node_sound_leaves_defaults(),
 	selection_box = {
 		type = "fixed",
@@ -1067,7 +1067,7 @@ minetest.register_node("mapgen:swamp_grass_3", {
 	sunlight_propagates = true,
 	drop = "mapgen:swamp_grass_5",
 	inventory_image = "mapgen_swamp_grass_3.png",
-	groups = {snappy=3, flammable=1, attatched_node=1, flora=1, not_in_creative_inventory=1},
+	groups = {snappy=3, flammable=1, attached_node=1, flora=1, not_in_creative_inventory=1},
 	sounds = default.node_sound_leaves_defaults(),
 	selection_box = {
 		type = "fixed",
@@ -1086,7 +1086,7 @@ minetest.register_node("mapgen:swamp_grass_4", {
 	sunlight_propagates = true,
 	drop = "mapgen:swamp_grass_5",
 	inventory_image = "mapgen_swamp_grass_4.png",
-	groups = {snappy=3, flammable=1, attatched_node=1, flora=1, not_in_creative_inventory=1},
+	groups = {snappy=3, flammable=1, attached_node=1, flora=1, not_in_creative_inventory=1},
 	sounds = default.node_sound_leaves_defaults(),
 	selection_box = {
 		type = "fixed",
@@ -1105,7 +1105,7 @@ minetest.register_node("mapgen:swamp_grass_5", {
 	sunlight_propagates = true,
 	drop = "mapgen:swamp_grass_5",
 	inventory_image = "mapgen_swamp_grass_5.png",
-	groups = {snappy=3, flammable=1, attatched_node=1, flora=1},
+	groups = {snappy=3, flammable=1, attached_node=1, flora=1},
 	sounds = default.node_sound_leaves_defaults(),
 	selection_box = {
 		type = "fixed",
@@ -1167,7 +1167,7 @@ minetest.register_node("mapgen:aloe_vera", {
 	buildable_to = true, 
 	sunlight_propagates = true,
 	inventory_image = "mapgen_aloe_vera.png",
-	groups = {snappy=3, flammable=1, attatched_node=1, flora=1},
+	groups = {snappy=3, flammable=1, attached_node=1, flora=1},
 	sounds = default.node_sound_leaves_defaults(),
 	selection_box = {
 		type = "fixed",
@@ -1187,7 +1187,7 @@ minetest.register_node("mapgen:cattail", {
 	inventory_image = "mapgen_cattail.png",
 	visual_scale = 2,
 	wield_scale = {x=0.5, y=0.5, z=0.5},
-	groups = {snappy=3, flammable=1, attatched_node=1, flora=1},
+	groups = {snappy=3, flammable=1, attached_node=1, flora=1},
 	sounds = default.node_sound_leaves_defaults(),
 	selection_box = {
 		type = "fixed",
@@ -1205,7 +1205,7 @@ minetest.register_node("mapgen:small_cactus", {
 	buildable_to = true, 
 	sunlight_propagates = true,
 	inventory_image = "mapgen_small_cactus.png",
-	groups = {snappy=3, flammable=1, attatched_node=1, flora=1},
+	groups = {snappy=3, flammable=1, attached_node=1, flora=1},
 	sounds = default.node_sound_leaves_defaults(),
 	selection_box = {
 		type = "fixed",
@@ -1223,7 +1223,7 @@ minetest.register_node("mapgen:small_cactus_1", {
 	buildable_to = true, 
 	sunlight_propagates = true,
 	inventory_image = "mapgen_small_cactus_1.png",
-	groups = {snappy=3, flammable=1, attatched_node=1, flora=1},
+	groups = {snappy=3, flammable=1, attached_node=1, flora=1},
 	sounds = default.node_sound_leaves_defaults(),
 	selection_box = {
 		type = "fixed",
@@ -1241,7 +1241,7 @@ minetest.register_node("mapgen:wild_oat", {
 	buildable_to = true, 
 	sunlight_propagates = true,
 	inventory_image = "mapgen_wild_oat.png",
-	groups = {snappy=3, flammable=1, attatched_node=1, flora=1},
+	groups = {snappy=3, flammable=1, attached_node=1, flora=1},
 	sounds = default.node_sound_leaves_defaults(),
 	selection_box = {
 		type = "fixed",
@@ -1259,7 +1259,7 @@ minetest.register_node("mapgen:wild_oat_dry", {
 	buildable_to = true, 
 	sunlight_propagates = true,
 	inventory_image = "mapgen_wild_oat_dry.png",
-	groups = {snappy=3, flammable=1, attatched_node=1, flora=1},
+	groups = {snappy=3, flammable=1, attached_node=1, flora=1},
 	sounds = default.node_sound_leaves_defaults(),
 	selection_box = {
 		type = "fixed",
@@ -1277,7 +1277,7 @@ minetest.register_node("mapgen:dead_grass_1", {
 	buildable_to = true, 
 	sunlight_propagates = true,
 	inventory_image = "mapgen_dead_grass_1.png",
-	groups = {snappy=3, flammable=1, attatched_node=1, flora=1, not_in_creative_inventory=1},
+	groups = {snappy=3, flammable=1, attached_node=1, flora=1, not_in_creative_inventory=1},
 	sounds = default.node_sound_leaves_defaults(),
 	selection_box = {
 		type = "fixed",
@@ -1296,7 +1296,7 @@ minetest.register_node("mapgen:dead_grass_2", {
 	buildable_to = true, 
 	sunlight_propagates = true,
 	inventory_image = "mapgen_dead_grass_2.png",
-	groups = {snappy=3, flammable=1, attatched_node=1, flora=1, not_in_creative_inventory=1},
+	groups = {snappy=3, flammable=1, attached_node=1, flora=1, not_in_creative_inventory=1},
 	sounds = default.node_sound_leaves_defaults(),
 	selection_box = {
 		type = "fixed",
@@ -1315,7 +1315,7 @@ minetest.register_node("mapgen:dead_grass_3", {
 	buildable_to = true, 
 	sunlight_propagates = true,
 	inventory_image = "mapgen_dead_grass_3.png",
-	groups = {snappy=3, flammable=1, attatched_node=1, flora=1, not_in_creative_inventory=1},
+	groups = {snappy=3, flammable=1, attached_node=1, flora=1, not_in_creative_inventory=1},
 	sounds = default.node_sound_leaves_defaults(),
 	selection_box = {
 		type = "fixed",
@@ -1334,7 +1334,7 @@ minetest.register_node("mapgen:dead_grass_4", {
 	buildable_to = true, 
 	sunlight_propagates = true,
 	inventory_image = "mapgen_dead_grass_4.png",
-	groups = {snappy=3, flammable=1, attatched_node=1, flora=1, not_in_creative_inventory=1},
+	groups = {snappy=3, flammable=1, attached_node=1, flora=1, not_in_creative_inventory=1},
 	sounds = default.node_sound_leaves_defaults(),
 	selection_box = {
 		type = "fixed",
@@ -1353,7 +1353,7 @@ minetest.register_node("mapgen:dead_grass_5", {
 	buildable_to = true, 
 	sunlight_propagates = true,
 	inventory_image = "mapgen_dead_grass_4.png",
-	groups = {snappy=3, flammable=1, attatched_node=1, flora=1},
+	groups = {snappy=3, flammable=1, attached_node=1, flora=1},
 	sounds = default.node_sound_leaves_defaults(),
 	selection_box = {
 		type = "fixed",
@@ -1379,7 +1379,7 @@ minetest.register_node("mapgen:big_coral", {
 	sunlight_propagates = true,
 	waving = 1,
 	inventory_image = "mapgen_big_coral.png",
-	groups = {snappy=3, flammable=1, attatched_node=1, sea=1},
+	groups = {snappy=3, flammable=1, attached_node=1, sea=1},
 	sounds = default.node_sound_leaves_defaults(),
 	selection_box = {
 		type = "fixed",
@@ -1398,7 +1398,7 @@ minetest.register_node("mapgen:red_coral", {
 	sunlight_propagates = true,
 	waving = 1,
 	inventory_image = "mapgen_pink_coral.png",
-	groups = {snappy=3, flammable=1, attatched_node=1, sea=1},
+	groups = {snappy=3, flammable=1, attached_node=1, sea=1},
 	sounds = default.node_sound_leaves_defaults(),
 	selection_box = {
 		type = "fixed",
@@ -1417,7 +1417,7 @@ minetest.register_node("mapgen:orange_coral", {
 	sunlight_propagates = true,
 	waving = 1,
 	inventory_image = "mapgen_orange_coral.png",
-	groups = {snappy=3, flammable=1, attatched_node=1, sea=1},
+	groups = {snappy=3, flammable=1, attached_node=1, sea=1},
 	sounds = default.node_sound_leaves_defaults(),
 	selection_box = {
 		type = "fixed",
@@ -1436,7 +1436,7 @@ minetest.register_node("mapgen:blue_coral", {
 	sunlight_propagates = true,
 	waving = 1,
 	inventory_image = "mapgen_blue_coral.png",
-	groups = {snappy=3, flammable=1, attatched_node=1, sea=1},
+	groups = {snappy=3, flammable=1, attached_node=1, sea=1},
 	sounds = default.node_sound_leaves_defaults(),
 	selection_box = {
 		type = "fixed",
@@ -1455,7 +1455,7 @@ minetest.register_node("mapgen:anemone", {
 	sunlight_propagates = true,
 	waving = 1,
 	inventory_image = "mapgen_anemone.png",
-	groups = {snappy=3, flammable=1, attatched_node=1, sea=1},
+	groups = {snappy=3, flammable=1, attached_node=1, sea=1},
 	sounds = default.node_sound_leaves_defaults(),
 	selection_box = {
 		type = "fixed",
@@ -1473,7 +1473,7 @@ minetest.register_node("mapgen:kelp1", {
 	sunlight_propagates = true,
 	waving = 1,
 	inventory_image = "mapgen_kelp.png",
-	groups = {snappy=3, flammable=1, attatched_node=1, sea=1},
+	groups = {snappy=3, flammable=1, attached_node=1, sea=1},
 	sounds = default.node_sound_leaves_defaults(),
 	selection_box = {
 		type = "fixed",
@@ -1491,7 +1491,7 @@ minetest.register_node("mapgen:kelp2", {
 	sunlight_propagates = true,
 	waving = 1,
 	inventory_image = "mapgen_kelp.png",
-	groups = {snappy=3, flammable=1, attatched_node=1, sea=1},
+	groups = {snappy=3, flammable=1, attached_node=1, sea=1},
 	sounds = default.node_sound_leaves_defaults(),
 	selection_box = {
 		type = "fixed",
@@ -1510,7 +1510,7 @@ minetest.register_node("mapgen:seagrass_1", {
 	sunlight_propagates = true,
 	waving = 1,
 	inventory_image = "mapgen_seagrass_1.png",
-	groups = {snappy=3, flammable=1, attatched_node=1, sea=1},
+	groups = {snappy=3, flammable=1, attached_node=1, sea=1},
 	sounds = default.node_sound_leaves_defaults(),
 	selection_box = {
 		type = "fixed",
@@ -1534,7 +1534,7 @@ minetest.register_node("mapgen:seagrass_2", {
 	sunlight_propagates = true,
 	waving = 1,
 	inventory_image = "mapgen_seagrass_2.png",
-	groups = {snappy=3, flammable=1, attatched_node=1, sea=1, not_in_creative_inventory=1},
+	groups = {snappy=3, flammable=1, attached_node=1, sea=1, not_in_creative_inventory=1},
 	sounds = default.node_sound_leaves_defaults(),
 	selection_box = {
 		type = "fixed",
@@ -1554,7 +1554,7 @@ minetest.register_node("mapgen:seagrass_3", {
 	sunlight_propagates = true,
 	waving = 1,
 	inventory_image = "mapgen_seagrass_3.png",
-	groups = {snappy=3, flammable=1, attatched_node=1, sea=1, not_in_creative_inventory=1},
+	groups = {snappy=3, flammable=1, attached_node=1, sea=1, not_in_creative_inventory=1},
 	sounds = default.node_sound_leaves_defaults(),
 	selection_box = {
 		type = "fixed",
@@ -2154,7 +2154,7 @@ minetest.register_node("mapgen:glowing_mushroom_white", {
 	buildable_to = true, 
 	sunlight_propagates = true,
 	inventory_image = "mapgen_glowing_mushroom_white.png",
-	groups = {snappy=3, flammable=1, attatched_node=1, flora=1},
+	groups = {snappy=3, flammable=1, attached_node=1, flora=1},
 	sounds = default.node_sound_leaves_defaults(),
 	selection_box = {
 		type = "fixed",
