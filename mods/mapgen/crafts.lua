@@ -1,4 +1,17 @@
 
+minetest.register_craft( {
+	output = "mapgen:crystal_shard 4",
+	recipe = {
+		{ "mapgen:crystal",},
+	}
+})
+
+minetest.register_craft( {
+	output = "mapgen:crystal_shard 2",
+	recipe = {
+		{ "mapgen:crystal_small",},
+	}
+})
 
 minetest.register_craft( {
 	output = "decoblocks:bamboo_block 4",
