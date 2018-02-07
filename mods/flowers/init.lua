@@ -72,13 +72,13 @@ flowers.datas = {
 	{
 		"dandelion_yellow",
 		"Yellow Dandelion",
-		{-2 / 16, -0.5, -2 / 16, 2 / 16, 4 / 16, 2 / 16},
+		{-5 / 16, -0.5, -5 / 16, 5 / 16, -2 / 16, 5 / 16},
 		{color_yellow = 1, flammable = 1}
 	},
 	{
 		"geranium",
 		"Blue Geranium",
-		{-2 / 16, -0.5, -2 / 16, 2 / 16, 2 / 16, 2 / 16},
+		{-5 / 16, -0.5, -5 / 16, 5 / 16, -2 / 16, 5 / 16},
 		{color_blue = 1, flammable = 1}
 	},
 	{
