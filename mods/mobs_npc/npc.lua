@@ -101,6 +101,17 @@ local npc_go_home = function(self, dtime)
       end
 end
 
+local set_velocity = function(self, v)
+
+	local yaw = (self.object:getyaw() or 0) + self.rotate
+
+	self.object:setvelocity({
+		x = sin(yaw) * -v,
+		y = self.object:getvelocity().y,
+		z = cos(yaw) * v
+	})
+end
+
 mobs:register_mob("mobs_npc:npc", {
 	type = "npc",
 	passive = false,
